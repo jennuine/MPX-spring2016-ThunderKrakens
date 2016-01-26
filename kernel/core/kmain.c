@@ -28,7 +28,14 @@ void kmain(void)
 
    // 0) Initialize Serial I/O and call mpx_init
    klogv("Starting MPX boot sequence...");
+   
+   init_serial(COM1);
+   set_serial_in(COM1);
+   set_serial_out(COM1);
+   
    klogv("Initialized serial I/O on COM1 device...");
+
+   mpx_init(MODULE_R1);
 
    // 1) Check that the boot was successful and correct when using grub
    // Comment this when booting the kernel directly using QEMU, etc.
@@ -39,8 +46,18 @@ void kmain(void)
    // 2) Descriptor Tables
    klogv("Initializing descriptor tables...");
 
+   init_gdt();
+   init_idt();
+
+   init_pic();
+   init_irq();
+
+   sti();
+
    // 4) Virtual Memory
    klogv("Initializing virtual memory...");
+
+   init_paging();
 
    // 5) Call Commhand
    klogv("Transferring control to commhand...");
