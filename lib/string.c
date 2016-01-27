@@ -1,4 +1,5 @@
 #include <system.h>
+#include <core/serial.h>
 #include <string.h>
 
 /* ****************************** *
@@ -7,8 +8,6 @@
  * * following string functions * *
  * ****************************** */
 
-#if 0 // <-- Move this directive as you complete each function
-
 /*
   Procedure..: strlen
   Description..: Returns the length of a string.
@@ -16,7 +15,12 @@
 */
 int strlen(const char *s)
 {
-  return NULL; // return length of string
+  int count = 0;
+  for(; *s; s++, count++)
+  {
+  }
+  
+  return count; // return length of string
 }
 
 /*
@@ -26,9 +30,12 @@ int strlen(const char *s)
 */
 char* strcpy(char *s1, const char *s2)
 {
-  return NULL; // return pointer to destination string
+  char * s1_orign = s1;
+  for(; (*s1 = *s2); s1++, s2++)
+  {
+  }
+  return s1_orign; // return pointer to destination string
 }
-
 /*
   Procedure..: atoi
   Description..: Convert an ASCII string to an integer
@@ -36,7 +43,20 @@ char* strcpy(char *s1, const char *s2)
 */
 int atoi(const char *s)
 {
-  return NULL; // return integer
+  int IsValid = 1, Value = 0;
+  
+  for(; *s && IsValid; s++)
+  {
+  	if('0' <= *s && *s <= '9')
+  	{
+  		Value = (Value * 10) + (*s - '0');
+  	}
+  	else
+  	{
+  		IsValid = Value = 0;
+  	}
+  }
+  return Value; // return integer
 }
 /*
   Procedure..: strcmp
@@ -45,15 +65,15 @@ int atoi(const char *s)
 */
 int strcmp(const char *s1, const char *s2)
 {
-
-  // Remarks:
-  // 1) If we made it to the end of both strings (i. e. our pointer points to a
-  //    '\0' character), the function will return 0
-  // 2) If we didn't make it to the end of both strings, the function will
-  //    return the difference of the characters at the first index of
-  //    indifference.
+  for(; (*s1 == *s2) && *s1 && *s2; s1++, s2++)
+  {
+  } 
+  
   return ( *(unsigned char *)s1 - *(unsigned char *)s2 );
 }
+
+
+#if 0 // <-- Move this directive as you complete each function
 
 #endif
 
@@ -71,7 +91,6 @@ int strcmp(const char *s1, const char *s2)
              (Read the man Page: $ man sprintf)
    int sprintf(char *str, const char *format, ...); 
 */
-
 
 /* ---------------------------------------
     Functions below this point are given.
