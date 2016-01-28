@@ -1,5 +1,7 @@
 #include <system.h>
 #include <string.h>
+#include <core/serial.h>
+
 
 /* ****************************** *
  * ********* Your Task: ********* *
@@ -7,8 +9,7 @@
  * * following string functions * *
  * ****************************** */
 
-#if 0 // <-- Move this directive as you complete each function
-
+#if 0
 /*
   Procedure..: strlen
   Description..: Returns the length of a string.
@@ -18,6 +19,7 @@ int strlen(const char *s)
 {
   return NULL; // return length of string
 }
+#endif
 
 /*
   Procedure..: strcpy
@@ -26,8 +28,11 @@ int strlen(const char *s)
 */
 char* strcpy(char *s1, const char *s2)
 {
-  return NULL; // return pointer to destination string
+  int i = 0;
+  while ((*s1++ = *s2++) != '\0');
+  return s1;// return pointer to destination string
 }
+
 
 /*
   Procedure..: atoi
@@ -36,8 +41,32 @@ char* strcpy(char *s1, const char *s2)
 */
 int atoi(const char *s)
 {
-  return NULL; // return integer
+  int sign, i, integer = 0;
+
+  if (s[0] == '-')
+    sign = 1;
+
+  i = sign;
+
+  while ( s[i] != '\0')
+  {
+    if (s[i] >= '0' && s[i] <= '9')
+      integer = integer * 10 + (s[i] - '0');
+    else
+    {
+      serial_println("Error: that was not a valid integer.\n");
+      return 0;
+    }
+    i++;
+  }
+
+  if (sign == 1)
+    integer = -integer;
+
+  return integer; // return integer
 }
+
+#if 0
 /*
   Procedure..: strcmp
   Description..: String comparison
@@ -54,11 +83,7 @@ int strcmp(const char *s1, const char *s2)
   //    indifference.
   return ( *(unsigned char *)s1 - *(unsigned char *)s2 );
 }
-
 #endif
-
-
-
 /* And finally....
    For the brave ones! (Note: you'll need to add a prototype to string.h)
    sprintf must work properly for the following types to receive extra credit:
@@ -69,7 +94,7 @@ int strcmp(const char *s1, const char *s2)
      ...
      \infty) Or feel free to completely implement sprintf
              (Read the man Page: $ man sprintf)
-   int sprintf(char *str, const char *format, ...); 
+   int sprintf(char *str, const char *format, ...);
 */
 
 

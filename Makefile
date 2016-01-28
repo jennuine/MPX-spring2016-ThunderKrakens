@@ -12,6 +12,7 @@ OBJFILES =\
 boot/loader.o\
 kernel/kernel.o
 
+
 MODULES =\
 modules/modules.o
 
@@ -24,9 +25,9 @@ all: kernel.bin
 
 .s.o:
 	$(AS) $(ASFLAGS) -o $@ $<
-.c.o: 
+.c.o:
 # 2) Modify this to add an include directory
-	$(CC) $(CFLAGS) -I./include -I./modules -o $@ $< 
+	$(CC) $(CFLAGS) -I./include -I./modules -o $@ $<
 
 .PHONY : kernel/kernel.o
 kernel/kernel.o:
