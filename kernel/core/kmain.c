@@ -28,14 +28,22 @@ void kmain(void)
 
    // 0) Initialize Serial I/O and call mpx_init
    klogv("Starting MPX boot sequence...");
+
+   init_serial(COM1);
+   set_serial_in(COM1);
+   set_serial_out(COM1);
+
+   mpx_init(MODULE_R1);
+
    klogv("Initialized serial I/O on COM1 device...");
 
    // 1) Check that the boot was successful and correct when using grub
    // Comment this when booting the kernel directly using QEMU, etc.
+   
    if ( magic != 0x2BADB002 ){
      //kpanic("Boot was not error free. Halting.");
    }
-   
+
    // 2) Descriptor Tables
    klogv("Initializing descriptor tables...");
 
@@ -47,7 +55,7 @@ void kmain(void)
 
    // 11) System Shutdown
    klogv("Starting system shutdown procedure...");
-   
+
    /* Shutdown Procedure */
    klogv("Shutdown complete. You may now turn off the machine. (QEMU: C-a x)");
    hlt();
