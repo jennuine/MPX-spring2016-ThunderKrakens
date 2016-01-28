@@ -28,7 +28,6 @@ int strlen(const char *s)
 */
 char* strcpy(char *s1, const char *s2)
 {
-  int i = 0;
   while ((*s1++ = *s2++) != '\0');
   return s1;// return pointer to destination string
 }
