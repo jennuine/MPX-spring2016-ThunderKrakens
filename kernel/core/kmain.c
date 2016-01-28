@@ -39,7 +39,7 @@ void kmain(void)
 
    // 1) Check that the boot was successful and correct when using grub
    // Comment this when booting the kernel directly using QEMU, etc.
-   
+
    if ( magic != 0x2BADB002 ){
      //kpanic("Boot was not error free. Halting.");
    }
@@ -47,8 +47,17 @@ void kmain(void)
    // 2) Descriptor Tables
    klogv("Initializing descriptor tables...");
 
+   init_gdt();
+   init_idt();
+
+   init_pic();
+   init_irq();
+   sti();
+
    // 4) Virtual Memory
    klogv("Initializing virtual memory...");
+
+   init_paging();
 
    // 5) Call Commhand
    klogv("Transferring control to commhand...");
