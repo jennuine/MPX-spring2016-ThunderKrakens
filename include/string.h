@@ -59,4 +59,27 @@ char* strtok(char *s1, const char *s2);
 */
 int atoi(const char *s);
 
+/*
+  Procedure..: sprintf
+  Description..: generate a formatted string.
+	%[-x]c		output a character, '-' - align right, x - the output width
+	%[-x]s		output a string, '-' - align right, x - the output width
+	%[{-,+}x]d	output a character, '-' - align right, '+' - align right and display '+' sign, x - the output width
+	%[-x]X		(capital 'X') output a hexadecimal number, '-' - align right, x - the output width
+	*note: output width will be ignored if width is smaller than actual length.
+  Params..: str-output string, format-the format of the string, ...-the additional parameters.
+*/
+int sprintf(char *str, const char *format, ...);
+
+/*
+  Procedure..: printf
+  Description..: print out a formatted string.
+	%[-x]c		output a character, '-' - align right, x - the output width
+	%[-x]s		output a string, '-' - align right, x - the output width
+	%[{-,+}x]d	output a character, '-' - align right, '+' - align right and display '+' sign, x - the output width
+	%[-x]X		(capital 'X') output a hexadecimal number, '-' - align right, x - the output width
+	*note: output width will be ignored if width is smaller than actual length.
+  Params..: format-the format of the string, ...-the additional parameters.
+*/
+int printf(const char *format, ...);
 #endif
