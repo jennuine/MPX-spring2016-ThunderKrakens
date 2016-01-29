@@ -9,7 +9,6 @@
  * * following string functions * *
  * ****************************** */
 
-#if 0
 /*
   Procedure..: strlen
   Description..: Returns the length of a string.
@@ -17,9 +16,13 @@
 */
 int strlen(const char *s)
 {
-  return NULL; // return length of string
+  int count = 0;
+  for(; *s; s++, count++)
+  {
+  }
+  
+  return count; // return length of string
 }
-#endif
 
 /*
   Procedure..: strcpy
@@ -65,7 +68,6 @@ int atoi(const char *s)
   return integer; // return integer
 }
 
-#if 0
 /*
   Procedure..: strcmp
   Description..: String comparison
@@ -73,29 +75,12 @@ int atoi(const char *s)
 */
 int strcmp(const char *s1, const char *s2)
 {
-
-  // Remarks:
-  // 1) If we made it to the end of both strings (i. e. our pointer points to a
-  //    '\0' character), the function will return 0
-  // 2) If we didn't make it to the end of both strings, the function will
-  //    return the difference of the characters at the first index of
-  //    indifference.
+  for(; (*s1 == *s2) && *s1 && *s2; s1++, s2++)
+  {
+  } 
+  
   return ( *(unsigned char *)s1 - *(unsigned char *)s2 );
 }
-#endif
-/* And finally....
-   For the brave ones! (Note: you'll need to add a prototype to string.h)
-   sprintf must work properly for the following types to receive extra credit:
-     1) characters
-     2) strings
-     3) signed integers
-     4) hexadecimal numbers may be useful
-     ...
-     \infty) Or feel free to completely implement sprintf
-             (Read the man Page: $ man sprintf)
-   int sprintf(char *str, const char *format, ...);
-*/
-
 
 /* ---------------------------------------
     Functions below this point are given.
