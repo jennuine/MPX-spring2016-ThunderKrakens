@@ -31,9 +31,11 @@ int strlen(const char *s)
 */
 char* strcpy(char *s1, const char *s2)
 {
-   while ((*s1++ = *s2++) != '\0');
-   return s1;// return pointer to destination string
+  while ((*s1++ = *s2++) != '\0');
+  return s1;// return pointer to destination string
 }
+
+
 /*
   Procedure..: atoi
   Description..: Convert an ASCII string to an integer
@@ -41,30 +43,31 @@ char* strcpy(char *s1, const char *s2)
 */
 int atoi(const char *s)
 {
-   int sign, i, integer = 0;
- 
-   if (s[0] == '-')
-     sign = 1;
- 
-   i = sign;
- 
-   while ( s[i] != '\0')
-   {
-     if (s[i] >= '0' && s[i] <= '9')
-       integer = integer * 10 + (s[i] - '0');
-     else
-     {
-       serial_println("Error: that was not a valid integer.\n");
-       return 0;
-     }
-     i++;
-   }
- 
-   if (sign == 1)
-     integer = -integer;
- 
-   return integer; // return integer
- }
+  int sign, i, integer = 0;
+
+  if (s[0] == '-')
+    sign = 1;
+
+  i = sign;
+
+  while ( s[i] != '\0')
+  {
+    if (s[i] >= '0' && s[i] <= '9')
+      integer = integer * 10 + (s[i] - '0');
+    else
+    {
+      serial_println("Error: that was not a valid integer.\n");
+      return 0;
+    }
+    i++;
+  }
+
+  if (sign == 1)
+    integer = -integer;
+
+  return integer; // return integer
+}
+
 /*
   Procedure..: strcmp
   Description..: String comparison
