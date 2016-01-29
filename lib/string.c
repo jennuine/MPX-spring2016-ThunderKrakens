@@ -217,7 +217,7 @@ static int vsprintf(char *str, const char *format, const int * ap)
 	{
 		if(*format == '%')
 		{
-			char PadValue[1000] = { 0 };
+			char PadValue[100] = { 0 };
 			int Width = 0, DecWidth = 0, bIsRight = 0, bHasSign = 0, bIsValid = 1;
 			format++;
 			if(*format == '+' || *format == '-' || *format == '.' || ('0' <= *format && *format <= '9'))
