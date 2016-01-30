@@ -346,7 +346,8 @@ int printf(const char *format, ...)
 {
 	int * ap = (int *)&format;
 	ap++;
-	char * tempStr = sys_alloc_mem(10000);
+	static char tempStr[5000];
+	memset(tempStr, 0, 5000);
 	int result = vsprintf(tempStr, format, ap);
 	serial_print(tempStr);
 	sys_free_mem(tempStr);
