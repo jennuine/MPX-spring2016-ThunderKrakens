@@ -87,3 +87,44 @@ int set_serial_in(int device)
   serial_port_in = device;
   return NO_ERROR;
 }
+
+/*
+  Procedure..: GetInputlnWithEcho
+  Description..: Get user's input from keyborad with echo on the screen.
+  Params..: buffer-the pointer to the buffer where store the user's input, buffer_size-the size of that buffer
+*/
+void GetInputlnWithEcho(char * buffer, const int buffer_size)
+{
+	int i = 0;
+	char userInputChar[] = { 0, 0 };
+	while(userInputChar[0] != 13 && i < buffer_size)
+	{
+		if(inb(COM1 + 5) & 1)
+		{
+			userInputChar[0] = inb(COM1);
+			buffer[i++] = (userInputChar[0] == 13) ? 0 : userInputChar[0];
+			serial_print((userInputChar[0] == 13) ? "\n" : userInputChar);
+		}
+	}
+}
+
+/*
+  Procedure..: GetInputlnWithoutEcho
+  Description..: Get user's input from keyborad with echo on the screen.
+  Params..: buffer-the pointer to the buffer where store the user's input, buffer_size-the size of that buffer
+*/
+void GetInputlnWithoutEcho(char * buffer, const int buffer_size)
+{
+	int i = 0;
+	char userInputChar = 0;
+	while(userInputChar != 13 && i < (buffer_size - 1))
+	{
+		if(inb(COM1 + 5) & 1)
+		{
+			userInputChar = inb(COM1);
+			buffer[i++] = (userInputChar == 13) ? 0 : userInputChar;
+			serial_print("*");
+		}
+	}
+	serial_print("\n");
+}
