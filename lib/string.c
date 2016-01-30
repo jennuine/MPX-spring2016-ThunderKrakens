@@ -47,25 +47,21 @@ int atoi(const char *s)
 {
   int sign, i, integer = 0;
 
-  if (s[0] == '-')
-    sign = 1;
+  sign = ((i = (s[0] == '-')) ? -1 : 1);
 
-  i = sign;
-
-  while ( s[i] != '\0')
+  while (s[i])
   {
     if (s[i] >= '0' && s[i] <= '9')
       integer = integer * 10 + (s[i] - '0');
     else
     {
-      serial_println("Error: that was not a valid integer.\n");
+      serial_println("Error (atoi): that was not a valid integer.");
       return 0;
     }
     i++;
   }
 
-  if (sign == 1)
-    integer = -integer;
+  integer = sign * integer;
 
   return integer; // return integer
 }
