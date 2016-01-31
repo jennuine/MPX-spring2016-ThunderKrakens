@@ -8,7 +8,7 @@ int commhand()
 	printf("In R1 commhand...\n");
 	printf("input > ");
 	char userInput[100];
-	GetInputlnWithEcho(userInput, 100);
+	GetInputln(userInput, 100, 1);
 	printf("Your inputs: %s\n", userInput);
 	return 0;
 }

@@ -93,21 +93,42 @@ int set_serial_in(int device)
   Description..: Move the cursor back for specific times.
   Params..: num-The number of times that needs to move back.
 */
-static void MoveCursorBack(const int num)
+static void MoveCursorBack(int num)
 {
-	int i = 0;
-	for(i = 0; i < num; i++)
-	{
+	while(num-- > 0)
 		serial_print("\b");
-	}
+}
+
+/*
+  Procedure..: PrintStars
+  Description..: Print out the '*' for specific times.
+  Params..: num-The number of times that needs to print.
+*/
+static void PrintStars(int num)
+{
+	while(num-- > 0)
+		serial_print("*");
+}
+
+/*
+  Procedure..: EchoInput
+  Description..: Decides to print out the original string or stars.
+  Params..: InputStr-The string, bWithEcho-Turn on the echo or not.
+*/
+static void EchoInput(const char * InputStr, const int bWithEcho)
+{
+	if(bWithEcho)
+		serial_print(InputStr);
+	else
+		PrintStars(strlen(InputStr));
 }
 
 /*
   Procedure..: GetInputlnWithEcho
-  Description..: Get user's input from keyborad with echo on the screen.
+  Description..: Get user's input from keyborad.
   Params..: buffer-the pointer to the buffer where store the user's input, buffer_size-the size of that buffer
 */
-void GetInputlnWithEcho(char * buffer, const int buffer_size)
+void GetInputln(char * buffer, const int buffer_size, const int bWithEcho)
 {
 	int i = 0, cursorPos = 0;
 	char userInputChar[] = { 0, 0 }, tempBuffer[buffer_size];
@@ -150,7 +171,7 @@ void GetInputlnWithEcho(char * buffer, const int buffer_size)
 							buffer[cursorPos] = 0;
 							strcat(&buffer[cursorPos], &buffer[cursorPos + 1]);
 							i--;
-							serial_print(&buffer[cursorPos]);
+							EchoInput(&buffer[cursorPos], bWithEcho);
 							serial_print(" \b");
 							MoveCursorBack(i - cursorPos);
 						}
@@ -171,7 +192,7 @@ void GetInputlnWithEcho(char * buffer, const int buffer_size)
 					cursorPos--; 
 					i--;
 					serial_print("\b");
-					serial_print(&buffer[cursorPos]);
+					EchoInput(&buffer[cursorPos], bWithEcho);
 					serial_print(" \b");
 					MoveCursorBack(i - cursorPos);
 				}
@@ -191,7 +212,7 @@ void GetInputlnWithEcho(char * buffer, const int buffer_size)
 				strcat(&buffer[cursorPos + 1], tempBuffer);
 				buffer[cursorPos] = userInputChar[0];
 				buffer[++i] = 0;
-				serial_print(&buffer[cursorPos]);
+				EchoInput(&buffer[cursorPos], bWithEcho);
 				cursorPos++;
 				MoveCursorBack(i - cursorPos);
 			}
@@ -199,23 +220,3 @@ void GetInputlnWithEcho(char * buffer, const int buffer_size)
 	}
 }
 
-/*
-  Procedure..: GetInputlnWithoutEcho
-  Description..: Get user's input from keyborad with echo on the screen.
-  Params..: buffer-the pointer to the buffer where store the user's input, buffer_size-the size of that buffer
-*/
-void GetInputlnWithoutEcho(char * buffer, const int buffer_size)
-{
-	int i = 0;
-	char userInputChar = 0;
-	while(userInputChar != 13 && i < (buffer_size - 1))
-	{
-		if(inb(COM1 + 5) & 1)
-		{
-			userInputChar = inb(COM1);
-			buffer[i++] = (userInputChar == 13) ? 0 : userInputChar;
-			serial_print("*");
-		}
-	}
-	serial_print("\n");
-}
