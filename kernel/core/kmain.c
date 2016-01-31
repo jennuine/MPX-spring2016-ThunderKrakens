@@ -78,6 +78,12 @@ void kmain(void)
    /* Shutdown Procedure */
    klogv("Shutdown complete. You may now turn off the machine. (QEMU: C-a x)");
    hlt();
+   
+   /* Version of the System */
+   if (!strcmp(commSegment[0], "version"))
+   {
+	klogv("Version number 1.0 - This version is for Module R1  - All Copy Rights reserved to Thunder Krakens.");
+   }
 }
 
 /*
