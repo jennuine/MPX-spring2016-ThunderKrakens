@@ -72,6 +72,13 @@ int atoi(const char *s);
 int sprintf(char *str, const char *format, ...);
 
 /*
+  Procedure..: convertFormat
+  Description..: stores the formatted string in storage.
+  Params..: format-the format of the string, storage - the char array to store the formatted string
+*/
+void convertFormat(const char *format, char *storage, ...);
+
+/*
   Procedure..: printf
   Description..: print out a formatted string.
 	%[-x]c		output a character, '-' - align right, x - the output width

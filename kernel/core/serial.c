@@ -13,6 +13,25 @@
 
 #define NO_ERROR 0
 
+//ANSI Escape ASCII Characters
+#define ESC 27
+#define BRACKET 91
+#define ENTER_KEY 13
+#define BACKSPACE_KEY 127
+#define DEL_KEY_1 51
+#define DEL_KEY_2 126
+#define UP_ARROW 65
+#define DOWN_ARROW 66
+#define RIGHT_ARROW 67
+#define LEFT_ARROW 68
+#define BACKSPACE 0x1B5808
+
+//ANSI Escape Seqences
+#define SAVE_CURSOR_POS "\033[s"
+#define RESTORE_CURSOR_POS "\033[u"
+#define CLEAR_LINE "\x1b[K"
+#define DEL_SEQ "\x1b[P"
+
 // Active devices used for serial I/O
 int serial_port_out = 0;
 int serial_port_in = 0;
@@ -46,7 +65,7 @@ int serial_println(const char *msg)
     outb(serial_port_out,*(i+msg));
   }
   outb(serial_port_out,'\r');
-  outb(serial_port_out,'\n');  
+  outb(serial_port_out,'\n');
   return NO_ERROR;
 }
 
@@ -88,8 +107,10 @@ int set_serial_in(int device)
   return NO_ERROR;
 }
 
+#if 0
+
 /*
-  Procedure..: MoveCursorBack
+  Procedure..: MoveCursorBackchar
   Description..: Move the cursor back for specific times.
   Params..: num-The number of times that needs to move back.
 */
@@ -123,6 +144,115 @@ static void EchoInput(const char * InputStr, const int bWithEcho)
 		PrintStars(strlen(InputStr));
 }
 
+#endif
+
+void outByte(int inb)
+{
+  outb(COM1, ESC);
+  outb(COM1, BRACKET);
+  outb(COM1, inb);
+}
+
+void delete(char * input, int i)
+{
+
+  int count = 0, j = i;
+
+  while ((input[j] = input[j+1]) != '\0')
+  {
+    outb(COM1, input[j]);
+    count++;
+    j++;
+  }
+  input[j] = '\0';
+  serial_print(" ");
+
+
+  while (count >= 0)
+  {
+    outByte(LEFT_ARROW);
+    count--;
+  }
+}
+
+int getInput(char * input)
+{
+  int i = 0;
+	while(1)
+	{
+    // serial_print("\033[s"); //saves currsor position
+
+		if(inb(COM1 + 5) & 1)
+		{
+      int inb = inb(COM1);
+
+        if (inb == ESC)
+        {
+          inb(COM1); //removes bracket
+          inb = inb(COM1);
+
+          if (inb == DEL_KEY_1)
+          {
+            inb(COM1); //removes tilde
+            serial_print(DEL_SEQ);
+
+            delete(input, i);
+          }
+          else if (inb == UP_ARROW)
+          {
+
+          }
+          else if (inb == DOWN_ARROW)
+          {
+
+          }
+
+          else if (inb == LEFT_ARROW)
+          {
+            outByte(inb);
+            i--;
+          }
+
+          else if (inb == RIGHT_ARROW)
+          {
+            if (input[i+1] == NULL) continue;
+            outByte(inb);
+          }
+
+        }
+        else if (inb == BACKSPACE_KEY)
+        {
+
+          outb(COM1, BACKSPACE); //moves cursor left 1
+          i--;
+          delete(input, i);
+        }
+        else if (inb == ENTER_KEY)
+        {
+          serial_print(CLEAR_LINE);
+          return 1;
+        }
+        else if(inb == 122) //used for testing, enter z to escape loop
+        {
+          break;
+        }
+        else
+        {
+          outb(COM1, input[i] = inb);
+          i++;
+          input[i] = '\0';
+        }
+    }
+    // serial_print("\033[u");
+    // serial_print("\x1B[K");
+  }
+  return 0;
+}
+
+
+
+#if 0
+
 /*
   Procedure..: GetInputlnWithEcho
   Description..: Get user's input from keyborad.
@@ -140,7 +270,7 @@ void GetInputln(char * buffer, const int buffer_size, const int bWithEcho)
 			userInputChar[0] = inb(COM1);
 			//printf("%d\n", userInputChar[0]);
 			if(userInputChar[0] == 27)
-			{	
+			{
 				if((inb(COM1 + 5) & 1) && (userInputChar[0] = inb(COM1)) == 91)
 				{
 					if((inb(COM1 + 5) & 1) && (userInputChar[0] = inb(COM1)) == 65) //arrow up
@@ -189,7 +319,7 @@ void GetInputln(char * buffer, const int buffer_size, const int bWithEcho)
 				{
 					buffer[cursorPos - 1] = 0;
 					strcat(&buffer[cursorPos - 1], &buffer[cursorPos]);
-					cursorPos--; 
+					cursorPos--;
 					i--;
 					serial_print("\b");
 					EchoInput(&buffer[cursorPos], bWithEcho);
@@ -220,3 +350,4 @@ void GetInputln(char * buffer, const int buffer_size, const int bWithEcho)
 	}
 }
 
+#endif
