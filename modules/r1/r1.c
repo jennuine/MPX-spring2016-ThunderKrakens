@@ -4,7 +4,34 @@
 #include <string.h>
 #include <core/serial.h>
 
+#include <core/io.h>
+
 #define USER_INPUT_BUFFER_SIZE 1000
+
+static int shutdown(const char* cmd_str)
+{
+	if (strcmp(cmd_str, "mpx-shutdown") != 0)
+		return 1;
+	else
+	{
+		char ans[] = { 0, 0 };
+		printf("\nAre you sure you would like to shutdown?\n( Type y/n )\n");
+
+		while (!ans[0])
+		 	if (inb(COM1 + 5) & 1)
+				ans[0] = inb(COM1);
+
+		if (strcmp(ans, "y") == 0 || strcmp(ans, "Y") == 0)
+			return 0;
+		else if (strcmp(ans, "n") == 0 || strcmp(ans, "N") == 0)
+			return 1;
+		else
+			{
+				printf("Error: %s was invalid.\n\n", ans);
+				return 1;
+			}
+	}
+}
 
 int commhand()
 {
@@ -14,8 +41,8 @@ int commhand()
 	printf("input > ");
 	GetInputln(userInput, 100, WithEcho);
 	printf("Your inputs: %s\n", userInput);
-	
-	return 0;
+
+	return shutdown(userInput);
 }
 
 enum CommandPaserStat
