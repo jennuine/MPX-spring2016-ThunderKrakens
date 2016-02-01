@@ -189,7 +189,7 @@ void GetInputln(char * buffer, const int buffer_size, const int bWithEcho)
 				{//It is only a ESC key, return without any input string.
 					memset(buffer, '\0', buffer_size); //clean all the input chars
 					serial_print("\n");
-					return;
+					return; 
 				}
 			}
 			else if(userInputChar[0] == BACKSPACE_KEY) //if we receive a Backspace Key
@@ -217,7 +217,7 @@ void GetInputln(char * buffer, const int buffer_size, const int bWithEcho)
 			else //otherwise, we consider it as a normal key, insert char into current position, and store it to user input string.
 			{
 				strcpy(tempBuffer, &buffer[cursorPos]); //copy the rest of string.
-				buffer[cursorPos + 1] = '\0';
+				buffer[cursorPos + 1] = '\0'; 
 				strcat(&buffer[cursorPos + 1], tempBuffer); //paste it to next position.
 				buffer[cursorPos] = userInputChar[0]; //insert user input
 				buffer[++i] = '\0';
@@ -228,3 +228,4 @@ void GetInputln(char * buffer, const int buffer_size, const int bWithEcho)
 		}
 	}
 }
+
