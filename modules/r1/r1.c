@@ -4,19 +4,13 @@
 #include <string.h>
 #include <core/serial.h>
 
+#define USER_INPUT_BUFFER_SIZE 1000
 
 int commhand()
 {
+	static char userInput[USER_INPUT_BUFFER_SIZE];
+	
 	printf("In R1 commhand...\n");
-
-	char userInput[100];
-
-	//while (getInput(userInput))
-	//{
-	//	char str[100];
-	//	convertFormat(userInput, str);
-	//	printf("Your inputs: %s\n", str);
-	//}
 	printf("input > ");
 	GetInputln(userInput, 100, 1);
 	printf("Your inputs: %s\n", userInput);
