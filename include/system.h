@@ -51,25 +51,4 @@ static inline int irq_on()
 void klogv(const char *msg);
 void kpanic(const char *msg);
 
-/*
-  Procedure..: GetTime
-  Description..: Gets the system time.
-  Params..: hour-output hour, minute-output minute, second-output second.
-*/
-void GetTime(unsigned int * hour, unsigned int * minute, unsigned int * second);
-
-/*
-  Procedure..: PrintTime
-  Description..: Print out the system time.
-  Params..: None
-*/
-void PrintTime();
-
-/*
-  Procedure..: SetTime
-  Description..: Sets the system time.
-  Params..: hour-input hour, minute-input minute, second-input second.
-*/
-void SetTime(const unsigned int hour, const unsigned int minute, const unsigned int second);
-
 #endif

@@ -1,6 +1,6 @@
 #include "r1.h"
 #include "../mpx_supt.h"
-// #include "sys_time.h"
+#include "sys_clock.h"
 #include <string.h>
 #include <core/serial.h>
 
@@ -9,7 +9,7 @@
 int commhand()
 {
 	static char userInput[USER_INPUT_BUFFER_SIZE];
-	
+
 	printf("In R1 commhand...\n");
 	printf("input > ");
 	GetInputln(userInput, 100, WithEcho);
@@ -36,9 +36,9 @@ void CommandLineParser(const char * CmdStr, int * argc, char ** argv, const int 
 		{
 			//Space before writing, just ignore it.
 		}
-		else if( (*CmdStr == ' ' && WritingStat == NormalWriting) || 
+		else if( (*CmdStr == ' ' && WritingStat == NormalWriting) ||
 			 (*CmdStr == '\"' && WritingStat == DoubleQuoteWriting) ||
-			 (*CmdStr == '\'' && WritingStat == SingleQuoteWriting) || 
+			 (*CmdStr == '\'' && WritingStat == SingleQuoteWriting) ||
 			 (LinePtr && LinePtr - argv[*argc] >= MaxStrLen - 1) )
 		{//End of writing
 			*LinePtr++ = '\0';
@@ -61,14 +61,14 @@ void CommandLineParser(const char * CmdStr, int * argc, char ** argv, const int 
 			WritingStat = NormalWriting;
 			LinePtr = argv[*argc];
 		}
-		
+
 		if(*CmdStr && WritingStat > NotWriting)
 		{
 			*LinePtr++ = *CmdStr;
 		}
 		CmdStr++;
 	}
-	
+
 	if(WritingStat > NotWriting)
 	{
 		*LinePtr++ = '\0';
