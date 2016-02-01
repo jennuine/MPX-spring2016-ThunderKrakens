@@ -44,9 +44,7 @@ int set_serial_in(int device);
 /*
   Procedure..: GetInputlnWithEcho
   Description..: Get user's input from keyborad.
-  Params..: buffer-the pointer to the buffer where store the user's input, buffer_size-the size of that buffer,
-		bWithEcho-Turn on the echo or not.
+  Params..: buffer-the pointer to the buffer where store the user's input, buffer_size-the size of that buffer
 */
-// void GetInputln(char * buffer, const int buffer_size, const int bWithEcho);
-int getInput(char * str);
+void GetInputln(char * buffer, const int buffer_size, const int bWithEcho);
 #endif

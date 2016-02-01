@@ -7,15 +7,78 @@
 
 int commhand()
 {
-	printf("In R1 commhand...\n\n");
+	printf("In R1 commhand...\n");
 
 	char userInput[100];
 
-	while (getInput(userInput))
-	{
-		char str[100];
-		convertFormat(userInput, str);
-		printf("Your inputs: %s\n", str);
-	}
+	//while (getInput(userInput))
+	//{
+	//	char str[100];
+	//	convertFormat(userInput, str);
+	//	printf("Your inputs: %s\n", str);
+	//}
+	printf("input > ");
+	GetInputln(userInput, 100, 1);
+	printf("Your inputs: %s\n", userInput);
+	
 	return 0;
+}
+
+enum CommandPaserStat
+{
+	NotWriting,
+	NormalWriting,
+	DoubleQuoteWriting,
+	SingleQuoteWriting
+};
+
+void CommandLineParser(const char * CmdStr, int * argc, char ** argv, const int MaxArgNum, const int MaxStrLen)
+{
+	enum CommandPaserStat WritingStat = NotWriting;
+	char * LinePtr = NULL;
+	while(*CmdStr && *argc <= MaxArgNum - 1)
+	{
+		if(*CmdStr == ' ' && WritingStat == NotWriting)
+		{
+			//Space before writing, just ignore it.
+		}
+		else if( (*CmdStr == ' ' && WritingStat == NormalWriting) || 
+			 (*CmdStr == '\"' && WritingStat == DoubleQuoteWriting) ||
+			 (*CmdStr == '\'' && WritingStat == SingleQuoteWriting) || 
+			 (LinePtr && LinePtr - argv[*argc] >= MaxStrLen - 1) )
+		{//End of writing
+			*LinePtr++ = '\0';
+			(*argc)++;
+			WritingStat = NotWriting;
+		}
+		else if(*CmdStr == '\"' && WritingStat == NotWriting)
+		{//Begin Double Quote Writing
+			WritingStat = DoubleQuoteWriting;
+			LinePtr = argv[*argc];
+			CmdStr++;
+		}
+		else if(*CmdStr == '\'' && WritingStat == NotWriting)
+		{//Begin Single Quote Writing
+			WritingStat = SingleQuoteWriting;
+			LinePtr = argv[*argc];
+			CmdStr++;
+		}else if(WritingStat == NotWriting)
+		{//Begin Normal Writing
+			WritingStat = NormalWriting;
+			LinePtr = argv[*argc];
+		}
+		
+		if(*CmdStr && WritingStat > NotWriting)
+		{
+			*LinePtr++ = *CmdStr;
+		}
+		CmdStr++;
+	}
+	
+	if(WritingStat > NotWriting)
+	{
+		*LinePtr++ = '\0';
+		(*argc)++;
+		WritingStat = NotWriting;
+	}
 }

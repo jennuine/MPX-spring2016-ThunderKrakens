@@ -107,8 +107,6 @@ int set_serial_in(int device)
   return NO_ERROR;
 }
 
-#if 0
-
 /*
   Procedure..: MoveCursorBackchar
   Description..: Move the cursor back for specific times.
@@ -144,8 +142,105 @@ static void EchoInput(const char * InputStr, const int bWithEcho)
 		PrintStars(strlen(InputStr));
 }
 
-#endif
 
+/*
+  Procedure..: GetInputlnWithEcho
+  Description..: Get user's input from keyborad.
+  Params..: buffer-the pointer to the buffer where store the user's input, buffer_size-the size of that buffer
+*/
+void GetInputln(char * buffer, const int buffer_size, const int bWithEcho)
+{
+	int i = 0, cursorPos = 0;
+	char userInputChar[] = { 0, 0 }, tempBuffer[buffer_size];
+
+	while(userInputChar[0] != 13 && i < buffer_size - 1)
+	{
+		if(inb(COM1 + 5) & 1)
+		{
+			userInputChar[0] = inb(COM1);
+			//printf("%d\n", userInputChar[0]);
+			if(userInputChar[0] == 27)
+			{
+				if((inb(COM1 + 5) & 1) && (userInputChar[0] = inb(COM1)) == 91)
+				{
+					if((inb(COM1 + 5) & 1) && (userInputChar[0] = inb(COM1)) == 65) //arrow up
+					{
+						//serial_print("");
+					}
+					else if(userInputChar[0] == 66) //arrow down
+					{
+						//serial_print("");
+					}
+					else if(userInputChar[0] == 67 && cursorPos < i) //arrow right
+					{
+						outb(COM1, 27);
+						outb(COM1, 91);
+						outb(COM1, 67);
+						cursorPos++;
+					}
+					else if(userInputChar[0] == 68 && cursorPos > 0) //arrow left
+					{
+						outb(COM1, 27);
+						outb(COM1, 91);
+						outb(COM1, 68);
+						cursorPos--;
+					}else if(userInputChar[0] == 51)
+					{
+						if((inb(COM1 + 5) & 1) && (userInputChar[0] = inb(COM1)) == 126 && cursorPos < i) //delete
+						{
+							buffer[cursorPos] = 0;
+							strcat(&buffer[cursorPos], &buffer[cursorPos + 1]);
+							i--;
+							EchoInput(&buffer[cursorPos], bWithEcho);
+							serial_print(" \b");
+							MoveCursorBack(i - cursorPos);
+						}
+					}
+				}else
+				{
+					memset(buffer, 0, buffer_size);
+					serial_print("\n");
+					return;
+				}
+			}
+			else if(userInputChar[0] == 127)
+			{
+				if(cursorPos)
+				{
+					buffer[cursorPos - 1] = 0;
+					strcat(&buffer[cursorPos - 1], &buffer[cursorPos]);
+					cursorPos--;
+					i--;
+					serial_print("\b");
+					EchoInput(&buffer[cursorPos], bWithEcho);
+					serial_print(" \b");
+					MoveCursorBack(i - cursorPos);
+				}
+				else
+				{
+					serial_print("");
+				}
+			}
+			else if(userInputChar[0] == 13)
+			{
+				serial_print("\n");
+			}
+			else
+			{
+				strcpy(tempBuffer, &buffer[cursorPos]);
+				buffer[cursorPos + 1] = 0;
+				strcat(&buffer[cursorPos + 1], tempBuffer);
+				buffer[cursorPos] = userInputChar[0];
+				buffer[++i] = 0;
+				EchoInput(&buffer[cursorPos], bWithEcho);
+				cursorPos++;
+				MoveCursorBack(i - cursorPos);
+			}
+		}
+	}
+}
+
+#if 0
 void outByte(int inb)
 {
   outb(COM1, ESC);
@@ -248,106 +343,5 @@ int getInput(char * input)
   }
   return 0;
 }
-
-
-
-#if 0
-
-/*
-  Procedure..: GetInputlnWithEcho
-  Description..: Get user's input from keyborad.
-  Params..: buffer-the pointer to the buffer where store the user's input, buffer_size-the size of that buffer
-*/
-void GetInputln(char * buffer, const int buffer_size, const int bWithEcho)
-{
-	int i = 0, cursorPos = 0;
-	char userInputChar[] = { 0, 0 }, tempBuffer[buffer_size];
-
-	while(userInputChar[0] != 13 && i < buffer_size - 1)
-	{
-		if(inb(COM1 + 5) & 1)
-		{
-			userInputChar[0] = inb(COM1);
-			//printf("%d\n", userInputChar[0]);
-			if(userInputChar[0] == 27)
-			{
-				if((inb(COM1 + 5) & 1) && (userInputChar[0] = inb(COM1)) == 91)
-				{
-					if((inb(COM1 + 5) & 1) && (userInputChar[0] = inb(COM1)) == 65) //arrow up
-					{
-						//serial_print("");
-					}
-					else if(userInputChar[0] == 66) //arrow down
-					{
-						//serial_print("");
-					}
-					else if(userInputChar[0] == 67 && cursorPos < i) //arrow right
-					{
-						outb(COM1, 27);
-						outb(COM1, 91);
-						outb(COM1, 67);
-						cursorPos++;
-					}
-					else if(userInputChar[0] == 68 && cursorPos > 0) //arrow left
-					{
-						outb(COM1, 27);
-						outb(COM1, 91);
-						outb(COM1, 68);
-						cursorPos--;
-					}else if(userInputChar[0] == 51)
-					{
-						if((inb(COM1 + 5) & 1) && (userInputChar[0] = inb(COM1)) == 126 && cursorPos < i) //delete
-						{
-							buffer[cursorPos] = 0;
-							strcat(&buffer[cursorPos], &buffer[cursorPos + 1]);
-							i--;
-							EchoInput(&buffer[cursorPos], bWithEcho);
-							serial_print(" \b");
-							MoveCursorBack(i - cursorPos);
-						}
-					}
-				}else
-				{
-					memset(buffer, 0, buffer_size);
-					serial_print("\n");
-					return;
-				}
-			}
-			else if(userInputChar[0] == 127)
-			{
-				if(cursorPos)
-				{
-					buffer[cursorPos - 1] = 0;
-					strcat(&buffer[cursorPos - 1], &buffer[cursorPos]);
-					cursorPos--;
-					i--;
-					serial_print("\b");
-					EchoInput(&buffer[cursorPos], bWithEcho);
-					serial_print(" \b");
-					MoveCursorBack(i - cursorPos);
-				}
-				else
-				{
-					serial_print("");
-				}
-			}
-			else if(userInputChar[0] == 13)
-			{
-				serial_print("\n");
-			}
-			else
-			{
-				strcpy(tempBuffer, &buffer[cursorPos]);
-				buffer[cursorPos + 1] = 0;
-				strcat(&buffer[cursorPos + 1], tempBuffer);
-				buffer[cursorPos] = userInputChar[0];
-				buffer[++i] = 0;
-				EchoInput(&buffer[cursorPos], bWithEcho);
-				cursorPos++;
-				MoveCursorBack(i - cursorPos);
-			}
-		}
-	}
-}
-
 #endif
+

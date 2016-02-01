@@ -3,6 +3,6 @@
 
 int commhand();
 
-void CommandLineParser(const char * CommandLine, int * argc, char * argv[]);
+void CommandLineParser(const char * CmdStr, int * argc, char ** argv, const int MaxArgNum, const int MaxStrLen);
 
 #endif
