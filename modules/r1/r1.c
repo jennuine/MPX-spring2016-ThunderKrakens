@@ -12,7 +12,7 @@ int commhand()
 	
 	printf("In R1 commhand...\n");
 	printf("input > ");
-	GetInputln(userInput, 100, 1);
+	GetInputln(userInput, 100, WithEcho);
 	printf("Your inputs: %s\n", userInput);
 	
 	return 0;

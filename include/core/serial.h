@@ -6,6 +6,10 @@
 #define COM3 0x3e8
 #define COM4 0x2e8
 
+//Using echo or nor, for the GetInputln
+#define WithoutEcho 0
+#define WithEcho 1
+
 /*
   Procedure..: init_serial
   Description..: Initializes devices for user interaction, logging, ...

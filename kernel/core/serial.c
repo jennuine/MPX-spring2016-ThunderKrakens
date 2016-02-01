@@ -25,9 +25,6 @@
 #define RIGHT_ARROW 67
 #define LEFT_ARROW 68
 
-//Using echo or nor, for the GetUserInput
-#define WithoutEcho 0
-#define WithEcho 1
 
 // Active devices used for serial I/O
 int serial_port_out = 0;
