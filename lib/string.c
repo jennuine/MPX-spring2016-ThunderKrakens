@@ -353,18 +353,6 @@ int printf(const char *format, ...)
 	return result;
 }
 
-/*
-  Procedure..: convertFormat
-  Description..: stores the formatted string in storage.
-  Params..: format-the format of the string, storage - the char array to store the formatted string
-*/
-void convertFormat(const char *format, char *storage, ...)
-{
-	int * ap = (int *)&format;
-	ap++;
-  vsprintf(storage, format, ap);
-}
-
 /* ---------------------------------------
     Functions below this point are given.
     No need to tamper with these!
