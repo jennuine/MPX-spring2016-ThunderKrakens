@@ -8,7 +8,7 @@
 
 #define USER_INPUT_BUFFER_SIZE 1000
 
-static int shutdown(const char* cmd_str)
+static int run(const char* cmd_str)
 {
 	if (strcmp(cmd_str, "mpx-shutdown") != 0)
 		return 1;
@@ -21,6 +21,7 @@ static int shutdown(const char* cmd_str)
 		 	if (inb(COM1 + 5) & 1)
 				ans[0] = inb(COM1);
 
+		printf("\n");
 		if (strcmp(ans, "y") == 0 || strcmp(ans, "Y") == 0)
 			return 0;
 		else if (strcmp(ans, "n") == 0 || strcmp(ans, "N") == 0)
@@ -37,12 +38,14 @@ int commhand()
 {
 	static char userInput[USER_INPUT_BUFFER_SIZE];
 
-	printf("In R1 commhand...\n");
-	printf("input > ");
-	GetInputln(userInput, 100, WithEcho);
-	printf("Your inputs: %s\n", userInput);
-
-	return shutdown(userInput);
+	while (run(userInput))
+	{
+		printf("\nIn R1 commhand...\n");
+		printf("input > ");
+		GetInputln(userInput, 100, WithEcho);
+		printf("Your inputs: %s\n", userInput);
+	}
+	return 0;
 }
 
 enum CommandPaserStat
