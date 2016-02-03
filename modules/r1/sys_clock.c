@@ -8,6 +8,10 @@
 #define RTC_INDEX_MINUTE_ALARM 	0x03
 #define RTC_INDEX_HOUR	 	0x04
 #define RTC_INDEX_HOUR_ALARM 	0x05
+#define RTC_INDEX_DAY_WEEK 0x06
+#define RTC_INDEX_DAY_MONTH 0x07
+#define RTC_INDEX_MONTH 0x08
+#define RTC_INDEX_YEAR 0x09
 
 /*
   Procedure..: set_time_main
@@ -23,7 +27,7 @@ int set_time_main(int argc, char** argv)
       case E_NOERROR:
       	get_time(&dateTimeValues);
         printf("System successfully set!\n");
-        printf("Current time is: %2d:%2d:%2d\n", dateTimeValues.hour, dateTimeValues.min, dateTimeValues.sec);
+        printf("Current time is: %02d:%02d:%02d\n", dateTimeValues.hour, dateTimeValues.min, dateTimeValues.sec);
       break;
 
       case E_INVPARA:
@@ -57,7 +61,7 @@ int get_time_main(int argc, char** argv)
   {
     date_time dateTimeValues;
     get_time(&dateTimeValues);
-    printf("Current time is: %2d:%2d:%2d\n", dateTimeValues.hour, dateTimeValues.min, dateTimeValues.sec);
+    printf("Current time is: %02d:%02d:%02d\n", dateTimeValues.hour, dateTimeValues.min, dateTimeValues.sec);
   }
   else if(argc >= 2 && strcmp(argv[2], "--help") == 0)
   {
@@ -133,7 +137,6 @@ void get_time(date_time * dateTimeValues)
 	dateTimeValues->hour = (hr >> 4) * 10 + (hr & 0x0f);
 	dateTimeValues->min = (min >> 4) * 10 + (min & 0x0f);
 	dateTimeValues->sec = (sec >> 4) * 10 + (sec & 0x0f);
-
 }
 
 /*
@@ -169,4 +172,68 @@ error_t set_time(const date_time * dateTimeValues)
   }
 
   return E_INVPARA;
+}
+
+void get_date(date_time * dateTimeValues)
+{
+  unsigned char day, month, year;
+  outb(0x70, RTC_INDEX_DAY_MONTH);
+  day = inb(0x71);
+  outb(0x70, RTC_INDEX_MONTH);
+  month = inb(0x71);
+  outb(0x70, RTC_INDEX_YEAR);
+  year = inb(0x71);
+
+  dateTimeValues->mon = (month >> 4) * 10 + (month & 0x0f);
+  dateTimeValues->day_m = (day >> 4) * 10 + (day & 0x0f);
+  dateTimeValues->year = (year >> 4) * 10 + (year & 0x0f);
+}
+
+error_t set_date(const date_time * dateTimeValues)
+{
+	unsigned char month, day, year;
+  if(0 <= dateTimeValues->mon &&  dateTimeValues->mon < 12 &&
+      0 <= dateTimeValues->day_m && dateTimeValues->day_m < 30 )
+  {//If all of the value are in the valid range
+    month = dateTimeValues->mon ? (((dateTimeValues->mon / 10) << 4) | (dateTimeValues->mon % 10)) : 0;
+  	day = dateTimeValues->day_m ? (((dateTimeValues->day_m / 10) << 4) | (dateTimeValues->day_m % 10)) : 0;
+  	year = dateTimeValues->year ? (((dateTimeValues->year / 10) << 4) | (dateTimeValues->year % 10)) : 0;
+
+  	//Disable interrupts
+  	cli();
+
+  	outb(0x70, RTC_INDEX_MONTH);
+  	outb(0x71, month);
+  	outb(0x70, RTC_INDEX_DAY_MONTH);
+  	outb(0x71, day);
+  	outb(0x70, RTC_INDEX_YEAR);
+  	outb(0x71, year);
+
+  	//Enable interrupts
+  	sti();
+
+    return E_NOERROR;
+  }
+
+  return E_INVPARA;
+}
+
+int get_date_main(int argc, char** argv)
+{
+  if(argc == 2)
+  {
+    date_time dateTimeValues;
+    get_date(&dateTimeValues);
+    printf("Current date is: %d/%d/%d\n", dateTimeValues.mon, dateTimeValues.day_m, dateTimeValues.year);
+  }
+  else if(argc >= 2 && strcmp(argv[2], "--help") == 0)
+  {
+    printf("%s", functions[GETDATE].help);
+  }
+  else
+  {
+    printf("ERROR: Please type in the correct arguments! Please refers to \"getdate --help\"\n");
+  }
+
+  return 0;
 }

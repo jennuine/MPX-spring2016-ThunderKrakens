@@ -236,6 +236,10 @@ static void load_functions()
 	\n\nArguments:\n\tHH  Specified hours ranging from 00 (midnight) to 23 (1AM.)\n\tMM  Specified minutes.\n\tSS  Specified seconds.\n\n\
 	Exit Status: Always Succeeds.\n\n";
 
+	functions[GETDATE].nameStr = "getdate"; functions[GETDATE].function = &get_date_main; functions[GETDATE].usage = "mpx getdate";
+	functions[GETDATE].help = "\ngetdate : getdate\n\n\tDisplays the current system's date in the format MM/DD/YY.\n\n\
+	Exit Status: Always Succeeds.\n\n";
+
 	functions[SHUTDOWN].nameStr = "-shutdown"; functions[SHUTDOWN].function = &shutdown; functions[SHUTDOWN].usage = "mpx -shutdown";
 	functions[SHUTDOWN].help = "\nshutdown : -shutdown\n\n\tShuts down the operating system.\n\n\
 	Exit Status: Always Succeeds.\n\n";

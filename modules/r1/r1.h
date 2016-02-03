@@ -13,10 +13,10 @@ typedef struct
 #define VERSION 1
 #define GETTIME 2
 #define SETTIME 3
-#define SHUTDOWN 4
+#define GETDATE 4
+#define SHUTDOWN 5
 
-
-#define NUM_OF_FUNCTIONS 5
+#define NUM_OF_FUNCTIONS 6
 
 function_name functions[NUM_OF_FUNCTIONS];
 
