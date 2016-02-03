@@ -1,4 +1,5 @@
 #include "sys_clock.h"
+#include "r1.h"
 #include <string.h>
 #include <core/io.h>
 #define RTC_INDEX_SECOND 	0x00
@@ -14,9 +15,9 @@
 */
 int set_time_main(int argc, char** argv)
 {
-  if(argc >= 2 && strcmp(argv[1], "--help") != 0)
+  if(argc >= 3 && strcmp(argv[2], "--help") != 0)
   {
-    error_t errno = set_time_str(argv[1]);
+    error_t errno = set_time_str(argv[2]);
     date_time dateTimeValues;
     switch (errno) {
       case E_NOERROR:
@@ -34,9 +35,9 @@ int set_time_main(int argc, char** argv)
       break;
     }
   }
-  else if(argc >= 2 && strcmp(argv[1], "--help") == 0)
+  else if(argc >= 3 && strcmp(argv[2], "--help") == 0)
   {
-    set_time_help();
+    printf("%s", functions[SETTIME].help);
   }
   else
   {
@@ -52,15 +53,15 @@ int set_time_main(int argc, char** argv)
 */
 int get_time_main(int argc, char** argv)
 {
-  if(argc == 1)
+  if(argc == 2)
   {
     date_time dateTimeValues;
     get_time(&dateTimeValues);
     printf("Current time is: %2d:%2d:%2d\n", dateTimeValues.hour, dateTimeValues.min, dateTimeValues.sec);
   }
-  else if(argc >= 2 && strcmp(argv[1], "--help") == 0)
+  else if(argc >= 2 && strcmp(argv[2], "--help") == 0)
   {
-    get_time_help();
+    printf("%s", functions[GETTIME].help);
   }
   else
   {
@@ -68,26 +69,6 @@ int get_time_main(int argc, char** argv)
   }
 
   return 0;
-}
-
-/*
-  Procedure..: set_time_help
-  Description..: print out the help message for settime.
-*/
-void set_time_help()
-{
-  printf("settime help: \n");
-  printf("    Please typein \"settime HH:MM:SS\" to set the system time.\n");
-}
-
-/*
-  Procedure..: get_time_help
-  Description..: print out the help message for gettime.
-*/
-void get_time_help()
-{
-  printf("gettime help: \n");
-  printf("    Please typein \"gettime\" to print out the system time.\n");
 }
 
 static int is_digit(const char ch)

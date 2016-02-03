@@ -7,61 +7,47 @@
 
 #define USER_INPUT_BUFFER_SIZE 1000
 #define MAX_ARGC 50
-#define NUM_OF_FUNCTIONS 4
-#define VERSION "R1"
+#define MOD_VERSION "R1"
 #define COMPLETION "02/05/2016"
 
-typedef struct
-{
-	char * nameStr;
-	int (*function) (int argc, char ** argv);
-	char * usage;
-	char * help;
-} function_name;
-
 static int run_mpx = 1;
-static function_name functionList[NUM_OF_FUNCTIONS];
-
-static int version();
-static int shutdown();
+static void load_functions();
 
 static int exe_function(int argc, char ** argv)
-{//This is a list of functions that associate with the name of them.
-	functionList[0].nameStr = "gettime"; functionList[0].function = &get_time_main; functionList[0].usage = "mpx gettime";
-	functionList[0].help = "gettime : gettime\n\n\tDisplays the current system's time in the format HH:MM:SS.\n\n\
-		Exit Status: Always Succeeds.\n";
-	functionList[1].nameStr = "settime"; functionList[1].function = &set_time_main; functionList[1].usage = "mpx settime [HH:MM:SS]";
-	functionList[1].help = "settime : settime [HH:MM:SS]\n\n\tSets the system's time to the specified HH:MM:SS.\
-		\n\nArguments:\n\tHH\tSpecified hours ranging from 00 (midnight) to 23 (1AM.)\n\tMM\tSpecified minutes.\n\tSS\tSpecified seconds.\n\
-		Exit Status: Always Succeeds.\n";
-	functionList[2].nameStr = "-version"; functionList[2].function = &version; functionList[2].usage = "mpx -version";
-	functionList[2].help = "version : -version\n\n\tPrints the current version of MPX and completion date.\n\nExit Status: Always Succeeds.\n";
-	functionList[3].nameStr = "-shutdown"; functionList[3].function = &shutdown; functionList[3].usage = "mpx -shutdown";
-	functionList[3].help = "shutdown : -shutdown\n\n\tShuts down the operating system.\n\nExit Status: Always Succeeds.\n";
-
-	//Note: change the value in the #define NUM_OF_FUNCTIONS before adding more at here!
-
+{
 	int i = 0;
 	for(i = 0; i < NUM_OF_FUNCTIONS; i++)
 	{
-		if(!strcmp(functionList[i].nameStr, argv[1]))
+		if(!strcmp(functions[i].nameStr, argv[1]))
 		{
-			return functionList[i].function(argc, argv);
+			return functions[i].function(argc, argv);
 		}
 	}
-
 	printf("There is no function called %s. Please refer to \"help\"\n", argv[1]);
 	return 0;
 }
 
-static int version ()
+static int version(int argc, char** argv)
 {
-		printf("\nMPX-THUNDER-KRAKENS\nCOMPLETION\t%s\nVERSION\t%s\n\n", COMPLETION, VERSION);
-		return 0;
+	if (argc >= 2 && !strcmp(argv[2], "--help"))
+		printf("%s", functions[VERSION].help);
+	else
+		printf("\nMPX-THUNDER-KRAKENS\nCOMPLETION\t%s\nVERSION \t%s\n\n", COMPLETION, MOD_VERSION);
+
+	return 0;
 }
 
-static int shutdown()
+static int shutdown(int argc, char** argv)
 {
+	if (argc >= 3 && !strcmp(argv[2], "--help"))
+	{
+		printf("%s", functions[VERSION].help);
+		return run_mpx;
+	}
+	else if (argc >= 3)
+	{
+		printf("ERROR: Invalid arguments. Please refer to \"help\"\n");
+	}
 
 	char ans[] = { 0, 0 };
 	printf("\nAre you sure you would like to shutdown?\n( Type y/n )\n");
@@ -82,16 +68,46 @@ static int shutdown()
 		}
 }
 
-static void list_functions()
+static int help_usages(int start_from)
 {
-	printf("\nAvailable mpx functions:\n");
+	if (start_from)
+		printf("\nAvailable mpx functions:\n");
 
 	int i;
-	for (i = 0; i < NUM_OF_FUNCTIONS; i++)
+	for (i = start_from; i < NUM_OF_FUNCTIONS; i++)
 	{
-		printf("\tusage: %s\n", functionList[i].usage);
+		printf("\tusage:\t%s\n", functions[i].usage);
 	}
 	printf("\n");
+	return 1;
+}
+
+static int help_function(int argc, char** argv)
+{
+	int i;
+	if (argc >= 2 && !strcmp(argv[1], "--help"))
+	{
+		printf("\n%s\n", functions[HELP].help);
+		return 1;
+	}
+	else if (argc == 2 && !strcmp(argv[1], "mpx"))
+	{
+		return help_usages(VERSION);
+	}
+	else if (argc == 2)
+	{
+		for (i = 0; i < NUM_OF_FUNCTIONS; i++)
+		{
+			if(!strcmp(functions[i].nameStr, argv[1]))
+			{
+				printf("\n%s\n", functions[i].help);
+				return 1;
+			}
+		}
+		return 0;
+	}
+	printf("ERROR: Invalid arguments. Please refer to \"help\"\n");
+	return 0;
 }
 
 int commhand()
@@ -107,6 +123,7 @@ int commhand()
 	}
 
 	printf("\nWelcome! This is Thunder Krakens Operating System!\n\n");
+	load_functions();
 
 	while(run_mpx)
 	{
@@ -118,11 +135,18 @@ int commhand()
 			if (argc > 1)
 				exe_function(argc, argv);
 			else
-				list_functions();
+				help_usages(VERSION);
 		}
-		else
+		else if (!strcmp(argv[0], "help"))
 		{
-			printf("There is no program called \"%s\".\n", argv[0]);
+			if (argc > 1)
+				functions[HELP].function(argc, argv);
+			else
+				help_usages(HELP);
+		}
+		else if (argc > 0)
+		{
+			printf("There is no program called \"%s\". Please refer to \"help\"\n", argv[0]);
 		}
 		argc = 0;  //reset the argument list
 	}
@@ -186,4 +210,34 @@ void command_line_parser(const char * CmdStr, int * argc, char ** argv, const in
 		(*argc)++;
 		WritingStat = NotWriting;
 	}
+}
+
+
+static void load_functions()
+{//This is a list of functions that associate with the name of them.
+
+	//Note: change the value in the #define NUM_OF_FUNCTIONS in r1.h & adding function's index before adding more here
+	functions[HELP].nameStr = "help"; functions[HELP].function = &help_function; functions[HELP].usage = "help [function]";
+	functions[HELP].help = "\nhelp : help [function]\n\n\tIf used alone, displays usage instructions for every function\
+	or when used with an individual functions, gives a detailed summary of how to use that functions.\n\n\
+	Arguments:\n\t\tfunction  The function to be described.\n\n\
+	Exit Status:\n\t\tReturns success unless the given function is not valid function.\n\n";
+
+	functions[VERSION].nameStr = "-version"; functions[VERSION].function = &version; functions[VERSION].usage = "mpx -version";
+	functions[VERSION].help = "\nversion : -version\n\n\tPrints the current version of MPX and completion date.\n\n\
+	Exit Status: Always Succeeds.\n\n";
+
+	functions[GETTIME].nameStr = "gettime"; functions[GETTIME].function = &get_time_main; functions[GETTIME].usage = "mpx gettime";
+	functions[GETTIME].help = "\ngettime : gettime\n\n\tDisplays the current system's time in the format HH:MM:SS.\n\n\
+	Exit Status: Always Succeeds.\n\n";
+
+	functions[SETTIME].nameStr = "settime"; functions[SETTIME].function = &set_time_main; functions[SETTIME].usage = "mpx settime [HH:MM:SS]";
+	functions[SETTIME].help = "\nsettime : settime [HH:MM:SS]\n\n\tSets the system's time to the specified HH:MM:SS.\
+	\n\nArguments:\n\tHH  Specified hours ranging from 00 (midnight) to 23 (1AM.)\n\tMM  Specified minutes.\n\tSS  Specified seconds.\n\n\
+	Exit Status: Always Succeeds.\n\n";
+
+	functions[SHUTDOWN].nameStr = "-shutdown"; functions[SHUTDOWN].function = &shutdown; functions[SHUTDOWN].usage = "mpx -shutdown";
+	functions[SHUTDOWN].help = "\nshutdown : -shutdown\n\n\tShuts down the operating system.\n\n\
+	Exit Status: Always Succeeds.\n\n";
+
 }

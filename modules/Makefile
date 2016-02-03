@@ -14,6 +14,7 @@ OBJFILES =\
 mpx_supt.o\
 r1/r1.o\
 r1/sys_clock.o
+
 .c.s:
 	$(CC) $(CFLAGS) -S -o $@ $<
 .s.o:
