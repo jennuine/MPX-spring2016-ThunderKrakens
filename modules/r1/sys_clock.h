@@ -48,6 +48,7 @@ void get_time(date_time * dateTimeValues);
 */
 error_t set_time(const date_time * dateTimeValues);
 
+int set_date_main(int argc, char** argv);
 
 int get_date_main(int argc, char** argv);
 
