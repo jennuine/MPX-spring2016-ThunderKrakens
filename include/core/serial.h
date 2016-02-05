@@ -54,12 +54,15 @@ int set_serial_out(int device);
 */
 int set_serial_in(int device);
 
-/** @brief  get_input_line.
+/**
+ * @name  get_input_line
  *
- * Description: Get user's input from keyborad.
- * @param buffer - The pointer to the buffer where store the user's input.
- * @param buffer_size - The size of that buffer.
- * @param bWithEcho - With echo or not
+ * @brief Get user's input from keyborad.
+ *
+ * @param buffer        The pointer to the buffer where store the user's input.
+ * @param buffer_size   The size of that buffer.
+ * @param bWithEcho     With echo or not
+ *
  * @return VOID
  */
 void get_input_line(char * buffer, const int buffer_size, const int bWithEcho);

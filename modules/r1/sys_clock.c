@@ -1,11 +1,10 @@
 /**
- * @brief System Clock and Date
  * @file sys_clock.c
  * @author Thunder Krakens
  * @date February 2nd, 2016
  * @version R1
  *
- * The main file that manipulates and controls the system's clock.
+ * @brief The main file that manipulates and controls the system's clock.
  */
 
 
@@ -24,11 +23,12 @@
 #define RTC_INDEX_MONTH 0x08
 #define RTC_INDEX_YEAR 0x09
 
-/** @brief  Name: set_time_main.
+/**
+ * @name set_time_main.
  *
- * Description: Sets the time for the system.
- * @param argc - The number of tokens found.
- * @param argv - The array of tokens.
+ * @brief Sets the time for the system.
+ * @param argc  The number of tokens found.
+ * @param argv  The array of tokens.
  * @return  0
  */
 int set_time_main(int argc, char** argv)
@@ -66,11 +66,12 @@ int set_time_main(int argc, char** argv)
   return 0;
 }
 
-/** @brief  Name: get_time_main.
+/**
+ * @name get_time_main.
  *
- * Description: Retrieves system's current time.
- * @param argc - The number of tokens found.
- * @param argv - The array of tokens.
+ * @brief Retrieves system's current time.
+ * @param argc  The number of tokens found.
+ * @param argv  The array of tokens.
  * @return  0
  */
 int get_time_main(int argc, char** argv)
@@ -93,17 +94,26 @@ int get_time_main(int argc, char** argv)
   return 0;
 }
 
+/**
+ * @name is_digit
+ *
+ * @brief determines if a character represents a digit.
+ *
+ * @param ch  The character
+ *
+ * @return 1 if it is digit, otherwise returns 0.
+ */
 static int is_digit(const char ch)
 {
   return '0' <= ch && ch <= '9';
 }
 
-/** @brief  Name: set_time_str.
+/**
+ * @name set_time_str.
  *
- * Description: Sets the time for the system by string.
- * @param timeStr - The string type of current Time.
- * @return dateTimeValues - Returns the set time of the system
- * @return E_INVSTRF - Invalid String
+ * @brief Sets the time for the system by string.
+ * @param timeStr   The string type of current Time.
+ * @return 0 if there is no error, otherwise return a error code.
  */
 error_t set_time_str(const char * timeStr){
   static char tempStr[10];
@@ -140,10 +150,11 @@ error_t set_time_str(const char * timeStr){
 }
 
 
-/** @brief  Name: get_time.
+/**
+ * @name get_time.
  *
- * Description: Retrieves system's current time and date.
- * @param dateTimeValues - The value of current time and date
+ * @brief Retrieves system's current time and date.
+ * @param dateTimeValues  The value of current time and date
  * @return VOID
  */
 void get_time(date_time * dateTimeValues)
@@ -161,14 +172,13 @@ void get_time(date_time * dateTimeValues)
     dateTimeValues->sec = (sec >> 4) * 10 + (sec & 0x0f);
 }
 
-/** @brief  Name: set_time_str.
+/**
+ * @name set_time.
  *
- * Description: Sets the time for the system by string.
- * @param timeStr - The string type of current Time.
- * @return dateTimeValues - Returns the set time of the system
- * @return E_INVSTRF - Invalid String
+ * @brief Sets the time for the system by date_time struct.
+ * @param dateTimeValues   The struct that holds the time values.
+ * @return 0 if there is no error, otherwise return a error code.
  */
-
 error_t set_time(const date_time * dateTimeValues)
 {
   unsigned char sec, min, hr;
@@ -199,13 +209,13 @@ error_t set_time(const date_time * dateTimeValues)
   return E_INVPARA;
 }
 
-/** @brief  Name: get_date.
+/**
+ * @name get_date.
  *
- * Description: Retrieves system's current date.
- * @param dateTimeValues - The value of current date
+ * @brief Retrieves system's current date.
+ * @param dateTimeValues  The struct that holds the value of current date
  * @return VOID
  */
-
 void get_date(date_time * dateTimeValues)
 {
   unsigned char day, month, year;
@@ -221,14 +231,13 @@ void get_date(date_time * dateTimeValues)
   dateTimeValues->year = (year >> 4) * 10 + (year & 0x0f);
 }
 
-/** @brief  Name: set_date.
+/**
+ * @name: set_date.
  *
- * Description: Sets the date of the system.
- * @param dateTimeValues - The value of current time and date
- * @return E_NOERROR - When no error was detected
- * @return E_INVPARA - Invalid Parameter
+ * @brief Sets the date of the system.
+ * @param dateTimeValues  The struct that holds the value of date
+ * @return 0 if there is no error, otherwise return a error code.
  */
-
 error_t set_date(const date_time * dateTimeValues)
 {
   unsigned char month, day, year;
@@ -258,14 +267,14 @@ error_t set_date(const date_time * dateTimeValues)
     return E_INVPARA;
 }
 
-/** @brief  Name: get_date_main.
+/**
+ * @name get_date_main.
  *
- * Description: Retrieves system's current date.
- * @param argc - The number of tokens found.
- * @param argv - The array of tokens.
+ * @brief Retrieves system's current date.
+ * @param argc  The number of tokens.
+ * @param argv  The array of tokens.
  * @return  0
  */
-
 int get_date_main(int argc, char** argv)
 {
   if(argc == 2)
@@ -286,13 +295,13 @@ int get_date_main(int argc, char** argv)
   return 0;
 }
 
-/** @brief  Name: get_date_main.
+/**
+ * @name set_date_str.
  *
- * Description: Retrieves system's current date.
- * @param argc - The number of tokens found.
- * @return  0
+ * @brief Sets the date for the system by string.
+ * @param str   The string type of current date.
+ * @return 0 if there is no error, otherwise return a error code.
  */
-
 int set_date_str(const char * str)
 {
   char temp[10];
@@ -323,14 +332,14 @@ int set_date_str(const char * str)
   return set_date(&dateTimeValues);
 }
 
-/** @brief  Name: set_date_str.
+/**
+ * @name set_date_main.
  *
- * Description: Sets the date for the system by string.
- * @param argc - The number of tokens found.
- * @param argv - The array of tokens.
+ * @brief Sets system's date.
+ * @param argc  The number of tokens.
+ * @param argv  The array of tokens.
  * @return 0
  */
-
 int set_date_main(int argc, char **argv)
 {
   if(argc >= 3 && strcmp(argv[2], "--help") != 0)

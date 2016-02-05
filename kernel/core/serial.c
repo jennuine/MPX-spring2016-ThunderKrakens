@@ -109,38 +109,39 @@ int set_serial_in(int device)
   return NO_ERROR;
 }
 
-/** @brief  MoveCursorBackchar.
+/**
+ * @name  MoveCursorBackchar.
  *
- * Description: Move the cursor back for specific times.
- * @param num - The number of times that needs to move back.
+ * @brief Move the cursor back for specific times.
+ * @param num   The number of times that needs to move back.
  * @return VOID
  */
-
 static void MoveCursorBack(int num)
 {
 	while(num-- > 0)
 		serial_print("\b");
 }
 
-/** @brief  PrintStars.
+/**
+ * @name  PrintStars.
  *
- * Description: Print out the '*' for specific times.
- * @param num - The number of times that needs to print.
+ * @brief Print out the '*' for specific times.
+ * @param num   The number of times that needs to print.
  * @return VOID
  */
-
 static void PrintStars(int num)
 {
 	while(num-- > 0)
 		serial_print("*");
 }
 
-/** @brief  EchoInput.
+/**
+ * @name  EchoInput.
  *
- * Description: Decides to print out the original string or stars.
- * @param InputStr - The string, bWithEcho-Turn on the echo or not.
+ * @brief Decides to print out the original string or stars.
+ * @param InputStr    The string, 
+ * @param bWithEcho   Turn on the echo or not.
  */
-
 static void EchoInput(const char * InputStr, const int bWithEcho)
 {
 	if(bWithEcho)
@@ -149,15 +150,17 @@ static void EchoInput(const char * InputStr, const int bWithEcho)
 		PrintStars(strlen(InputStr));
 }
 
-/** @brief  get_input_line.
+/**
+ * @name  get_input_line
  *
- * Description: Get user's input from keyborad.
- * @param buffer - The pointer to the buffer where store the user's input.
- * @param buffer_size - The size of that buffer.
- * @param bWithEcho - With echo or not
+ * @brief Get user's input from keyborad.
+ *
+ * @param buffer        The pointer to the buffer where store the user's input.
+ * @param buffer_size   The size of that buffer.
+ * @param bWithEcho     With echo or not
+ *
  * @return VOID
  */
-
 void get_input_line(char * buffer, const int buffer_size, const int bWithEcho)
 {
 	int i = 0, cursorPos = 0;
