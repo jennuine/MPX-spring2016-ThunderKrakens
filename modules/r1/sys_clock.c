@@ -374,21 +374,21 @@ int set_date_str(const char * str)
   if (is_digit(tok[0]) && (is_digit(tok[1])))
     dateTimeValues.mon = atoi(tok);
   else
-    return E_INVPARA;
+    return E_INVSTRF;
 
   tok = strtok(NULL, "/");
 
   if (is_digit(tok[0]) && (is_digit(tok[1])))
     dateTimeValues.day_m = atoi(tok);
   else
-    return E_INVPARA;
+    return E_INVSTRF;
 
   tok = strtok(NULL, "/");
 
   if (is_digit(tok[0]) && is_digit(tok[1]) && is_digit(tok[2]) && is_digit(tok[3]))
     dateTimeValues.year = atoi(tok);
   else
-    return E_INVPARA;
+    return E_INVSTRF;
 
   return set_date(&dateTimeValues);
 }

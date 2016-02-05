@@ -8,7 +8,6 @@
  */
 
 #include "r1.h"
-#include "../mpx_supt.h"
 #include "sys_clock.h"
 #include <string.h>
 #include <core/serial.h>

@@ -7,7 +7,6 @@
  */
 #include <system.h>
 #include <core/serial.h>
-#include "../modules/mpx_supt.h"
 #include <string.h>
 #include <core/serial.h>
 
