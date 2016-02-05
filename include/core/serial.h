@@ -1,3 +1,12 @@
+/**
+ * @file serial.h
+ * @author Thunder Krakens
+ * @date February 2nd, 2016
+ * @brief Serial - Header
+ *
+ */
+
+
 #ifndef _SERIAL_H
 #define _SERIAL_H
 
@@ -45,11 +54,14 @@ int set_serial_out(int device);
 */
 int set_serial_in(int device);
 
-/*
-  Procedure..: get_input_line
-  Description..: Get user's input from keyborad.
-  Params..: buffer-the pointer to the buffer where store the user's input, buffer_size-the size of that buffer,
-      bWithEcho-With echo or not.
-*/
+/** @brief  get_input_line.
+ *
+ * Description: Get user's input from keyborad.
+ * @param buffer - The pointer to the buffer where store the user's input.
+ * @param buffer_size - The size of that buffer.
+ * @param bWithEcho - With echo or not
+ * @return VOID
+ */
+ 
 void get_input_line(char * buffer, const int buffer_size, const int bWithEcho);
 #endif
