@@ -2,14 +2,9 @@
 \label{r1_8h}\index{modules/r1/r1.\+h@{modules/r1/r1.\+h}}
 
 
-The main header for Module R1.  
+The commandhander and functions associations for Module R1.  
 
 
-\subsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-struct \hyperlink{structfunction__name}{function\+\_\+name}
-\end{DoxyCompactItemize}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -38,21 +33,64 @@ struct \hyperlink{structfunction__name}{function\+\_\+name}
 
 \end{DoxyCompactItemize}
 \subsection*{Functions}
-\begin{DoxyCompactItemize}
+\begin{Indent}{\bf commhand}\par
+{\em Accepts and handles commands from the user.
+
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
 \item 
-int \hyperlink{r1_8h_a14d85617242501c323a203ee196d3efa}{commhand} ()
-\begin{DoxyCompactList}\small\item\em Name\+: commhand. \end{DoxyCompactList}\item 
-void \hyperlink{r1_8h_adb6b307c73bca25d17aa7683e14fea16}{command\+\_\+line\+\_\+parser} (const char $\ast$Cmd\+Str, int $\ast$argc, char $\ast$$\ast$argv, const int Max\+Arg\+Num, const int Max\+Str\+Len)
-\begin{DoxyCompactList}\small\item\em Name\+: command\+\_\+line\+\_\+parser. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Variables}
-\begin{DoxyCompactItemize}
+int {\bfseries commhand} ()\hypertarget{r1_8h_a14d85617242501c323a203ee196d3efa}{}\label{r1_8h_a14d85617242501c323a203ee196d3efa}
+
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf command\+\_\+line\+\_\+parser}\par
+{\em Splits the complete command line into tokens by space, single quote, or double quote.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Cmd\+Str} & The complete input command. \\
+\hline
+{\em argc} & The number of tokens found. \\
+\hline
+{\em argv} & The array of tokens. \\
+\hline
+{\em Max\+Arg\+Num} & The maximum number of tokens that array can hold. \\
+\hline
+{\em Max\+Str\+Len} & The maximum length of each token that string can hold.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
 \item 
-\hyperlink{structfunction__name}{function\+\_\+name} \hyperlink{r1_8h_a5d2a3657fdfa058bb0751bc36e74b53e}{functions} \mbox{[}N\+U\+M\+\_\+\+O\+F\+\_\+\+F\+U\+N\+C\+T\+I\+O\+NS\mbox{]}
-\begin{DoxyCompactList}\small\item\em Name\+: fucntion\+\_\+name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void {\bfseries command\+\_\+line\+\_\+parser} (const char $\ast$Cmd\+Str, int $\ast$argc, char $\ast$$\ast$argv, const int Max\+Arg\+Num, const int Max\+Str\+Len)\hypertarget{r1_8h_adb6b307c73bca25d17aa7683e14fea16}{}\label{r1_8h_adb6b307c73bca25d17aa7683e14fea16}
+
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf print\+\_\+help}\par
+{\em prints the help message of a certain function that specified by the index number
+
+
+\begin{DoxyParams}{Parameters}
+{\em function\+\_\+index} & The index number of that function.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+void {\bfseries print\+\_\+help} (const int function\+\_\+index)\hypertarget{r1_8h_ab5b36414d84437d45b388232a0dfa366}{}\label{r1_8h_ab5b36414d84437d45b388232a0dfa366}
+
+\end{DoxyCompactItemize}
+\end{Indent}
 
 
 \subsection{Detailed Description}
-The main header for Module R1. 
+The commandhander and functions associations for Module R1. 
 
 \begin{DoxyAuthor}{Author}
 Thunder Krakens 
@@ -61,75 +99,5 @@ Thunder Krakens
 February 2nd, 2016 
 \end{DoxyDate}
 \begin{DoxyVersion}{Version}
-R1
+R1 
 \end{DoxyVersion}
-This file contains setdate, getdate, settime, gettime, help functions, commandhander and command line parser 
-
-\subsection{Function Documentation}
-\index{r1.\+h@{r1.\+h}!command\+\_\+line\+\_\+parser@{command\+\_\+line\+\_\+parser}}
-\index{command\+\_\+line\+\_\+parser@{command\+\_\+line\+\_\+parser}!r1.\+h@{r1.\+h}}
-\subsubsection[{\texorpdfstring{command\+\_\+line\+\_\+parser(const char $\ast$\+Cmd\+Str, int $\ast$argc, char $\ast$$\ast$argv, const int Max\+Arg\+Num, const int Max\+Str\+Len)}{command_line_parser(const char *CmdStr, int *argc, char **argv, const int MaxArgNum, const int MaxStrLen)}}]{\setlength{\rightskip}{0pt plus 5cm}void command\+\_\+line\+\_\+parser (
-\begin{DoxyParamCaption}
-\item[{const char $\ast$}]{Cmd\+Str, }
-\item[{int $\ast$}]{argc, }
-\item[{char $\ast$$\ast$}]{argv, }
-\item[{const int}]{Max\+Arg\+Num, }
-\item[{const int}]{Max\+Str\+Len}
-\end{DoxyParamCaption}
-)}\hypertarget{r1_8h_adb6b307c73bca25d17aa7683e14fea16}{}\label{r1_8h_adb6b307c73bca25d17aa7683e14fea16}
-
-
-Name\+: command\+\_\+line\+\_\+parser. 
-
-Description\+: Splits the complete command line into tokens by space, single quote, or double quote.
-
-
-\begin{DoxyParams}{Parameters}
-{\em Cmd\+Str} & -\/ The complete input command. \\
-\hline
-{\em argc} & -\/ The number of tokens found. \\
-\hline
-{\em argv} & -\/ The array of tokens. \\
-\hline
-{\em Max\+Arg\+Num} & -\/ The maximum number of tokens that array can hold. \\
-\hline
-{\em Max\+Str\+Len} & -\/ The maximum length of each token that string can hold.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-void 
-\end{DoxyReturn}
-\index{r1.\+h@{r1.\+h}!commhand@{commhand}}
-\index{commhand@{commhand}!r1.\+h@{r1.\+h}}
-\subsubsection[{\texorpdfstring{commhand()}{commhand()}}]{\setlength{\rightskip}{0pt plus 5cm}int commhand (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hypertarget{r1_8h_a14d85617242501c323a203ee196d3efa}{}\label{r1_8h_a14d85617242501c323a203ee196d3efa}
-
-
-Name\+: commhand. 
-
-Description\+: Accepts and handles commands from the user. 
-\begin{DoxyParams}{Parameters}
-{\em User} & input \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-0 
-\end{DoxyReturn}
-
-
-\subsection{Variable Documentation}
-\index{r1.\+h@{r1.\+h}!functions@{functions}}
-\index{functions@{functions}!r1.\+h@{r1.\+h}}
-\subsubsection[{\texorpdfstring{functions}{functions}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf function\+\_\+name} functions\mbox{[}N\+U\+M\+\_\+\+O\+F\+\_\+\+F\+U\+N\+C\+T\+I\+O\+NS\mbox{]}}\hypertarget{r1_8h_a5d2a3657fdfa058bb0751bc36e74b53e}{}\label{r1_8h_a5d2a3657fdfa058bb0751bc36e74b53e}
-
-
-Name\+: fucntion\+\_\+name. 
-
-Description\+: Initializes number of fucntions 
-\begin{DoxyParams}{Parameters}
-{\em N\+U\+M\+\_\+\+O\+F\+\_\+\+F\+U\+N\+C\+T\+I\+ON} & -\/ Predefined with 6 fuctions. \\
-\hline
-\end{DoxyParams}

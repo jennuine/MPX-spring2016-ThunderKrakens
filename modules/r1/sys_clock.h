@@ -1,67 +1,95 @@
 /**
- * @file serial.h
+ * @brief System Clock and Date Header
+ * @file sys_clock.h
  * @author Thunder Krakens
  * @date February 2nd, 2016
- * @brief Serial - Header
  * @version R1
- */
-
-
-#ifndef _SERIAL_H
-#define _SERIAL_H
-
-#define COM1 0x3f8
-#define COM2 0x2f8
-#define COM3 0x3e8
-#define COM4 0x2e8
-
-//Using echo or nor, for the GetInputln
-#define WithoutEcho 0
-#define WithEcho 1
-
-/*
-  Procedure..: init_serial
-  Description..: Initializes devices for user interaction, logging, ...
-*/
-int init_serial(int device);
-
-/*
-  Procedure..: serial_println
-  Description..: Writes a message to the active serial output device.
-    Appends a newline character.
-*/
-int serial_println(const char *msg);
-
-/*
-  Procedure..: serial_print
-  Description..: Writes a message to the active serial output device.
-*/
-int serial_print(const char *msg);
-
-/*
-  Procedure..: set_serial_out
-  Description..: Sets serial_port_out to the given device address.
-    All serial output, such as that from serial_println, will be
-    directed to this device.
-*/
-int set_serial_out(int device);
-
-/*
-  Procedure..: set_serial_in
-  Description..: Sets serial_port_in to the given device address.
-    All serial input, such as console input via a virtual machine,
-    QEMU/Bochs/etc, will be directed to this device.
-*/
-int set_serial_in(int device);
-
-/** @brief  get_input_line.
  *
- * Description: Get user's input from keyborad.
- * @param buffer - The pointer to the buffer where store the user's input.
- * @param buffer_size - The size of that buffer.
- * @param bWithEcho - With echo or not
+ * The header of the main file that manipulates and controls the system's clock.
+ *
+ */
+#ifndef _SYS_CLOCK_H
+#define _SYS_CLOCK_H
+
+#include <system.h>
+#include "../errno.h"
+
+/** @brief  Name: set_time_main.
+ *
+ * Description: The main fuction of time set for the system.
+ * @param argc - The number of tokens found.
+ * @param argv - The array of tokens.
+ */
+int set_time_main(int argc, char** argv);
+
+/** @brief  Name: get_time_main.
+ *
+ * Description: Retrieves system's current time.
+ * @param argc - The number of tokens found.
+ * @param argv - The array of tokens.
+ *
+ */
+int get_time_main(int argc, char** argv);
+
+/** @brief  Name: set_time_help.
+ *
+ * Description: Print out the help message for settime.
+ * @param
+ * @return  VOID
+ */
+void set_time_help();
+
+/*
+/** @brief  Name: get_time_help.
+ *
+ * Description: Print out the help message for settime.
+ * @param
+ * @return  VOID
+ */
+void get_time_help();
+
+/** @brief  Name: set_time_str.
+ *
+ * Description: Sets the time for the system by string.
+ * @param timeStr - The string type of current Time.
+ * @return dateTimeValues - Returns the set time of the system
+ * @return E_INVSTRF - Invalid String
+ */
+error_t set_time_str(const char * timeStr);
+
+/** @brief  Name: get_time.
+ *
+ * Description: Retrieves system's current time and date.
+ * @param dateTimeValues - The value of current time and date
  * @return VOID
  */
+void get_time(date_time * dateTimeValues);
 
-void get_input_line(char * buffer, const int buffer_size, const int bWithEcho);
+/** @brief  Name: error_t set_time.
+ *
+ * Description: Error handling of set_time function has invalid value, or invalid format.
+ * @param dateTimeValues - The value of current time and date
+ * @return E_NOERROR - When no error was detected
+ * @return E_INVPARA - Invalid Parameter
+ */
+error_t set_time(const date_time * dateTimeValues);
+
+/** @brief  Name: set_date_main.
+ *
+ * Description: Sets system's date.
+ * @param argc - The number of tokens found.
+ * @param argv - The array of tokens.
+ * @return  0
+ */
+int set_date_main(int argc, char** argv);
+
+/** @brief  Name: get_date_main.
+ *
+ * Description: Retrieves system's current date.
+ * @param argc - The number of tokens found.
+ * @param argv - The array of tokens.
+ * @return  0
+ */
+int get_date_main(int argc, char** argv);
+
 #endif

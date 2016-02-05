@@ -86,25 +86,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#define-members">Macros</a>  </div>
   <div class="headertitle">
 <div class="title">r1.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>The main header for Module R1.  
+<p>The commandhander and functions associations for Module R1.  
 <a href="#details">More...</a></p>
 
 <p><a href="r1_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfunction__name.html">function_name</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:ae8a798ec5e0449028e485688e8241b5e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae8a798ec5e0449028e485688e8241b5e"></a>
@@ -134,130 +126,50 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a14d85617242501c323a203ee196d3efa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="r1_8h.html#a14d85617242501c323a203ee196d3efa">commhand</a> ()</td></tr>
-<tr class="memdesc:a14d85617242501c323a203ee196d3efa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name: commhand.  <a href="#a14d85617242501c323a203ee196d3efa">More...</a><br /></td></tr>
+<tr><td colspan="2"><div class="groupHeader">commhand</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Accepts and handles commands from the user.</p>
+<dl class="section return"><dt>Returns</dt><dd>0 </dd></dl>
+</div></td></tr>
+<tr class="memitem:a14d85617242501c323a203ee196d3efa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a14d85617242501c323a203ee196d3efa"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>commhand</b> ()</td></tr>
 <tr class="separator:a14d85617242501c323a203ee196d3efa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb6b307c73bca25d17aa7683e14fea16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="r1_8h.html#adb6b307c73bca25d17aa7683e14fea16">command_line_parser</a> (const char *CmdStr, int *argc, char **argv, const int MaxArgNum, const int MaxStrLen)</td></tr>
-<tr class="memdesc:adb6b307c73bca25d17aa7683e14fea16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name: command_line_parser.  <a href="#adb6b307c73bca25d17aa7683e14fea16">More...</a><br /></td></tr>
-<tr class="separator:adb6b307c73bca25d17aa7683e14fea16"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:a5d2a3657fdfa058bb0751bc36e74b53e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structfunction__name.html">function_name</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="r1_8h.html#a5d2a3657fdfa058bb0751bc36e74b53e">functions</a> [NUM_OF_FUNCTIONS]</td></tr>
-<tr class="memdesc:a5d2a3657fdfa058bb0751bc36e74b53e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name: fucntion_name.  <a href="#a5d2a3657fdfa058bb0751bc36e74b53e">More...</a><br /></td></tr>
-<tr class="separator:a5d2a3657fdfa058bb0751bc36e74b53e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The main header for Module R1. </p>
-<dl class="section author"><dt>Author</dt><dd>Thunder Krakens </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>February 2nd, 2016 </dd></dl>
-<dl class="section version"><dt>Version</dt><dd>R1</dd></dl>
-<p>This file contains setdate, getdate, settime, gettime, help functions, commandhander and command line parser </p>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="adb6b307c73bca25d17aa7683e14fea16"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void command_line_parser </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>CmdStr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>argc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char **&#160;</td>
-          <td class="paramname"><em>argv</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>MaxArgNum</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>MaxStrLen</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Name: command_line_parser. </p>
-<p>Description: Splits the complete command line into tokens by space, single quote, or double quote.</p>
+<tr><td colspan="2"><div class="groupHeader">command_line_parser</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Splits the complete command line into tokens by space, single quote, or double quote.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">CmdStr</td><td>- The complete input command. </td></tr>
-    <tr><td class="paramname">argc</td><td>- The number of tokens found. </td></tr>
-    <tr><td class="paramname">argv</td><td>- The array of tokens. </td></tr>
-    <tr><td class="paramname">MaxArgNum</td><td>- The maximum number of tokens that array can hold. </td></tr>
-    <tr><td class="paramname">MaxStrLen</td><td>- The maximum length of each token that string can hold.</td></tr>
+    <tr><td class="paramname">CmdStr</td><td>The complete input command. </td></tr>
+    <tr><td class="paramname">argc</td><td>The number of tokens found. </td></tr>
+    <tr><td class="paramname">argv</td><td>The array of tokens. </td></tr>
+    <tr><td class="paramname">MaxArgNum</td><td>The maximum number of tokens that array can hold. </td></tr>
+    <tr><td class="paramname">MaxStrLen</td><td>The maximum length of each token that string can hold.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a14d85617242501c323a203ee196d3efa"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int commhand </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Name: commhand. </p>
-<p>Description: Accepts and handles commands from the user. </p><dl class="params"><dt>Parameters</dt><dd>
+</div></td></tr>
+<tr class="memitem:adb6b307c73bca25d17aa7683e14fea16"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adb6b307c73bca25d17aa7683e14fea16"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>command_line_parser</b> (const char *CmdStr, int *argc, char **argv, const int MaxArgNum, const int MaxStrLen)</td></tr>
+<tr class="separator:adb6b307c73bca25d17aa7683e14fea16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">print_help</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>prints the help message of a certain function that specified by the index number</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">User</td><td>input </td></tr>
+    <tr><td class="paramname">function_index</td><td>The index number of that function.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>0 </dd></dl>
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a class="anchor" id="a5d2a3657fdfa058bb0751bc36e74b53e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structfunction__name.html">function_name</a> functions[NUM_OF_FUNCTIONS]</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Name: fucntion_name. </p>
-<p>Description: Initializes number of fucntions </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">NUM_OF_FUNCTION</td><td>- Predefined with 6 fuctions. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-</div><!-- contents -->
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+</div></td></tr>
+<tr class="memitem:ab5b36414d84437d45b388232a0dfa366"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab5b36414d84437d45b388232a0dfa366"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>print_help</b> (const int function_index)</td></tr>
+<tr class="separator:ab5b36414d84437d45b388232a0dfa366"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The commandhander and functions associations for Module R1. </p>
+<dl class="section author"><dt>Author</dt><dd>Thunder Krakens </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>February 2nd, 2016 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>R1 </dd></dl>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=latex 2016.2.4)  4 FEB 2016 22:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=latex 2016.2.4)  4 FEB 2016 22:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -925,8 +925,7 @@ Package caption Info: longtable package is loaded.
 
 (/usr/share/texlive/texmf-dist/tex/latex/caption/ltcaption.sty
 Package: ltcaption 2013/02/03 v1.3-62 longtable captions (AR)
-))
-No file refman.aux.
+)) (./refman.aux)
 \openout1 = `refman.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 117.
@@ -1008,12 +1007,10 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 117.
 LaTeX Info: Redefining \pageref on input line 117.
 LaTeX Info: Redefining \nameref on input line 117.
+
+(./refman.out) (./refman.out)
 \@outlinefile=\write4
 \openout4 = `refman.out'.
-
-
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
@@ -1026,6 +1023,7 @@ LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 6.29996pt on input line 128.
 LaTeX Font Info:    Try loading font information for U+wasy on input line 128.
+
 (/usr/share/texlive/texmf-dist/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 )
@@ -1055,14 +1053,23 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 22.39185pt on input line 134.
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
 (Font)              scaled to size 22.39185pt on input line 134.
+
+(./refman.toc
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 1.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 8.99994pt on input line 1.
+ [3
+
+])
 \tf@toc=\write5
 \openout5 = `refman.toc'.
 
- [3
-
-] [4
-
-]
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <7> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 135.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 6.29996pt on input line 135.
+ [4]
 Package hyperref Info: Option `pageanchor' set `true' on input line 137.
 
 Chapter 1.
@@ -1081,53 +1088,16 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 12.9599pt on input line 1.
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
 (Font)              scaled to size 12.9599pt on input line 1.
-LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 3.
-LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 8.99994pt on input line 3.
-
-
-LaTeX Warning: Reference `structfunction__name' on page 1 undefined on input li
-ne 3.
-
 ) [1
 
-]
-LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <7> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 142.
-LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 6.29996pt on input line 142.
- [2
+
+] [2
 
 ]
 Chapter 2.
 (./files.tex
 
-LaTeX Warning: Reference `string_8h' on page 3 undefined on input line 3.
-
-
-LaTeX Warning: Reference `serial_8h' on page 3 undefined on input line 4.
-
-
-LaTeX Warning: Reference `serial_8c' on page 3 undefined on input line 5.
-
-
-LaTeX Warning: Reference `string_8c' on page 3 undefined on input line 6.
-
-
-LaTeX Warning: Reference `errno_8h' on page 3 undefined on input line 7.
-
-
-LaTeX Warning: Reference `r1_8c' on page 3 undefined on input line 8.
-
-
-LaTeX Warning: Reference `r1_8h' on page 3 undefined on input line 9.
-
-
-LaTeX Warning: Reference `sys__clock_8c' on page 3 undefined on input line 10.
-
-
-LaTeX Warning: Reference `sys__clock_8h' on page 3 undefined on input line 11.
+LaTeX Warning: Reference `sys__clock_8h' on page 3 undefined on input line 10.
 
 ) [3] [4
 
@@ -1202,11 +1172,6 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `subscript' on input line 74.
 
 [7]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.1 on input line 87.
-
-
 Underfull \hbox (badness 10000) detected at line 88
 [][][]
  []
@@ -1236,28 +1201,15 @@ Underfull \hbox (badness 10000) detected at line 43
  []
 
 
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.2 on input line 64.
-
-
 Underfull \hbox (badness 10000) detected at line 65
 [][][]
  []
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.3 on input line 83.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `subscript' on input line 92.
 
 [9]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.4 on input line 105.
-
-
 Underfull \hbox (badness 10000) detected at line 106
 [][][]
  []
@@ -1266,10 +1218,6 @@ Underfull \hbox (badness 10000) detected at line 106
 Underfull \hbox (badness 10000) detected at line 131
 [][][]
  []
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.5 on input line 142.
 
 
 Underfull \hbox (badness 10000) detected at line 143
@@ -1282,17 +1230,9 @@ Underfull \hbox (badness 10000) detected at line 169
  []
 
 
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.6 on input line 180.
-
-
 Underfull \hbox (badness 10000) detected at line 181
 [][][]
  []
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.7 on input line 202.
 
 
 Underfull \hbox (badness 10000) detected at line 203
@@ -1300,36 +1240,19 @@ Underfull \hbox (badness 10000) detected at line 203
  []
 
 
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.8 on input line 224.
-
-
 Underfull \hbox (badness 10000) detected at line 225
 [][][]
  []
 
 [11]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.9 on input line 246.
-
-
 Underfull \hbox (badness 10000) detected at line 247
 [][][]
  []
 
 
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.10 on input line 265.
-
-
 Underfull \hbox (badness 10000) detected at line 266
 [][][]
  []
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.11 on input line 287.
 
 ) (./serial_8c.tex
 Underfull \hbox (badness 10000) in paragraph at lines 8--12
@@ -1364,11 +1287,6 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `subscript' on input line 102.
 
 [13]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.12 on input line 115.
-
-
 Underfull \hbox (badness 10000) detected at line 116
 [][][]
  []
@@ -1394,28 +1312,15 @@ Underfull \hbox (badness 10000) detected at line 46
  []
 
 
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.13 on input line 67.
-
-
 Underfull \hbox (badness 10000) detected at line 68
 [][][]
  []
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.14 on input line 86.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `subscript' on input line 95.
 
 [15]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.15 on input line 108.
-
-
 Underfull \hbox (badness 10000) detected at line 109
 [][][]
  []
@@ -1424,10 +1329,6 @@ Underfull \hbox (badness 10000) detected at line 109
 Underfull \hbox (badness 10000) detected at line 134
 [][][]
  []
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.16 on input line 145.
 
 
 Underfull \hbox (badness 10000) detected at line 146
@@ -1440,17 +1341,9 @@ Underfull \hbox (badness 10000) detected at line 172
  []
 
 
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.17 on input line 183.
-
-
 Underfull \hbox (badness 10000) detected at line 184
 [][][]
  []
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.18 on input line 205.
 
 
 Underfull \hbox (badness 10000) detected at line 206
@@ -1458,36 +1351,19 @@ Underfull \hbox (badness 10000) detected at line 206
  []
 
 
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.19 on input line 227.
-
-
 Underfull \hbox (badness 10000) detected at line 228
 [][][]
  []
 
 [17]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.20 on input line 249.
-
-
 Underfull \hbox (badness 10000) detected at line 250
 [][][]
  []
 
 
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.21 on input line 268.
-
-
 Underfull \hbox (badness 10000) detected at line 269
 [][][]
  []
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.22 on input line 290.
 
 ) (./errno_8h.tex [18]
 Underfull \hbox (badness 10000) detected at line 30
@@ -1508,107 +1384,42 @@ Underfull \hbox (badness 10000) detected at line 36
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `subscript' on input line 44.
 
-) (./r1_8c.tex
-Underfull \hbox (badness 10000) in paragraph at lines 8--14
-
+) (./r1_8h.tex
+Underfull \hbox (badness 10000) detected at line 39
+[][][]
  []
 
-[19]
-Underfull \hbox (badness 10000) detected at line 50
+[19] [20]
+Underfull \hbox (badness 10000) detected at line 64
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 53
+Underfull \hbox (badness 10000) detected at line 81
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 56
+Underfull \hbox (badness 10000) detected at line 95
 [][][]
  []
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 82.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 82.
-
-[20]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.23 on input line 101.
-
-
-Underfull \hbox (badness 10000) detected at line 102
+Underfull \hbox (badness 10000) detected at line 98
 [][][]
  []
 
 
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.24 on input line 120.
-
-
-Underfull \hbox (badness 10000) detected at line 121
+Underfull \hbox (badness 10000) detected at line 101
 [][][]
  []
-
-) (./r1_8h.tex [21]
-Underfull \hbox (badness 10000) detected at line 57
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 60
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 63
-[][][]
- []
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 79.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 79.
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.25 on input line 98.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [22]
-Underfull \hbox (badness 10000) detected at line 99
-[][][]
- []
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.26 on input line 117.
-
-
-Underfull \hbox (badness 10000) detected at line 118
-[][][]
- []
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.27 on input line 135.
 
 ) (./sys__clock_8c.tex
 Underfull \hbox (badness 10000) in paragraph at lines 8--12
 
  []
 
-[23]
+[21]
 Underfull \hbox (badness 10000) detected at line 73
 [][][]
  []
@@ -1631,12 +1442,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `subscript' on input line 91.
 
-[24]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.28 on input line 100.
-
-
+[22]
 Underfull \hbox (badness 10000) detected at line 101
 [][][]
  []
@@ -1648,10 +1454,6 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `subscript' on input line 111.
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.29 on input line 122.
 
 
 Underfull \hbox (badness 10000) detected at line 123
@@ -1667,10 +1469,6 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `subscript' on input line 132.
 
 
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.30 on input line 141.
-
-
 Underfull \hbox (badness 10000) detected at line 142
 [][][]
  []
@@ -1683,15 +1481,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `subscript' on input line 152.
 
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.31 on input line 163.
-
-
-Overfull \vbox (16.86479pt too high) has occurred while \output is active []
-
-
-[25]
+[23]
 Underfull \hbox (badness 10000) detected at line 164
 [][][]
  []
@@ -1703,10 +1493,6 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `subscript' on input line 173.
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.32 on input line 182.
 
 
 Underfull \hbox (badness 10000) detected at line 183
@@ -1722,83 +1508,238 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `subscript' on input line 195.
 
 
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.33 on input line 206.
-
-
-Underfull \hbox (badness 10000) detected at line 207
+Underfull \hbox (badness 10000) detected at line 209
 [][][]
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 216.
+(hyperref)                removing `subscript' on input line 218.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 216.
+(hyperref)                removing `subscript' on input line 218.
+
+[24]
+Underfull \hbox (badness 10000) detected at line 228
+[][][]
+ []
 
 
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.34 on input line 225.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 237.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 237.
+
+
+Underfull \hbox (badness 10000) detected at line 249
+[][][]
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 261.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 261.
+
+
+Underfull \hbox (badness 10000) detected at line 273
+[][][]
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 282.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 282.
+
+[25]
+Underfull \hbox (badness 10000) detected at line 292
+[][][]
+ []
+
+) (./sys__clock_8h.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--10
+
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 37
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 40
+[][][]
+ []
 
 [26]
-Underfull \hbox (badness 10000) detected at line 226
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 53.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 53.
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 4.35 on input line 64.
+
+
+Underfull \hbox (badness 10000) detected at line 65
 [][][]
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 235.
+(hyperref)                removing `subscript' on input line 74.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 235.
+(hyperref)                removing `subscript' on input line 74.
 
 
 Package longtable Warning: Column widths have changed
-(longtable)                in table 4.35 on input line 244.
+(longtable)                in table 4.36 on input line 83.
 
 
-Underfull \hbox (badness 10000) detected at line 245
+Underfull \hbox (badness 10000) detected at line 84
 [][][]
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 257.
+(hyperref)                removing `subscript' on input line 94.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 257.
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.36 on input line 268.
-
-
-Underfull \hbox (badness 10000) detected at line 269
-[][][]
- []
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 278.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 278.
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.37 on input line 287.
+(hyperref)                removing `subscript' on input line 94.
 
 [27]
-Underfull \hbox (badness 10000) detected at line 288
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 4.37 on input line 105.
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 4.38 on input line 112.
+
+
+Underfull \hbox (badness 10000) detected at line 113
 [][][]
  []
 
-) [28]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 123.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 123.
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 4.39 on input line 134.
+
+
+Underfull \hbox (badness 10000) detected at line 135
+[][][]
+ []
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 4.40 on input line 146.
+
+[28]
+Underfull \hbox (badness 10000) detected at line 147
+[][][]
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 156.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 156.
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 4.41 on input line 165.
+
+
+Underfull \hbox (badness 10000) detected at line 166
+[][][]
+ []
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 4.42 on input line 177.
+
+
+Underfull \hbox (badness 10000) detected at line 178
+[][][]
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 189.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 189.
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 4.43 on input line 198.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 206.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 206.
+
+[29]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 4.44 on input line 217.
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 4.45 on input line 224.
+
+
+Underfull \hbox (badness 10000) detected at line 225
+[][][]
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 234.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 234.
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 4.46 on input line 243.
+
+
+Underfull \hbox (badness 10000) detected at line 244
+[][][]
+ []
+
+) [30]
 No file refman.ind.
 
 Package longtable Warning: Table widths have changed. Rerun LaTeX.
@@ -1815,8 +1756,8 @@ Package rerunfilecheck Warning: File `refman.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `refman.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  E1C9B0A9F6B20DC4CF1315550B9A9499;18430.
+(rerunfilecheck)             Before: 1A5B11022FE4E379F021E5BB52A928AE;15082
+(rerunfilecheck)             After:  BAD2AE2ABA8EEC14CD5FEDABC6F56892;18039.
 
 LaTeX Warning: There were undefined references.
 
@@ -1826,12 +1767,12 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 165.
  ) 
 Here is how much of TeX's memory you used:
- 14292 strings out of 495021
- 204865 string characters out of 6181351
- 301602 words of memory out of 5000000
- 17281 multiletter control sequences out of 15000+600000
- 48245 words of font info for 53 fonts, out of 8000000 for 9000
+ 14374 strings out of 495021
+ 206396 string characters out of 6181351
+ 323458 words of memory out of 5000000
+ 17354 multiletter control sequences out of 15000+600000
+ 49941 words of font info for 54 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 53i,15n,92p,1393b,633s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 53i,16n,92p,1117b,713s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on refman.dvi (32 pages, 132248 bytes).
+Output written on refman.dvi (34 pages, 191856 bytes).
