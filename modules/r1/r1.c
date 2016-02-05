@@ -1,5 +1,5 @@
 /**
- * @file r1.h
+ * @file r1.c
  * @author Thunder Krakens
  * @date February 2nd, 2016
  * @brief The commandhander and functions associations for Module R1
@@ -321,29 +321,29 @@ static void load_functions()
     Exit Status:\n\t\tReturns success unless the given function is not valid function.\n\n";
 
     functions[VERSION].nameStr = "-version"; functions[VERSION].function = &version; functions[VERSION].usage = "mpx -version";
-    functions[VERSION].help = "\nversion : -version\n\n\tPrints the current version of MPX and completion date.\n\n\
+    functions[VERSION].help = "\nversion : mpx -version\n\n\tPrints the current version of MPX and completion date.\n\n\
     Exit Status: Always Succeeds.\n\n";
 
     functions[GETTIME].nameStr = "gettime"; functions[GETTIME].function = &get_time_main; functions[GETTIME].usage = "mpx gettime";
-    functions[GETTIME].help = "\ngettime : gettime\n\n\tDisplays the current system's time in the format HH:MM:SS.\n\n\
+    functions[GETTIME].help = "\ngettime : mpx gettime\n\n\tDisplays the current system's time in the format HH:MM:SS.\n\n\
     Exit Status: Always Succeeds.\n\n";
 
     functions[SETTIME].nameStr = "settime"; functions[SETTIME].function = &set_time_main; functions[SETTIME].usage = "mpx settime [HH:MM:SS]";
-    functions[SETTIME].help = "\nsettime : settime [HH:MM:SS]\n\n\tSets the system's time to the specified HH:MM:SS.\
+    functions[SETTIME].help = "\nsettime : mpx settime [HH:MM:SS]\n\n\tSets the system's time to the specified HH:MM:SS.\
     \n\nArguments:\n\tHH  Specified hours ranging from 00 (midnight) to 23 (1AM.)\n\tMM  Specified minutes.\n\tSS  Specified seconds.\n\n\
     Exit Status:\n\tReturns success unless given hours, minutes, and/or seconds are incorrect values.\n\n";
 
     functions[GETDATE].nameStr = "getdate"; functions[GETDATE].function = &get_date_main; functions[GETDATE].usage = "mpx getdate";
-    functions[GETDATE].help = "\ngetdate : getdate\n\n\tDisplays the current system's date in the format MM/DD/YY.\n\n\
+    functions[GETDATE].help = "\ngetdate : mpx getdate\n\n\tDisplays the current system's date in the format MM/DD/YY.\n\n\
     Exit Status: Always Succeeds.\n\n";
 
     functions[SETDATE].nameStr = "setdate"; functions[SETDATE].function = &set_date_main; functions[SETDATE].usage = "mpx setdate [MM/DD/YY]";
-    functions[SETDATE].help = "\nsetdate : setdate [MM/DD/YY]\n\n\tSets the system's date in the specified MM/DD/YY.\n\n\
+    functions[SETDATE].help = "\nsetdate : mpx setdate [MM/DD/YY]\n\n\tSets the system's date in the specified MM/DD/YY.\n\n\
     \n\nArguments:\n\tMM  Specified month ranging from 1 to 12.\n\tDD  Specified day ranging from 1 to 31.\n\tYY  Specified year.\n\n\
     Exit Status:\n\tReturns success unless given month, day, and/or year are incorrect values.\n\n";
 
     functions[SHUTDOWN].nameStr = "-shutdown"; functions[SHUTDOWN].function = &shutdown; functions[SHUTDOWN].usage = "mpx -shutdown";
-    functions[SHUTDOWN].help = "\nshutdown : -shutdown\n\n\tShuts down the operating system.\n\n\
+    functions[SHUTDOWN].help = "\nshutdown : mpx -shutdown\n\n\tShuts down the operating system.\n\n\
     Exit Status: Always Succeeds.\n\n";
 
 }

@@ -231,6 +231,7 @@ void get_date(date_time * dateTimeValues)
   dateTimeValues->year = (year >> 4) * 10 + (year & 0x0f);
 }
 
+
 /**
  * @name: set_date.
  *
