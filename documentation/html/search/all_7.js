@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['r1_2ec',['r1.c',['../r1_8c.html',1,'']]],
-  ['r1_2eh',['r1.h',['../r1_8h.html',1,'']]]
+  ['printf',['printf',['../string_8c.html#a98631211a4a8aee62f572375d5b637be',1,'printf(const char *format,...):&#160;string.c'],['../string_8h.html#a98631211a4a8aee62f572375d5b637be',1,'printf(const char *format,...):&#160;string.c']]]
 ];

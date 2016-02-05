@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['isspace',['isspace',['../string_8c.html#a0f3d37d605e9e6d4fc1853ff9d4b91bf',1,'isspace(const char *c):&#160;string.c'],['../string_8h.html#a0f3d37d605e9e6d4fc1853ff9d4b91bf',1,'isspace(const char *c):&#160;string.c']]]
+  ['get_5finput_5fline',['get_input_line',['../serial_8c.html#aca81fe61abc40b171257825521578e6c',1,'get_input_line(char *buffer, const int buffer_size, const int bWithEcho):&#160;serial.c'],['../serial_8h.html#aca81fe61abc40b171257825521578e6c',1,'get_input_line(char *buffer, const int buffer_size, const int bWithEcho):&#160;serial.c']]]
 ];

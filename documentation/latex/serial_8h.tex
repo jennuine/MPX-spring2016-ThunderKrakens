@@ -1,0 +1,90 @@
+\hypertarget{serial_8h}{}\section{include/core/serial.h File Reference}
+\label{serial_8h}\index{include/core/serial.\+h@{include/core/serial.\+h}}
+
+
+Serial -\/ Header.  
+
+
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries C\+O\+M1}~0x3f8\hypertarget{serial_8h_a00dbb3ab1c59e14699be9393693e2248}{}\label{serial_8h_a00dbb3ab1c59e14699be9393693e2248}
+
+\item 
+\#define {\bfseries C\+O\+M2}~0x2f8\hypertarget{serial_8h_a435e02f194c24c9b0e00d7cd27a1704e}{}\label{serial_8h_a435e02f194c24c9b0e00d7cd27a1704e}
+
+\item 
+\#define {\bfseries C\+O\+M3}~0x3e8\hypertarget{serial_8h_abbed02672431595364c5dd35809303a6}{}\label{serial_8h_abbed02672431595364c5dd35809303a6}
+
+\item 
+\#define {\bfseries C\+O\+M4}~0x2e8\hypertarget{serial_8h_a595cabb01568ba641574d24546d99c6b}{}\label{serial_8h_a595cabb01568ba641574d24546d99c6b}
+
+\item 
+\#define {\bfseries Without\+Echo}~0\hypertarget{serial_8h_a99c15aced355f0ca133b05cf46a7ff28}{}\label{serial_8h_a99c15aced355f0ca133b05cf46a7ff28}
+
+\item 
+\#define {\bfseries With\+Echo}~1\hypertarget{serial_8h_afddb5e7f7cc4e3632a18609dabf32628}{}\label{serial_8h_afddb5e7f7cc4e3632a18609dabf32628}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries init\+\_\+serial} (int device)\hypertarget{serial_8h_a7078c07ff8b2c48780558549a8f7cf90}{}\label{serial_8h_a7078c07ff8b2c48780558549a8f7cf90}
+
+\item 
+int {\bfseries serial\+\_\+println} (const char $\ast$msg)\hypertarget{serial_8h_a3514f7abff236a4e00a6c46021ce5e22}{}\label{serial_8h_a3514f7abff236a4e00a6c46021ce5e22}
+
+\item 
+int {\bfseries serial\+\_\+print} (const char $\ast$msg)\hypertarget{serial_8h_a995827efcd4dcfb780c9fbb9645410a4}{}\label{serial_8h_a995827efcd4dcfb780c9fbb9645410a4}
+
+\item 
+int {\bfseries set\+\_\+serial\+\_\+out} (int device)\hypertarget{serial_8h_ae97b87ee1f57c687e7fca6f9958e03ef}{}\label{serial_8h_ae97b87ee1f57c687e7fca6f9958e03ef}
+
+\item 
+int {\bfseries set\+\_\+serial\+\_\+in} (int device)\hypertarget{serial_8h_a3f4008da5feabfb7e086f6673a81104b}{}\label{serial_8h_a3f4008da5feabfb7e086f6673a81104b}
+
+\item 
+void \hyperlink{serial_8h_aca81fe61abc40b171257825521578e6c}{get\+\_\+input\+\_\+line} (char $\ast$buffer, const int buffer\+\_\+size, const int b\+With\+Echo)
+\begin{DoxyCompactList}\small\item\em get\+\_\+input\+\_\+line. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Serial -\/ Header. 
+
+\begin{DoxyAuthor}{Author}
+Thunder Krakens 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+February 2nd, 2016 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+R1 
+\end{DoxyVersion}
+
+
+\subsection{Function Documentation}
+\index{serial.\+h@{serial.\+h}!get\+\_\+input\+\_\+line@{get\+\_\+input\+\_\+line}}
+\index{get\+\_\+input\+\_\+line@{get\+\_\+input\+\_\+line}!serial.\+h@{serial.\+h}}
+\subsubsection[{\texorpdfstring{get\+\_\+input\+\_\+line(char $\ast$buffer, const int buffer\+\_\+size, const int b\+With\+Echo)}{get_input_line(char *buffer, const int buffer_size, const int bWithEcho)}}]{\setlength{\rightskip}{0pt plus 5cm}void get\+\_\+input\+\_\+line (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{buffer, }
+\item[{const int}]{buffer\+\_\+size, }
+\item[{const int}]{b\+With\+Echo}
+\end{DoxyParamCaption}
+)}\hypertarget{serial_8h_aca81fe61abc40b171257825521578e6c}{}\label{serial_8h_aca81fe61abc40b171257825521578e6c}
+
+
+get\+\_\+input\+\_\+line. 
+
+Description\+: Get user\textquotesingle{}s input from keyborad. 
+\begin{DoxyParams}{Parameters}
+{\em buffer} & -\/ The pointer to the buffer where store the user\textquotesingle{}s input. \\
+\hline
+{\em buffer\+\_\+size} & -\/ The size of that buffer. \\
+\hline
+{\em b\+With\+Echo} & -\/ With echo or not \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+V\+O\+ID 
+\end{DoxyReturn}

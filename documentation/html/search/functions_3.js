@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['memset',['memset',['../string_8c.html#ace6ee45c30e71865e6eb635200379db9',1,'memset(void *s, int c, size_t n):&#160;string.c'],['../string_8h.html#ace6ee45c30e71865e6eb635200379db9',1,'memset(void *s, int c, size_t n):&#160;string.c']]]
+  ['isspace',['isspace',['../string_8c.html#a0f3d37d605e9e6d4fc1853ff9d4b91bf',1,'isspace(const char *c):&#160;string.c'],['../string_8h.html#a0f3d37d605e9e6d4fc1853ff9d4b91bf',1,'isspace(const char *c):&#160;string.c']]]
 ];
