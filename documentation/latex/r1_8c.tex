@@ -1,0 +1,123 @@
+\hypertarget{r1_8c}{}\section{modules/r1/r1.c File Reference}
+\label{r1_8c}\index{modules/r1/r1.\+c@{modules/r1/r1.\+c}}
+
+
+The main code file for Module R1.  
+
+
+{\ttfamily \#include \char`\"{}r1.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}../mpx\+\_\+supt.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}sys\+\_\+clock.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$core/serial.\+h$>$}\\*
+{\ttfamily \#include $<$core/io.\+h$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries U\+S\+E\+R\+\_\+\+I\+N\+P\+U\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}~1000\hypertarget{r1_8c_abcc7a443a9849435cd308e774dd0c8de}{}\label{r1_8c_abcc7a443a9849435cd308e774dd0c8de}
+
+\item 
+\#define {\bfseries M\+A\+X\+\_\+\+A\+R\+GC}~50\hypertarget{r1_8c_ae1da50c0d24fa0390a6c287d6cb4befe}{}\label{r1_8c_ae1da50c0d24fa0390a6c287d6cb4befe}
+
+\item 
+\#define {\bfseries M\+O\+D\+\_\+\+V\+E\+R\+S\+I\+ON}~\char`\"{}R1\char`\"{}\hypertarget{r1_8c_a88a929d879ebd5f0d64773050f62aef5}{}\label{r1_8c_a88a929d879ebd5f0d64773050f62aef5}
+
+\item 
+\#define {\bfseries C\+O\+M\+P\+L\+E\+T\+I\+ON}~\char`\"{}02/05/2016\char`\"{}\hypertarget{r1_8c_afc29c35952a1ce914016dbfa4b91c2aa}{}\label{r1_8c_afc29c35952a1ce914016dbfa4b91c2aa}
+
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{r1_8c_abb950b1df1e3f5562228a4eae8ebb925}{Command\+Paser\+Stat} \{ {\bfseries Not\+Writing}, 
+{\bfseries Normal\+Writing}, 
+{\bfseries Double\+Quote\+Writing}, 
+{\bfseries Single\+Quote\+Writing}
+ \}\begin{DoxyCompactList}\small\item\em Name\+: Command\+Parser\+Stat. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{r1_8c_a14d85617242501c323a203ee196d3efa}{commhand} ()
+\begin{DoxyCompactList}\small\item\em Name\+: commhand. \end{DoxyCompactList}\item 
+void \hyperlink{r1_8c_adb6b307c73bca25d17aa7683e14fea16}{command\+\_\+line\+\_\+parser} (const char $\ast$Cmd\+Str, int $\ast$argc, char $\ast$$\ast$argv, const int Max\+Arg\+Num, const int Max\+Str\+Len)
+\begin{DoxyCompactList}\small\item\em Name\+: command\+\_\+line\+\_\+parser. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The main code file for Module R1. 
+
+\begin{DoxyAuthor}{Author}
+Thunder Krakens 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+February 2nd, 2016 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+R1
+\end{DoxyVersion}
+This file contains setdate, getdate, settime, gettime, help functions, commandhander and command line parser 
+
+\subsection{Enumeration Type Documentation}
+\index{r1.\+c@{r1.\+c}!Command\+Paser\+Stat@{Command\+Paser\+Stat}}
+\index{Command\+Paser\+Stat@{Command\+Paser\+Stat}!r1.\+c@{r1.\+c}}
+\subsubsection[{\texorpdfstring{Command\+Paser\+Stat}{CommandPaserStat}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Command\+Paser\+Stat}}\hypertarget{r1_8c_abb950b1df1e3f5562228a4eae8ebb925}{}\label{r1_8c_abb950b1df1e3f5562228a4eae8ebb925}
+
+
+Name\+: Command\+Parser\+Stat. 
+
+Description\+: The stats of the command parser 
+
+\subsection{Function Documentation}
+\index{r1.\+c@{r1.\+c}!command\+\_\+line\+\_\+parser@{command\+\_\+line\+\_\+parser}}
+\index{command\+\_\+line\+\_\+parser@{command\+\_\+line\+\_\+parser}!r1.\+c@{r1.\+c}}
+\subsubsection[{\texorpdfstring{command\+\_\+line\+\_\+parser(const char $\ast$\+Cmd\+Str, int $\ast$argc, char $\ast$$\ast$argv, const int Max\+Arg\+Num, const int Max\+Str\+Len)}{command_line_parser(const char *CmdStr, int *argc, char **argv, const int MaxArgNum, const int MaxStrLen)}}]{\setlength{\rightskip}{0pt plus 5cm}void command\+\_\+line\+\_\+parser (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{Cmd\+Str, }
+\item[{int $\ast$}]{argc, }
+\item[{char $\ast$$\ast$}]{argv, }
+\item[{const int}]{Max\+Arg\+Num, }
+\item[{const int}]{Max\+Str\+Len}
+\end{DoxyParamCaption}
+)}\hypertarget{r1_8c_adb6b307c73bca25d17aa7683e14fea16}{}\label{r1_8c_adb6b307c73bca25d17aa7683e14fea16}
+
+
+Name\+: command\+\_\+line\+\_\+parser. 
+
+Description\+: Splits the complete command line into tokens by space, single quote, or double quote.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Cmd\+Str} & -\/ The complete input command. \\
+\hline
+{\em argc} & -\/ The number of tokens found. \\
+\hline
+{\em argv} & -\/ The array of tokens. \\
+\hline
+{\em Max\+Arg\+Num} & -\/ The maximum number of tokens that array can hold. \\
+\hline
+{\em Max\+Str\+Len} & -\/ The maximum length of each token that string can hold.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\index{r1.\+c@{r1.\+c}!commhand@{commhand}}
+\index{commhand@{commhand}!r1.\+c@{r1.\+c}}
+\subsubsection[{\texorpdfstring{commhand()}{commhand()}}]{\setlength{\rightskip}{0pt plus 5cm}int commhand (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{r1_8c_a14d85617242501c323a203ee196d3efa}{}\label{r1_8c_a14d85617242501c323a203ee196d3efa}
+
+
+Name\+: commhand. 
+
+Description\+: Accepts and handles commands from the user. 
+\begin{DoxyParams}{Parameters}
+{\em User} & input \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}

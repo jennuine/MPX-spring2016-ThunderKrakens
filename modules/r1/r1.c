@@ -1,3 +1,13 @@
+/**
+ * @file r1.c
+ * @author Thunder Krakens
+ * @date February 2nd, 2016
+ * @brief The main code file for Module R1
+ * @version R1
+ *
+ * This file contains setdate, getdate, settime, gettime, help functions, commandhander and command line parser
+ */
+
 #include "r1.h"
 #include "../mpx_supt.h"
 #include "sys_clock.h"
@@ -13,11 +23,13 @@
 static int run_mpx = 1;
 static void load_functions();
 
-/**
-* @param argc
-* @param argv
-* @return 0
-*/
+/** @brief  Name: exe_function.
+ *
+ * Description: Executes the fucntions within the program. Accepts command from the user and refers to the command input.
+ * @param argc - The number of tokens found.
+ * @param argv - The array of tokens.
+ * @return  0
+ */
 static int exe_function(int argc, char ** argv)
 {
     int i = 0;
@@ -32,6 +44,13 @@ static int exe_function(int argc, char ** argv)
     return 0;
 }
 
+/** @brief Name: version
+ *
+ *	Description: displays the version of the system currently running.
+ *  @param argc - The number of tokens found.
+ *  @param argv - The array of tokens.
+ * 	@return 0
+ */
 static int version(int argc, char** argv)
 {
     if (argc >= 2 && !strcmp(argv[2], "--help"))
@@ -42,6 +61,13 @@ static int version(int argc, char** argv)
     return 0;
 }
 
+/** @brief Name: shutdown
+ *
+ *	Description: Closes all functions, and shuts down the system.
+ * @param argc - The number of tokens found.
+ * @param argv - The array of tokens.
+ * 	@return run_mpx
+ */
 static int shutdown(int argc, char** argv)
 {
     if (argc >= 3 && !strcmp(argv[2], "--help"))
@@ -73,6 +99,12 @@ static int shutdown(int argc, char** argv)
    	 }
 }
 
+/** @brief Name: help_usages
+ *
+ *	Description: shows every help function available.
+ *	@param int start_from - user input
+ *  @return  1
+ */
 static int help_usages(int start_from)
 {
     if (start_from)
@@ -87,6 +119,13 @@ static int help_usages(int start_from)
     return 1;
 }
 
+/** @brief Name: help_function
+ *
+ *	Description: displays help text for the specified function
+ * @param argc - The number of tokens found.
+ * @param argv - The array of tokens.
+ * 	@return 1
+ */
 static int help_function(int argc, char** argv)
 {
     int i;
@@ -115,6 +154,12 @@ static int help_function(int argc, char** argv)
     return 0;
 }
 
+/** @brief Name: commhand
+ *
+ *	Description: Accepts and handles commands from the user.
+ *	@param User input
+ * 	@return 0
+ */
 int commhand()
 {
     static char userInput[USER_INPUT_BUFFER_SIZE];
@@ -158,6 +203,10 @@ int commhand()
     return 0;
 }
 
+/** @brief Name: CommandParserStat
+ *
+ *	Description: The stats of the command parser
+ */
 enum CommandPaserStat
 {
     NotWriting,
@@ -166,6 +215,19 @@ enum CommandPaserStat
     SingleQuoteWriting
 };
 
+/**
+* @brief Name: command_line_parser
+*
+* Description: Splits the complete command line into tokens by space, single quote, or double quote.
+*
+* @param CmdStr - The complete input command.
+* @param argc - The number of tokens found.
+* @param argv - The array of tokens.
+* @param MaxArgNum - The maximum number of tokens that array can hold.
+* @param MaxStrLen - The maximum length of each token that string can hold.
+*
+* @return void
+*/
 void command_line_parser(const char * CmdStr, int * argc, char ** argv, const int MaxArgNum, const int MaxStrLen)
 {
     enum CommandPaserStat WritingStat = NotWriting;
