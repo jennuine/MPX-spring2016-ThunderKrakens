@@ -62,7 +62,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -86,14 +85,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
-<a href="#typedef-members">Typedefs</a>  </div>
+<a href="#define-members">Macros</a>  </div>
   <div class="headertitle">
 <div class="title">errno.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Type of Erros.  
+<p>This file contains the type of errors. The error can be from invalid paramter passed to a function, or invalid input format.  
 <a href="#details">More...</a></p>
 
 <p><a href="errno_8h_source.html">Go to the source code of this file.</a></p>
@@ -101,44 +99,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a910656a3ce04eecb0e4479fd35d343fb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a910656a3ce04eecb0e4479fd35d343fb"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>E_NOERROR</b>&#160;&#160;&#160;0   /* No errors */</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>E_NOERROR</b>&#160;&#160;&#160;0</td></tr>
 <tr class="separator:a910656a3ce04eecb0e4479fd35d343fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad38311f7eadb9042f7c98dd31ffc69c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad38311f7eadb9042f7c98dd31ffc69c3"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>E_INVPARA</b>&#160;&#160;&#160;1   /* Invalid parameters had been passed in */</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>E_INVPARA</b>&#160;&#160;&#160;1</td></tr>
 <tr class="separator:ad38311f7eadb9042f7c98dd31ffc69c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17ad8897d139d58bb84714b2e7861ba2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a17ad8897d139d58bb84714b2e7861ba2"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>E_INVSTRF</b>&#160;&#160;&#160;2   /* Invalid [Input] string format */</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>E_INVSTRF</b>&#160;&#160;&#160;2</td></tr>
 <tr class="separator:a17ad8897d139d58bb84714b2e7861ba2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:aafbeb34410283829794b35fedafeb369"><td class="memItemLeft" align="right" valign="top">typedef unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="errno_8h.html#aafbeb34410283829794b35fedafeb369">error_t</a></td></tr>
-<tr class="memdesc:aafbeb34410283829794b35fedafeb369"><td class="mdescLeft">&#160;</td><td class="mdescRight">Name: error_t.  <a href="#aafbeb34410283829794b35fedafeb369">More...</a><br /></td></tr>
+<tr><td colspan="2"><div class="groupHeader">error_t.</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>The datetype that holds the error code. </p>
+</div></td></tr>
+<tr class="memitem:aafbeb34410283829794b35fedafeb369"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aafbeb34410283829794b35fedafeb369"></a>
+typedef unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>error_t</b></td></tr>
 <tr class="separator:aafbeb34410283829794b35fedafeb369"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Type of Erros. </p>
+<div class="textblock"><p>This file contains the type of errors. The error can be from invalid paramter passed to a function, or invalid input format. </p>
 <dl class="section author"><dt>Author</dt><dd>Thunder Krakens </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>February 2nd, 2016 </dd></dl>
-<dl class="section version"><dt>Version</dt><dd>R1</dd></dl>
-<p>This file contains the type of errors the the user may input. The error can be from invalid paramter passed to a function, or invalid input format. </p>
-</div><h2 class="groupheader">Typedef Documentation</h2>
-<a class="anchor" id="aafbeb34410283829794b35fedafeb369"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef unsigned int <a class="el" href="errno_8h.html#aafbeb34410283829794b35fedafeb369">error_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Name: error_t. </p>
-<p>Description: This file contains the type of errors the the user may input. </p>
-
-</div>
-</div>
-</div><!-- contents -->
+<dl class="section version"><dt>Version</dt><dd>R1 </dd></dl>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

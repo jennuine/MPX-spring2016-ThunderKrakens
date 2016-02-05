@@ -1,27 +1,21 @@
 var indexSectionsWithContent =
 {
-  0: "aefgimprs",
+  0: "efrs",
   1: "f",
-  2: "ers",
-  3: "agimps",
-  4: "e"
+  2: "ers"
 };
 
 var indexSectionNames =
 {
   0: "all",
   1: "classes",
-  2: "files",
-  3: "functions",
-  4: "typedefs"
+  2: "files"
 };
 
 var indexSectionLabels =
 {
   0: "All",
   1: "Classes",
-  2: "Files",
-  3: "Functions",
-  4: "Typedefs"
+  2: "Files"
 };
 

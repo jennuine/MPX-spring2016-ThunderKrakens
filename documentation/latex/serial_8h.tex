@@ -43,9 +43,28 @@ int {\bfseries set\+\_\+serial\+\_\+out} (int device)\hypertarget{serial_8h_ae97
 \item 
 int {\bfseries set\+\_\+serial\+\_\+in} (int device)\hypertarget{serial_8h_a3f4008da5feabfb7e086f6673a81104b}{}\label{serial_8h_a3f4008da5feabfb7e086f6673a81104b}
 
+\end{DoxyCompactItemize}
+\begin{Indent}{\bf get\+\_\+input\+\_\+line}\par
+{\em Get user\textquotesingle{}s input from keyborad.
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & The pointer to the buffer where store the user\textquotesingle{}s input. \\
+\hline
+{\em buffer\+\_\+size} & The size of that buffer. \\
+\hline
+{\em b\+With\+Echo} & With echo or not\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+V\+O\+ID 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
 \item 
-void \hyperlink{serial_8h_aca81fe61abc40b171257825521578e6c}{get\+\_\+input\+\_\+line} (char $\ast$buffer, const int buffer\+\_\+size, const int b\+With\+Echo)
-\begin{DoxyCompactList}\small\item\em get\+\_\+input\+\_\+line. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void {\bfseries get\+\_\+input\+\_\+line} (char $\ast$buffer, const int buffer\+\_\+size, const int b\+With\+Echo)\hypertarget{serial_8h_aca81fe61abc40b171257825521578e6c}{}\label{serial_8h_aca81fe61abc40b171257825521578e6c}
+
+\end{DoxyCompactItemize}
+\end{Indent}
 
 
 \subsection{Detailed Description}
@@ -60,31 +79,3 @@ February 2nd, 2016
 \begin{DoxyVersion}{Version}
 R1 
 \end{DoxyVersion}
-
-
-\subsection{Function Documentation}
-\index{serial.\+h@{serial.\+h}!get\+\_\+input\+\_\+line@{get\+\_\+input\+\_\+line}}
-\index{get\+\_\+input\+\_\+line@{get\+\_\+input\+\_\+line}!serial.\+h@{serial.\+h}}
-\subsubsection[{\texorpdfstring{get\+\_\+input\+\_\+line(char $\ast$buffer, const int buffer\+\_\+size, const int b\+With\+Echo)}{get_input_line(char *buffer, const int buffer_size, const int bWithEcho)}}]{\setlength{\rightskip}{0pt plus 5cm}void get\+\_\+input\+\_\+line (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{buffer, }
-\item[{const int}]{buffer\+\_\+size, }
-\item[{const int}]{b\+With\+Echo}
-\end{DoxyParamCaption}
-)}\hypertarget{serial_8h_aca81fe61abc40b171257825521578e6c}{}\label{serial_8h_aca81fe61abc40b171257825521578e6c}
-
-
-get\+\_\+input\+\_\+line. 
-
-Description\+: Get user\textquotesingle{}s input from keyborad. 
-\begin{DoxyParams}{Parameters}
-{\em buffer} & -\/ The pointer to the buffer where store the user\textquotesingle{}s input. \\
-\hline
-{\em buffer\+\_\+size} & -\/ The size of that buffer. \\
-\hline
-{\em b\+With\+Echo} & -\/ With echo or not \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-V\+O\+ID 
-\end{DoxyReturn}

@@ -2,7 +2,7 @@
 \label{string_8c}\index{lib/string.\+c@{lib/string.\+c}}
 
 
-String Handling.  
+Many usefull functions that used for handling string.  
 
 
 {\ttfamily \#include $<$system.\+h$>$}\\*
@@ -10,32 +10,234 @@ String Handling.
 {\ttfamily \#include \char`\"{}../modules/mpx\+\_\+supt.\+h\char`\"{}}\\*
 {\ttfamily \#include $<$string.\+h$>$}\\*
 \subsection*{Functions}
-\begin{DoxyCompactItemize}
+\begin{Indent}{\bf \+: strlen.}\par
+{\em Returns the length of a string.
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & String input.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+count Length of the String 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
 \item 
-int \hyperlink{string_8c_a2dee044e4e667b5b789b493abd21cfa4}{strlen} (const char $\ast$s)
-\begin{DoxyCompactList}\small\item\em Name\+: strlen. \end{DoxyCompactList}\item 
-char $\ast$ \hyperlink{string_8c_a1eb9cae61e6a6282c28dbc298ef7297e}{strcpy} (char $\ast$s1, const char $\ast$s2)
-\begin{DoxyCompactList}\small\item\em Name\+: strcpy. \end{DoxyCompactList}\item 
-int \hyperlink{string_8c_a30670a60464f77af17dfb353353d6df8}{atoi} (const char $\ast$s)
-\begin{DoxyCompactList}\small\item\em Name\+: atoi. \end{DoxyCompactList}\item 
-int \hyperlink{string_8c_a11bd144d7d44914099a3aeddf1c8567d}{strcmp} (const char $\ast$s1, const char $\ast$s2)
-\begin{DoxyCompactList}\small\item\em Name\+: strcmp. \end{DoxyCompactList}\item 
-int \hyperlink{string_8c_a3082155ec11e7229f7a20439b31a169e}{sprintf} (char $\ast$str, const char $\ast$format,...)
-\begin{DoxyCompactList}\small\item\em Name\+: sprintf. \end{DoxyCompactList}\item 
-int \hyperlink{string_8c_a98631211a4a8aee62f572375d5b637be}{printf} (const char $\ast$format,...)
-\begin{DoxyCompactList}\small\item\em Name\+: printf. \end{DoxyCompactList}\item 
-char $\ast$ \hyperlink{string_8c_a8908188ae9fc2f05d993257ef001d553}{strcat} (char $\ast$s1, const char $\ast$s2)
-\begin{DoxyCompactList}\small\item\em Name\+: strcat. \end{DoxyCompactList}\item 
-int \hyperlink{string_8c_a0f3d37d605e9e6d4fc1853ff9d4b91bf}{isspace} (const char $\ast$c)
-\begin{DoxyCompactList}\small\item\em Name\+: isspace. \end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{string_8c_ace6ee45c30e71865e6eb635200379db9}{memset} (void $\ast$s, int c, size\+\_\+t n)
-\begin{DoxyCompactList}\small\item\em Name\+: memset. \end{DoxyCompactList}\item 
-char $\ast$ \hyperlink{string_8c_af1a867dcea42fc1215d0eddf19283ef3}{strtok} (char $\ast$s1, const char $\ast$s2)
-\begin{DoxyCompactList}\small\item\em Name\+: strtok. \end{DoxyCompactList}\end{DoxyCompactItemize}
+int {\bfseries strlen} (const char $\ast$s)\hypertarget{string_8c_a2dee044e4e667b5b789b493abd21cfa4}{}\label{string_8c_a2dee044e4e667b5b789b493abd21cfa4}
+
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf \+: strcpy.}\par
+{\em Copies one string to another.
+
+
+\begin{DoxyParams}{Parameters}
+{\em s1} & Destination string \\
+\hline
+{\em s2} & Source string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to the destination String 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+char $\ast$ {\bfseries strcpy} (char $\ast$s1, const char $\ast$s2)\hypertarget{string_8c_a1eb9cae61e6a6282c28dbc298ef7297e}{}\label{string_8c_a1eb9cae61e6a6282c28dbc298ef7297e}
+
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf \+: atoi.}\par
+{\em Convert an A\+S\+C\+II string to an integer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & String.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The converted integer. 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+int {\bfseries atoi} (const char $\ast$s)\hypertarget{string_8c_a30670a60464f77af17dfb353353d6df8}{}\label{string_8c_a30670a60464f77af17dfb353353d6df8}
+
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf \+: strcmp.}\par
+{\em String comparison.
+
+
+\begin{DoxyParams}{Parameters}
+{\em s1} & First string to use for the compare. \\
+\hline
+{\em s2} & Second string to use for the compare.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether they are the same or not. 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+int {\bfseries strcmp} (const char $\ast$s1, const char $\ast$s2)\hypertarget{string_8c_a11bd144d7d44914099a3aeddf1c8567d}{}\label{string_8c_a11bd144d7d44914099a3aeddf1c8567d}
+
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf \+: Parse\+Padding.}\par
+{\em Parse the number for padding.
+
+(static -\/ Only can be access within this file).
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & Paddling String \\
+\hline
+{\em width} & Paddling Width \\
+\hline
+{\em Dec\+Width} & Width of decimal part. \\
+\hline
+{\em b\+Is\+Right} & Is align right. \\
+\hline
+{\em b\+Has\+Sign} & Has + / -\/.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+b\+Is\+Valid Returns the validity. 
+\end{DoxyReturn}
+}\end{Indent}
+\begin{Indent}{\bf \+: Add\+Pad.}\par
+{\em Add a certain number of paddings (static -\/ Only can be access within this file).
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & In string. \\
+\hline
+{\em count} & Number of whitespace.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+V\+O\+ID 
+\end{DoxyReturn}
+}\end{Indent}
+\begin{Indent}{\bf Nibble\+To\+Char}\par
+{\em convert a nibble into a single hexadecimal (static -\/ Only can be access within this file)
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value of the nibble\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the character of the Hexadecimal number if valid, otherwise, return \textquotesingle{}$\ast$\textquotesingle{}. 
+\end{DoxyReturn}
+}\end{Indent}
+\begin{Indent}{\bf bytes\+To\+Hex\+String.}\par
+{\em Convert bytes into a hexadecimal string (static -\/ Only can be access within this file).
+
+
+\begin{DoxyParams}{Parameters}
+{\em Out\+Str} & Output string. \\
+\hline
+{\em Value} & The value of bytes.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+V\+O\+ID 
+\end{DoxyReturn}
+}\end{Indent}
+\begin{Indent}{\bf \+: vsprintf.}\par
+{\em The actual function that perform the \char`\"{}printf\char`\"{} and \char`\"{}sprintf\char`\"{} function (static -\/ Only can be access within this file).
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & Output string. \\
+\hline
+{\em format} & The format of the string. \\
+\hline
+{\em ap} & the pointer of the first additional parameter.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+}\end{Indent}
+\begin{Indent}{\bf \+: sprintf.}\par
+{\em Generate a formatted string.
+
+\%\mbox{[}-\/x\mbox{]}c output a character, \textquotesingle{}-\/\textquotesingle{} -\/ align right, x -\/ the output width
+
+\%\mbox{[}-\/x\mbox{]}s output a string, \textquotesingle{}-\/\textquotesingle{} -\/ align right, x -\/ the output width
+
+\%\mbox{[}\{-\/,+\}x\mbox{]}d output a character, \textquotesingle{}-\/\textquotesingle{} -\/ align right, \textquotesingle{}+\textquotesingle{} -\/ align right and display \textquotesingle{}+\textquotesingle{} sign, x -\/ the output width
+
+\%\mbox{[}-\/x\mbox{]}X (capital \textquotesingle{}X\textquotesingle{}) output a hexadecimal number, \textquotesingle{}-\/\textquotesingle{} -\/ align right, x -\/ the output width
+
+note\+: Output width will be ignored if width is smaller than actual length.
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & -\/ Output string. \\
+\hline
+{\em format} & -\/ The format of the string. \\
+\hline
+{\em ...} & -\/ All of the additional parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vsprintf(str, format, ap) -\/ Return the string with its format and pointer. 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+int {\bfseries sprintf} (char $\ast$str, const char $\ast$format,...)\hypertarget{string_8c_a3082155ec11e7229f7a20439b31a169e}{}\label{string_8c_a3082155ec11e7229f7a20439b31a169e}
+
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf printf.}\par
+{\em Print out a formatted string.
+
+\%\mbox{[}-\/x\mbox{]}c output a character, \textquotesingle{}-\/\textquotesingle{} -\/ align right, x -\/ the output width
+
+\%\mbox{[}-\/x\mbox{]}s output a string, \textquotesingle{}-\/\textquotesingle{} -\/ align right, x -\/ the output width
+
+\%\mbox{[}\{-\/,+\}x\mbox{]}d output a character, \textquotesingle{}-\/\textquotesingle{} -\/ align right, \textquotesingle{}+\textquotesingle{} -\/ align right and display \textquotesingle{}+\textquotesingle{} sign, x -\/ the output width
+
+\%\mbox{[}-\/x\mbox{]}X (capital \textquotesingle{}X\textquotesingle{}) output a hexadecimal number, \textquotesingle{}-\/\textquotesingle{} -\/ align right, x -\/ the output width
+
+note\+: Output width will be ignored if width is smaller than actual length.
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & -\/ Output string. \\
+\hline
+{\em format} & -\/ The format of the string. \\
+\hline
+{\em ...} & -\/ All of the additional parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vsprintf(str, format, ap) -\/ Return the string with its format and pointer. 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+int {\bfseries printf} (const char $\ast$format,...)\hypertarget{string_8c_a98631211a4a8aee62f572375d5b637be}{}\label{string_8c_a98631211a4a8aee62f572375d5b637be}
+
+\item 
+char $\ast$ {\bfseries strcat} (char $\ast$s1, const char $\ast$s2)\hypertarget{string_8c_a8908188ae9fc2f05d993257ef001d553}{}\label{string_8c_a8908188ae9fc2f05d993257ef001d553}
+
+\item 
+int {\bfseries isspace} (const char $\ast$c)\hypertarget{string_8c_a0f3d37d605e9e6d4fc1853ff9d4b91bf}{}\label{string_8c_a0f3d37d605e9e6d4fc1853ff9d4b91bf}
+
+\item 
+void $\ast$ {\bfseries memset} (void $\ast$s, int c, size\+\_\+t n)\hypertarget{string_8c_ace6ee45c30e71865e6eb635200379db9}{}\label{string_8c_ace6ee45c30e71865e6eb635200379db9}
+
+\item 
+char $\ast$ {\bfseries strtok} (char $\ast$s1, const char $\ast$s2)\hypertarget{string_8c_af1a867dcea42fc1215d0eddf19283ef3}{}\label{string_8c_af1a867dcea42fc1215d0eddf19283ef3}
+
+\end{DoxyCompactItemize}
+\end{Indent}
 
 
 \subsection{Detailed Description}
-String Handling. 
+Many usefull functions that used for handling string. 
 
 \begin{DoxyAuthor}{Author}
 Thunder Krakens 
@@ -46,245 +248,3 @@ February 2nd, 2016
 \begin{DoxyVersion}{Version}
 R1 
 \end{DoxyVersion}
-
-
-\subsection{Function Documentation}
-\index{string.\+c@{string.\+c}!atoi@{atoi}}
-\index{atoi@{atoi}!string.\+c@{string.\+c}}
-\subsubsection[{\texorpdfstring{atoi(const char $\ast$s)}{atoi(const char *s)}}]{\setlength{\rightskip}{0pt plus 5cm}int atoi (
-\begin{DoxyParamCaption}
-\item[{const char $\ast$}]{s}
-\end{DoxyParamCaption}
-)}\hypertarget{string_8c_a30670a60464f77af17dfb353353d6df8}{}\label{string_8c_a30670a60464f77af17dfb353353d6df8}
-
-
-Name\+: atoi. 
-
-Description\+: Convert an A\+S\+C\+II string to an integer. 
-\begin{DoxyParams}{Parameters}
-{\em const} & char $\ast$s -\/ String. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-integer -\/ The converted integer. 
-\end{DoxyReturn}
-\index{string.\+c@{string.\+c}!isspace@{isspace}}
-\index{isspace@{isspace}!string.\+c@{string.\+c}}
-\subsubsection[{\texorpdfstring{isspace(const char $\ast$c)}{isspace(const char *c)}}]{\setlength{\rightskip}{0pt plus 5cm}int isspace (
-\begin{DoxyParamCaption}
-\item[{const char $\ast$}]{c}
-\end{DoxyParamCaption}
-)}\hypertarget{string_8c_a0f3d37d605e9e6d4fc1853ff9d4b91bf}{}\label{string_8c_a0f3d37d605e9e6d4fc1853ff9d4b91bf}
-
-
-Name\+: isspace. 
-
-Description\+: Identifies if its space 
-\begin{DoxyParams}{Parameters}
-{\em const} & char $\ast$c -\/ A constant character \\
-\hline
-\end{DoxyParams}
-\index{string.\+c@{string.\+c}!memset@{memset}}
-\index{memset@{memset}!string.\+c@{string.\+c}}
-\subsubsection[{\texorpdfstring{memset(void $\ast$s, int c, size\+\_\+t n)}{memset(void *s, int c, size_t n)}}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ memset (
-\begin{DoxyParamCaption}
-\item[{void $\ast$}]{s, }
-\item[{int}]{c, }
-\item[{size\+\_\+t}]{n}
-\end{DoxyParamCaption}
-)}\hypertarget{string_8c_ace6ee45c30e71865e6eb635200379db9}{}\label{string_8c_ace6ee45c30e71865e6eb635200379db9}
-
-
-Name\+: memset. 
-
-Description\+: Sets region of memory 
-\begin{DoxyParams}{Parameters}
-{\em s} & -\/ destination \\
-\hline
-{\em c} & -\/ byte to write \\
-\hline
-{\em n} & -\/ count \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-V\+O\+ID 
-\end{DoxyReturn}
-\index{string.\+c@{string.\+c}!printf@{printf}}
-\index{printf@{printf}!string.\+c@{string.\+c}}
-\subsubsection[{\texorpdfstring{printf(const char $\ast$format,...)}{printf(const char *format,...)}}]{\setlength{\rightskip}{0pt plus 5cm}int printf (
-\begin{DoxyParamCaption}
-\item[{const char $\ast$}]{format, }
-\item[{}]{...}
-\end{DoxyParamCaption}
-)}\hypertarget{string_8c_a98631211a4a8aee62f572375d5b637be}{}\label{string_8c_a98631211a4a8aee62f572375d5b637be}
-
-
-Name\+: printf. 
-
-Description\+: Print out a formatted string.
-
-\%\mbox{[}-\/x\mbox{]}c output a character, \textquotesingle{}-\/\textquotesingle{} -\/ align right, x -\/ the output width
-
-\%\mbox{[}-\/x\mbox{]}s output a string, \textquotesingle{}-\/\textquotesingle{} -\/ align right, x -\/ the output width
-
-\%\mbox{[}\{-\/,+\}x\mbox{]}d output a character, \textquotesingle{}-\/\textquotesingle{} -\/ align right, \textquotesingle{}+\textquotesingle{} -\/ align right and display \textquotesingle{}+\textquotesingle{} sign, x -\/ the output width
-
-\%\mbox{[}-\/x\mbox{]}X (capital \textquotesingle{}X\textquotesingle{}) output a hexadecimal number, \textquotesingle{}-\/\textquotesingle{} -\/ align right, x -\/ the output width
-
-\begin{DoxyNote}{Note}
-Output width will be ignored if width is smaller than actual length.
-\end{DoxyNote}
-
-\begin{DoxyParams}{Parameters}
-{\em str} & -\/ Output string. \\
-\hline
-{\em format} & -\/ The format of the string. \\
-\hline
-{\em ...} & -\/ All of the additional parameters. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-vsprintf(str, format, ap) -\/ Return the string with its format and pointer. 
-\end{DoxyReturn}
-\index{string.\+c@{string.\+c}!sprintf@{sprintf}}
-\index{sprintf@{sprintf}!string.\+c@{string.\+c}}
-\subsubsection[{\texorpdfstring{sprintf(char $\ast$str, const char $\ast$format,...)}{sprintf(char *str, const char *format,...)}}]{\setlength{\rightskip}{0pt plus 5cm}int sprintf (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{str, }
-\item[{const char $\ast$}]{format, }
-\item[{}]{...}
-\end{DoxyParamCaption}
-)}\hypertarget{string_8c_a3082155ec11e7229f7a20439b31a169e}{}\label{string_8c_a3082155ec11e7229f7a20439b31a169e}
-
-
-Name\+: sprintf. 
-
-Description\+: Generate a formatted string.
-
-\%\mbox{[}-\/x\mbox{]}c output a character, \textquotesingle{}-\/\textquotesingle{} -\/ align right, x -\/ the output width
-
-\%\mbox{[}-\/x\mbox{]}s output a string, \textquotesingle{}-\/\textquotesingle{} -\/ align right, x -\/ the output width
-
-\%\mbox{[}\{-\/,+\}x\mbox{]}d output a character, \textquotesingle{}-\/\textquotesingle{} -\/ align right, \textquotesingle{}+\textquotesingle{} -\/ align right and display \textquotesingle{}+\textquotesingle{} sign, x -\/ the output width
-
-\%\mbox{[}-\/x\mbox{]}X (capital \textquotesingle{}X\textquotesingle{}) output a hexadecimal number, \textquotesingle{}-\/\textquotesingle{} -\/ align right, x -\/ the output width
-
-\begin{DoxyNote}{Note}
-Output width will be ignored if width is smaller than actual length.
-\end{DoxyNote}
-
-\begin{DoxyParams}{Parameters}
-{\em str} & -\/ Output string. \\
-\hline
-{\em format} & -\/ The format of the string. \\
-\hline
-{\em ...} & -\/ All of the additional parameters. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-vsprintf(str, format, ap) -\/ Return the string with its format and pointer. 
-\end{DoxyReturn}
-\index{string.\+c@{string.\+c}!strcat@{strcat}}
-\index{strcat@{strcat}!string.\+c@{string.\+c}}
-\subsubsection[{\texorpdfstring{strcat(char $\ast$s1, const char $\ast$s2)}{strcat(char *s1, const char *s2)}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ strcat (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{s1, }
-\item[{const char $\ast$}]{s2}
-\end{DoxyParamCaption}
-)}\hypertarget{string_8c_a8908188ae9fc2f05d993257ef001d553}{}\label{string_8c_a8908188ae9fc2f05d993257ef001d553}
-
-
-Name\+: strcat. 
-
-Description\+: Concatenate the contents of one string onto another. 
-\begin{DoxyParams}{Parameters}
-{\em s1} & -\/ Destination string \\
-\hline
-{\em s2} & -\/ Source string \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-s1 -\/ Destination String 
-\end{DoxyReturn}
-\index{string.\+c@{string.\+c}!strcmp@{strcmp}}
-\index{strcmp@{strcmp}!string.\+c@{string.\+c}}
-\subsubsection[{\texorpdfstring{strcmp(const char $\ast$s1, const char $\ast$s2)}{strcmp(const char *s1, const char *s2)}}]{\setlength{\rightskip}{0pt plus 5cm}int strcmp (
-\begin{DoxyParamCaption}
-\item[{const char $\ast$}]{s1, }
-\item[{const char $\ast$}]{s2}
-\end{DoxyParamCaption}
-)}\hypertarget{string_8c_a11bd144d7d44914099a3aeddf1c8567d}{}\label{string_8c_a11bd144d7d44914099a3aeddf1c8567d}
-
-
-Name\+: strcmp. 
-
-Description\+: String comparison. 
-\begin{DoxyParams}{Parameters}
-{\em s1} & -\/ First string to use for the compare. \\
-\hline
-{\em s2} & -\/ Second string to use for the compare. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-whether they are the same or not. 
-\end{DoxyReturn}
-\index{string.\+c@{string.\+c}!strcpy@{strcpy}}
-\index{strcpy@{strcpy}!string.\+c@{string.\+c}}
-\subsubsection[{\texorpdfstring{strcpy(char $\ast$s1, const char $\ast$s2)}{strcpy(char *s1, const char *s2)}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ strcpy (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{s1, }
-\item[{const char $\ast$}]{s2}
-\end{DoxyParamCaption}
-)}\hypertarget{string_8c_a1eb9cae61e6a6282c28dbc298ef7297e}{}\label{string_8c_a1eb9cae61e6a6282c28dbc298ef7297e}
-
-
-Name\+: strcpy. 
-
-Description\+: Copies one string to another. 
-\begin{DoxyParams}{Parameters}
-{\em s1} & -\/ Destination string \\
-\hline
-{\em s2} & -\/ Source string \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-s1 -\/ Destination String 
-\end{DoxyReturn}
-\index{string.\+c@{string.\+c}!strlen@{strlen}}
-\index{strlen@{strlen}!string.\+c@{string.\+c}}
-\subsubsection[{\texorpdfstring{strlen(const char $\ast$s)}{strlen(const char *s)}}]{\setlength{\rightskip}{0pt plus 5cm}int strlen (
-\begin{DoxyParamCaption}
-\item[{const char $\ast$}]{s}
-\end{DoxyParamCaption}
-)}\hypertarget{string_8c_a2dee044e4e667b5b789b493abd21cfa4}{}\label{string_8c_a2dee044e4e667b5b789b493abd21cfa4}
-
-
-Name\+: strlen. 
-
-Description\+: Returns the length of a string. 
-\begin{DoxyParams}{Parameters}
-{\em s} & -\/ String input. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-count -\/ Length of the String 
-\end{DoxyReturn}
-\index{string.\+c@{string.\+c}!strtok@{strtok}}
-\index{strtok@{strtok}!string.\+c@{string.\+c}}
-\subsubsection[{\texorpdfstring{strtok(char $\ast$s1, const char $\ast$s2)}{strtok(char *s1, const char *s2)}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ strtok (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{s1, }
-\item[{const char $\ast$}]{s2}
-\end{DoxyParamCaption}
-)}\hypertarget{string_8c_af1a867dcea42fc1215d0eddf19283ef3}{}\label{string_8c_af1a867dcea42fc1215d0eddf19283ef3}
-
-
-Name\+: strtok. 
-
-Description\+: Split string into tokens. 
-\begin{DoxyParams}{Parameters}
-{\em s1} & -\/ String \\
-\hline
-{\em s2} & -\/ Delimiter \\
-\hline
-\end{DoxyParams}

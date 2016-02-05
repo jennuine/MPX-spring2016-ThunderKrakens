@@ -62,7 +62,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -154,8 +153,50 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>set_serial_out</b> (in
 <tr class="memitem:a3f4008da5feabfb7e086f6673a81104b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3f4008da5feabfb7e086f6673a81104b"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>set_serial_in</b> (int device)</td></tr>
 <tr class="separator:a3f4008da5feabfb7e086f6673a81104b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca81fe61abc40b171257825521578e6c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serial_8c.html#aca81fe61abc40b171257825521578e6c">get_input_line</a> (char *buffer, const int buffer_size, const int bWithEcho)</td></tr>
-<tr class="memdesc:aca81fe61abc40b171257825521578e6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">get_input_line.  <a href="#aca81fe61abc40b171257825521578e6c">More...</a><br /></td></tr>
+<tr><td colspan="2"><div class="groupHeader">MoveCursorBackchar.</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Move the cursor back for specific times.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>The number of times that needs to move back. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>VOID </dd></dl>
+</div></td></tr>
+<tr><td colspan="2"><div class="groupHeader">PrintStars.</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Print out the '*' for specific times.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>The number of times that needs to print. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>VOID </dd></dl>
+</div></td></tr>
+<tr><td colspan="2"><div class="groupHeader">EchoInput.</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Decides to print out the original string or stars.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">InputStr</td><td>The string, </td></tr>
+    <tr><td class="paramname">bWithEcho</td><td>Turn on the echo or not. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div></td></tr>
+<tr><td colspan="2"><div class="groupHeader">get_input_line</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Get user's input from keyborad.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td>The pointer to the buffer where store the user's input. </td></tr>
+    <tr><td class="paramname">buffer_size</td><td>The size of that buffer. </td></tr>
+    <tr><td class="paramname">bWithEcho</td><td>With echo or not</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>VOID </dd></dl>
+</div></td></tr>
+<tr class="memitem:aca81fe61abc40b171257825521578e6c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aca81fe61abc40b171257825521578e6c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>get_input_line</b> (char *buffer, const int buffer_size, const int bWithEcho)</td></tr>
 <tr class="separator:aca81fe61abc40b171257825521578e6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
@@ -172,51 +213,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>serial_port_in</b> = 0
 <dl class="section author"><dt>Author</dt><dd>Thunder Krakens </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>February 2nd, 2016 </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>R1 </dd></dl>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="aca81fe61abc40b171257825521578e6c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void get_input_line </td>
-          <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>buffer</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>buffer_size</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>bWithEcho</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>get_input_line. </p>
-<p>Description: Get user's input from keyborad. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">buffer</td><td>- The pointer to the buffer where store the user's input. </td></tr>
-    <tr><td class="paramname">buffer_size</td><td>- The size of that buffer. </td></tr>
-    <tr><td class="paramname">bWithEcho</td><td>- With echo or not </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>VOID </dd></dl>
-
-</div>
-</div>
-</div><!-- contents -->
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">
