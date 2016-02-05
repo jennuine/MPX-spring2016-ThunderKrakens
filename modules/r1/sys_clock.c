@@ -186,7 +186,7 @@ error_t set_time(const date_time * dateTimeValues)
 	0 <= dateTimeValues->min && dateTimeValues->min < 60 &&
 	0 <= dateTimeValues->sec && dateTimeValues->sec < 60 )
   {//If all of the value are in the valid range
-	hr = dateTimeValues->hour ? (((dateTimeValues->hour / 10) << 4) | (dateTimeValues->hour % 10)) : 0;
+	   hr = dateTimeValues->hour ? (((dateTimeValues->hour / 10) << 4) | (dateTimeValues->hour % 10)) : 0;
       min = dateTimeValues->min ? (((dateTimeValues->min / 10) << 4) | (dateTimeValues->min % 10)) : 0;
       sec = dateTimeValues->sec ? (((dateTimeValues->sec / 10) << 4) | (dateTimeValues->sec % 10)) : 0;
 
@@ -229,6 +229,66 @@ void get_date(date_time * dateTimeValues)
   dateTimeValues->mon = (month >> 4) * 10 + (month & 0x0f);
   dateTimeValues->day_m = (day >> 4) * 10 + (day & 0x0f);
   dateTimeValues->year = (year >> 4) * 10 + (year & 0x0f);
+
+  if(dateTimeValues->year >= 70)
+  {
+    dateTimeValues->year += 1900;
+  }
+  else
+  {
+    dateTimeValues->year += 2000;
+  }
+}
+
+/**
+ * @name is_date_value_valid.
+ *
+ * @brief Check if the date specified is valid, which means year should between 1970 ~ 1969,
+          month should between 1 ~ 12, while the range of the day is based on the month and year.
+ * @param year  The value of the year
+ * @param mon  The value of the month
+ * @param day  The value of the day of month
+ * @return VOID
+ */
+static int is_date_value_valid(const int year, const int mon, const int day)
+{
+  int Result = 1;
+  int DayMax = 0;
+
+  Result = Result && (1 <= mon && mon <= 12);
+  Result = Result && (1970 <= year && year <= 2069);
+
+  switch(mon)
+  {
+    case 1:
+    case 3:
+    case 5:
+    case 7:
+    case 8:
+    case 10:
+    case 12:
+      DayMax = 31;
+    break;
+
+    case 4:
+    case 6:
+    case 9:
+    case 11:
+      DayMax = 30;
+    break;
+
+    case 2:
+      if(year % 4 == 0)
+      {
+        DayMax = 29;
+      }
+      else
+      {
+        DayMax = 28;
+      }
+  }
+  Result = Result && (1 <= day && day <= DayMax);
+  return Result;
 }
 
 
@@ -243,13 +303,13 @@ error_t set_date(const date_time * dateTimeValues)
 {
   unsigned char month, day, year;
 
-  if(0 <= dateTimeValues->mon &&  dateTimeValues->mon <= 12 &&
-    0 <= dateTimeValues->day_m && dateTimeValues->day_m <= 31 )
+  if(is_date_value_valid(dateTimeValues->year, dateTimeValues->mon, dateTimeValues->day_m))
     {//If all of the value are in the valid range
 
-      month = dateTimeValues->mon;
-      day = dateTimeValues->day_m ;
-      year = dateTimeValues->year ;
+      month = ((dateTimeValues->mon / 10) << 4) | (dateTimeValues->mon % 10);
+      day = ((dateTimeValues->day_m / 10) << 4) | (dateTimeValues->day_m % 10);
+      year = dateTimeValues->year % 100;
+      year = ((year / 10) << 4) | (year % 10);
 
       //Disable interrupts
       cli();
@@ -282,7 +342,7 @@ int get_date_main(int argc, char** argv)
   {
     date_time dateTimeValues;
     get_date(&dateTimeValues);
-    printf("\tCurrent date is: %2d/%2d/%2d\n", dateTimeValues.mon, dateTimeValues.day_m, dateTimeValues.year);
+    printf("\tCurrent date is: %d/%d/%d\n", dateTimeValues.mon, dateTimeValues.day_m, dateTimeValues.year);
   }
   else if(argc >= 2 && strcmp(argv[2], "--help") == 0)
   {
@@ -305,7 +365,7 @@ int get_date_main(int argc, char** argv)
  */
 int set_date_str(const char * str)
 {
-  char temp[10];
+  char temp[11];
   date_time dateTimeValues;
 
   strcpy(temp, str);
@@ -325,7 +385,7 @@ int set_date_str(const char * str)
 
   tok = strtok(NULL, "/");
 
-  if (is_digit(tok[0]) && (is_digit(tok[1])))
+  if (is_digit(tok[0]) && is_digit(tok[1]) && is_digit(tok[2]) && is_digit(tok[3]))
     dateTimeValues.year = atoi(tok);
   else
     return E_INVPARA;

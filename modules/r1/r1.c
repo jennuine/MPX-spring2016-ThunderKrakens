@@ -334,12 +334,12 @@ static void load_functions()
     Exit Status:\n\tReturns success unless given hours, minutes, and/or seconds are incorrect values.\n\n";
 
     functions[GETDATE].nameStr = "getdate"; functions[GETDATE].function = &get_date_main; functions[GETDATE].usage = "mpx getdate";
-    functions[GETDATE].help = "\ngetdate : mpx getdate\n\n\tDisplays the current system's date in the format MM/DD/YY.\n\n\
+    functions[GETDATE].help = "\ngetdate : mpx getdate\n\n\tDisplays the current system's date in the format MM/DD/YYYY.\n\n\
     Exit Status: Always Succeeds.\n\n";
 
-    functions[SETDATE].nameStr = "setdate"; functions[SETDATE].function = &set_date_main; functions[SETDATE].usage = "mpx setdate [MM/DD/YY]";
-    functions[SETDATE].help = "\nsetdate : mpx setdate [MM/DD/YY]\n\n\tSets the system's date in the specified MM/DD/YY.\n\n\
-    \n\nArguments:\n\tMM  Specified month ranging from 1 to 12.\n\tDD  Specified day ranging from 1 to 31.\n\tYY  Specified year.\n\n\
+    functions[SETDATE].nameStr = "setdate"; functions[SETDATE].function = &set_date_main; functions[SETDATE].usage = "mpx setdate [MM/DD/YYYY]";
+    functions[SETDATE].help = "\nsetdate : mpx setdate [MM/DD/YYYY]\n\n\tSets the system's date in the specified MM/DD/YYYY.\n\n\
+    \n\nArguments:\n\tMM  Specified month ranging from 1 to 12.\n\tDD  Specified day ranging from 1 to 31.\n\tYYYY  Specified year (Within range 1970 ~ 2069).\n\n\
     Exit Status:\n\tReturns success unless given month, day, and/or year are incorrect values.\n\n";
 
     functions[SHUTDOWN].nameStr = "-shutdown"; functions[SHUTDOWN].function = &shutdown; functions[SHUTDOWN].usage = "mpx -shutdown";
