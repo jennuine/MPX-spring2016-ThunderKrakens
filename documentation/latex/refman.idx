@@ -1,9 +1,9 @@
 \indexentry{function\+\_\+name@{function\+\_\+name}|hyperpage}{7}
 \indexentry{include/core/serial.\+h@{include/core/serial.\+h}|hyperpage}{9}
 \indexentry{include/string.\+h@{include/string.\+h}|hyperpage}{10}
-\indexentry{kernel/core/serial.\+c@{kernel/core/serial.\+c}|hyperpage}{15}
-\indexentry{lib/string.\+c@{lib/string.\+c}|hyperpage}{17}
-\indexentry{modules/errno.\+h@{modules/errno.\+h}|hyperpage}{20}
-\indexentry{modules/r1/r1.\+h@{modules/r1/r1.\+h}|hyperpage}{21}
-\indexentry{modules/r1/sys\+\_\+clock.\+c@{modules/r1/sys\+\_\+clock.\+c}|hyperpage}{22}
-\indexentry{modules/r1/sys\+\_\+clock.\+h@{modules/r1/sys\+\_\+clock.\+h}|hyperpage}{26}
+\indexentry{lib/string.\+c@{lib/string.\+c}|hyperpage}{15}
+\indexentry{modules/errno.\+h@{modules/errno.\+h}|hyperpage}{18}
+\indexentry{modules/r1/r1.\+c@{modules/r1/r1.\+c}|hyperpage}{19}
+\indexentry{modules/r1/r1.\+h@{modules/r1/r1.\+h}|hyperpage}{22}
+\indexentry{modules/r1/sys\+\_\+clock.\+c@{modules/r1/sys\+\_\+clock.\+c}|hyperpage}{23}
+\indexentry{modules/r1/sys\+\_\+clock.\+h@{modules/r1/sys\+\_\+clock.\+h}|hyperpage}{27}
