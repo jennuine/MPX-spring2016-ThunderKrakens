@@ -1,3 +1,11 @@
+/**
+ * @file serial.c
+ * @author Thunder Krakens
+ * @date February 2nd, 2016
+ * @brief Serial
+ *
+ */
+
 /*
   ----- serial.c -----
 
@@ -101,33 +109,38 @@ int set_serial_in(int device)
   return NO_ERROR;
 }
 
-/*
-  Procedure..: MoveCursorBackchar
-  Description..: Move the cursor back for specific times.
-  Params..: num-The number of times that needs to move back.
-*/
+/** @brief  MoveCursorBackchar.
+ *
+ * Description: Move the cursor back for specific times.
+ * @param num - The number of times that needs to move back.
+ * @return VOID
+ */
+
 static void MoveCursorBack(int num)
 {
 	while(num-- > 0)
 		serial_print("\b");
 }
 
-/*
-  Procedure..: PrintStars
-  Description..: Print out the '*' for specific times.
-  Params..: num-The number of times that needs to print.
-*/
+/** @brief  PrintStars.
+ *
+ * Description: Print out the '*' for specific times.
+ * @param num - The number of times that needs to print.
+ * @return VOID
+ */
+
 static void PrintStars(int num)
 {
 	while(num-- > 0)
 		serial_print("*");
 }
 
-/*
-  Procedure..: EchoInput
-  Description..: Decides to print out the original string or stars.
-  Params..: InputStr-The string, bWithEcho-Turn on the echo or not.
-*/
+/** @brief  EchoInput.
+ *
+ * Description: Decides to print out the original string or stars.
+ * @param InputStr - The string, bWithEcho-Turn on the echo or not.
+ */
+
 static void EchoInput(const char * InputStr, const int bWithEcho)
 {
 	if(bWithEcho)
@@ -136,13 +149,15 @@ static void EchoInput(const char * InputStr, const int bWithEcho)
 		PrintStars(strlen(InputStr));
 }
 
+/** @brief  get_input_line.
+ *
+ * Description: Get user's input from keyborad.
+ * @param buffer - The pointer to the buffer where store the user's input.
+ * @param buffer_size - The size of that buffer.
+ * @param bWithEcho - With echo or not
+ * @return VOID
+ */
 
-/*
-  Procedure..: get_input_line
-  Description..: Get user's input from keyborad.
-  Params..: buffer-the pointer to the buffer where store the user's input, buffer_size-the size of that buffer,
-      bWithEcho-With echo or not.
-*/
 void get_input_line(char * buffer, const int buffer_size, const int bWithEcho)
 {
 	int i = 0, cursorPos = 0;
