@@ -1,3 +1,12 @@
+/**
+ * @file string.c
+ * @author Thunder Krakens
+ * @date February 2nd, 2016
+ * @brief String Handling
+ *
+ */
+
+
 #include <system.h>
 #include <core/serial.h>
 #include "../modules/mpx_supt.h"
@@ -11,11 +20,13 @@
  * * following string functions * *
  * ****************************** */
 
-/*
-  Procedure..: strlen
-  Description..: Returns the length of a string.
-  Params..: s-input string
-*/
+ /** @brief  Name: strlen.
+ *
+ * Description: Returns the length of a string.
+ * @param s - String input.
+ * @return count - Length of the String
+ */
+ 
 int strlen(const char *s)
 {
   int count = 0;
@@ -26,23 +37,27 @@ int strlen(const char *s)
   return count; // return length of string
 }
 
-/*
-  Procedure..: strcpy
-  Description..: Copy one string to another.
-  Params..: s1-destination, s2-source
-*/
+/** @brief  Name: strcpy.
+ *
+ * Description: Copies one string to another.
+ * @param s1 - Destination string
+ * @param s2 - Source string
+ * @return  s1 - Destination String
+ */
+
 char* strcpy(char *s1, const char *s2)
 {
   while ((*s1++ = *s2++) != '\0');
   return s1;// return pointer to destination string
 }
 
-
-/*
-  Procedure..: atoi
-  Description..: Convert an ASCII string to an integer
-  Params..: const char *s -- String
-*/
+/** @brief  Name: atoi.
+ *
+ * Description: Convert an ASCII string to an integer.
+ * @param const char *s - String.
+ * @return integer - The converted integer.
+ */
+ 
 int atoi(const char *s)
 {
   int sign, i, integer = 0;
@@ -66,11 +81,14 @@ int atoi(const char *s)
   return integer; // return integer
 }
 
-/*
-  Procedure..: strcmp
-  Description..: String comparison
-  Params..: s1-string 1, s2-string 2
-*/
+/** @brief  Name: strcmp.
+ *
+ * Description: String comparison.
+ * @param s1 - First string to use for the compare.
+ * @param s2 - Second string to use for the compare.
+ * @return whether they are the same or not.
+ */
+
 int strcmp(const char *s1, const char *s2)
 {
   for(; (*s1 == *s2) && *s1 && *s2; s1++, s2++)
@@ -80,12 +98,17 @@ int strcmp(const char *s1, const char *s2)
   return ( *(unsigned char *)s1 - *(unsigned char *)s2 );
 }
 
-/*
-  Procedure..: ParsePadding
-  Description..: parse the number for padding. (static - Only can be access within this file)
-  Params..: Str-padding string, Width-padding width, DecWidth-width of decimal part,
-		bIsRight-is align right, bHasSign-has '+'/'-'
-*/
+/** @brief  Name: ParsePadding.
+ *
+ * Description: Parse the number for padding. (static - Only can be access within this file).
+ * @param str - Paddling String
+ * @param width - Paddling Width
+ * @param DecWidth - Width of decimal part.
+ * @param bIsRight - Is align right.
+ * @param bHasSign - Has + / -.
+ * @return bIsValid - Returns the validity.
+ */
+
 static int ParsePadding(const char * Str, int * Width, int * DecWidth, int * bIsRight, int * bHasSign)
 {
 	*Width = *DecWidth = *bIsRight = *bHasSign = 0;
@@ -121,11 +144,14 @@ static int ParsePadding(const char * Str, int * Width, int * DecWidth, int * bIs
 	return bIsValid;
 }
 
-/*
-  Procedure..: AddPad
-  Description..: Add a certain number of paddings (static - Only can be access within this file)
-  Params..: Str-in string, count-number of whitespace.
-*/
+/** @brief  Name: AddPad.
+ *
+ * Description: Add a certain number of paddings (static - Only can be access within this file).
+ * @param str - In string.
+ * @param count - Number of whitespace.
+ * @return VOID
+ */
+
 static void AddPad(char * Str, const unsigned int count)
 {
 	unsigned int i = 0;
@@ -135,11 +161,17 @@ static void AddPad(char * Str, const unsigned int count)
 	}
 }
 
-/*
-  Procedure..: itoa
-  Description..: convert integer into string (static - Only can be access within this file)
-  Params..: Str-in string, Value-value of integer, Width-padding width,	bIsRight-is align right, bHasSign-has '+'/'-'
-*/
+/** @brief  Name: itoa.
+ *
+ * Description: Convert integer into string (static - Only can be access within this file).
+ * @param str - In string.
+ * @param Value - Value of the integer.
+ * @param width - Paddling width.
+ * @param bIsRight - Is align right
+ * @param bHasSign - Has sign + / -
+ * @return VOID
+ */
+
 static void itoa(char * Str, const int Value, const int Width, const int bIsRight, const int bHasSign)
 {
 	int ActW = (Value == 0 ? 1: 0) + ((bHasSign || Value < 0) ? 1 : 0), TempV = Value;
@@ -179,11 +211,16 @@ static void itoa(char * Str, const int Value, const int Width, const int bIsRigh
 
 static char ByteMap[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
 
-/*
-  Procedure..: NibbleToChar
-  Description..: convert a nibble into a single hexadecimal (static - Only can be access within this file)
-  Params..: Value-the value of the nibble
-*/
+
+/**
+ *  @brief NibbleToChar
+ * 
+ *  Description: convert a nibble into a single hexadecimal (static - Only can be access within this file)
+ *  @param value - The value of the nibble
+ *  @return ByteMap[Value] - Hexadecimal Map
+ *  @return * - Invalid
+ */
+
 static char NibbleToChar(unsigned char Value)
 {
 	if(Value < 16)
@@ -193,11 +230,15 @@ static char NibbleToChar(unsigned char Value)
 	return '*';
 }
 
-/*
-  Procedure..: bytesToHexString
-  Description..: convert bytes into a hexadecimal string (static - Only can be access within this file)
-  Params..: OutStr-output string, Value-the value of the bytes.
-*/
+/** @brief  Name: bytesToHexString.
+ *
+ * Description: Convert bytes into a hexadecimal string (static - Only can be access within this file).
+ * @param OutStr - Output string.
+ * @param Value - The value of bytes.
+ * @return VOID
+ */
+
+
 static void bytesToHexString(char * OutStr, const int Value)
 {
 	int i = 0, Size = sizeof(Value), TempV = Value;
@@ -211,11 +252,15 @@ static void bytesToHexString(char * OutStr, const int Value)
 	OutStr[2 * i] = '\0';
 }
 
-/*
-  Procedure..: vsprintf
-  Description..: the actual function that perform the "printf" and "sprintf" function (static - Only can be access within this file)
-  Params..: str-output string, format-the format of the string, ap-the pointer point to the first additional parameter.
-*/
+/** @brief  Name: vsprintf.
+ *
+ * Description: The actual function that perform the "printf" and "sprintf" function (static - Only can be access within this file).
+ * @param str - Output string.
+ * @param format - The format of the string.
+ * @param ap - the pointer of the first additional parameter.
+ * @return 0
+ */
+
 static int vsprintf(char *str, const char *format, const int * ap)
 {
 	char * StrPtr = str;
@@ -315,16 +360,26 @@ static int vsprintf(char *str, const char *format, const int * ap)
 	return 0;
 }
 
-/*
-  Procedure..: sprintf
-  Description..: generate a formatted string.
-	%[-x]c		output a character, '-' - align right, x - the output width
-	%[-x]s		output a string, '-' - align right, x - the output width
-	%[{-,+}x]d	output a character, '-' - align right, '+' - align right and display '+' sign, x - the output width
-	%[-x]X		(capital 'X') output a hexadecimal number, '-' - align right, x - the output width
-	*note: output width will be ignored if width is smaller than actual length.
-  Params..: str-output string, format-the format of the string, ...-the additional parameters.
-*/
+/** @brief  Name: sprintf.
+ *
+ * Description: Generate a formatted string.
+ *
+ *	%[-x]c		output a character, '-' - align right, x - the output width
+ *
+ *	%[-x]s		output a string, '-' - align right, x - the output width
+ *
+ *	%[{-,+}x]d	output a character, '-' - align right, '+' - align right and display '+' sign, x - the output width
+ *
+ *	%[-x]X		(capital 'X') output a hexadecimal number, '-' - align right, x - the output width
+ *
+ * @note Output width will be ignored if width is smaller than actual length.
+ *
+ * @param str - Output string.
+ * @param format - The format of the string.
+ * @param ... - All of the additional parameters.
+ * @return vsprintf(str, format, ap) - Return the string with its format and pointer.
+ */
+
 int sprintf(char *str, const char *format, ...)
 {
 	int * ap = (int *)&format;
@@ -332,16 +387,26 @@ int sprintf(char *str, const char *format, ...)
 	return vsprintf(str, format, ap);
 }
 
-/*
-  Procedure..: printf
-  Description..: print out a formatted string.
-	%[-x]c		output a character, '-' - align right, x - the output width
-	%[-x]s		output a string, '-' - align right, x - the output width
-	%[{-,+}x]d	output a character, '-' - align right, '+' - align right and display '+' sign, x - the output width
-	%[-x]X		(capital 'X') output a hexadecimal number, '-' - align right, x - the output width
-	*note: output width will be ignored if width is smaller than actual length.
-  Params..: format-the format of the string, ...-the additional parameters.
-*/
+/** @brief  Name: printf.
+ *
+ * Description: Print out a formatted string.
+ *
+ *	%[-x]c		output a character, '-' - align right, x - the output width
+ *
+ *	%[-x]s		output a string, '-' - align right, x - the output width
+ *
+ *	%[{-,+}x]d	output a character, '-' - align right, '+' - align right and display '+' sign, x - the output width
+ *
+ *	%[-x]X		(capital 'X') output a hexadecimal number, '-' - align right, x - the output width
+ *
+ * @note Output width will be ignored if width is smaller than actual length.
+ *
+ * @param str - Output string.
+ * @param format - The format of the string.
+ * @param ... - All of the additional parameters.
+ * @return vsprintf(str, format, ap) - Return the string with its format and pointer.
+ */
+
 int printf(const char *format, ...)
 {
 	int * ap = (int *)&format;
