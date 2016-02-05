@@ -19,12 +19,15 @@
 #define MOD_VERSION "R1"
 #define COMPLETION "02/05/2016"
 
+/**
+* A structure to represent each function
+*/
 typedef struct
 {
-	char * nameStr;
-	int (*function) (int argc, char ** argv);
-	char * usage;
-	char * help;
+	char * nameStr; /** fuction's name */
+	int (*function) (int argc, char ** argv); /** the function */
+	char * usage; /** function's usage or use cases */
+	char * help; /** function's help information */
 } function_name;
 
 /**

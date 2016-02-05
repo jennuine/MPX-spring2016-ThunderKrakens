@@ -5,20 +5,21 @@
 \contentsline {section}{\numberline {3.1}File List}{5}{section.3.1}
 \contentsline {chapter}{\numberline {4}Class Documentation}{7}{chapter.4}
 \contentsline {section}{\numberline {4.1}function\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}name Struct Reference}{7}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Detailed Description}{7}{subsection.4.1.1}
 \contentsline {chapter}{\numberline {5}File Documentation}{9}{chapter.5}
 \contentsline {section}{\numberline {5.1}include/core/serial.h File Reference}{9}{section.5.1}
 \contentsline {subsection}{\numberline {5.1.1}Detailed Description}{10}{subsection.5.1.1}
 \contentsline {section}{\numberline {5.2}include/string.h File Reference}{10}{section.5.2}
 \contentsline {subsection}{\numberline {5.2.1}Detailed Description}{14}{subsection.5.2.1}
-\contentsline {section}{\numberline {5.3}kernel/core/serial.c File Reference}{14}{section.5.3}
+\contentsline {section}{\numberline {5.3}kernel/core/serial.c File Reference}{15}{section.5.3}
 \contentsline {subsection}{\numberline {5.3.1}Detailed Description}{16}{subsection.5.3.1}
-\contentsline {section}{\numberline {5.4}lib/string.c File Reference}{16}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Detailed Description}{21}{subsection.5.4.1}
-\contentsline {section}{\numberline {5.5}modules/errno.h File Reference}{21}{section.5.5}
+\contentsline {section}{\numberline {5.4}lib/string.c File Reference}{17}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Detailed Description}{20}{subsection.5.4.1}
+\contentsline {section}{\numberline {5.5}modules/errno.h File Reference}{20}{section.5.5}
 \contentsline {subsection}{\numberline {5.5.1}Detailed Description}{21}{subsection.5.5.1}
-\contentsline {section}{\numberline {5.6}modules/r1/r1.h File Reference}{22}{section.5.6}
-\contentsline {subsection}{\numberline {5.6.1}Detailed Description}{23}{subsection.5.6.1}
-\contentsline {section}{\numberline {5.7}modules/r1/sys\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}clock.c File Reference}{23}{section.5.7}
+\contentsline {section}{\numberline {5.6}modules/r1/r1.h File Reference}{21}{section.5.6}
+\contentsline {subsection}{\numberline {5.6.1}Detailed Description}{22}{subsection.5.6.1}
+\contentsline {section}{\numberline {5.7}modules/r1/sys\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}clock.c File Reference}{22}{section.5.7}
 \contentsline {subsection}{\numberline {5.7.1}Detailed Description}{26}{subsection.5.7.1}
-\contentsline {section}{\numberline {5.8}modules/r1/sys\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}clock.h File Reference}{27}{section.5.8}
-\contentsline {subsection}{\numberline {5.8.1}Detailed Description}{30}{subsection.5.8.1}
+\contentsline {section}{\numberline {5.8}modules/r1/sys\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}clock.h File Reference}{26}{section.5.8}
+\contentsline {subsection}{\numberline {5.8.1}Detailed Description}{29}{subsection.5.8.1}

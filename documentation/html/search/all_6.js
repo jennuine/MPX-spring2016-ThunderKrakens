@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['printf',['printf',['../string_8c.html#a98631211a4a8aee62f572375d5b637be',1,'printf(const char *format,...):&#160;string.c'],['../string_8h.html#a98631211a4a8aee62f572375d5b637be',1,'printf(const char *format,...):&#160;string.c']]]
+  ['usage',['usage',['../structfunction__name.html#a30f593e52febda0cc9d9703b9015fb0f',1,'function_name']]]
 ];

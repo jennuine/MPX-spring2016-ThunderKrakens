@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=latex 2016.2.4)  4 FEB 2016 23:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=latex 2016.2.4)  5 FEB 2016 00:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1054,12 +1054,7 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
 (Font)              scaled to size 22.39185pt on input line 134.
 
-(./refman.toc
-LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 1.
-LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 8.99994pt on input line 1.
-)
+(./refman.toc)
 \tf@toc=\write5
 \openout5 = `refman.toc'.
 
@@ -1082,6 +1077,10 @@ LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
 (./index.tex) [1
 
 ]
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 142.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 8.99994pt on input line 142.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <7> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 142.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
@@ -1102,14 +1101,38 @@ LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
 ]
 Chapter 3.
 (./files.tex
+
+LaTeX Warning: Reference `string_8h' on page 5 undefined on input line 3.
+
+
+LaTeX Warning: Reference `serial_8h' on page 5 undefined on input line 4.
+
+
+LaTeX Warning: Reference `serial_8c' on page 5 undefined on input line 5.
+
+
+LaTeX Warning: Reference `string_8c' on page 5 undefined on input line 6.
+
+
+LaTeX Warning: Reference `errno_8h' on page 5 undefined on input line 7.
+
+
+LaTeX Warning: Reference `r1_8h' on page 5 undefined on input line 8.
+
 LaTeX Font Info:    Try loading font information for TS1+phv on input line 9.
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1phv.fd
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1phv.fd
 File: ts1phv.fd 2001/06/04 scalable font definitions for TS1/phv.
 )
 LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
 (Font)              scaled to size 8.99994pt on input line 9.
-)
-[5] [6
+
+
+LaTeX Warning: Reference `sys__clock_8c' on page 5 undefined on input line 9.
+
+
+LaTeX Warning: Reference `sys__clock_8h' on page 5 undefined on input line 10.
+
+) [5] [6
 
 ]
 Chapter 4.
@@ -1117,47 +1140,80 @@ Chapter 4.
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
 (Font)              scaled to size 6.29996pt on input line 1.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 3.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 8.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 10.79993pt on input line 3.
+(Font)              scaled to size 10.79993pt on input line 8.
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
-(Font)              scaled to size 10.79993pt on input line 3.
+(Font)              scaled to size 10.79993pt on input line 8.
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 8.09995pt on input line 16.
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 16.
+LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
+(Font)              scaled to size 8.09995pt on input line 16.
+LaTeX Font Info:    Font shape `TS1/phv/m/it' in size <9> not available
+(Font)              Font shape `TS1/phv/m/sl' tried instead on input line 16.
+LaTeX Font Info:    Font shape `TS1/phv/m/sl' will be
+(Font)              scaled to size 8.09995pt on input line 16.
 ) [7] [8
 
 ]
 Chapter 5.
 (./serial_8h.tex
+
+! LaTeX Error: File `serial_8h__dep__incl' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.13 ...raphics[width=260pt]{serial_8h__dep__incl}
+                                                  
+? h
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+? return
+OK, entering \nonstopmode...
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 48.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 56.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 8.99994pt on input line 48.
+(Font)              scaled to size 8.99994pt on input line 56.
 LaTeX Font Info:    Font shape `TS1/phv/m/it' in size <10> not available
-(Font)              Font shape `TS1/phv/m/sl' tried instead on input line 48.
+(Font)              Font shape `TS1/phv/m/sl' tried instead on input line 56.
 LaTeX Font Info:    Font shape `TS1/phv/m/sl' will be
-(Font)              scaled to size 8.99994pt on input line 48.
+(Font)              scaled to size 8.99994pt on input line 56.
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.1 on input line 66.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [9]
-Underfull \hbox (badness 10000) detected at line 59
+Underfull \hbox (badness 10000) detected at line 67
 [][][]
  []
 
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 60.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 68.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 6.29996pt on input line 60.
+(Font)              scaled to size 6.29996pt on input line 68.
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
-(Font)              scaled to size 8.99994pt on input line 73.
+(Font)              scaled to size 8.99994pt on input line 81.
 
-Underfull \hbox (badness 10000) detected at line 73
+Underfull \hbox (badness 10000) detected at line 81
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 76
+Underfull \hbox (badness 10000) detected at line 84
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 79
+Underfull \hbox (badness 10000) detected at line 87
 [][][]
  []
 
@@ -1166,150 +1222,83 @@ LaTeX Font Info:    Try loading font information for T1+pcr on input line 8.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 8--9
 
- []
+! LaTeX Error: File `string_8h__incl' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.14 ...ludegraphics[width=163pt]{string_8h__incl}
+                                                  
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 18
+! LaTeX Error: File `string_8h__dep__incl' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.22 ...raphics[width=350pt]{string_8h__dep__incl}
+                                                  
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.2 on input line 33.
+
+
+Underfull \hbox (badness 10000) detected at line 34
 [][][]
  []
 
 [10]
-Underfull \hbox (badness 10000) detected at line 39
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.3 on input line 54.
+
+
+Underfull \hbox (badness 10000) detected at line 55
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 58
-[][][]
- []
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.4 on input line 73.
 
 
-Underfull \hbox (badness 10000) detected at line 77
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 94
-[][][]
- []
-
-[11] [12]
-Underfull \hbox (badness 10000) detected at line 113
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 132
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 149
-[][][]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [13]
-Underfull \hbox (badness 10000) detected at line 180
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 211
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 225
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 228
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 231
-[][][]
- []
-
-) (./serial_8c.tex
-Underfull \hbox (badness 10000) in paragraph at lines 8--12
-
- []
-
-[14]
 Underfull \hbox (badness 10000) detected at line 74
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 86
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.5 on input line 92.
+
+
+Underfull \hbox (badness 10000) detected at line 93
 [][][]
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.6 on input line 109.
 
- [15]
-Underfull \hbox (badness 10000) detected at line 113
+[11]
+Underfull \hbox (badness 10000) detected at line 110
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 136
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 139
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 142
-[][][]
- []
-
-) (./string_8c.tex
-Underfull \hbox (badness 10000) in paragraph at lines 8--12
-
- []
-
-[16]
-Underfull \hbox (badness 10000) detected at line 21
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 40
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 57
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 76
-[][][]
- []
-
-[17] [18]
-Underfull \hbox (badness 10000) detected at line 103
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 117
-[][][]
- []
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.7 on input line 128.
 
 
 Underfull \hbox (badness 10000) detected at line 129
@@ -1317,139 +1306,36 @@ Underfull \hbox (badness 10000) detected at line 129
  []
 
 
-Underfull \hbox (badness 10000) detected at line 143
-[][][]
- []
-
-[19]
-Underfull \hbox (badness 10000) detected at line 159
-[][][]
- []
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.8 on input line 147.
 
 
-Underfull \hbox (badness 10000) detected at line 185
+Underfull \hbox (badness 10000) detected at line 148
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 216
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.9 on input line 164.
+
+
+Underfull \hbox (badness 10000) detected at line 165
 [][][]
  []
 
-[20]
-Underfull \hbox (badness 10000) detected at line 242
-[][][]
- []
+[12] [13]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.10 on input line 195.
 
 
-Underfull \hbox (badness 10000) detected at line 245
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 248
-[][][]
- []
-
-) (./errno_8h.tex
-Underfull \hbox (badness 10000) detected at line 33
+Underfull \hbox (badness 10000) detected at line 196
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 36
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 39
-[][][]
- []
-
-) (./r1_8h.tex [21]
-Underfull \hbox (badness 10000) detected at line 39
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 64
-[][][]
- []
-
-[22]
-Underfull \hbox (badness 10000) detected at line 81
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 95
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 98
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 101
-[][][]
- []
-
-) (./sys__clock_8c.tex
-Underfull \hbox (badness 10000) in paragraph at lines 8--12
-
- []
-
-[23]
-Underfull \hbox (badness 10000) detected at line 56
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 75
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 92
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 104
-[][][]
- []
-
-[24]
-Underfull \hbox (badness 10000) detected at line 121
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 138
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 155
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 172
-[][][]
- []
-
-[25]
-Underfull \hbox (badness 10000) detected at line 191
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 208
-[][][]
- []
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.11 on input line 226.
 
 
 Underfull \hbox (badness 10000) detected at line 227
@@ -1471,55 +1357,371 @@ Underfull \hbox (badness 10000) detected at line 247
 [][][]
  []
 
-) (./sys__clock_8h.tex [26]
-Underfull \hbox (badness 10000) in paragraph at lines 8--10
+) (./serial_8c.tex
 
- []
+! LaTeX Error: File `serial_8c__incl' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.17 ...ludegraphics[width=350pt]{serial_8c__incl}
+                                                  
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[14]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.12 on input line 81.
 
 
-Underfull \hbox (badness 10000) detected at line 21
+Underfull \hbox (badness 10000) detected at line 82
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 40
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.13 on input line 93.
+
+
+Overfull \vbox (4.13905pt too high) has occurred while \output is active []
+
+
+[15]
+Underfull \hbox (badness 10000) detected at line 94
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 57
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.14 on input line 107.
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.15 on input line 120.
+
+
+Underfull \hbox (badness 10000) detected at line 121
 [][][]
  []
 
-[27] [28]
-Underfull \hbox (badness 10000) detected at line 74
+
+Underfull \hbox (badness 10000) detected at line 144
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 91
+Underfull \hbox (badness 10000) detected at line 147
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 110
+Underfull \hbox (badness 10000) detected at line 150
 [][][]
  []
+
+) (./string_8c.tex
+
+! LaTeX Error: File `string_8c__incl' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.17 ...ludegraphics[width=350pt]{string_8c__incl}
+                                                  
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[16]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.16 on input line 28.
+
+
+Underfull \hbox (badness 10000) detected at line 29
+[][][]
+ []
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.17 on input line 47.
+
+
+Underfull \hbox (badness 10000) detected at line 48
+[][][]
+ []
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.18 on input line 64.
+
+
+Underfull \hbox (badness 10000) detected at line 65
+[][][]
+ []
+
+[17]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.19 on input line 83.
+
+
+Underfull \hbox (badness 10000) detected at line 84
+[][][]
+ []
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.20 on input line 110.
+
+
+Underfull \hbox (badness 10000) detected at line 111
+[][][]
+ []
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.21 on input line 124.
+
+
+Underfull \hbox (badness 10000) detected at line 125
+[][][]
+ []
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.22 on input line 136.
+
+[18]
+Underfull \hbox (badness 10000) detected at line 137
+[][][]
+ []
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.23 on input line 150.
+
+
+Underfull \hbox (badness 10000) detected at line 151
+[][][]
+ []
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.24 on input line 166.
+
+
+Underfull \hbox (badness 10000) detected at line 167
+[][][]
+ []
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.25 on input line 192.
+
+
+Underfull \hbox (badness 10000) detected at line 193
+[][][]
+ []
+
+[19]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.26 on input line 223.
+
+
+Underfull \hbox (badness 10000) detected at line 224
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 250
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 253
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 256
+[][][]
+ []
+
+) (./errno_8h.tex
+
+! LaTeX Error: File `errno_8h__dep__incl' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.13 ...graphics[width=200pt]{errno_8h__dep__incl}
+                                                  
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[20]
+Underfull \hbox (badness 10000) detected at line 41
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 44
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 47
+[][][]
+ []
+
+) (./r1_8h.tex
+
+! LaTeX Error: File `r1_8h__dep__incl' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.13 ...udegraphics[width=200pt]{r1_8h__dep__incl}
+                                                  
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 47
+[][][]
+ []
+
+[21]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.27 on input line 71.
+
+
+Underfull \hbox (badness 10000) detected at line 72
+[][][]
+ []
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.28 on input line 88.
+
+
+Underfull \hbox (badness 10000) detected at line 89
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 103
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 106
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 109
+[][][]
+ []
+
+) (./sys__clock_8c.tex
+
+! LaTeX Error: File `sys__clock_8c__incl' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.17 ...graphics[width=340pt]{sys__clock_8c__incl}
+                                                  
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[22]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.29 on input line 63.
+
+
+Underfull \hbox (badness 10000) detected at line 64
+[][][]
+ []
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.30 on input line 82.
+
+
+Underfull \hbox (badness 10000) detected at line 83
+[][][]
+ []
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.31 on input line 99.
+
+[23]
+Underfull \hbox (badness 10000) detected at line 100
+[][][]
+ []
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.32 on input line 111.
+
+
+Underfull \hbox (badness 10000) detected at line 112
+[][][]
+ []
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.33 on input line 128.
 
 
 Underfull \hbox (badness 10000) detected at line 129
 [][][]
  []
 
-[29]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.34 on input line 145.
+
+
 Underfull \hbox (badness 10000) detected at line 146
 [][][]
  []
 
 
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.35 on input line 162.
+
+
 Underfull \hbox (badness 10000) detected at line 163
 [][][]
  []
+
+[24]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.36 on input line 179.
 
 
 Underfull \hbox (badness 10000) detected at line 180
@@ -1527,38 +1729,223 @@ Underfull \hbox (badness 10000) detected at line 180
  []
 
 
-Underfull \hbox (badness 10000) detected at line 194
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.37 on input line 198.
+
+
+Underfull \hbox (badness 10000) detected at line 199
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 197
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.38 on input line 215.
+
+
+Underfull \hbox (badness 10000) detected at line 216
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 200
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.39 on input line 234.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [25]
+Underfull \hbox (badness 10000) detected at line 235
 [][][]
  []
 
-) [30]
+
+Underfull \hbox (badness 10000) detected at line 249
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 252
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 255
+[][][]
+ []
+
+) (./sys__clock_8h.tex
+
+! LaTeX Error: File `sys__clock_8h__incl' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.15 ...graphics[width=212pt]{sys__clock_8h__incl}
+                                                  
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `sys__clock_8h__dep__incl' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.23 ...ics[width=200pt]{sys__clock_8h__dep__incl}
+                                                  
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.40 on input line 36.
+
+[26]
+Underfull \hbox (badness 10000) detected at line 37
+[][][]
+ []
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.41 on input line 55.
+
+
+Underfull \hbox (badness 10000) detected at line 56
+[][][]
+ []
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.42 on input line 72.
+
+
+Underfull \hbox (badness 10000) detected at line 73
+[][][]
+ []
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.43 on input line 89.
+
+
+Underfull \hbox (badness 10000) detected at line 90
+[][][]
+ []
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.44 on input line 106.
+
+[27]
+Underfull \hbox (badness 10000) detected at line 107
+[][][]
+ []
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.45 on input line 125.
+
+
+Underfull \hbox (badness 10000) detected at line 126
+[][][]
+ []
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.46 on input line 144.
+
+
+Underfull \hbox (badness 10000) detected at line 145
+[][][]
+ []
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.47 on input line 161.
+
+
+Underfull \hbox (badness 10000) detected at line 162
+[][][]
+ []
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.48 on input line 178.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [28]
+Underfull \hbox (badness 10000) detected at line 179
+[][][]
+ []
+
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.49 on input line 195.
+
+
+Underfull \hbox (badness 10000) detected at line 196
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 210
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 213
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 216
+[][][]
+ []
+
+) [29] [30
+
+]
 No file refman.ind.
+
+Package longtable Warning: Table widths have changed. Rerun LaTeX.
+
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 167.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 167.
 (./refman.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 167.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 167.
-Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: 67F2A67E32D4712FAF3DBA6F40F370BE;4697.
+
+
+Package rerunfilecheck Warning: File `refman.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `refman.out':
+(rerunfilecheck)             Before: 72B4FCB21733692BEB9D17F2875B09B1;1169
+(rerunfilecheck)             After:  15D0C8E070AFDEE5F41A17C62787DAB4;4895.
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 167.
  ) 
 Here is how much of TeX's memory you used:
- 14342 strings out of 495021
- 205634 string characters out of 6181351
- 305520 words of memory out of 5000000
- 17319 multiletter control sequences out of 15000+600000
- 45060 words of font info for 52 fonts, out of 8000000 for 9000
+ 14371 strings out of 495021
+ 206153 string characters out of 6181351
+ 299602 words of memory out of 5000000
+ 17313 multiletter control sequences out of 15000+600000
+ 48946 words of font info for 55 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 53i,15n,92p,1180b,717s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 53i,15n,92p,1180b,712s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on refman.dvi (34 pages, 137740 bytes).
+Output written on refman.dvi (34 pages, 122336 bytes).
