@@ -1,0 +1,292 @@
+\hypertarget{sys__clock_8c}{}\section{modules/r1/sys\+\_\+clock.c File Reference}
+\label{sys__clock_8c}\index{modules/r1/sys\+\_\+clock.\+c@{modules/r1/sys\+\_\+clock.\+c}}
+
+
+System Clock and Date.  
+
+
+{\ttfamily \#include \char`\"{}sys\+\_\+clock.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}r1.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$core/io.\+h$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+S\+E\+C\+O\+ND}~0x00\hypertarget{sys__clock_8c_a4caca5127bfc14a5d2b8109573a7e650}{}\label{sys__clock_8c_a4caca5127bfc14a5d2b8109573a7e650}
+
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+S\+E\+C\+O\+N\+D\+\_\+\+A\+L\+A\+RM}~0x01\hypertarget{sys__clock_8c_af180a80c181975cf0bf66868b689a72a}{}\label{sys__clock_8c_af180a80c181975cf0bf66868b689a72a}
+
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+I\+N\+U\+TE}~0x02\hypertarget{sys__clock_8c_a5f3ffb0e8042a3e0822291a9717a2b64}{}\label{sys__clock_8c_a5f3ffb0e8042a3e0822291a9717a2b64}
+
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+I\+N\+U\+T\+E\+\_\+\+A\+L\+A\+RM}~0x03\hypertarget{sys__clock_8c_ae3a9a93fc3485959b1aa57794ca17081}{}\label{sys__clock_8c_ae3a9a93fc3485959b1aa57794ca17081}
+
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+H\+O\+UR}~0x04\hypertarget{sys__clock_8c_a14c92818941d0fc79172bf345c7d2da1}{}\label{sys__clock_8c_a14c92818941d0fc79172bf345c7d2da1}
+
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+H\+O\+U\+R\+\_\+\+A\+L\+A\+RM}~0x05\hypertarget{sys__clock_8c_a698d910742dcdfcd400f416f682ffd0d}{}\label{sys__clock_8c_a698d910742dcdfcd400f416f682ffd0d}
+
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+D\+A\+Y\+\_\+\+W\+E\+EK}~0x06\hypertarget{sys__clock_8c_ab605c9e34fb5f268a109de861f81fb64}{}\label{sys__clock_8c_ab605c9e34fb5f268a109de861f81fb64}
+
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+D\+A\+Y\+\_\+\+M\+O\+N\+TH}~0x07\hypertarget{sys__clock_8c_a0bd4cec7882fb8084e54d5d137fb0b76}{}\label{sys__clock_8c_a0bd4cec7882fb8084e54d5d137fb0b76}
+
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+O\+N\+TH}~0x08\hypertarget{sys__clock_8c_af5ee5f7c5dbfcdf6df92fd558da7fc72}{}\label{sys__clock_8c_af5ee5f7c5dbfcdf6df92fd558da7fc72}
+
+\item 
+\#define {\bfseries R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+Y\+E\+AR}~0x09\hypertarget{sys__clock_8c_a2f6fe8a8966f8fdabe2ddcf700786ce9}{}\label{sys__clock_8c_a2f6fe8a8966f8fdabe2ddcf700786ce9}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{sys__clock_8c_a2afc871aeddaa550badc5e0c6bb65da5}{set\+\_\+time\+\_\+main} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Name\+: set\+\_\+time\+\_\+main. \end{DoxyCompactList}\item 
+int \hyperlink{sys__clock_8c_a323e417952cced55a3cf9acfe8691635}{get\+\_\+time\+\_\+main} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Name\+: get\+\_\+time\+\_\+main. \end{DoxyCompactList}\item 
+\hyperlink{errno_8h_aafbeb34410283829794b35fedafeb369}{error\+\_\+t} \hyperlink{sys__clock_8c_a2fa1ed5071047b72b357329da498b7aa}{set\+\_\+time\+\_\+str} (const char $\ast$time\+Str)
+\begin{DoxyCompactList}\small\item\em Name\+: set\+\_\+time\+\_\+str. \end{DoxyCompactList}\item 
+void \hyperlink{sys__clock_8c_ac5f4cb4c73245c0bf8593116fa5580e9}{get\+\_\+time} (date\+\_\+time $\ast$date\+Time\+Values)
+\begin{DoxyCompactList}\small\item\em Name\+: get\+\_\+time. \end{DoxyCompactList}\item 
+\hyperlink{errno_8h_aafbeb34410283829794b35fedafeb369}{error\+\_\+t} \hyperlink{sys__clock_8c_a45d698fc822d2a31f93ee49057892800}{set\+\_\+time} (const date\+\_\+time $\ast$date\+Time\+Values)
+\begin{DoxyCompactList}\small\item\em Name\+: set\+\_\+time\+\_\+str. \end{DoxyCompactList}\item 
+void \hyperlink{sys__clock_8c_acba98d47b98d09cf32f44e9383cad7ec}{get\+\_\+date} (date\+\_\+time $\ast$date\+Time\+Values)
+\begin{DoxyCompactList}\small\item\em Name\+: get\+\_\+date. \end{DoxyCompactList}\item 
+\hyperlink{errno_8h_aafbeb34410283829794b35fedafeb369}{error\+\_\+t} \hyperlink{sys__clock_8c_a5e0c140320ec0309fab102e2ad34d279}{set\+\_\+date} (const date\+\_\+time $\ast$date\+Time\+Values)
+\begin{DoxyCompactList}\small\item\em Name\+: set\+\_\+date. \end{DoxyCompactList}\item 
+int \hyperlink{sys__clock_8c_a1ef51abc1a538e8582ccfa61e356e8a9}{get\+\_\+date\+\_\+main} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Name\+: get\+\_\+date\+\_\+main. \end{DoxyCompactList}\item 
+int \hyperlink{sys__clock_8c_ab80d04ed8d251aaea6a09fd01e68eb27}{set\+\_\+date\+\_\+str} (const char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Name\+: get\+\_\+date\+\_\+main. \end{DoxyCompactList}\item 
+int \hyperlink{sys__clock_8c_a626404928f9803307b300e6c60df3afb}{set\+\_\+date\+\_\+main} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Name\+: set\+\_\+date\+\_\+str. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+System Clock and Date. 
+
+\begin{DoxyAuthor}{Author}
+Thunder Krakens 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+February 2nd, 2016 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+R1
+\end{DoxyVersion}
+The main file that manipulates and controls the system\textquotesingle{}s clock. 
+
+\subsection{Function Documentation}
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!get\+\_\+date@{get\+\_\+date}}
+\index{get\+\_\+date@{get\+\_\+date}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{get\+\_\+date(date\+\_\+time $\ast$date\+Time\+Values)}{get_date(date_time *dateTimeValues)}}]{\setlength{\rightskip}{0pt plus 5cm}void get\+\_\+date (
+\begin{DoxyParamCaption}
+\item[{date\+\_\+time $\ast$}]{date\+Time\+Values}
+\end{DoxyParamCaption}
+)}\hypertarget{sys__clock_8c_acba98d47b98d09cf32f44e9383cad7ec}{}\label{sys__clock_8c_acba98d47b98d09cf32f44e9383cad7ec}
+
+
+Name\+: get\+\_\+date. 
+
+Description\+: Retrieves system\textquotesingle{}s current date. 
+\begin{DoxyParams}{Parameters}
+{\em date\+Time\+Values} & -\/ The value of current date \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+V\+O\+ID 
+\end{DoxyReturn}
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!get\+\_\+date\+\_\+main@{get\+\_\+date\+\_\+main}}
+\index{get\+\_\+date\+\_\+main@{get\+\_\+date\+\_\+main}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{get\+\_\+date\+\_\+main(int argc, char $\ast$$\ast$argv)}{get_date_main(int argc, char **argv)}}]{\setlength{\rightskip}{0pt plus 5cm}int get\+\_\+date\+\_\+main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\hypertarget{sys__clock_8c_a1ef51abc1a538e8582ccfa61e356e8a9}{}\label{sys__clock_8c_a1ef51abc1a538e8582ccfa61e356e8a9}
+
+
+Name\+: get\+\_\+date\+\_\+main. 
+
+Description\+: Retrieves system\textquotesingle{}s current date. 
+\begin{DoxyParams}{Parameters}
+{\em argc} & -\/ The number of tokens found. \\
+\hline
+{\em argv} & -\/ The array of tokens. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!get\+\_\+time@{get\+\_\+time}}
+\index{get\+\_\+time@{get\+\_\+time}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{get\+\_\+time(date\+\_\+time $\ast$date\+Time\+Values)}{get_time(date_time *dateTimeValues)}}]{\setlength{\rightskip}{0pt plus 5cm}void get\+\_\+time (
+\begin{DoxyParamCaption}
+\item[{date\+\_\+time $\ast$}]{date\+Time\+Values}
+\end{DoxyParamCaption}
+)}\hypertarget{sys__clock_8c_ac5f4cb4c73245c0bf8593116fa5580e9}{}\label{sys__clock_8c_ac5f4cb4c73245c0bf8593116fa5580e9}
+
+
+Name\+: get\+\_\+time. 
+
+Description\+: Retrieves system\textquotesingle{}s current time and date. 
+\begin{DoxyParams}{Parameters}
+{\em date\+Time\+Values} & -\/ The value of current time and date \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+V\+O\+ID 
+\end{DoxyReturn}
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!get\+\_\+time\+\_\+main@{get\+\_\+time\+\_\+main}}
+\index{get\+\_\+time\+\_\+main@{get\+\_\+time\+\_\+main}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{get\+\_\+time\+\_\+main(int argc, char $\ast$$\ast$argv)}{get_time_main(int argc, char **argv)}}]{\setlength{\rightskip}{0pt plus 5cm}int get\+\_\+time\+\_\+main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\hypertarget{sys__clock_8c_a323e417952cced55a3cf9acfe8691635}{}\label{sys__clock_8c_a323e417952cced55a3cf9acfe8691635}
+
+
+Name\+: get\+\_\+time\+\_\+main. 
+
+Description\+: Retrieves system\textquotesingle{}s current time. 
+\begin{DoxyParams}{Parameters}
+{\em argc} & -\/ The number of tokens found. \\
+\hline
+{\em argv} & -\/ The array of tokens. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!set\+\_\+date@{set\+\_\+date}}
+\index{set\+\_\+date@{set\+\_\+date}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{set\+\_\+date(const date\+\_\+time $\ast$date\+Time\+Values)}{set_date(const date_time *dateTimeValues)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf error\+\_\+t} set\+\_\+date (
+\begin{DoxyParamCaption}
+\item[{const date\+\_\+time $\ast$}]{date\+Time\+Values}
+\end{DoxyParamCaption}
+)}\hypertarget{sys__clock_8c_a5e0c140320ec0309fab102e2ad34d279}{}\label{sys__clock_8c_a5e0c140320ec0309fab102e2ad34d279}
+
+
+Name\+: set\+\_\+date. 
+
+Description\+: Sets the date of the system. 
+\begin{DoxyParams}{Parameters}
+{\em date\+Time\+Values} & -\/ The value of current time and date \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+E\+\_\+\+N\+O\+E\+R\+R\+OR -\/ When no error was detected 
+
+E\+\_\+\+I\+N\+V\+P\+A\+RA -\/ Invalid Parameter 
+\end{DoxyReturn}
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!set\+\_\+date\+\_\+main@{set\+\_\+date\+\_\+main}}
+\index{set\+\_\+date\+\_\+main@{set\+\_\+date\+\_\+main}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{set\+\_\+date\+\_\+main(int argc, char $\ast$$\ast$argv)}{set_date_main(int argc, char **argv)}}]{\setlength{\rightskip}{0pt plus 5cm}int set\+\_\+date\+\_\+main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\hypertarget{sys__clock_8c_a626404928f9803307b300e6c60df3afb}{}\label{sys__clock_8c_a626404928f9803307b300e6c60df3afb}
+
+
+Name\+: set\+\_\+date\+\_\+str. 
+
+Description\+: Sets the date for the system by string. 
+\begin{DoxyParams}{Parameters}
+{\em argc} & -\/ The number of tokens found. \\
+\hline
+{\em argv} & -\/ The array of tokens. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!set\+\_\+date\+\_\+str@{set\+\_\+date\+\_\+str}}
+\index{set\+\_\+date\+\_\+str@{set\+\_\+date\+\_\+str}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{set\+\_\+date\+\_\+str(const char $\ast$str)}{set_date_str(const char *str)}}]{\setlength{\rightskip}{0pt plus 5cm}int set\+\_\+date\+\_\+str (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}\hypertarget{sys__clock_8c_ab80d04ed8d251aaea6a09fd01e68eb27}{}\label{sys__clock_8c_ab80d04ed8d251aaea6a09fd01e68eb27}
+
+
+Name\+: get\+\_\+date\+\_\+main. 
+
+Description\+: Retrieves system\textquotesingle{}s current date. 
+\begin{DoxyParams}{Parameters}
+{\em argc} & -\/ The number of tokens found. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!set\+\_\+time@{set\+\_\+time}}
+\index{set\+\_\+time@{set\+\_\+time}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{set\+\_\+time(const date\+\_\+time $\ast$date\+Time\+Values)}{set_time(const date_time *dateTimeValues)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf error\+\_\+t} set\+\_\+time (
+\begin{DoxyParamCaption}
+\item[{const date\+\_\+time $\ast$}]{date\+Time\+Values}
+\end{DoxyParamCaption}
+)}\hypertarget{sys__clock_8c_a45d698fc822d2a31f93ee49057892800}{}\label{sys__clock_8c_a45d698fc822d2a31f93ee49057892800}
+
+
+Name\+: set\+\_\+time\+\_\+str. 
+
+Description\+: Sets the time for the system by string. 
+\begin{DoxyParams}{Parameters}
+{\em time\+Str} & -\/ The string type of current Time. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+date\+Time\+Values -\/ Returns the set time of the system 
+
+E\+\_\+\+I\+N\+V\+S\+T\+RF -\/ Invalid String 
+\end{DoxyReturn}
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!set\+\_\+time\+\_\+main@{set\+\_\+time\+\_\+main}}
+\index{set\+\_\+time\+\_\+main@{set\+\_\+time\+\_\+main}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{set\+\_\+time\+\_\+main(int argc, char $\ast$$\ast$argv)}{set_time_main(int argc, char **argv)}}]{\setlength{\rightskip}{0pt plus 5cm}int set\+\_\+time\+\_\+main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\hypertarget{sys__clock_8c_a2afc871aeddaa550badc5e0c6bb65da5}{}\label{sys__clock_8c_a2afc871aeddaa550badc5e0c6bb65da5}
+
+
+Name\+: set\+\_\+time\+\_\+main. 
+
+Description\+: Sets the time for the system. 
+\begin{DoxyParams}{Parameters}
+{\em argc} & -\/ The number of tokens found. \\
+\hline
+{\em argv} & -\/ The array of tokens. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!set\+\_\+time\+\_\+str@{set\+\_\+time\+\_\+str}}
+\index{set\+\_\+time\+\_\+str@{set\+\_\+time\+\_\+str}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{set\+\_\+time\+\_\+str(const char $\ast$time\+Str)}{set_time_str(const char *timeStr)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf error\+\_\+t} set\+\_\+time\+\_\+str (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{time\+Str}
+\end{DoxyParamCaption}
+)}\hypertarget{sys__clock_8c_a2fa1ed5071047b72b357329da498b7aa}{}\label{sys__clock_8c_a2fa1ed5071047b72b357329da498b7aa}
+
+
+Name\+: set\+\_\+time\+\_\+str. 
+
+Description\+: Sets the time for the system by string. 
+\begin{DoxyParams}{Parameters}
+{\em time\+Str} & -\/ The string type of current Time. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+date\+Time\+Values -\/ Returns the set time of the system 
+
+E\+\_\+\+I\+N\+V\+S\+T\+RF -\/ Invalid String 
+\end{DoxyReturn}

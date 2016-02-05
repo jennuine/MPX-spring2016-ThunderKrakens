@@ -1,56 +1,67 @@
-#ifndef _SYS_CLOCK_H
-#define _SYS_CLOCK_H
+/**
+ * @file serial.h
+ * @author Thunder Krakens
+ * @date February 2nd, 2016
+ * @brief Serial - Header
+ * @version R1
+ */
 
-#include <system.h>
-#include "../errno.h"
 
-/*
-  Procedure..: set_time_main
-  Description..: The main function for set time.
-*/
-int set_time_main(int argc, char** argv);
+#ifndef _SERIAL_H
+#define _SERIAL_H
 
-/*
-  Procedure..: get_time_main
-  Description..: The main function for get time.
-*/
-int get_time_main(int argc, char** argv);
+#define COM1 0x3f8
+#define COM2 0x2f8
+#define COM3 0x3e8
+#define COM4 0x2e8
 
-/*
-  Procedure..: set_time_help
-  Description..: print out the help message for settime.
-*/
-void set_time_help();
+//Using echo or nor, for the GetInputln
+#define WithoutEcho 0
+#define WithEcho 1
 
 /*
-  Procedure..: get_time_help
-  Description..: print out the help message for gettime.
+  Procedure..: init_serial
+  Description..: Initializes devices for user interaction, logging, ...
 */
-void get_time_help();
+int init_serial(int device);
 
 /*
-  Procedure..: set_time_str
-  Description..: set the system time by using string.
+  Procedure..: serial_println
+  Description..: Writes a message to the active serial output device.
+    Appends a newline character.
 */
-error_t set_time_str(const char * timeStr);
+int serial_println(const char *msg);
 
 /*
-  Procedure..: get_time
-  Description..: Gets the system time.
-  Params..: dateTimeValues-output the date & time value.
+  Procedure..: serial_print
+  Description..: Writes a message to the active serial output device.
 */
-void get_time(date_time * dateTimeValues);
+int serial_print(const char *msg);
 
 /*
-  Procedure..: set_time
-  Description..: Sets the system time.
-  Params..: dateTimeValues-input the date & time value.
+  Procedure..: set_serial_out
+  Description..: Sets serial_port_out to the given device address.
+    All serial output, such as that from serial_println, will be
+    directed to this device.
 */
-error_t set_time(const date_time * dateTimeValues);
+int set_serial_out(int device);
 
-int set_date_main(int argc, char** argv);
+/*
+  Procedure..: set_serial_in
+  Description..: Sets serial_port_in to the given device address.
+    All serial input, such as console input via a virtual machine,
+    QEMU/Bochs/etc, will be directed to this device.
+*/
+int set_serial_in(int device);
 
-int get_date_main(int argc, char** argv);
+/** @brief  get_input_line.
+ *
+ * Description: Get user's input from keyborad.
+ * @param buffer - The pointer to the buffer where store the user's input.
+ * @param buffer_size - The size of that buffer.
+ * @param bWithEcho - With echo or not
+ * @return VOID
+ */
 
-
+void get_input_line(char * buffer, const int buffer_size, const int bWithEcho);
 #endif
