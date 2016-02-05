@@ -79,7 +79,7 @@ int get_time_main(int argc, char** argv)
   {
   	date_time dateTimeValues;
   	get_time(&dateTimeValues);
-  	printf("\tCurrent time is: %02d:%02d:%02d\n", dateTimeValues.hour, dateTimeValues.min, dateTimeValues.sec);
+  	printf("\tCurrent time is: %d:%d:%d\n", dateTimeValues.hour, dateTimeValues.min, dateTimeValues.sec);
   }
   else if(argc >= 2 && strcmp(argv[2], "--help") == 0)
   {

@@ -2,7 +2,7 @@
  * @file string.h
  * @author Thunder Krakens
  * @date February 2nd, 2016
- * @brief String Handling - Header
+ * @brief Many usefull functions that used for handling string.
  * @version R1
  */
 
@@ -11,85 +11,99 @@
 
  #include <system.h>
 
- /** @brief  Name: isspace.
+ /**
+  * @name isspace.
   *
-  * Description: Identifies if its space
-  * @param const char *c - A constant character
+  * @brief Identifies if its space
+  *
+  * @param  A constant character
+  *
+  * @return 1 if it is space, otherwise return 0.
   */
 
  int isspace(const char *c);
 
- /** @brief  Name: memset.
+ /**
+  * @name memset.
   *
-  * Description: Sets region of memory
-  * @param s - destination
-  * @param c - byte to write
-  * @param n - count
-  * @return VOID
+  * @brief Sets region of memory
+  * @param s  destination
+  * @param c  byte to write
+  * @param n  count
+  * @return the pointer to the memory space.
   */
-
  void* memset(void *s, int c, size_t n);
 
- /** @brief  Name: strcpy.
+ /**
+  * @name: strcpy.
   *
-  * Description: Copies one string to another.
-  * @param s1 - Destination string
-  * @param s2 - Source string
-  * @return  s1 - Destination String
+  * @brief Copies one string to another.
+  *
+  * @param s1  Destination string
+  * @param s2  Source string
+  *
+  * @return  pointer to the destination String
   */
-
  char* strcpy(char *s1, const char *s2);
 
- /** @brief  Name: strcat.
+ /**
+  * @name strcat.
   *
-  * Description: Concatenate the contents of one string onto another.
-  * @param s1 - Destination string
-  * @param s2 - Source string
-  * @return  s1 - Destination String
+  * @brief Concatenate the contents of one string onto another.
+  * @param s1   Destination string
+  * @param s2   Source string
+  * @return  pointer to destination String
   */
-
  char* strcat(char *s1, const char *s2);
 
-  /** @brief  Name: strlen.
-  *
-  * Description: Returns the length of a string.
-  * @param s - String input.
-  * @return count - Length of the String
-  */
-
+ /**
+ * @name: strlen.
+ *
+ * @brief Returns the length of a string.
+ *
+ * @param s   String input.
+ *
+ * @return count    Length of the String
+ */
  int   strlen(const char *s);
 
- /** @brief  Name: strcmp.
+ /**
+  * @name: strcmp.
   *
-  * Description: String comparison.
-  * @param s1 - First string to use for the compare.
-  * @param s2 - Second string to use for the compare.
+  * @brief String comparison.
+  *
+  * @param s1    First string to use for the compare.
+  * @param s2    Second string to use for the compare.
+  *
   * @return whether they are the same or not.
   */
-
  int   strcmp(const char *s1, const char *s2);
 
- /** @brief  Name: strtok.
+ /**
+  * @name strtok.
   *
-  * Description: Split string into tokens.
-  * @param s1 - String
-  * @param s2 - Delimiter
+  * @brief Split string into tokens.
+  * @param s1   String
+  * @param s2   Delimiter
+  * @return the pointer to the token.
   */
-
  char* strtok(char *s1, const char *s2);
 
- /** @brief  Name: atoi.
+ /**
+  * @name: atoi.
   *
-  * Description: Convert an ASCII string to an integer.
-  * @param const char *s - String.
-  * @return integer - The converted integer.
+  * @brief Convert an ASCII string to an integer.
+  *
+  * @param s   String.
+  *
+  * @return The converted integer.
   */
-
  int atoi(const char *s);
 
- /** @brief  Name: sprintf.
+ /**
+  * @name: sprintf.
   *
-  * Description: Generate a formatted string.
+  * @brief Generate a formatted string.
   *
   *	%[-x]c		output a character, '-' - align right, x - the output width
   *
@@ -99,19 +113,19 @@
   *
   *	%[-x]X		(capital 'X') output a hexadecimal number, '-' - align right, x - the output width
   *
-  * @note Output width will be ignored if width is smaller than actual length.
+  * note: Output width will be ignored if width is smaller than actual length.
   *
   * @param str - Output string.
   * @param format - The format of the string.
   * @param ... - All of the additional parameters.
   * @return vsprintf(str, format, ap) - Return the string with its format and pointer.
   */
-
  int sprintf(char *str, const char *format, ...);
 
- /** @brief  Name: printf.
+ /**
+  * @name printf.
   *
-  * Description: Print out a formatted string.
+  * @brief Print out a formatted string.
   *
   *	%[-x]c		output a character, '-' - align right, x - the output width
   *
@@ -121,13 +135,12 @@
   *
   *	%[-x]X		(capital 'X') output a hexadecimal number, '-' - align right, x - the output width
   *
-  * @note Output width will be ignored if width is smaller than actual length.
+  * note: Output width will be ignored if width is smaller than actual length.
   *
   * @param str - Output string.
   * @param format - The format of the string.
   * @param ... - All of the additional parameters.
   * @return vsprintf(str, format, ap) - Return the string with its format and pointer.
   */
-
  int printf(const char *format, ...);
  #endif

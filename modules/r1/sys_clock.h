@@ -39,7 +39,7 @@ int get_time_main(int argc, char** argv);
  */
 void set_time_help();
 
-/*
+
 /** @brief  Name: get_time_help.
  *
  * Description: Print out the help message for settime.
