@@ -18,7 +18,7 @@
  * ****************************** */
 
  /**
- * @name: strlen.
+ * @name strlen.
  *
  * @brief Returns the length of a string.
  *
@@ -38,7 +38,7 @@ int strlen(const char *s)
 }
 
 /**
- * @name: strcpy.
+ * @name strcpy.
  *
  * @brief Copies one string to another.
  *
@@ -54,7 +54,7 @@ char* strcpy(char *s1, const char *s2)
 }
 
 /**
- * @name: atoi.
+ * @name atoi.
  *
  * @brief Convert an ASCII string to an integer.
  *
@@ -86,7 +86,7 @@ int atoi(const char *s)
 }
 
 /**
- * @name: strcmp.
+ * @name strcmp.
  *
  * @brief String comparison.
  *
@@ -105,7 +105,7 @@ int strcmp(const char *s1, const char *s2)
 }
 
 /**
- * @name: ParsePadding.
+ * @name ParsePadding.
  *
  * @brief Parse the number for padding. (static - Only can be access within this file).
  *
@@ -153,7 +153,7 @@ static int ParsePadding(const char * Str, int * Width, int * DecWidth, int * bIs
 }
 
 /**
- * @name: AddPad.
+ * @name AddPad.
  *
  * @brief Add a certain number of paddings (static - Only can be access within this file).
  *
@@ -173,7 +173,7 @@ static void AddPad(char * Str, const unsigned int count)
 }
 
 /**
- * @name: itoa.
+ * @name itoa.
  *
  * @brief Convert integer into string (static - Only can be access within this file).
  *
@@ -270,7 +270,7 @@ static void bytesToHexString(char * OutStr, const int Value)
 }
 
 /**
- * @name: vsprintf.
+ * @name vsprintf.
  *
  * @brief The actual function that perform the "printf" and "sprintf" function (static - Only can be access within this file).
  *
@@ -381,7 +381,7 @@ static int vsprintf(char *str, const char *format, const int * ap)
 }
 
 /**
- * @name: sprintf.
+ * @name sprintf.
  *
  * @brief Generate a formatted string.
  *

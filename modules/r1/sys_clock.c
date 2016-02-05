@@ -293,7 +293,7 @@ static int is_date_value_valid(const int year, const int mon, const int day)
 
 
 /**
- * @name: set_date.
+ * @name set_date.
  *
  * @brief Sets the date of the system.
  * @param dateTimeValues  The struct that holds the value of date

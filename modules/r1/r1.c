@@ -30,7 +30,7 @@ typedef struct
 } function_name;
 
 /**
- * @name: fucntion_name.
+ * @name fucntion_name.
  *
  * @brief The array that holds the associations among name, pointer to actual function, usage msg, and help msg.
  */
@@ -40,7 +40,7 @@ static int run_mpx = 1;
 static void load_functions();
 
 /**
- * @name: exe_function.
+ * @name exe_function.
  * @brief Executes the specific fucntion.
  *
  * @param argc  	The number of tokens.
@@ -61,7 +61,7 @@ static int exe_function(int argc, char ** argv)
     return 0;
 }
 
-/** @name: version
+/** @name version
  *
  *	@brief displays the version of the system currently running.
  *
@@ -80,7 +80,7 @@ static int version(int argc, char** argv)
 }
 
 /**
- * @name: shutdown
+ * @name shutdown
  *
  * @brief Closes all functions, and shuts down the system.
  *
@@ -142,7 +142,7 @@ static int help_usages(int start_from)
     return 0;
 }
 
-/** @name: help_function
+/** @name help_function
  *
  *	@brief displays help text for all functions.
  * 	@param argc 	The number of tokens.

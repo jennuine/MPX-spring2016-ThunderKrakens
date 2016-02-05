@@ -35,7 +35,7 @@
  void* memset(void *s, int c, size_t n);
 
  /**
-  * @name: strcpy.
+  * @name strcpy.
   *
   * @brief Copies one string to another.
   *
@@ -57,7 +57,7 @@
  char* strcat(char *s1, const char *s2);
 
  /**
- * @name: strlen.
+ * @name strlen.
  *
  * @brief Returns the length of a string.
  *
@@ -68,7 +68,7 @@
  int   strlen(const char *s);
 
  /**
-  * @name: strcmp.
+  * @name strcmp.
   *
   * @brief String comparison.
   *
@@ -90,7 +90,7 @@
  char* strtok(char *s1, const char *s2);
 
  /**
-  * @name: atoi.
+  * @name atoi.
   *
   * @brief Convert an ASCII string to an integer.
   *
@@ -101,7 +101,7 @@
  int atoi(const char *s);
 
  /**
-  * @name: sprintf.
+  * @name sprintf.
   *
   * @brief Generate a formatted string.
   *

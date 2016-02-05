@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['serial_2eh',['serial.h',['../serial_8h.html',1,'']]],
-  ['string_2ec',['string.c',['../string_8c.html',1,'']]],
-  ['string_2eh',['string.h',['../string_8h.html',1,'']]],
-  ['sys_5fclock_2ec',['sys_clock.c',['../sys__clock_8c.html',1,'']]],
-  ['sys_5fclock_2eh',['sys_clock.h',['../sys__clock_8h.html',1,'']]]
+  ['function',['function',['../structfunction__name.html#ad80214b3eea6c438c13ff5461c5350ab',1,'function_name']]],
+  ['function_5fname',['function_name',['../structfunction__name.html',1,'']]]
 ];

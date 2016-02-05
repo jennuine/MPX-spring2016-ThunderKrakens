@@ -1,0 +1,6 @@
+<map id="get_date" name="get_date">
+<area shape="rect" id="node2" href="$sys__clock_8h.html#a1ef51abc1a538e8582ccfa61e356e8a9" title="get_date_main" alt="" coords="125,5,232,32"/>
+<area shape="rect" id="node5" href="$sys__clock_8h.html#a626404928f9803307b300e6c60df3afb" title="set_date_main" alt="" coords="125,56,232,83"/>
+<area shape="rect" id="node3" href="$r1_8h.html#adb6b307c73bca25d17aa7683e14fea16" title="command_line_parser" alt="" coords="280,31,429,57"/>
+<area shape="rect" id="node4" href="$r1_8h.html#a14d85617242501c323a203ee196d3efa" title="commhand" alt="" coords="477,31,564,57"/>
+</map>

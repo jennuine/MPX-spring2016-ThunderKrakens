@@ -99,7 +99,7 @@ void get_date(date_time * dateTimeValues);
 int set_date_str(const char * str);
 
 /**
- * @name: set_date.
+ * @name set_date.
  *
  * @brief Sets the date of the system.
  * @param dateTimeValues  The struct that holds the value of date

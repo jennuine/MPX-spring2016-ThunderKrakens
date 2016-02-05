@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['serial_2ec',['serial.c',['../serial_8c.html',1,'']]],
-  ['serial_2eh',['serial.h',['../serial_8h.html',1,'']]],
-  ['string_2ec',['string.c',['../string_8c.html',1,'']]],
-  ['string_2eh',['string.h',['../string_8h.html',1,'']]],
-  ['sys_5fclock_2ec',['sys_clock.c',['../sys__clock_8c.html',1,'']]],
-  ['sys_5fclock_2eh',['sys_clock.h',['../sys__clock_8h.html',1,'']]]
+  ['mainpage_2edox',['mainpage.dox',['../mainpage_8dox.html',1,'']]],
+  ['max_5fargc',['MAX_ARGC',['../r1_8c.html#ae1da50c0d24fa0390a6c287d6cb4befe',1,'r1.c']]],
+  ['memset',['memset',['../string_8c.html#ace6ee45c30e71865e6eb635200379db9',1,'memset(void *s, int c, size_t n):&#160;string.c'],['../string_8h.html#ace6ee45c30e71865e6eb635200379db9',1,'memset(void *s, int c, size_t n):&#160;string.c']]],
+  ['mod_5fversion',['MOD_VERSION',['../r1_8c.html#a88a929d879ebd5f0d64773050f62aef5',1,'r1.c']]]
 ];

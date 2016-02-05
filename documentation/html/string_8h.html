@@ -47,7 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -70,6 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -114,8 +115,6 @@ $(document).ready(function(){initNavTree('string_8h.html','');});
 Include dependency graph for string.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="string_8h__incl.png" border="0" usemap="#include_2string_8h" alt=""/></div>
-<map name="include_2string_8h" id="include_2string_8h">
-</map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -142,8 +141,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if it is space, otherwise return 0. </dd></dl>
 </div></td></tr>
-<tr class="memitem:a0f3d37d605e9e6d4fc1853ff9d4b91bf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0f3d37d605e9e6d4fc1853ff9d4b91bf"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>isspace</b> (const char *c)</td></tr>
+<tr class="memitem:a0f3d37d605e9e6d4fc1853ff9d4b91bf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8h.html#a0f3d37d605e9e6d4fc1853ff9d4b91bf">isspace</a> (const char *c)</td></tr>
 <tr class="separator:a0f3d37d605e9e6d4fc1853ff9d4b91bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">memset.</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Sets region of memory</p>
@@ -157,10 +155,9 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>isspace</b> (const cha
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the pointer to the memory space. </dd></dl>
 </div></td></tr>
-<tr class="memitem:ace6ee45c30e71865e6eb635200379db9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace6ee45c30e71865e6eb635200379db9"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><b>memset</b> (void *s, int c, size_t n)</td></tr>
+<tr class="memitem:ace6ee45c30e71865e6eb635200379db9"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8h.html#ace6ee45c30e71865e6eb635200379db9">memset</a> (void *s, int c, size_t n)</td></tr>
 <tr class="separator:ace6ee45c30e71865e6eb635200379db9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">: strcpy.</div></td></tr>
+<tr><td colspan="2"><div class="groupHeader">strcpy.</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Copies one string to another.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -171,8 +168,7 @@ void *&#160;</td><td class="memItemRight" valign="bottom"><b>memset</b> (void *s
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>pointer to the destination String </dd></dl>
 </div></td></tr>
-<tr class="memitem:a1eb9cae61e6a6282c28dbc298ef7297e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1eb9cae61e6a6282c28dbc298ef7297e"></a>
-char *&#160;</td><td class="memItemRight" valign="bottom"><b>strcpy</b> (char *s1, const char *s2)</td></tr>
+<tr class="memitem:a1eb9cae61e6a6282c28dbc298ef7297e"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8h.html#a1eb9cae61e6a6282c28dbc298ef7297e">strcpy</a> (char *s1, const char *s2)</td></tr>
 <tr class="separator:a1eb9cae61e6a6282c28dbc298ef7297e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">strcat.</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Concatenate the contents of one string onto another.</p>
@@ -185,10 +181,9 @@ char *&#160;</td><td class="memItemRight" valign="bottom"><b>strcpy</b> (char *s
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>pointer to destination String </dd></dl>
 </div></td></tr>
-<tr class="memitem:a8908188ae9fc2f05d993257ef001d553"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8908188ae9fc2f05d993257ef001d553"></a>
-char *&#160;</td><td class="memItemRight" valign="bottom"><b>strcat</b> (char *s1, const char *s2)</td></tr>
+<tr class="memitem:a8908188ae9fc2f05d993257ef001d553"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8h.html#a8908188ae9fc2f05d993257ef001d553">strcat</a> (char *s1, const char *s2)</td></tr>
 <tr class="separator:a8908188ae9fc2f05d993257ef001d553"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">: strlen.</div></td></tr>
+<tr><td colspan="2"><div class="groupHeader">strlen.</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Returns the length of a string.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -198,10 +193,9 @@ char *&#160;</td><td class="memItemRight" valign="bottom"><b>strcat</b> (char *s
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>count Length of the String </dd></dl>
 </div></td></tr>
-<tr class="memitem:a2dee044e4e667b5b789b493abd21cfa4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2dee044e4e667b5b789b493abd21cfa4"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>strlen</b> (const char *s)</td></tr>
+<tr class="memitem:a2dee044e4e667b5b789b493abd21cfa4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8h.html#a2dee044e4e667b5b789b493abd21cfa4">strlen</a> (const char *s)</td></tr>
 <tr class="separator:a2dee044e4e667b5b789b493abd21cfa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">: strcmp.</div></td></tr>
+<tr><td colspan="2"><div class="groupHeader">strcmp.</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>String comparison.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -212,8 +206,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>strlen</b> (const char
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>whether they are the same or not. </dd></dl>
 </div></td></tr>
-<tr class="memitem:a11bd144d7d44914099a3aeddf1c8567d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a11bd144d7d44914099a3aeddf1c8567d"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>strcmp</b> (const char *s1, const char *s2)</td></tr>
+<tr class="memitem:a11bd144d7d44914099a3aeddf1c8567d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8h.html#a11bd144d7d44914099a3aeddf1c8567d">strcmp</a> (const char *s1, const char *s2)</td></tr>
 <tr class="separator:a11bd144d7d44914099a3aeddf1c8567d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">strtok.</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Split string into tokens.</p>
@@ -226,10 +219,9 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>strcmp</b> (const char
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the pointer to the token. </dd></dl>
 </div></td></tr>
-<tr class="memitem:af1a867dcea42fc1215d0eddf19283ef3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af1a867dcea42fc1215d0eddf19283ef3"></a>
-char *&#160;</td><td class="memItemRight" valign="bottom"><b>strtok</b> (char *s1, const char *s2)</td></tr>
+<tr class="memitem:af1a867dcea42fc1215d0eddf19283ef3"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8h.html#af1a867dcea42fc1215d0eddf19283ef3">strtok</a> (char *s1, const char *s2)</td></tr>
 <tr class="separator:af1a867dcea42fc1215d0eddf19283ef3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">: atoi.</div></td></tr>
+<tr><td colspan="2"><div class="groupHeader">atoi.</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Convert an ASCII string to an integer.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -239,10 +231,9 @@ char *&#160;</td><td class="memItemRight" valign="bottom"><b>strtok</b> (char *s
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The converted integer. </dd></dl>
 </div></td></tr>
-<tr class="memitem:a30670a60464f77af17dfb353353d6df8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a30670a60464f77af17dfb353353d6df8"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>atoi</b> (const char *s)</td></tr>
+<tr class="memitem:a30670a60464f77af17dfb353353d6df8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8h.html#a30670a60464f77af17dfb353353d6df8">atoi</a> (const char *s)</td></tr>
 <tr class="separator:a30670a60464f77af17dfb353353d6df8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">: sprintf.</div></td></tr>
+<tr><td colspan="2"><div class="groupHeader">sprintf.</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Generate a formatted string.</p>
 <p>%[-x]c output a character, '-' - align right, x - the output width</p>
 <p>%[-x]s output a string, '-' - align right, x - the output width</p>
@@ -259,8 +250,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>atoi</b> (const char *
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>vsprintf(str, format, ap) - Return the string with its format and pointer. </dd></dl>
 </div></td></tr>
-<tr class="memitem:a3082155ec11e7229f7a20439b31a169e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3082155ec11e7229f7a20439b31a169e"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>sprintf</b> (char *str, const char *format,...)</td></tr>
+<tr class="memitem:a3082155ec11e7229f7a20439b31a169e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8h.html#a3082155ec11e7229f7a20439b31a169e">sprintf</a> (char *str, const char *format,...)</td></tr>
 <tr class="separator:a3082155ec11e7229f7a20439b31a169e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">printf.</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Print out a formatted string.</p>
@@ -279,8 +269,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>sprintf</b> (char *str
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>vsprintf(str, format, ap) - Return the string with its format and pointer. </dd></dl>
 </div></td></tr>
-<tr class="memitem:a98631211a4a8aee62f572375d5b637be"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a98631211a4a8aee62f572375d5b637be"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>printf</b> (const char *format,...)</td></tr>
+<tr class="memitem:a98631211a4a8aee62f572375d5b637be"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8h.html#a98631211a4a8aee62f572375d5b637be">printf</a> (const char *format,...)</td></tr>
 <tr class="separator:a98631211a4a8aee62f572375d5b637be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -288,7 +277,407 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>printf</b> (const char
 <dl class="section author"><dt>Author</dt><dd>Thunder Krakens </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>February 2nd, 2016 </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>R1 </dd></dl>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a30670a60464f77af17dfb353353d6df8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int atoi </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="string_8h_a30670a60464f77af17dfb353353d6df8_cgraph.png" border="0" usemap="#string_8h_a30670a60464f77af17dfb353353d6df8_cgraph" alt=""/></div>
+<map name="string_8h_a30670a60464f77af17dfb353353d6df8_cgraph" id="string_8h_a30670a60464f77af17dfb353353d6df8_cgraph">
+<area shape="rect" id="node2" href="serial_8h.html#a3514f7abff236a4e00a6c46021ce5e22" title="serial_println" alt="" coords="96,5,191,32"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="string_8h_a30670a60464f77af17dfb353353d6df8_icgraph.png" border="0" usemap="#string_8h_a30670a60464f77af17dfb353353d6df8_icgraph" alt=""/></div>
+<map name="string_8h_a30670a60464f77af17dfb353353d6df8_icgraph" id="string_8h_a30670a60464f77af17dfb353353d6df8_icgraph">
+<area shape="rect" id="node2" href="sys__clock_8h.html#a2fa1ed5071047b72b357329da498b7aa" title="set_time_str" alt="" coords="96,5,191,32"/>
+<area shape="rect" id="node6" href="sys__clock_8h.html#ab80d04ed8d251aaea6a09fd01e68eb27" title="set_date_str" alt="" coords="96,56,191,83"/>
+<area shape="rect" id="node3" href="sys__clock_8h.html#a2afc871aeddaa550badc5e0c6bb65da5" title="set_time_main" alt="" coords="239,5,345,32"/>
+<area shape="rect" id="node4" href="r1_8h.html#adb6b307c73bca25d17aa7683e14fea16" title="command_line_parser" alt="" coords="393,31,543,57"/>
+<area shape="rect" id="node5" href="r1_8h.html#a14d85617242501c323a203ee196d3efa" title="commhand" alt="" coords="591,31,677,57"/>
+<area shape="rect" id="node7" href="sys__clock_8h.html#a626404928f9803307b300e6c60df3afb" title="set_date_main" alt="" coords="239,56,345,83"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a0f3d37d605e9e6d4fc1853ff9d4b91bf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int isspace </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ace6ee45c30e71865e6eb635200379db9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* memset </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="string_8h_ace6ee45c30e71865e6eb635200379db9_icgraph.png" border="0" usemap="#string_8h_ace6ee45c30e71865e6eb635200379db9_icgraph" alt=""/></div>
+<map name="string_8h_ace6ee45c30e71865e6eb635200379db9_icgraph" id="string_8h_ace6ee45c30e71865e6eb635200379db9_icgraph">
+<area shape="rect" id="node2" href="string_8h.html#a98631211a4a8aee62f572375d5b637be" title="printf" alt="" coords="123,102,173,129"/>
+<area shape="rect" id="node3" href="r1_8h.html#a14d85617242501c323a203ee196d3efa" title="commhand" alt="" coords="700,26,787,53"/>
+<area shape="rect" id="node4" href="r1_8h.html#ab5b36414d84437d45b388232a0dfa366" title="print_help" alt="" coords="221,127,300,154"/>
+<area shape="rect" id="node5" href="sys__clock_8h.html#a2afc871aeddaa550badc5e0c6bb65da5" title="set_time_main" alt="" coords="348,178,455,205"/>
+<area shape="rect" id="node7" href="sys__clock_8h.html#a323e417952cced55a3cf9acfe8691635" title="get_time_main" alt="" coords="348,26,455,53"/>
+<area shape="rect" id="node8" href="sys__clock_8h.html#a1ef51abc1a538e8582ccfa61e356e8a9" title="get_date_main" alt="" coords="348,77,455,103"/>
+<area shape="rect" id="node9" href="sys__clock_8h.html#a626404928f9803307b300e6c60df3afb" title="set_date_main" alt="" coords="348,127,455,154"/>
+<area shape="rect" id="node6" href="r1_8h.html#adb6b307c73bca25d17aa7683e14fea16" title="command_line_parser" alt="" coords="503,77,652,103"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a98631211a4a8aee62f572375d5b637be"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int printf </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>format</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="string_8h_a98631211a4a8aee62f572375d5b637be_cgraph.png" border="0" usemap="#string_8h_a98631211a4a8aee62f572375d5b637be_cgraph" alt=""/></div>
+<map name="string_8h_a98631211a4a8aee62f572375d5b637be_cgraph" id="string_8h_a98631211a4a8aee62f572375d5b637be_cgraph">
+<area shape="rect" id="node2" href="string_8c.html#ace6ee45c30e71865e6eb635200379db9" title="memset" alt="" coords="112,5,181,32"/>
+<area shape="rect" id="node3" href="serial_8h.html#a995827efcd4dcfb780c9fbb9645410a4" title="serial_print" alt="" coords="104,56,189,83"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="string_8h_a98631211a4a8aee62f572375d5b637be_icgraph.png" border="0" usemap="#string_8h_a98631211a4a8aee62f572375d5b637be_icgraph" alt=""/></div>
+<map name="string_8h_a98631211a4a8aee62f572375d5b637be_icgraph" id="string_8h_a98631211a4a8aee62f572375d5b637be_icgraph">
+<area shape="rect" id="node2" href="r1_8h.html#a14d85617242501c323a203ee196d3efa" title="commhand" alt="" coords="583,26,669,53"/>
+<area shape="rect" id="node3" href="r1_8h.html#ab5b36414d84437d45b388232a0dfa366" title="print_help" alt="" coords="104,127,183,154"/>
+<area shape="rect" id="node4" href="sys__clock_8h.html#a2afc871aeddaa550badc5e0c6bb65da5" title="set_time_main" alt="" coords="231,178,337,205"/>
+<area shape="rect" id="node6" href="sys__clock_8h.html#a323e417952cced55a3cf9acfe8691635" title="get_time_main" alt="" coords="231,26,337,53"/>
+<area shape="rect" id="node7" href="sys__clock_8h.html#a1ef51abc1a538e8582ccfa61e356e8a9" title="get_date_main" alt="" coords="231,77,337,103"/>
+<area shape="rect" id="node8" href="sys__clock_8h.html#a626404928f9803307b300e6c60df3afb" title="set_date_main" alt="" coords="231,127,337,154"/>
+<area shape="rect" id="node5" href="r1_8h.html#adb6b307c73bca25d17aa7683e14fea16" title="command_line_parser" alt="" coords="385,77,535,103"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a3082155ec11e7229f7a20439b31a169e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sprintf </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>format</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8908188ae9fc2f05d993257ef001d553"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* strcat </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>s1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>s2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="string_8h_a8908188ae9fc2f05d993257ef001d553_icgraph.png" border="0" usemap="#string_8h_a8908188ae9fc2f05d993257ef001d553_icgraph" alt=""/></div>
+<map name="string_8h_a8908188ae9fc2f05d993257ef001d553_icgraph" id="string_8h_a8908188ae9fc2f05d993257ef001d553_icgraph">
+<area shape="rect" id="node2" href="string_8h.html#a11bd144d7d44914099a3aeddf1c8567d" title="strcmp" alt="" coords="108,92,171,119"/>
+<area shape="rect" id="node3" href="r1_8h.html#a14d85617242501c323a203ee196d3efa" title="commhand" alt="" coords="571,42,657,68"/>
+<area shape="rect" id="node4" href="sys__clock_8h.html#a2afc871aeddaa550badc5e0c6bb65da5" title="set_time_main" alt="" coords="219,42,325,68"/>
+<area shape="rect" id="node6" href="sys__clock_8h.html#a323e417952cced55a3cf9acfe8691635" title="get_time_main" alt="" coords="219,92,325,119"/>
+<area shape="rect" id="node7" href="sys__clock_8h.html#a1ef51abc1a538e8582ccfa61e356e8a9" title="get_date_main" alt="" coords="219,143,325,170"/>
+<area shape="rect" id="node8" href="sys__clock_8h.html#a626404928f9803307b300e6c60df3afb" title="set_date_main" alt="" coords="219,194,325,220"/>
+<area shape="rect" id="node5" href="r1_8h.html#adb6b307c73bca25d17aa7683e14fea16" title="command_line_parser" alt="" coords="373,92,523,119"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a11bd144d7d44914099a3aeddf1c8567d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int strcmp </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>s1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>s2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="string_8h_a11bd144d7d44914099a3aeddf1c8567d_cgraph.png" border="0" usemap="#string_8h_a11bd144d7d44914099a3aeddf1c8567d_cgraph" alt=""/></div>
+<map name="string_8h_a11bd144d7d44914099a3aeddf1c8567d_cgraph" id="string_8h_a11bd144d7d44914099a3aeddf1c8567d_cgraph">
+<area shape="rect" id="node2" href="string_8c.html#a2dee044e4e667b5b789b493abd21cfa4" title="strlen" alt="" coords="116,5,171,32"/>
+<area shape="rect" id="node3" href="string_8c.html#a8908188ae9fc2f05d993257ef001d553" title="strcat" alt="" coords="116,56,171,83"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="string_8h_a11bd144d7d44914099a3aeddf1c8567d_icgraph.png" border="0" usemap="#string_8h_a11bd144d7d44914099a3aeddf1c8567d_icgraph" alt=""/></div>
+<map name="string_8h_a11bd144d7d44914099a3aeddf1c8567d_icgraph" id="string_8h_a11bd144d7d44914099a3aeddf1c8567d_icgraph">
+<area shape="rect" id="node2" href="r1_8h.html#a14d85617242501c323a203ee196d3efa" title="commhand" alt="" coords="468,42,555,68"/>
+<area shape="rect" id="node3" href="sys__clock_8h.html#a2afc871aeddaa550badc5e0c6bb65da5" title="set_time_main" alt="" coords="116,42,223,68"/>
+<area shape="rect" id="node5" href="sys__clock_8h.html#a323e417952cced55a3cf9acfe8691635" title="get_time_main" alt="" coords="116,92,223,119"/>
+<area shape="rect" id="node6" href="sys__clock_8h.html#a1ef51abc1a538e8582ccfa61e356e8a9" title="get_date_main" alt="" coords="116,143,223,170"/>
+<area shape="rect" id="node7" href="sys__clock_8h.html#a626404928f9803307b300e6c60df3afb" title="set_date_main" alt="" coords="116,194,223,220"/>
+<area shape="rect" id="node4" href="r1_8h.html#adb6b307c73bca25d17aa7683e14fea16" title="command_line_parser" alt="" coords="271,92,420,119"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a1eb9cae61e6a6282c28dbc298ef7297e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* strcpy </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>s1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>s2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="string_8h_a1eb9cae61e6a6282c28dbc298ef7297e_icgraph.png" border="0" usemap="#string_8h_a1eb9cae61e6a6282c28dbc298ef7297e_icgraph" alt=""/></div>
+<map name="string_8h_a1eb9cae61e6a6282c28dbc298ef7297e_icgraph" id="string_8h_a1eb9cae61e6a6282c28dbc298ef7297e_icgraph">
+<area shape="rect" id="node2" href="sys__clock_8h.html#a2fa1ed5071047b72b357329da498b7aa" title="set_time_str" alt="" coords="112,5,207,32"/>
+<area shape="rect" id="node6" href="sys__clock_8h.html#ab80d04ed8d251aaea6a09fd01e68eb27" title="set_date_str" alt="" coords="112,56,207,83"/>
+<area shape="rect" id="node3" href="sys__clock_8h.html#a2afc871aeddaa550badc5e0c6bb65da5" title="set_time_main" alt="" coords="255,5,361,32"/>
+<area shape="rect" id="node4" href="r1_8h.html#adb6b307c73bca25d17aa7683e14fea16" title="command_line_parser" alt="" coords="409,31,559,57"/>
+<area shape="rect" id="node5" href="r1_8h.html#a14d85617242501c323a203ee196d3efa" title="commhand" alt="" coords="607,31,693,57"/>
+<area shape="rect" id="node7" href="sys__clock_8h.html#a626404928f9803307b300e6c60df3afb" title="set_date_main" alt="" coords="255,56,361,83"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a2dee044e4e667b5b789b493abd21cfa4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int strlen </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="string_8h_a2dee044e4e667b5b789b493abd21cfa4_icgraph.png" border="0" usemap="#string_8h_a2dee044e4e667b5b789b493abd21cfa4_icgraph" alt=""/></div>
+<map name="string_8h_a2dee044e4e667b5b789b493abd21cfa4_icgraph" id="string_8h_a2dee044e4e667b5b789b493abd21cfa4_icgraph">
+<area shape="rect" id="node2" href="string_8h.html#a11bd144d7d44914099a3aeddf1c8567d" title="strcmp" alt="" coords="108,92,171,119"/>
+<area shape="rect" id="node3" href="r1_8h.html#a14d85617242501c323a203ee196d3efa" title="commhand" alt="" coords="571,42,657,68"/>
+<area shape="rect" id="node4" href="sys__clock_8h.html#a2afc871aeddaa550badc5e0c6bb65da5" title="set_time_main" alt="" coords="219,42,325,68"/>
+<area shape="rect" id="node6" href="sys__clock_8h.html#a323e417952cced55a3cf9acfe8691635" title="get_time_main" alt="" coords="219,92,325,119"/>
+<area shape="rect" id="node7" href="sys__clock_8h.html#a1ef51abc1a538e8582ccfa61e356e8a9" title="get_date_main" alt="" coords="219,143,325,170"/>
+<area shape="rect" id="node8" href="sys__clock_8h.html#a626404928f9803307b300e6c60df3afb" title="set_date_main" alt="" coords="219,194,325,220"/>
+<area shape="rect" id="node5" href="r1_8h.html#adb6b307c73bca25d17aa7683e14fea16" title="command_line_parser" alt="" coords="373,92,523,119"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="af1a867dcea42fc1215d0eddf19283ef3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* strtok </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>s1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>s2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="string_8h_af1a867dcea42fc1215d0eddf19283ef3_icgraph.png" border="0" usemap="#string_8h_af1a867dcea42fc1215d0eddf19283ef3_icgraph" alt=""/></div>
+<map name="string_8h_af1a867dcea42fc1215d0eddf19283ef3_icgraph" id="string_8h_af1a867dcea42fc1215d0eddf19283ef3_icgraph">
+<area shape="rect" id="node2" href="sys__clock_8h.html#a2fa1ed5071047b72b357329da498b7aa" title="set_time_str" alt="" coords="108,5,203,32"/>
+<area shape="rect" id="node6" href="sys__clock_8h.html#ab80d04ed8d251aaea6a09fd01e68eb27" title="set_date_str" alt="" coords="108,56,203,83"/>
+<area shape="rect" id="node3" href="sys__clock_8h.html#a2afc871aeddaa550badc5e0c6bb65da5" title="set_time_main" alt="" coords="251,5,357,32"/>
+<area shape="rect" id="node4" href="r1_8h.html#adb6b307c73bca25d17aa7683e14fea16" title="command_line_parser" alt="" coords="405,31,555,57"/>
+<area shape="rect" id="node5" href="r1_8h.html#a14d85617242501c323a203ee196d3efa" title="commhand" alt="" coords="603,31,689,57"/>
+<area shape="rect" id="node7" href="sys__clock_8h.html#a626404928f9803307b300e6c60df3afb" title="set_date_main" alt="" coords="251,56,357,83"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

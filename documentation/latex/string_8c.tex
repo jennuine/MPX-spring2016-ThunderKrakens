@@ -7,18 +7,17 @@ Many usefull functions that used for handling string.
 
 {\ttfamily \#include $<$system.\+h$>$}\\*
 {\ttfamily \#include $<$core/serial.\+h$>$}\\*
-{\ttfamily \#include \char`\"{}../modules/mpx\+\_\+supt.\+h\char`\"{}}\\*
 {\ttfamily \#include $<$string.\+h$>$}\\*
 Include dependency graph for string.\+c\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{string_8c__incl}
+\includegraphics[width=229pt]{string_8c__incl}
 \end{center}
 \end{figure}
 \subsection*{Functions}
-\begin{Indent}{\bf \+: strlen.}\par
+\begin{Indent}{\bf strlen.}\par
 {\em Returns the length of a string.
 
 
@@ -31,11 +30,10 @@ count Length of the String
 \end{DoxyReturn}
 }\begin{DoxyCompactItemize}
 \item 
-int {\bfseries strlen} (const char $\ast$s)\hypertarget{string_8c_a2dee044e4e667b5b789b493abd21cfa4}{}\label{string_8c_a2dee044e4e667b5b789b493abd21cfa4}
-
+int \hyperlink{string_8c_a2dee044e4e667b5b789b493abd21cfa4}{strlen} (const char $\ast$s)
 \end{DoxyCompactItemize}
 \end{Indent}
-\begin{Indent}{\bf \+: strcpy.}\par
+\begin{Indent}{\bf strcpy.}\par
 {\em Copies one string to another.
 
 
@@ -50,11 +48,10 @@ pointer to the destination String
 \end{DoxyReturn}
 }\begin{DoxyCompactItemize}
 \item 
-char $\ast$ {\bfseries strcpy} (char $\ast$s1, const char $\ast$s2)\hypertarget{string_8c_a1eb9cae61e6a6282c28dbc298ef7297e}{}\label{string_8c_a1eb9cae61e6a6282c28dbc298ef7297e}
-
+char $\ast$ \hyperlink{string_8c_a1eb9cae61e6a6282c28dbc298ef7297e}{strcpy} (char $\ast$s1, const char $\ast$s2)
 \end{DoxyCompactItemize}
 \end{Indent}
-\begin{Indent}{\bf \+: atoi.}\par
+\begin{Indent}{\bf atoi.}\par
 {\em Convert an A\+S\+C\+II string to an integer.
 
 
@@ -67,11 +64,10 @@ The converted integer.
 \end{DoxyReturn}
 }\begin{DoxyCompactItemize}
 \item 
-int {\bfseries atoi} (const char $\ast$s)\hypertarget{string_8c_a30670a60464f77af17dfb353353d6df8}{}\label{string_8c_a30670a60464f77af17dfb353353d6df8}
-
+int \hyperlink{string_8c_a30670a60464f77af17dfb353353d6df8}{atoi} (const char $\ast$s)
 \end{DoxyCompactItemize}
 \end{Indent}
-\begin{Indent}{\bf \+: strcmp.}\par
+\begin{Indent}{\bf strcmp.}\par
 {\em String comparison.
 
 
@@ -86,11 +82,10 @@ whether they are the same or not.
 \end{DoxyReturn}
 }\begin{DoxyCompactItemize}
 \item 
-int {\bfseries strcmp} (const char $\ast$s1, const char $\ast$s2)\hypertarget{string_8c_a11bd144d7d44914099a3aeddf1c8567d}{}\label{string_8c_a11bd144d7d44914099a3aeddf1c8567d}
-
+int \hyperlink{string_8c_a11bd144d7d44914099a3aeddf1c8567d}{strcmp} (const char $\ast$s1, const char $\ast$s2)
 \end{DoxyCompactItemize}
 \end{Indent}
-\begin{Indent}{\bf \+: Parse\+Padding.}\par
+\begin{Indent}{\bf Parse\+Padding.}\par
 {\em Parse the number for padding.
 
 (static -\/ Only can be access within this file).
@@ -112,7 +107,7 @@ int {\bfseries strcmp} (const char $\ast$s1, const char $\ast$s2)\hypertarget{st
 b\+Is\+Valid Returns the validity. 
 \end{DoxyReturn}
 }\end{Indent}
-\begin{Indent}{\bf \+: Add\+Pad.}\par
+\begin{Indent}{\bf Add\+Pad.}\par
 {\em Add a certain number of paddings (static -\/ Only can be access within this file).
 
 
@@ -152,7 +147,7 @@ the character of the Hexadecimal number if valid, otherwise, return \textquotesi
 V\+O\+ID 
 \end{DoxyReturn}
 }\end{Indent}
-\begin{Indent}{\bf \+: vsprintf.}\par
+\begin{Indent}{\bf vsprintf.}\par
 {\em The actual function that perform the \char`\"{}printf\char`\"{} and \char`\"{}sprintf\char`\"{} function (static -\/ Only can be access within this file).
 
 
@@ -168,7 +163,7 @@ V\+O\+ID
 0 
 \end{DoxyReturn}
 }\end{Indent}
-\begin{Indent}{\bf \+: sprintf.}\par
+\begin{Indent}{\bf sprintf.}\par
 {\em Generate a formatted string.
 
 \%\mbox{[}-\/x\mbox{]}c output a character, \textquotesingle{}-\/\textquotesingle{} -\/ align right, x -\/ the output width
@@ -195,8 +190,7 @@ vsprintf(str, format, ap) -\/ Return the string with its format and pointer.
 \end{DoxyReturn}
 }\begin{DoxyCompactItemize}
 \item 
-int {\bfseries sprintf} (char $\ast$str, const char $\ast$format,...)\hypertarget{string_8c_a3082155ec11e7229f7a20439b31a169e}{}\label{string_8c_a3082155ec11e7229f7a20439b31a169e}
-
+int \hyperlink{string_8c_a3082155ec11e7229f7a20439b31a169e}{sprintf} (char $\ast$str, const char $\ast$format,...)
 \end{DoxyCompactItemize}
 \end{Indent}
 \begin{Indent}{\bf printf.}\par
@@ -226,20 +220,15 @@ vsprintf(str, format, ap) -\/ Return the string with its format and pointer.
 \end{DoxyReturn}
 }\begin{DoxyCompactItemize}
 \item 
-int {\bfseries printf} (const char $\ast$format,...)\hypertarget{string_8c_a98631211a4a8aee62f572375d5b637be}{}\label{string_8c_a98631211a4a8aee62f572375d5b637be}
-
+int \hyperlink{string_8c_a98631211a4a8aee62f572375d5b637be}{printf} (const char $\ast$format,...)
 \item 
-char $\ast$ {\bfseries strcat} (char $\ast$s1, const char $\ast$s2)\hypertarget{string_8c_a8908188ae9fc2f05d993257ef001d553}{}\label{string_8c_a8908188ae9fc2f05d993257ef001d553}
-
+char $\ast$ \hyperlink{string_8c_a8908188ae9fc2f05d993257ef001d553}{strcat} (char $\ast$s1, const char $\ast$s2)
 \item 
-int {\bfseries isspace} (const char $\ast$c)\hypertarget{string_8c_a0f3d37d605e9e6d4fc1853ff9d4b91bf}{}\label{string_8c_a0f3d37d605e9e6d4fc1853ff9d4b91bf}
-
+int \hyperlink{string_8c_a0f3d37d605e9e6d4fc1853ff9d4b91bf}{isspace} (const char $\ast$c)
 \item 
-void $\ast$ {\bfseries memset} (void $\ast$s, int c, size\+\_\+t n)\hypertarget{string_8c_ace6ee45c30e71865e6eb635200379db9}{}\label{string_8c_ace6ee45c30e71865e6eb635200379db9}
-
+void $\ast$ \hyperlink{string_8c_ace6ee45c30e71865e6eb635200379db9}{memset} (void $\ast$s, int c, size\+\_\+t n)
 \item 
-char $\ast$ {\bfseries strtok} (char $\ast$s1, const char $\ast$s2)\hypertarget{string_8c_af1a867dcea42fc1215d0eddf19283ef3}{}\label{string_8c_af1a867dcea42fc1215d0eddf19283ef3}
-
+char $\ast$ \hyperlink{string_8c_af1a867dcea42fc1215d0eddf19283ef3}{strtok} (char $\ast$s1, const char $\ast$s2)
 \end{DoxyCompactItemize}
 \end{Indent}
 
@@ -256,3 +245,217 @@ February 2nd, 2016
 \begin{DoxyVersion}{Version}
 R1 
 \end{DoxyVersion}
+
+
+\subsection{Function Documentation}
+\index{string.\+c@{string.\+c}!atoi@{atoi}}
+\index{atoi@{atoi}!string.\+c@{string.\+c}}
+\subsubsection[{\texorpdfstring{atoi(const char $\ast$s)}{atoi(const char *s)}}]{\setlength{\rightskip}{0pt plus 5cm}int atoi (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{s}
+\end{DoxyParamCaption}
+)}\hypertarget{string_8c_a30670a60464f77af17dfb353353d6df8}{}\label{string_8c_a30670a60464f77af17dfb353353d6df8}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{string_8c_a30670a60464f77af17dfb353353d6df8_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{string_8c_a30670a60464f77af17dfb353353d6df8_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{string.\+c@{string.\+c}!isspace@{isspace}}
+\index{isspace@{isspace}!string.\+c@{string.\+c}}
+\subsubsection[{\texorpdfstring{isspace(const char $\ast$c)}{isspace(const char *c)}}]{\setlength{\rightskip}{0pt plus 5cm}int isspace (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{c}
+\end{DoxyParamCaption}
+)}\hypertarget{string_8c_a0f3d37d605e9e6d4fc1853ff9d4b91bf}{}\label{string_8c_a0f3d37d605e9e6d4fc1853ff9d4b91bf}
+\index{string.\+c@{string.\+c}!memset@{memset}}
+\index{memset@{memset}!string.\+c@{string.\+c}}
+\subsubsection[{\texorpdfstring{memset(void $\ast$s, int c, size\+\_\+t n)}{memset(void *s, int c, size_t n)}}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ memset (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{s, }
+\item[{int}]{c, }
+\item[{size\+\_\+t}]{n}
+\end{DoxyParamCaption}
+)}\hypertarget{string_8c_ace6ee45c30e71865e6eb635200379db9}{}\label{string_8c_ace6ee45c30e71865e6eb635200379db9}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{string_8c_ace6ee45c30e71865e6eb635200379db9_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{string.\+c@{string.\+c}!printf@{printf}}
+\index{printf@{printf}!string.\+c@{string.\+c}}
+\subsubsection[{\texorpdfstring{printf(const char $\ast$format,...)}{printf(const char *format,...)}}]{\setlength{\rightskip}{0pt plus 5cm}int printf (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{format, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}\hypertarget{string_8c_a98631211a4a8aee62f572375d5b637be}{}\label{string_8c_a98631211a4a8aee62f572375d5b637be}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{string_8c_a98631211a4a8aee62f572375d5b637be_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{string_8c_a98631211a4a8aee62f572375d5b637be_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{string.\+c@{string.\+c}!sprintf@{sprintf}}
+\index{sprintf@{sprintf}!string.\+c@{string.\+c}}
+\subsubsection[{\texorpdfstring{sprintf(char $\ast$str, const char $\ast$format,...)}{sprintf(char *str, const char *format,...)}}]{\setlength{\rightskip}{0pt plus 5cm}int sprintf (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str, }
+\item[{const char $\ast$}]{format, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}\hypertarget{string_8c_a3082155ec11e7229f7a20439b31a169e}{}\label{string_8c_a3082155ec11e7229f7a20439b31a169e}
+\index{string.\+c@{string.\+c}!strcat@{strcat}}
+\index{strcat@{strcat}!string.\+c@{string.\+c}}
+\subsubsection[{\texorpdfstring{strcat(char $\ast$s1, const char $\ast$s2)}{strcat(char *s1, const char *s2)}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ strcat (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{s1, }
+\item[{const char $\ast$}]{s2}
+\end{DoxyParamCaption}
+)}\hypertarget{string_8c_a8908188ae9fc2f05d993257ef001d553}{}\label{string_8c_a8908188ae9fc2f05d993257ef001d553}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{string_8c_a8908188ae9fc2f05d993257ef001d553_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{string.\+c@{string.\+c}!strcmp@{strcmp}}
+\index{strcmp@{strcmp}!string.\+c@{string.\+c}}
+\subsubsection[{\texorpdfstring{strcmp(const char $\ast$s1, const char $\ast$s2)}{strcmp(const char *s1, const char *s2)}}]{\setlength{\rightskip}{0pt plus 5cm}int strcmp (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{s1, }
+\item[{const char $\ast$}]{s2}
+\end{DoxyParamCaption}
+)}\hypertarget{string_8c_a11bd144d7d44914099a3aeddf1c8567d}{}\label{string_8c_a11bd144d7d44914099a3aeddf1c8567d}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{string_8c_a11bd144d7d44914099a3aeddf1c8567d_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{string_8c_a11bd144d7d44914099a3aeddf1c8567d_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{string.\+c@{string.\+c}!strcpy@{strcpy}}
+\index{strcpy@{strcpy}!string.\+c@{string.\+c}}
+\subsubsection[{\texorpdfstring{strcpy(char $\ast$s1, const char $\ast$s2)}{strcpy(char *s1, const char *s2)}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ strcpy (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{s1, }
+\item[{const char $\ast$}]{s2}
+\end{DoxyParamCaption}
+)}\hypertarget{string_8c_a1eb9cae61e6a6282c28dbc298ef7297e}{}\label{string_8c_a1eb9cae61e6a6282c28dbc298ef7297e}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{string_8c_a1eb9cae61e6a6282c28dbc298ef7297e_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{string.\+c@{string.\+c}!strlen@{strlen}}
+\index{strlen@{strlen}!string.\+c@{string.\+c}}
+\subsubsection[{\texorpdfstring{strlen(const char $\ast$s)}{strlen(const char *s)}}]{\setlength{\rightskip}{0pt plus 5cm}int strlen (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{s}
+\end{DoxyParamCaption}
+)}\hypertarget{string_8c_a2dee044e4e667b5b789b493abd21cfa4}{}\label{string_8c_a2dee044e4e667b5b789b493abd21cfa4}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{string_8c_a2dee044e4e667b5b789b493abd21cfa4_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{string.\+c@{string.\+c}!strtok@{strtok}}
+\index{strtok@{strtok}!string.\+c@{string.\+c}}
+\subsubsection[{\texorpdfstring{strtok(char $\ast$s1, const char $\ast$s2)}{strtok(char *s1, const char *s2)}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ strtok (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{s1, }
+\item[{const char $\ast$}]{s2}
+\end{DoxyParamCaption}
+)}\hypertarget{string_8c_af1a867dcea42fc1215d0eddf19283ef3}{}\label{string_8c_af1a867dcea42fc1215d0eddf19283ef3}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{string_8c_af1a867dcea42fc1215d0eddf19283ef3_icgraph}
+\end{center}
+\end{figure}
+
+
