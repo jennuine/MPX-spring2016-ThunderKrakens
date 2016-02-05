@@ -21,31 +21,32 @@ int set_time_main(int argc, char** argv)
 {
   if(argc >= 3 && strcmp(argv[2], "--help") != 0)
   {
-	error_t errno = set_time_str(argv[2]);
-	date_time dateTimeValues;
-	switch (errno) {
-  	case E_NOERROR:
- 		 get_time(&dateTimeValues);
-    	printf("\n\tSystem successfully set!\n");
-    	printf("\tCurrent time is: %02d:%02d:%02d\n\n", dateTimeValues.hour, dateTimeValues.min, dateTimeValues.sec);
-  	break;
+  	error_t errno = set_time_str(argv[2]);
+  	date_time dateTimeValues;
+  	switch (errno)
+    {
+    	case E_NOERROR:
+   		 get_time(&dateTimeValues);
+      	printf("\n\tSystem time had been successfully set!\n");
+      	printf("\tCurrent time is: %d:%d:%d\n\n", dateTimeValues.hour, dateTimeValues.min, dateTimeValues.sec);
+    	break;
 
-  	case E_INVPARA:
-    	printf("ERROR: The time value you gave is invalid!\n");
-  	break;
+    	case E_INVPARA:
+      	printf("ERROR: The time value you gave is invalid!\n");
+    	break;
 
-  	case E_INVSTRF:
-    	printf("ERROR: The format you used is incorrect! Please refer to \"settime --help\"\n");
-  	break;
-	}
+    	case E_INVSTRF:
+      	printf("ERROR: The format you used is incorrect! Please refer to \"settime --help\"\n");
+    	break;
+  	}
   }
   else if(argc >= 3 && strcmp(argv[2], "--help") == 0)
   {
-	printf("%s", functions[SETTIME].help);
+	   print_help(SETTIME);
   }
   else
   {
-	printf("ERROR: Please type in the arguments! Please refer to \"settime --help\"\n");
+	   printf("ERROR: Please type in the arguments! Please refer to \"settime --help\"\n");
   }
 
   return 0;
@@ -59,17 +60,17 @@ int get_time_main(int argc, char** argv)
 {
   if(argc == 2)
   {
-	date_time dateTimeValues;
-	get_time(&dateTimeValues);
-	printf("\tCurrent time is: %02d:%02d:%02d\n", dateTimeValues.hour, dateTimeValues.min, dateTimeValues.sec);
+  	date_time dateTimeValues;
+  	get_time(&dateTimeValues);
+  	printf("\tCurrent time is: %02d:%02d:%02d\n", dateTimeValues.hour, dateTimeValues.min, dateTimeValues.sec);
   }
   else if(argc >= 2 && strcmp(argv[2], "--help") == 0)
   {
-	printf("%s", functions[GETTIME].help);
+	   print_help(GETTIME);
   }
   else
   {
-	printf("ERROR: Please type in the correct arguments! Please refers to \"gettime --help\"\n");
+	   printf("ERROR: Please type in the correct arguments! Please refers to \"gettime --help\"\n");
   }
 
   return 0;
@@ -95,27 +96,27 @@ error_t set_time_str(const char * timeStr){
   if(bIsValid && (bIsValid = (*tok && is_digit(*tok) &&   //first char must digit
                         	(!*(tok + 1) || is_digit(*(tok + 1))))))  //second char either not exsit or a digit
   {
-	dateTimeValues.hour = atoi(tok);
+	   dateTimeValues.hour = atoi(tok);
   }
 
   tok = strtok(NULL, ":");
   if(bIsValid && (bIsValid = (*tok && is_digit(*tok) &&   //first char must digit
                         	(!*(tok + 1) || is_digit(*(tok + 1))))))  //second char either not exsit or a digit
   {
-	dateTimeValues.min = atoi(tok);
+	   dateTimeValues.min = atoi(tok);
   }
 
   tok = strtok(NULL, ":");
   if(bIsValid && (bIsValid = (*tok && is_digit(*tok) &&   //first char must digit
                         	(!*(tok + 1) || is_digit(*(tok + 1))))))  //second char either not exsit or a digit
   {
-	dateTimeValues.sec = atoi(tok);
+	   dateTimeValues.sec = atoi(tok);
   }
 
   if(bIsValid)
-	return set_time(&dateTimeValues);
+	 return set_time(&dateTimeValues);
   else
-	return E_INVSTRF;
+	 return E_INVSTRF;
 }
 
 
@@ -146,7 +147,7 @@ void get_time(date_time * dateTimeValues)
 */
 error_t set_time(const date_time * dateTimeValues)
 {
-    unsigned char sec, min, hr;
+  unsigned char sec, min, hr;
   if(0 <= dateTimeValues->hour && dateTimeValues->hour < 24 &&
 	0 <= dateTimeValues->min && dateTimeValues->min < 60 &&
 	0 <= dateTimeValues->sec && dateTimeValues->sec < 60 )
@@ -155,20 +156,20 @@ error_t set_time(const date_time * dateTimeValues)
       min = dateTimeValues->min ? (((dateTimeValues->min / 10) << 4) | (dateTimeValues->min % 10)) : 0;
       sec = dateTimeValues->sec ? (((dateTimeValues->sec / 10) << 4) | (dateTimeValues->sec % 10)) : 0;
 
-      //Disable interrupts
-      cli();
+    //Disable interrupts
+    cli();
 
-      outb(0x70, RTC_INDEX_SECOND);
-      outb(0x71, sec);
-      outb(0x70, RTC_INDEX_MINUTE);
-      outb(0x71, min);
-      outb(0x70, RTC_INDEX_HOUR);
-      outb(0x71, hr);
+    outb(0x70, RTC_INDEX_SECOND);
+    outb(0x71, sec);
+    outb(0x70, RTC_INDEX_MINUTE);
+    outb(0x71, min);
+    outb(0x70, RTC_INDEX_HOUR);
+    outb(0x71, hr);
 
-      //Enable interrupts
-      sti();
+    //Enable interrupts
+    sti();
 
-	return E_NOERROR;
+    return E_NOERROR;
   }
 
   return E_INVPARA;
@@ -224,11 +225,11 @@ int get_date_main(int argc, char** argv)
   {
     date_time dateTimeValues;
     get_date(&dateTimeValues);
-    printf("\tCurrent date is: %02d/%02d/%02d\n", dateTimeValues.mon, dateTimeValues.day_m, dateTimeValues.year);
+    printf("\tCurrent date is: %2d/%2d/%2d\n", dateTimeValues.mon, dateTimeValues.day_m, dateTimeValues.year);
   }
   else if(argc >= 2 && strcmp(argv[2], "--help") == 0)
   {
-    printf("%s", functions[GETDATE].help);
+    print_help(GETDATE);
   }
   else
   {
@@ -291,7 +292,7 @@ int set_date_main(int argc, char **argv)
   }
   else if(argc >= 3 && strcmp(argv[2], "--help") == 0)
   {
-    printf("%s", functions[SETTIME].help);
+    print_help(SETDATE);
   }
   else
   {

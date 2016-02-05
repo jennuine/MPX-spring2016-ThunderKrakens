@@ -1,11 +1,10 @@
 /**
- * @file r1.c
+ * @file r1.h
  * @author Thunder Krakens
  * @date February 2nd, 2016
- * @brief The main code file for Module R1
+ * @brief The commandhander and functions associations for Module R1
  * @version R1
  *
- * This file contains setdate, getdate, settime, gettime, help functions, commandhander and command line parser
  */
 
 #include "r1.h"
@@ -20,14 +19,30 @@
 #define MOD_VERSION "R1"
 #define COMPLETION "02/05/2016"
 
+typedef struct
+{
+	char * nameStr;
+	int (*function) (int argc, char ** argv);
+	char * usage;
+	char * help;
+} function_name;
+
+/**
+ * @name: fucntion_name.
+ *
+ * @brief The array that holds the associations among name, pointer to actual function, usage msg, and help msg.
+ */
+static function_name functions[NUM_OF_FUNCTIONS];
+
 static int run_mpx = 1;
 static void load_functions();
 
-/** @brief  Name: exe_function.
+/**
+ * @name: exe_function.
+ * @brief Executes the specific fucntion.
  *
- * Description: Executes the fucntions within the program. Accepts command from the user and refers to the command input.
- * @param argc - The number of tokens found.
- * @param argv - The array of tokens.
+ * @param argc  	The number of tokens.
+ * @param argv  	The array of tokens.
  * @return  0
  */
 static int exe_function(int argc, char ** argv)
@@ -44,11 +59,12 @@ static int exe_function(int argc, char ** argv)
     return 0;
 }
 
-/** @brief Name: version
+/** @name: version
  *
- *	Description: displays the version of the system currently running.
- *  @param argc - The number of tokens found.
- *  @param argv - The array of tokens.
+ *	@brief displays the version of the system currently running.
+ *
+ *  @param argc  	The number of tokens.
+ *  @param argv  	The array of tokens.
  * 	@return 0
  */
 static int version(int argc, char** argv)
@@ -61,12 +77,15 @@ static int version(int argc, char** argv)
     return 0;
 }
 
-/** @brief Name: shutdown
+/**
+ * @name: shutdown
  *
- *	Description: Closes all functions, and shuts down the system.
- * @param argc - The number of tokens found.
- * @param argv - The array of tokens.
- * 	@return run_mpx
+ * @brief Closes all functions, and shuts down the system.
+ *
+ * @param argc 	The number of tokens found.
+ * @param argv 	The array of tokens.
+ *
+ * @return 0 for shutdown, 1 for keep running.
  */
 static int shutdown(int argc, char** argv)
 {
@@ -99,11 +118,13 @@ static int shutdown(int argc, char** argv)
    	 }
 }
 
-/** @brief Name: help_usages
+/** @name help_usages
  *
- *	Description: shows every help function available.
- *	@param int start_from - user input
- *  @return  1
+ *	@brief shows usage message for each function.
+ *
+ *	@param start_from 	the index of the beginning function.
+ *
+ *  @return  0
  */
 static int help_usages(int start_from)
 {
@@ -116,15 +137,16 @@ static int help_usages(int start_from)
    	 printf("\tusage:\t%s\n", functions[i].usage);
     }
     printf("\n");
-    return 1;
+    return 0;
 }
 
-/** @brief Name: help_function
+/** @name: help_function
  *
- *	Description: displays help text for the specified function
- * @param argc - The number of tokens found.
- * @param argv - The array of tokens.
- * 	@return 1
+ *	@brief displays help text for all functions.
+ * 	@param argc 	The number of tokens.
+ * 	@param argv 	The array of tokens.
+ *
+ * 	@return 0
  */
 static int help_function(int argc, char** argv)
 {
@@ -132,7 +154,7 @@ static int help_function(int argc, char** argv)
     if (argc >= 2 && !strcmp(argv[1], "--help"))
     {
    	 printf("\n%s\n", functions[HELP].help);
-   	 return 1;
+   	 return 0;
     }
     else if (argc == 2 && !strcmp(argv[1], "mpx"))
     {
@@ -145,7 +167,7 @@ static int help_function(int argc, char** argv)
    		 if(!strcmp(functions[i].nameStr, argv[1]))
    		 {
    			 printf("\n%s\n", functions[i].help);
-   			 return 1;
+   			 return 0;
    		 }
    	 }
    	 return 0;
@@ -154,10 +176,10 @@ static int help_function(int argc, char** argv)
     return 0;
 }
 
-/** @brief Name: commhand
+/** @name commhand
  *
- *	Description: Accepts and handles commands from the user.
- *	@param User input
+ *	@brief Accepts and handles commands from the user.
+ *
  * 	@return 0
  */
 int commhand()
@@ -203,9 +225,9 @@ int commhand()
     return 0;
 }
 
-/** @brief Name: CommandParserStat
+/** @name CommandParserStat
  *
- *	Description: The stats of the command parser
+ *	@brief The status of the command parser
  */
 enum CommandPaserStat
 {
@@ -215,16 +237,16 @@ enum CommandPaserStat
     SingleQuoteWriting
 };
 
+
 /**
-* @brief Name: command_line_parser
+* @name   command_line_parser
+* @brief  Splits the complete command line into tokens by space, single quote, or double quote.
 *
-* Description: Splits the complete command line into tokens by space, single quote, or double quote.
-*
-* @param CmdStr - The complete input command.
-* @param argc - The number of tokens found.
-* @param argv - The array of tokens.
-* @param MaxArgNum - The maximum number of tokens that array can hold.
-* @param MaxStrLen - The maximum length of each token that string can hold.
+* @param  CmdStr     The complete input command.
+* @param  argc       The number of tokens found.
+* @param  argv       The array of tokens.
+* @param  MaxArgNum  The maximum number of tokens that array can hold.
+* @param  MaxStrLen  The maximum length of each token that string can hold.
 *
 * @return void
 */
@@ -279,7 +301,12 @@ void command_line_parser(const char * CmdStr, int * argc, char ** argv, const in
     }
 }
 
-
+/**
+	* @name 	load_functions
+	* @brief 	load the function associations among name, pointer to actual function, usage msg, and help msg.
+	*
+	* @return void
+	*/
 static void load_functions()
 {//This is a list of functions that associate with the name of them.
 
@@ -316,4 +343,17 @@ static void load_functions()
     functions[SHUTDOWN].help = "\nshutdown : -shutdown\n\n\tShuts down the operating system.\n\n\
     Exit Status: Always Succeeds.\n\n";
 
+}
+
+/**
+ *@name   print_help
+ *@brief  prints the help message of a certain function that specified by the index number
+ *
+ *@param  function_index  The index number of that function.
+ *
+ *@return void
+ */
+void print_help(const int function_index)
+{
+  printf("%s", functions[function_index].help);
 }
