@@ -13,7 +13,9 @@ ASFLAGS = -f elf -g
 OBJFILES =\
 mpx_supt.o\
 r1/r1.o\
-r1/sys_clock.o
+r1/sys_clock.o\
+r2/pcb.o\
+r2/pcb_comm.o
 
 .c.s:
 	$(CC) $(CFLAGS) -S -o $@ $<
