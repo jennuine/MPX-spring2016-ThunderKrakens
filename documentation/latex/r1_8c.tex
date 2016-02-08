@@ -1,0 +1,303 @@
+\hypertarget{r1_8c}{}\section{modules/r1/r1.c File Reference}
+\label{r1_8c}\index{modules/r1/r1.\+c@{modules/r1/r1.\+c}}
+
+
+The commandhander and functions associations for Module R1.  
+
+
+{\ttfamily \#include \char`\"{}r1.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}sys\+\_\+clock.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$core/serial.\+h$>$}\\*
+{\ttfamily \#include $<$core/io.\+h$>$}\\*
+Include dependency graph for r1.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{r1_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structfunction__name}{function\+\_\+name}
+\begin{DoxyCompactList}\small\item\em A structure to represent each function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{r1_8c_abcc7a443a9849435cd308e774dd0c8de}{U\+S\+E\+R\+\_\+\+I\+N\+P\+U\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}~1000
+\item 
+\#define \hyperlink{r1_8c_ae1da50c0d24fa0390a6c287d6cb4befe}{M\+A\+X\+\_\+\+A\+R\+GC}~50
+\item 
+\#define \hyperlink{r1_8c_a88a929d879ebd5f0d64773050f62aef5}{M\+O\+D\+\_\+\+V\+E\+R\+S\+I\+ON}~\char`\"{}R1\char`\"{}
+\item 
+\#define \hyperlink{r1_8c_afc29c35952a1ce914016dbfa4b91c2aa}{C\+O\+M\+P\+L\+E\+T\+I\+ON}~\char`\"{}02/05/2016\char`\"{}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{Indent}{\bf Command\+Parser\+Stat}\par
+{\em The status of the command parser }\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{r1_8c_abb950b1df1e3f5562228a4eae8ebb925}{Command\+Paser\+Stat} \{ \hyperlink{r1_8c_abb950b1df1e3f5562228a4eae8ebb925a07b3f7120926ad41c23ea69befea8299}{Not\+Writing}, 
+\hyperlink{r1_8c_abb950b1df1e3f5562228a4eae8ebb925a97b0656de7d83adb4ba389d6f5cffff2}{Normal\+Writing}, 
+\hyperlink{r1_8c_abb950b1df1e3f5562228a4eae8ebb925aa3bb4a92e3929c23ee47d33a2f27fd1e}{Double\+Quote\+Writing}, 
+\hyperlink{r1_8c_abb950b1df1e3f5562228a4eae8ebb925a5b5a3f350525071417ea5dd5642f2dc0}{Single\+Quote\+Writing}
+ \}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Functions}
+\begin{Indent}{\bf exe\+\_\+function.}\par
+{\em Executes the specific fucntion.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of tokens. \\
+\hline
+{\em argv} & The array of tokens. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+}\end{Indent}
+\begin{Indent}{\bf version}\par
+{\em displays the version of the system currently running.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of tokens. \\
+\hline
+{\em argv} & The array of tokens. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+}\end{Indent}
+\begin{Indent}{\bf shutdown}\par
+{\em Closes all functions, and shuts down the system.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of tokens found. \\
+\hline
+{\em argv} & The array of tokens.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 for shutdown, 1 for keep running. 
+\end{DoxyReturn}
+}\end{Indent}
+\begin{Indent}{\bf help\+\_\+usages}\par
+{\em shows usage message for each function.
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+\_\+from} & the index of the beginning function.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+}\end{Indent}
+\begin{Indent}{\bf help\+\_\+function}\par
+{\em displays help text for all functions.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of tokens. \\
+\hline
+{\em argv} & The array of tokens.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+}\end{Indent}
+\begin{Indent}{\bf commhand}\par
+{\em Accepts and handles commands from the user.
+
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{r1_8c_a14d85617242501c323a203ee196d3efa}{commhand} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf command\+\_\+line\+\_\+parser}\par
+{\em Splits the complete command line into tokens by space, single quote, or double quote.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Cmd\+Str} & The complete input command. \\
+\hline
+{\em argc} & The number of tokens found. \\
+\hline
+{\em argv} & The array of tokens. \\
+\hline
+{\em Max\+Arg\+Num} & The maximum number of tokens that array can hold. \\
+\hline
+{\em Max\+Str\+Len} & The maximum length of each token that string can hold.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{r1_8c_adb6b307c73bca25d17aa7683e14fea16}{command\+\_\+line\+\_\+parser} (const char $\ast$Cmd\+Str, int $\ast$argc, char $\ast$$\ast$argv, const int Max\+Arg\+Num, const int Max\+Str\+Len)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf print\+\_\+help}\par
+{\em prints the help message of a certain function that specified by the index number
+
+
+\begin{DoxyParams}{Parameters}
+{\em function\+\_\+index} & The index number of that function.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{r1_8c_ab5b36414d84437d45b388232a0dfa366}{print\+\_\+help} (const int function\+\_\+index)
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+The commandhander and functions associations for Module R1. 
+
+\begin{DoxyAuthor}{Author}
+Thunder Krakens 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+February 2nd, 2016 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+R1 
+\end{DoxyVersion}
+
+
+\subsection{Macro Definition Documentation}
+\index{r1.\+c@{r1.\+c}!C\+O\+M\+P\+L\+E\+T\+I\+ON@{C\+O\+M\+P\+L\+E\+T\+I\+ON}}
+\index{C\+O\+M\+P\+L\+E\+T\+I\+ON@{C\+O\+M\+P\+L\+E\+T\+I\+ON}!r1.\+c@{r1.\+c}}
+\subsubsection[{\texorpdfstring{C\+O\+M\+P\+L\+E\+T\+I\+ON}{COMPLETION}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+O\+M\+P\+L\+E\+T\+I\+ON~\char`\"{}02/05/2016\char`\"{}}\hypertarget{r1_8c_afc29c35952a1ce914016dbfa4b91c2aa}{}\label{r1_8c_afc29c35952a1ce914016dbfa4b91c2aa}
+\index{r1.\+c@{r1.\+c}!M\+A\+X\+\_\+\+A\+R\+GC@{M\+A\+X\+\_\+\+A\+R\+GC}}
+\index{M\+A\+X\+\_\+\+A\+R\+GC@{M\+A\+X\+\_\+\+A\+R\+GC}!r1.\+c@{r1.\+c}}
+\subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+A\+R\+GC}{MAX_ARGC}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+A\+R\+GC~50}\hypertarget{r1_8c_ae1da50c0d24fa0390a6c287d6cb4befe}{}\label{r1_8c_ae1da50c0d24fa0390a6c287d6cb4befe}
+\index{r1.\+c@{r1.\+c}!M\+O\+D\+\_\+\+V\+E\+R\+S\+I\+ON@{M\+O\+D\+\_\+\+V\+E\+R\+S\+I\+ON}}
+\index{M\+O\+D\+\_\+\+V\+E\+R\+S\+I\+ON@{M\+O\+D\+\_\+\+V\+E\+R\+S\+I\+ON}!r1.\+c@{r1.\+c}}
+\subsubsection[{\texorpdfstring{M\+O\+D\+\_\+\+V\+E\+R\+S\+I\+ON}{MOD_VERSION}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+O\+D\+\_\+\+V\+E\+R\+S\+I\+ON~\char`\"{}R1\char`\"{}}\hypertarget{r1_8c_a88a929d879ebd5f0d64773050f62aef5}{}\label{r1_8c_a88a929d879ebd5f0d64773050f62aef5}
+\index{r1.\+c@{r1.\+c}!U\+S\+E\+R\+\_\+\+I\+N\+P\+U\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE@{U\+S\+E\+R\+\_\+\+I\+N\+P\+U\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}}
+\index{U\+S\+E\+R\+\_\+\+I\+N\+P\+U\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE@{U\+S\+E\+R\+\_\+\+I\+N\+P\+U\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}!r1.\+c@{r1.\+c}}
+\subsubsection[{\texorpdfstring{U\+S\+E\+R\+\_\+\+I\+N\+P\+U\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}{USER_INPUT_BUFFER_SIZE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+S\+E\+R\+\_\+\+I\+N\+P\+U\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE~1000}\hypertarget{r1_8c_abcc7a443a9849435cd308e774dd0c8de}{}\label{r1_8c_abcc7a443a9849435cd308e774dd0c8de}
+
+
+\subsection{Enumeration Type Documentation}
+\index{r1.\+c@{r1.\+c}!Command\+Paser\+Stat@{Command\+Paser\+Stat}}
+\index{Command\+Paser\+Stat@{Command\+Paser\+Stat}!r1.\+c@{r1.\+c}}
+\subsubsection[{\texorpdfstring{Command\+Paser\+Stat}{CommandPaserStat}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Command\+Paser\+Stat}}\hypertarget{r1_8c_abb950b1df1e3f5562228a4eae8ebb925}{}\label{r1_8c_abb950b1df1e3f5562228a4eae8ebb925}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Not\+Writing@{Not\+Writing}!r1.\+c@{r1.\+c}}\index{r1.\+c@{r1.\+c}!Not\+Writing@{Not\+Writing}}\item[{\em 
+Not\+Writing\hypertarget{r1_8c_abb950b1df1e3f5562228a4eae8ebb925a07b3f7120926ad41c23ea69befea8299}{}\label{r1_8c_abb950b1df1e3f5562228a4eae8ebb925a07b3f7120926ad41c23ea69befea8299}
+}]\index{Normal\+Writing@{Normal\+Writing}!r1.\+c@{r1.\+c}}\index{r1.\+c@{r1.\+c}!Normal\+Writing@{Normal\+Writing}}\item[{\em 
+Normal\+Writing\hypertarget{r1_8c_abb950b1df1e3f5562228a4eae8ebb925a97b0656de7d83adb4ba389d6f5cffff2}{}\label{r1_8c_abb950b1df1e3f5562228a4eae8ebb925a97b0656de7d83adb4ba389d6f5cffff2}
+}]\index{Double\+Quote\+Writing@{Double\+Quote\+Writing}!r1.\+c@{r1.\+c}}\index{r1.\+c@{r1.\+c}!Double\+Quote\+Writing@{Double\+Quote\+Writing}}\item[{\em 
+Double\+Quote\+Writing\hypertarget{r1_8c_abb950b1df1e3f5562228a4eae8ebb925aa3bb4a92e3929c23ee47d33a2f27fd1e}{}\label{r1_8c_abb950b1df1e3f5562228a4eae8ebb925aa3bb4a92e3929c23ee47d33a2f27fd1e}
+}]\index{Single\+Quote\+Writing@{Single\+Quote\+Writing}!r1.\+c@{r1.\+c}}\index{r1.\+c@{r1.\+c}!Single\+Quote\+Writing@{Single\+Quote\+Writing}}\item[{\em 
+Single\+Quote\+Writing\hypertarget{r1_8c_abb950b1df1e3f5562228a4eae8ebb925a5b5a3f350525071417ea5dd5642f2dc0}{}\label{r1_8c_abb950b1df1e3f5562228a4eae8ebb925a5b5a3f350525071417ea5dd5642f2dc0}
+}]\end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\index{r1.\+c@{r1.\+c}!command\+\_\+line\+\_\+parser@{command\+\_\+line\+\_\+parser}}
+\index{command\+\_\+line\+\_\+parser@{command\+\_\+line\+\_\+parser}!r1.\+c@{r1.\+c}}
+\subsubsection[{\texorpdfstring{command\+\_\+line\+\_\+parser(const char $\ast$\+Cmd\+Str, int $\ast$argc, char $\ast$$\ast$argv, const int Max\+Arg\+Num, const int Max\+Str\+Len)}{command_line_parser(const char *CmdStr, int *argc, char **argv, const int MaxArgNum, const int MaxStrLen)}}]{\setlength{\rightskip}{0pt plus 5cm}void command\+\_\+line\+\_\+parser (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{Cmd\+Str, }
+\item[{int $\ast$}]{argc, }
+\item[{char $\ast$$\ast$}]{argv, }
+\item[{const int}]{Max\+Arg\+Num, }
+\item[{const int}]{Max\+Str\+Len}
+\end{DoxyParamCaption}
+)}\hypertarget{r1_8c_adb6b307c73bca25d17aa7683e14fea16}{}\label{r1_8c_adb6b307c73bca25d17aa7683e14fea16}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{r1_8c_adb6b307c73bca25d17aa7683e14fea16_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=293pt]{r1_8c_adb6b307c73bca25d17aa7683e14fea16_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{r1.\+c@{r1.\+c}!commhand@{commhand}}
+\index{commhand@{commhand}!r1.\+c@{r1.\+c}}
+\subsubsection[{\texorpdfstring{commhand()}{commhand()}}]{\setlength{\rightskip}{0pt plus 5cm}int commhand (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{r1_8c_a14d85617242501c323a203ee196d3efa}{}\label{r1_8c_a14d85617242501c323a203ee196d3efa}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{r1_8c_a14d85617242501c323a203ee196d3efa_cgraph}
+\end{center}
+\end{figure}
+
+
+\index{r1.\+c@{r1.\+c}!print\+\_\+help@{print\+\_\+help}}
+\index{print\+\_\+help@{print\+\_\+help}!r1.\+c@{r1.\+c}}
+\subsubsection[{\texorpdfstring{print\+\_\+help(const int function\+\_\+index)}{print_help(const int function_index)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+\_\+help (
+\begin{DoxyParamCaption}
+\item[{const int}]{function\+\_\+index}
+\end{DoxyParamCaption}
+)}\hypertarget{r1_8c_ab5b36414d84437d45b388232a0dfa366}{}\label{r1_8c_ab5b36414d84437d45b388232a0dfa366}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=313pt]{r1_8c_ab5b36414d84437d45b388232a0dfa366_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{r1_8c_ab5b36414d84437d45b388232a0dfa366_icgraph}
+\end{center}
+\end{figure}
+
+

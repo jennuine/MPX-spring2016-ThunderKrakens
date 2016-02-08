@@ -1,0 +1,554 @@
+\hypertarget{sys__clock_8c}{}\section{modules/r1/sys\+\_\+clock.c File Reference}
+\label{sys__clock_8c}\index{modules/r1/sys\+\_\+clock.\+c@{modules/r1/sys\+\_\+clock.\+c}}
+
+
+The main file that manipulates and controls the system\textquotesingle{}s clock.  
+
+
+{\ttfamily \#include \char`\"{}sys\+\_\+clock.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}r1.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$core/io.\+h$>$}\\*
+Include dependency graph for sys\+\_\+clock.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{sys__clock_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{sys__clock_8c_a4caca5127bfc14a5d2b8109573a7e650}{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+S\+E\+C\+O\+ND}~0x00
+\item 
+\#define \hyperlink{sys__clock_8c_af180a80c181975cf0bf66868b689a72a}{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+S\+E\+C\+O\+N\+D\+\_\+\+A\+L\+A\+RM}~0x01
+\item 
+\#define \hyperlink{sys__clock_8c_a5f3ffb0e8042a3e0822291a9717a2b64}{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+I\+N\+U\+TE}~0x02
+\item 
+\#define \hyperlink{sys__clock_8c_ae3a9a93fc3485959b1aa57794ca17081}{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+I\+N\+U\+T\+E\+\_\+\+A\+L\+A\+RM}~0x03
+\item 
+\#define \hyperlink{sys__clock_8c_a14c92818941d0fc79172bf345c7d2da1}{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+H\+O\+UR}~0x04
+\item 
+\#define \hyperlink{sys__clock_8c_a698d910742dcdfcd400f416f682ffd0d}{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+H\+O\+U\+R\+\_\+\+A\+L\+A\+RM}~0x05
+\item 
+\#define \hyperlink{sys__clock_8c_ab605c9e34fb5f268a109de861f81fb64}{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+D\+A\+Y\+\_\+\+W\+E\+EK}~0x06
+\item 
+\#define \hyperlink{sys__clock_8c_a0bd4cec7882fb8084e54d5d137fb0b76}{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+D\+A\+Y\+\_\+\+M\+O\+N\+TH}~0x07
+\item 
+\#define \hyperlink{sys__clock_8c_af5ee5f7c5dbfcdf6df92fd558da7fc72}{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+O\+N\+TH}~0x08
+\item 
+\#define \hyperlink{sys__clock_8c_a2f6fe8a8966f8fdabe2ddcf700786ce9}{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+Y\+E\+AR}~0x09
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{Indent}{\bf set\+\_\+time\+\_\+main.}\par
+{\em Sets the time for the system.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of tokens found. \\
+\hline
+{\em argv} & The array of tokens. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{sys__clock_8c_a2afc871aeddaa550badc5e0c6bb65da5}{set\+\_\+time\+\_\+main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf get\+\_\+time\+\_\+main.}\par
+{\em Retrieves system\textquotesingle{}s current time.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of tokens found. \\
+\hline
+{\em argv} & The array of tokens. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{sys__clock_8c_a323e417952cced55a3cf9acfe8691635}{get\+\_\+time\+\_\+main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf is\+\_\+digit}\par
+{\em determines if a character represents a digit.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ch} & The character\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if it is digit, otherwise returns 0. 
+\end{DoxyReturn}
+}\end{Indent}
+\begin{Indent}{\bf set\+\_\+time\+\_\+str.}\par
+{\em Sets the time for the system by string.
+
+
+\begin{DoxyParams}{Parameters}
+{\em time\+Str} & The string type of current Time. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if there is no error, otherwise return a error code. 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+\hyperlink{errno_8h_aafbeb34410283829794b35fedafeb369}{error\+\_\+t} \hyperlink{sys__clock_8c_a2fa1ed5071047b72b357329da498b7aa}{set\+\_\+time\+\_\+str} (const char $\ast$time\+Str)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf get\+\_\+time.}\par
+{\em Retrieves system\textquotesingle{}s current time and date.
+
+
+\begin{DoxyParams}{Parameters}
+{\em date\+Time\+Values} & The value of current time and date \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+V\+O\+ID 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{sys__clock_8c_ac5f4cb4c73245c0bf8593116fa5580e9}{get\+\_\+time} (date\+\_\+time $\ast$date\+Time\+Values)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf set\+\_\+time.}\par
+{\em Sets the time for the system by date\+\_\+time struct.
+
+
+\begin{DoxyParams}{Parameters}
+{\em date\+Time\+Values} & The struct that holds the time values. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if there is no error, otherwise return a error code. 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+\hyperlink{errno_8h_aafbeb34410283829794b35fedafeb369}{error\+\_\+t} \hyperlink{sys__clock_8c_a45d698fc822d2a31f93ee49057892800}{set\+\_\+time} (const date\+\_\+time $\ast$date\+Time\+Values)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf get\+\_\+date.}\par
+{\em Retrieves system\textquotesingle{}s current date.
+
+
+\begin{DoxyParams}{Parameters}
+{\em date\+Time\+Values} & The struct that holds the value of current date \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+V\+O\+ID 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{sys__clock_8c_acba98d47b98d09cf32f44e9383cad7ec}{get\+\_\+date} (date\+\_\+time $\ast$date\+Time\+Values)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf is\+\_\+date\+\_\+value\+\_\+valid.}\par
+{\em Check if the date specified is valid, which means year should between 1970 $\sim$ 1969, month should between 1 $\sim$ 12, while the range of the day is based on the month and year.
+
+
+\begin{DoxyParams}{Parameters}
+{\em year} & The value of the year \\
+\hline
+{\em mon} & The value of the month \\
+\hline
+{\em day} & The value of the day of month \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+V\+O\+ID 
+\end{DoxyReturn}
+}\end{Indent}
+\begin{Indent}{\bf set\+\_\+date.}\par
+{\em Sets the date of the system.
+
+
+\begin{DoxyParams}{Parameters}
+{\em date\+Time\+Values} & The struct that holds the value of date \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if there is no error, otherwise return a error code. 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+\hyperlink{errno_8h_aafbeb34410283829794b35fedafeb369}{error\+\_\+t} \hyperlink{sys__clock_8c_a5e0c140320ec0309fab102e2ad34d279}{set\+\_\+date} (const date\+\_\+time $\ast$date\+Time\+Values)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf get\+\_\+date\+\_\+main.}\par
+{\em Retrieves system\textquotesingle{}s current date.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of tokens. \\
+\hline
+{\em argv} & The array of tokens. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{sys__clock_8c_a1ef51abc1a538e8582ccfa61e356e8a9}{get\+\_\+date\+\_\+main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf set\+\_\+date\+\_\+str.}\par
+{\em Sets the date for the system by string.
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string type of current date. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if there is no error, otherwise return a error code. 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{sys__clock_8c_ab80d04ed8d251aaea6a09fd01e68eb27}{set\+\_\+date\+\_\+str} (const char $\ast$str)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf set\+\_\+date\+\_\+main.}\par
+{\em Sets system\textquotesingle{}s date.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of tokens. \\
+\hline
+{\em argv} & The array of tokens. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{sys__clock_8c_a626404928f9803307b300e6c60df3afb}{set\+\_\+date\+\_\+main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+The main file that manipulates and controls the system\textquotesingle{}s clock. 
+
+\begin{DoxyAuthor}{Author}
+Thunder Krakens 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+February 2nd, 2016 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+R1 
+\end{DoxyVersion}
+
+
+\subsection{Macro Definition Documentation}
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+D\+A\+Y\+\_\+\+M\+O\+N\+TH@{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+D\+A\+Y\+\_\+\+M\+O\+N\+TH}}
+\index{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+D\+A\+Y\+\_\+\+M\+O\+N\+TH@{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+D\+A\+Y\+\_\+\+M\+O\+N\+TH}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+D\+A\+Y\+\_\+\+M\+O\+N\+TH}{RTC_INDEX_DAY_MONTH}}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+D\+A\+Y\+\_\+\+M\+O\+N\+TH~0x07}\hypertarget{sys__clock_8c_a0bd4cec7882fb8084e54d5d137fb0b76}{}\label{sys__clock_8c_a0bd4cec7882fb8084e54d5d137fb0b76}
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+D\+A\+Y\+\_\+\+W\+E\+EK@{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+D\+A\+Y\+\_\+\+W\+E\+EK}}
+\index{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+D\+A\+Y\+\_\+\+W\+E\+EK@{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+D\+A\+Y\+\_\+\+W\+E\+EK}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+D\+A\+Y\+\_\+\+W\+E\+EK}{RTC_INDEX_DAY_WEEK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+D\+A\+Y\+\_\+\+W\+E\+EK~0x06}\hypertarget{sys__clock_8c_ab605c9e34fb5f268a109de861f81fb64}{}\label{sys__clock_8c_ab605c9e34fb5f268a109de861f81fb64}
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+H\+O\+UR@{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+H\+O\+UR}}
+\index{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+H\+O\+UR@{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+H\+O\+UR}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+H\+O\+UR}{RTC_INDEX_HOUR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+H\+O\+UR~0x04}\hypertarget{sys__clock_8c_a14c92818941d0fc79172bf345c7d2da1}{}\label{sys__clock_8c_a14c92818941d0fc79172bf345c7d2da1}
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+H\+O\+U\+R\+\_\+\+A\+L\+A\+RM@{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+H\+O\+U\+R\+\_\+\+A\+L\+A\+RM}}
+\index{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+H\+O\+U\+R\+\_\+\+A\+L\+A\+RM@{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+H\+O\+U\+R\+\_\+\+A\+L\+A\+RM}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+H\+O\+U\+R\+\_\+\+A\+L\+A\+RM}{RTC_INDEX_HOUR_ALARM}}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+H\+O\+U\+R\+\_\+\+A\+L\+A\+RM~0x05}\hypertarget{sys__clock_8c_a698d910742dcdfcd400f416f682ffd0d}{}\label{sys__clock_8c_a698d910742dcdfcd400f416f682ffd0d}
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+I\+N\+U\+TE@{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+I\+N\+U\+TE}}
+\index{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+I\+N\+U\+TE@{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+I\+N\+U\+TE}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+I\+N\+U\+TE}{RTC_INDEX_MINUTE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+I\+N\+U\+TE~0x02}\hypertarget{sys__clock_8c_a5f3ffb0e8042a3e0822291a9717a2b64}{}\label{sys__clock_8c_a5f3ffb0e8042a3e0822291a9717a2b64}
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+I\+N\+U\+T\+E\+\_\+\+A\+L\+A\+RM@{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+I\+N\+U\+T\+E\+\_\+\+A\+L\+A\+RM}}
+\index{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+I\+N\+U\+T\+E\+\_\+\+A\+L\+A\+RM@{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+I\+N\+U\+T\+E\+\_\+\+A\+L\+A\+RM}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+I\+N\+U\+T\+E\+\_\+\+A\+L\+A\+RM}{RTC_INDEX_MINUTE_ALARM}}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+I\+N\+U\+T\+E\+\_\+\+A\+L\+A\+RM~0x03}\hypertarget{sys__clock_8c_ae3a9a93fc3485959b1aa57794ca17081}{}\label{sys__clock_8c_ae3a9a93fc3485959b1aa57794ca17081}
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+O\+N\+TH@{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+O\+N\+TH}}
+\index{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+O\+N\+TH@{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+O\+N\+TH}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+O\+N\+TH}{RTC_INDEX_MONTH}}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+O\+N\+TH~0x08}\hypertarget{sys__clock_8c_af5ee5f7c5dbfcdf6df92fd558da7fc72}{}\label{sys__clock_8c_af5ee5f7c5dbfcdf6df92fd558da7fc72}
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+S\+E\+C\+O\+ND@{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+S\+E\+C\+O\+ND}}
+\index{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+S\+E\+C\+O\+ND@{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+S\+E\+C\+O\+ND}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+S\+E\+C\+O\+ND}{RTC_INDEX_SECOND}}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+S\+E\+C\+O\+ND~0x00}\hypertarget{sys__clock_8c_a4caca5127bfc14a5d2b8109573a7e650}{}\label{sys__clock_8c_a4caca5127bfc14a5d2b8109573a7e650}
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+S\+E\+C\+O\+N\+D\+\_\+\+A\+L\+A\+RM@{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+S\+E\+C\+O\+N\+D\+\_\+\+A\+L\+A\+RM}}
+\index{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+S\+E\+C\+O\+N\+D\+\_\+\+A\+L\+A\+RM@{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+S\+E\+C\+O\+N\+D\+\_\+\+A\+L\+A\+RM}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+S\+E\+C\+O\+N\+D\+\_\+\+A\+L\+A\+RM}{RTC_INDEX_SECOND_ALARM}}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+S\+E\+C\+O\+N\+D\+\_\+\+A\+L\+A\+RM~0x01}\hypertarget{sys__clock_8c_af180a80c181975cf0bf66868b689a72a}{}\label{sys__clock_8c_af180a80c181975cf0bf66868b689a72a}
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+Y\+E\+AR@{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+Y\+E\+AR}}
+\index{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+Y\+E\+AR@{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+Y\+E\+AR}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+Y\+E\+AR}{RTC_INDEX_YEAR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+Y\+E\+AR~0x09}\hypertarget{sys__clock_8c_a2f6fe8a8966f8fdabe2ddcf700786ce9}{}\label{sys__clock_8c_a2f6fe8a8966f8fdabe2ddcf700786ce9}
+
+
+\subsection{Function Documentation}
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!get\+\_\+date@{get\+\_\+date}}
+\index{get\+\_\+date@{get\+\_\+date}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{get\+\_\+date(date\+\_\+time $\ast$date\+Time\+Values)}{get_date(date_time *dateTimeValues)}}]{\setlength{\rightskip}{0pt plus 5cm}void get\+\_\+date (
+\begin{DoxyParamCaption}
+\item[{date\+\_\+time $\ast$}]{date\+Time\+Values}
+\end{DoxyParamCaption}
+)}\hypertarget{sys__clock_8c_acba98d47b98d09cf32f44e9383cad7ec}{}\label{sys__clock_8c_acba98d47b98d09cf32f44e9383cad7ec}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sys__clock_8c_acba98d47b98d09cf32f44e9383cad7ec_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!get\+\_\+date\+\_\+main@{get\+\_\+date\+\_\+main}}
+\index{get\+\_\+date\+\_\+main@{get\+\_\+date\+\_\+main}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{get\+\_\+date\+\_\+main(int argc, char $\ast$$\ast$argv)}{get_date_main(int argc, char **argv)}}]{\setlength{\rightskip}{0pt plus 5cm}int get\+\_\+date\+\_\+main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\hypertarget{sys__clock_8c_a1ef51abc1a538e8582ccfa61e356e8a9}{}\label{sys__clock_8c_a1ef51abc1a538e8582ccfa61e356e8a9}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sys__clock_8c_a1ef51abc1a538e8582ccfa61e356e8a9_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sys__clock_8c_a1ef51abc1a538e8582ccfa61e356e8a9_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!get\+\_\+time@{get\+\_\+time}}
+\index{get\+\_\+time@{get\+\_\+time}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{get\+\_\+time(date\+\_\+time $\ast$date\+Time\+Values)}{get_time(date_time *dateTimeValues)}}]{\setlength{\rightskip}{0pt plus 5cm}void get\+\_\+time (
+\begin{DoxyParamCaption}
+\item[{date\+\_\+time $\ast$}]{date\+Time\+Values}
+\end{DoxyParamCaption}
+)}\hypertarget{sys__clock_8c_ac5f4cb4c73245c0bf8593116fa5580e9}{}\label{sys__clock_8c_ac5f4cb4c73245c0bf8593116fa5580e9}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sys__clock_8c_ac5f4cb4c73245c0bf8593116fa5580e9_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!get\+\_\+time\+\_\+main@{get\+\_\+time\+\_\+main}}
+\index{get\+\_\+time\+\_\+main@{get\+\_\+time\+\_\+main}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{get\+\_\+time\+\_\+main(int argc, char $\ast$$\ast$argv)}{get_time_main(int argc, char **argv)}}]{\setlength{\rightskip}{0pt plus 5cm}int get\+\_\+time\+\_\+main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\hypertarget{sys__clock_8c_a323e417952cced55a3cf9acfe8691635}{}\label{sys__clock_8c_a323e417952cced55a3cf9acfe8691635}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sys__clock_8c_a323e417952cced55a3cf9acfe8691635_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sys__clock_8c_a323e417952cced55a3cf9acfe8691635_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!set\+\_\+date@{set\+\_\+date}}
+\index{set\+\_\+date@{set\+\_\+date}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{set\+\_\+date(const date\+\_\+time $\ast$date\+Time\+Values)}{set_date(const date_time *dateTimeValues)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf error\+\_\+t} set\+\_\+date (
+\begin{DoxyParamCaption}
+\item[{const date\+\_\+time $\ast$}]{date\+Time\+Values}
+\end{DoxyParamCaption}
+)}\hypertarget{sys__clock_8c_a5e0c140320ec0309fab102e2ad34d279}{}\label{sys__clock_8c_a5e0c140320ec0309fab102e2ad34d279}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sys__clock_8c_a5e0c140320ec0309fab102e2ad34d279_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!set\+\_\+date\+\_\+main@{set\+\_\+date\+\_\+main}}
+\index{set\+\_\+date\+\_\+main@{set\+\_\+date\+\_\+main}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{set\+\_\+date\+\_\+main(int argc, char $\ast$$\ast$argv)}{set_date_main(int argc, char **argv)}}]{\setlength{\rightskip}{0pt plus 5cm}int set\+\_\+date\+\_\+main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\hypertarget{sys__clock_8c_a626404928f9803307b300e6c60df3afb}{}\label{sys__clock_8c_a626404928f9803307b300e6c60df3afb}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sys__clock_8c_a626404928f9803307b300e6c60df3afb_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sys__clock_8c_a626404928f9803307b300e6c60df3afb_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!set\+\_\+date\+\_\+str@{set\+\_\+date\+\_\+str}}
+\index{set\+\_\+date\+\_\+str@{set\+\_\+date\+\_\+str}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{set\+\_\+date\+\_\+str(const char $\ast$str)}{set_date_str(const char *str)}}]{\setlength{\rightskip}{0pt plus 5cm}int set\+\_\+date\+\_\+str (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}\hypertarget{sys__clock_8c_ab80d04ed8d251aaea6a09fd01e68eb27}{}\label{sys__clock_8c_ab80d04ed8d251aaea6a09fd01e68eb27}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{sys__clock_8c_ab80d04ed8d251aaea6a09fd01e68eb27_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sys__clock_8c_ab80d04ed8d251aaea6a09fd01e68eb27_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!set\+\_\+time@{set\+\_\+time}}
+\index{set\+\_\+time@{set\+\_\+time}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{set\+\_\+time(const date\+\_\+time $\ast$date\+Time\+Values)}{set_time(const date_time *dateTimeValues)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf error\+\_\+t} set\+\_\+time (
+\begin{DoxyParamCaption}
+\item[{const date\+\_\+time $\ast$}]{date\+Time\+Values}
+\end{DoxyParamCaption}
+)}\hypertarget{sys__clock_8c_a45d698fc822d2a31f93ee49057892800}{}\label{sys__clock_8c_a45d698fc822d2a31f93ee49057892800}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sys__clock_8c_a45d698fc822d2a31f93ee49057892800_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!set\+\_\+time\+\_\+main@{set\+\_\+time\+\_\+main}}
+\index{set\+\_\+time\+\_\+main@{set\+\_\+time\+\_\+main}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{set\+\_\+time\+\_\+main(int argc, char $\ast$$\ast$argv)}{set_time_main(int argc, char **argv)}}]{\setlength{\rightskip}{0pt plus 5cm}int set\+\_\+time\+\_\+main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\hypertarget{sys__clock_8c_a2afc871aeddaa550badc5e0c6bb65da5}{}\label{sys__clock_8c_a2afc871aeddaa550badc5e0c6bb65da5}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sys__clock_8c_a2afc871aeddaa550badc5e0c6bb65da5_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sys__clock_8c_a2afc871aeddaa550badc5e0c6bb65da5_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}!set\+\_\+time\+\_\+str@{set\+\_\+time\+\_\+str}}
+\index{set\+\_\+time\+\_\+str@{set\+\_\+time\+\_\+str}!sys\+\_\+clock.\+c@{sys\+\_\+clock.\+c}}
+\subsubsection[{\texorpdfstring{set\+\_\+time\+\_\+str(const char $\ast$time\+Str)}{set_time_str(const char *timeStr)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf error\+\_\+t} set\+\_\+time\+\_\+str (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{time\+Str}
+\end{DoxyParamCaption}
+)}\hypertarget{sys__clock_8c_a2fa1ed5071047b72b357329da498b7aa}{}\label{sys__clock_8c_a2fa1ed5071047b72b357329da498b7aa}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{sys__clock_8c_a2fa1ed5071047b72b357329da498b7aa_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sys__clock_8c_a2fa1ed5071047b72b357329da498b7aa_icgraph}
+\end{center}
+\end{figure}
+
+

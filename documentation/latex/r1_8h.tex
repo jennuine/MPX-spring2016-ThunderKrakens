@@ -1,0 +1,214 @@
+\hypertarget{r1_8h}{}\section{modules/r1/r1.h File Reference}
+\label{r1_8h}\index{modules/r1/r1.\+h@{modules/r1/r1.\+h}}
+
+
+The commandhander and functions associations for Module R1.  
+
+
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=302pt]{r1_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{r1_8h_ae8a798ec5e0449028e485688e8241b5e}{H\+E\+LP}~0
+\item 
+\#define \hyperlink{r1_8h_a1c6d5de492ac61ad29aec7aa9a436bbf}{V\+E\+R\+S\+I\+ON}~1
+\item 
+\#define \hyperlink{r1_8h_ab1586d6a1539e7921374aeea8b907805}{G\+E\+T\+T\+I\+ME}~2
+\item 
+\#define \hyperlink{r1_8h_a27a942da2560b15dc5291c8f386c426a}{S\+E\+T\+T\+I\+ME}~3
+\item 
+\#define \hyperlink{r1_8h_a6ec5835e6ff9d5af0a3a1996746ee5b9}{G\+E\+T\+D\+A\+TE}~4
+\item 
+\#define \hyperlink{r1_8h_ac1f0ac55b810f16f95393b27e9780bf3}{S\+E\+T\+D\+A\+TE}~5
+\item 
+\#define \hyperlink{r1_8h_a3b61478edd7c1b25c8facd2907cf6c33}{S\+H\+U\+T\+D\+O\+WN}~6
+\item 
+\#define \hyperlink{r1_8h_a8e8928373d15397e25be8ecb76c727da}{N\+U\+M\+\_\+\+O\+F\+\_\+\+F\+U\+N\+C\+T\+I\+O\+NS}~7
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{Indent}{\bf commhand}\par
+{\em Accepts and handles commands from the user.
+
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{r1_8h_a14d85617242501c323a203ee196d3efa}{commhand} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf command\+\_\+line\+\_\+parser}\par
+{\em Splits the complete command line into tokens by space, single quote, or double quote.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Cmd\+Str} & The complete input command. \\
+\hline
+{\em argc} & The number of tokens found. \\
+\hline
+{\em argv} & The array of tokens. \\
+\hline
+{\em Max\+Arg\+Num} & The maximum number of tokens that array can hold. \\
+\hline
+{\em Max\+Str\+Len} & The maximum length of each token that string can hold.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{r1_8h_adb6b307c73bca25d17aa7683e14fea16}{command\+\_\+line\+\_\+parser} (const char $\ast$Cmd\+Str, int $\ast$argc, char $\ast$$\ast$argv, const int Max\+Arg\+Num, const int Max\+Str\+Len)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf print\+\_\+help}\par
+{\em prints the help message of a certain function that specified by the index number
+
+
+\begin{DoxyParams}{Parameters}
+{\em function\+\_\+index} & The index number of that function.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{r1_8h_ab5b36414d84437d45b388232a0dfa366}{print\+\_\+help} (const int function\+\_\+index)
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+The commandhander and functions associations for Module R1. 
+
+\begin{DoxyAuthor}{Author}
+Thunder Krakens 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+February 2nd, 2016 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+R1 
+\end{DoxyVersion}
+
+
+\subsection{Macro Definition Documentation}
+\index{r1.\+h@{r1.\+h}!G\+E\+T\+D\+A\+TE@{G\+E\+T\+D\+A\+TE}}
+\index{G\+E\+T\+D\+A\+TE@{G\+E\+T\+D\+A\+TE}!r1.\+h@{r1.\+h}}
+\subsubsection[{\texorpdfstring{G\+E\+T\+D\+A\+TE}{GETDATE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\+E\+T\+D\+A\+TE~4}\hypertarget{r1_8h_a6ec5835e6ff9d5af0a3a1996746ee5b9}{}\label{r1_8h_a6ec5835e6ff9d5af0a3a1996746ee5b9}
+\index{r1.\+h@{r1.\+h}!G\+E\+T\+T\+I\+ME@{G\+E\+T\+T\+I\+ME}}
+\index{G\+E\+T\+T\+I\+ME@{G\+E\+T\+T\+I\+ME}!r1.\+h@{r1.\+h}}
+\subsubsection[{\texorpdfstring{G\+E\+T\+T\+I\+ME}{GETTIME}}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\+E\+T\+T\+I\+ME~2}\hypertarget{r1_8h_ab1586d6a1539e7921374aeea8b907805}{}\label{r1_8h_ab1586d6a1539e7921374aeea8b907805}
+\index{r1.\+h@{r1.\+h}!H\+E\+LP@{H\+E\+LP}}
+\index{H\+E\+LP@{H\+E\+LP}!r1.\+h@{r1.\+h}}
+\subsubsection[{\texorpdfstring{H\+E\+LP}{HELP}}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\+E\+LP~0}\hypertarget{r1_8h_ae8a798ec5e0449028e485688e8241b5e}{}\label{r1_8h_ae8a798ec5e0449028e485688e8241b5e}
+\index{r1.\+h@{r1.\+h}!N\+U\+M\+\_\+\+O\+F\+\_\+\+F\+U\+N\+C\+T\+I\+O\+NS@{N\+U\+M\+\_\+\+O\+F\+\_\+\+F\+U\+N\+C\+T\+I\+O\+NS}}
+\index{N\+U\+M\+\_\+\+O\+F\+\_\+\+F\+U\+N\+C\+T\+I\+O\+NS@{N\+U\+M\+\_\+\+O\+F\+\_\+\+F\+U\+N\+C\+T\+I\+O\+NS}!r1.\+h@{r1.\+h}}
+\subsubsection[{\texorpdfstring{N\+U\+M\+\_\+\+O\+F\+\_\+\+F\+U\+N\+C\+T\+I\+O\+NS}{NUM_OF_FUNCTIONS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+U\+M\+\_\+\+O\+F\+\_\+\+F\+U\+N\+C\+T\+I\+O\+NS~7}\hypertarget{r1_8h_a8e8928373d15397e25be8ecb76c727da}{}\label{r1_8h_a8e8928373d15397e25be8ecb76c727da}
+\index{r1.\+h@{r1.\+h}!S\+E\+T\+D\+A\+TE@{S\+E\+T\+D\+A\+TE}}
+\index{S\+E\+T\+D\+A\+TE@{S\+E\+T\+D\+A\+TE}!r1.\+h@{r1.\+h}}
+\subsubsection[{\texorpdfstring{S\+E\+T\+D\+A\+TE}{SETDATE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+E\+T\+D\+A\+TE~5}\hypertarget{r1_8h_ac1f0ac55b810f16f95393b27e9780bf3}{}\label{r1_8h_ac1f0ac55b810f16f95393b27e9780bf3}
+\index{r1.\+h@{r1.\+h}!S\+E\+T\+T\+I\+ME@{S\+E\+T\+T\+I\+ME}}
+\index{S\+E\+T\+T\+I\+ME@{S\+E\+T\+T\+I\+ME}!r1.\+h@{r1.\+h}}
+\subsubsection[{\texorpdfstring{S\+E\+T\+T\+I\+ME}{SETTIME}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+E\+T\+T\+I\+ME~3}\hypertarget{r1_8h_a27a942da2560b15dc5291c8f386c426a}{}\label{r1_8h_a27a942da2560b15dc5291c8f386c426a}
+\index{r1.\+h@{r1.\+h}!S\+H\+U\+T\+D\+O\+WN@{S\+H\+U\+T\+D\+O\+WN}}
+\index{S\+H\+U\+T\+D\+O\+WN@{S\+H\+U\+T\+D\+O\+WN}!r1.\+h@{r1.\+h}}
+\subsubsection[{\texorpdfstring{S\+H\+U\+T\+D\+O\+WN}{SHUTDOWN}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+H\+U\+T\+D\+O\+WN~6}\hypertarget{r1_8h_a3b61478edd7c1b25c8facd2907cf6c33}{}\label{r1_8h_a3b61478edd7c1b25c8facd2907cf6c33}
+\index{r1.\+h@{r1.\+h}!V\+E\+R\+S\+I\+ON@{V\+E\+R\+S\+I\+ON}}
+\index{V\+E\+R\+S\+I\+ON@{V\+E\+R\+S\+I\+ON}!r1.\+h@{r1.\+h}}
+\subsubsection[{\texorpdfstring{V\+E\+R\+S\+I\+ON}{VERSION}}]{\setlength{\rightskip}{0pt plus 5cm}\#define V\+E\+R\+S\+I\+ON~1}\hypertarget{r1_8h_a1c6d5de492ac61ad29aec7aa9a436bbf}{}\label{r1_8h_a1c6d5de492ac61ad29aec7aa9a436bbf}
+
+
+\subsection{Function Documentation}
+\index{r1.\+h@{r1.\+h}!command\+\_\+line\+\_\+parser@{command\+\_\+line\+\_\+parser}}
+\index{command\+\_\+line\+\_\+parser@{command\+\_\+line\+\_\+parser}!r1.\+h@{r1.\+h}}
+\subsubsection[{\texorpdfstring{command\+\_\+line\+\_\+parser(const char $\ast$\+Cmd\+Str, int $\ast$argc, char $\ast$$\ast$argv, const int Max\+Arg\+Num, const int Max\+Str\+Len)}{command_line_parser(const char *CmdStr, int *argc, char **argv, const int MaxArgNum, const int MaxStrLen)}}]{\setlength{\rightskip}{0pt plus 5cm}void command\+\_\+line\+\_\+parser (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{Cmd\+Str, }
+\item[{int $\ast$}]{argc, }
+\item[{char $\ast$$\ast$}]{argv, }
+\item[{const int}]{Max\+Arg\+Num, }
+\item[{const int}]{Max\+Str\+Len}
+\end{DoxyParamCaption}
+)}\hypertarget{r1_8h_adb6b307c73bca25d17aa7683e14fea16}{}\label{r1_8h_adb6b307c73bca25d17aa7683e14fea16}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{r1_8h_adb6b307c73bca25d17aa7683e14fea16_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=293pt]{r1_8h_adb6b307c73bca25d17aa7683e14fea16_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{r1.\+h@{r1.\+h}!commhand@{commhand}}
+\index{commhand@{commhand}!r1.\+h@{r1.\+h}}
+\subsubsection[{\texorpdfstring{commhand()}{commhand()}}]{\setlength{\rightskip}{0pt plus 5cm}int commhand (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{r1_8h_a14d85617242501c323a203ee196d3efa}{}\label{r1_8h_a14d85617242501c323a203ee196d3efa}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{r1_8h_a14d85617242501c323a203ee196d3efa_cgraph}
+\end{center}
+\end{figure}
+
+
+\index{r1.\+h@{r1.\+h}!print\+\_\+help@{print\+\_\+help}}
+\index{print\+\_\+help@{print\+\_\+help}!r1.\+h@{r1.\+h}}
+\subsubsection[{\texorpdfstring{print\+\_\+help(const int function\+\_\+index)}{print_help(const int function_index)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+\_\+help (
+\begin{DoxyParamCaption}
+\item[{const int}]{function\+\_\+index}
+\end{DoxyParamCaption}
+)}\hypertarget{r1_8h_ab5b36414d84437d45b388232a0dfa366}{}\label{r1_8h_ab5b36414d84437d45b388232a0dfa366}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=313pt]{r1_8h_ab5b36414d84437d45b388232a0dfa366_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{r1_8h_ab5b36414d84437d45b388232a0dfa366_icgraph}
+\end{center}
+\end{figure}
+
+

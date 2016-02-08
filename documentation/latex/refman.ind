@@ -1,0 +1,338 @@
+\begin{theindex}
+
+  \item {atoi}
+    \subitem {string.\+c}, \hyperpage{24}
+    \subitem {string.\+h}, \hyperpage{16}
+
+  \indexspace
+
+  \item {C\+O\+M1}
+    \subitem {serial.\+h}, \hyperpage{10}
+  \item {C\+O\+M2}
+    \subitem {serial.\+h}, \hyperpage{10}
+  \item {C\+O\+M3}
+    \subitem {serial.\+h}, \hyperpage{10}
+  \item {C\+O\+M4}
+    \subitem {serial.\+h}, \hyperpage{11}
+  \item {C\+O\+M\+P\+L\+E\+T\+I\+ON}
+    \subitem {r1.\+c}, \hyperpage{33}
+  \item {command\+\_\+line\+\_\+parser}
+    \subitem {r1.\+c}, \hyperpage{34}
+    \subitem {r1.\+h}, \hyperpage{38}
+  \item {Command\+Paser\+Stat}
+    \subitem {r1.\+c}, \hyperpage{33}
+  \item {commhand}
+    \subitem {r1.\+c}, \hyperpage{34}
+    \subitem {r1.\+h}, \hyperpage{39}
+
+  \indexspace
+
+  \item {documentation/mainpage.\+dox}, \hyperpage{9}
+  \item {Double\+Quote\+Writing}
+    \subitem {r1.\+c}, \hyperpage{33}
+
+  \indexspace
+
+  \item {E\+\_\+\+I\+N\+V\+P\+A\+RA}
+    \subitem {errno.\+h}, \hyperpage{29}
+  \item {E\+\_\+\+I\+N\+V\+S\+T\+RF}
+    \subitem {errno.\+h}, \hyperpage{29}
+  \item {E\+\_\+\+N\+O\+E\+R\+R\+OR}
+    \subitem {errno.\+h}, \hyperpage{29}
+  \item {errno.\+h}
+    \subitem {E\+\_\+\+I\+N\+V\+P\+A\+RA}, \hyperpage{29}
+    \subitem {E\+\_\+\+I\+N\+V\+S\+T\+RF}, \hyperpage{29}
+    \subitem {E\+\_\+\+N\+O\+E\+R\+R\+OR}, \hyperpage{29}
+    \subitem {error\+\_\+t}, \hyperpage{29}
+  \item {error\+\_\+t}
+    \subitem {errno.\+h}, \hyperpage{29}
+
+  \indexspace
+
+  \item {function}
+    \subitem {function\+\_\+name}, \hyperpage{7}
+  \item {function\+\_\+name}, \hyperpage{7}
+    \subitem {function}, \hyperpage{7}
+    \subitem {help}, \hyperpage{7}
+    \subitem {name\+Str}, \hyperpage{7}
+    \subitem {usage}, \hyperpage{8}
+
+  \indexspace
+
+  \item {G\+E\+T\+D\+A\+TE}
+    \subitem {r1.\+h}, \hyperpage{38}
+  \item {G\+E\+T\+T\+I\+ME}
+    \subitem {r1.\+h}, \hyperpage{38}
+  \item {get\+\_\+date}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{45}
+    \subitem {sys\+\_\+clock.\+h}, \hyperpage{55}
+  \item {get\+\_\+date\+\_\+main}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{45}
+    \subitem {sys\+\_\+clock.\+h}, \hyperpage{56}
+  \item {get\+\_\+input\+\_\+line}
+    \subitem {serial.\+h}, \hyperpage{11}
+  \item {get\+\_\+time}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{46}
+    \subitem {sys\+\_\+clock.\+h}, \hyperpage{56}
+  \item {get\+\_\+time\+\_\+main}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{46}
+    \subitem {sys\+\_\+clock.\+h}, \hyperpage{57}
+
+  \indexspace
+
+  \item {H\+E\+LP}
+    \subitem {r1.\+h}, \hyperpage{38}
+  \item {help}
+    \subitem {function\+\_\+name}, \hyperpage{7}
+
+  \indexspace
+
+  \item {include/core/serial.\+h}, \hyperpage{9}
+  \item {include/string.\+h}, \hyperpage{12}
+  \item {init\+\_\+serial}
+    \subitem {serial.\+h}, \hyperpage{11}
+  \item {isspace}
+    \subitem {string.\+c}, \hyperpage{24}
+    \subitem {string.\+h}, \hyperpage{16}
+
+  \indexspace
+
+  \item {lib/string.\+c}, \hyperpage{20}
+
+  \indexspace
+
+  \item {M\+A\+X\+\_\+\+A\+R\+GC}
+    \subitem {r1.\+c}, \hyperpage{33}
+  \item {M\+O\+D\+\_\+\+V\+E\+R\+S\+I\+ON}
+    \subitem {r1.\+c}, \hyperpage{33}
+  \item {memset}
+    \subitem {string.\+c}, \hyperpage{25}
+    \subitem {string.\+h}, \hyperpage{17}
+  \item {modules/errno.\+h}, \hyperpage{28}
+  \item {modules/r1/r1.\+c}, \hyperpage{29}
+  \item {modules/r1/r1.\+h}, \hyperpage{36}
+  \item {modules/r1/sys\+\_\+clock.\+c}, \hyperpage{40}
+  \item {modules/r1/sys\+\_\+clock.\+h}, \hyperpage{51}
+
+  \indexspace
+
+  \item {N\+U\+M\+\_\+\+O\+F\+\_\+\+F\+U\+N\+C\+T\+I\+O\+NS}
+    \subitem {r1.\+h}, \hyperpage{38}
+  \item {name\+Str}
+    \subitem {function\+\_\+name}, \hyperpage{7}
+  \item {Normal\+Writing}
+    \subitem {r1.\+c}, \hyperpage{33}
+  \item {Not\+Writing}
+    \subitem {r1.\+c}, \hyperpage{33}
+
+  \indexspace
+
+  \item {print\+\_\+help}
+    \subitem {r1.\+c}, \hyperpage{35}
+    \subitem {r1.\+h}, \hyperpage{39}
+  \item {printf}
+    \subitem {string.\+c}, \hyperpage{25}
+    \subitem {string.\+h}, \hyperpage{17}
+
+  \indexspace
+
+  \item {r1.\+c}
+    \subitem {C\+O\+M\+P\+L\+E\+T\+I\+ON}, \hyperpage{33}
+    \subitem {command\+\_\+line\+\_\+parser}, \hyperpage{34}
+    \subitem {Command\+Paser\+Stat}, \hyperpage{33}
+    \subitem {commhand}, \hyperpage{34}
+    \subitem {Double\+Quote\+Writing}, \hyperpage{33}
+    \subitem {M\+A\+X\+\_\+\+A\+R\+GC}, \hyperpage{33}
+    \subitem {M\+O\+D\+\_\+\+V\+E\+R\+S\+I\+ON}, \hyperpage{33}
+    \subitem {Normal\+Writing}, \hyperpage{33}
+    \subitem {Not\+Writing}, \hyperpage{33}
+    \subitem {print\+\_\+help}, \hyperpage{35}
+    \subitem {Single\+Quote\+Writing}, \hyperpage{33}
+    \subitem {U\+S\+E\+R\+\_\+\+I\+N\+P\+U\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}, 
+		\hyperpage{33}
+  \item {r1.\+h}
+    \subitem {command\+\_\+line\+\_\+parser}, \hyperpage{38}
+    \subitem {commhand}, \hyperpage{39}
+    \subitem {G\+E\+T\+D\+A\+TE}, \hyperpage{38}
+    \subitem {G\+E\+T\+T\+I\+ME}, \hyperpage{38}
+    \subitem {H\+E\+LP}, \hyperpage{38}
+    \subitem {N\+U\+M\+\_\+\+O\+F\+\_\+\+F\+U\+N\+C\+T\+I\+O\+NS}, 
+		\hyperpage{38}
+    \subitem {print\+\_\+help}, \hyperpage{39}
+    \subitem {S\+E\+T\+D\+A\+TE}, \hyperpage{38}
+    \subitem {S\+E\+T\+T\+I\+ME}, \hyperpage{38}
+    \subitem {S\+H\+U\+T\+D\+O\+WN}, \hyperpage{38}
+    \subitem {V\+E\+R\+S\+I\+ON}, \hyperpage{38}
+  \item {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+D\+A\+Y\+\_\+\+M\+O\+N\+TH}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{45}
+  \item {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+D\+A\+Y\+\_\+\+W\+E\+EK}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{45}
+  \item {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+H\+O\+U\+R\+\_\+\+A\+L\+A\+RM}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{45}
+  \item {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+H\+O\+UR}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{45}
+  \item {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+I\+N\+U\+T\+E\+\_\+\+A\+L\+A\+RM}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{45}
+  \item {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+I\+N\+U\+TE}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{45}
+  \item {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+O\+N\+TH}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{45}
+  \item {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+S\+E\+C\+O\+N\+D\+\_\+\+A\+L\+A\+RM}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{45}
+  \item {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+S\+E\+C\+O\+ND}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{45}
+  \item {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+Y\+E\+AR}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{45}
+
+  \indexspace
+
+  \item {S\+E\+T\+D\+A\+TE}
+    \subitem {r1.\+h}, \hyperpage{38}
+  \item {S\+E\+T\+T\+I\+ME}
+    \subitem {r1.\+h}, \hyperpage{38}
+  \item {S\+H\+U\+T\+D\+O\+WN}
+    \subitem {r1.\+h}, \hyperpage{38}
+  \item {serial.\+h}
+    \subitem {C\+O\+M1}, \hyperpage{10}
+    \subitem {C\+O\+M2}, \hyperpage{10}
+    \subitem {C\+O\+M3}, \hyperpage{10}
+    \subitem {C\+O\+M4}, \hyperpage{11}
+    \subitem {get\+\_\+input\+\_\+line}, \hyperpage{11}
+    \subitem {init\+\_\+serial}, \hyperpage{11}
+    \subitem {serial\+\_\+print}, \hyperpage{11}
+    \subitem {serial\+\_\+println}, \hyperpage{11}
+    \subitem {set\+\_\+serial\+\_\+in}, \hyperpage{12}
+    \subitem {set\+\_\+serial\+\_\+out}, \hyperpage{12}
+    \subitem {With\+Echo}, \hyperpage{11}
+    \subitem {Without\+Echo}, \hyperpage{11}
+  \item {serial\+\_\+print}
+    \subitem {serial.\+h}, \hyperpage{11}
+  \item {serial\+\_\+println}
+    \subitem {serial.\+h}, \hyperpage{11}
+  \item {set\+\_\+date}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{47}
+    \subitem {sys\+\_\+clock.\+h}, \hyperpage{57}
+  \item {set\+\_\+date\+\_\+main}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{47}
+    \subitem {sys\+\_\+clock.\+h}, \hyperpage{58}
+  \item {set\+\_\+date\+\_\+str}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{48}
+    \subitem {sys\+\_\+clock.\+h}, \hyperpage{58}
+  \item {set\+\_\+serial\+\_\+in}
+    \subitem {serial.\+h}, \hyperpage{12}
+  \item {set\+\_\+serial\+\_\+out}
+    \subitem {serial.\+h}, \hyperpage{12}
+  \item {set\+\_\+time}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{49}
+    \subitem {sys\+\_\+clock.\+h}, \hyperpage{59}
+  \item {set\+\_\+time\+\_\+main}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{49}
+    \subitem {sys\+\_\+clock.\+h}, \hyperpage{59}
+  \item {set\+\_\+time\+\_\+str}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{50}
+    \subitem {sys\+\_\+clock.\+h}, \hyperpage{60}
+  \item {Single\+Quote\+Writing}
+    \subitem {r1.\+c}, \hyperpage{33}
+  \item {sprintf}
+    \subitem {string.\+c}, \hyperpage{25}
+    \subitem {string.\+h}, \hyperpage{17}
+  \item {strcat}
+    \subitem {string.\+c}, \hyperpage{26}
+    \subitem {string.\+h}, \hyperpage{18}
+  \item {strcmp}
+    \subitem {string.\+c}, \hyperpage{26}
+    \subitem {string.\+h}, \hyperpage{18}
+  \item {strcpy}
+    \subitem {string.\+c}, \hyperpage{27}
+    \subitem {string.\+h}, \hyperpage{19}
+  \item {string.\+c}
+    \subitem {atoi}, \hyperpage{24}
+    \subitem {isspace}, \hyperpage{24}
+    \subitem {memset}, \hyperpage{25}
+    \subitem {printf}, \hyperpage{25}
+    \subitem {sprintf}, \hyperpage{25}
+    \subitem {strcat}, \hyperpage{26}
+    \subitem {strcmp}, \hyperpage{26}
+    \subitem {strcpy}, \hyperpage{27}
+    \subitem {strlen}, \hyperpage{27}
+    \subitem {strtok}, \hyperpage{27}
+  \item {string.\+h}
+    \subitem {atoi}, \hyperpage{16}
+    \subitem {isspace}, \hyperpage{16}
+    \subitem {memset}, \hyperpage{17}
+    \subitem {printf}, \hyperpage{17}
+    \subitem {sprintf}, \hyperpage{17}
+    \subitem {strcat}, \hyperpage{18}
+    \subitem {strcmp}, \hyperpage{18}
+    \subitem {strcpy}, \hyperpage{19}
+    \subitem {strlen}, \hyperpage{19}
+    \subitem {strtok}, \hyperpage{19}
+  \item {strlen}
+    \subitem {string.\+c}, \hyperpage{27}
+    \subitem {string.\+h}, \hyperpage{19}
+  \item {strtok}
+    \subitem {string.\+c}, \hyperpage{27}
+    \subitem {string.\+h}, \hyperpage{19}
+  \item {sys\+\_\+clock.\+c}
+    \subitem {get\+\_\+date}, \hyperpage{45}
+    \subitem {get\+\_\+date\+\_\+main}, \hyperpage{45}
+    \subitem {get\+\_\+time}, \hyperpage{46}
+    \subitem {get\+\_\+time\+\_\+main}, \hyperpage{46}
+    \subitem {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+D\+A\+Y\+\_\+\+M\+O\+N\+TH}, 
+		\hyperpage{45}
+    \subitem {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+D\+A\+Y\+\_\+\+W\+E\+EK}, 
+		\hyperpage{45}
+    \subitem {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+H\+O\+U\+R\+\_\+\+A\+L\+A\+RM}, 
+		\hyperpage{45}
+    \subitem {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+H\+O\+UR}, 
+		\hyperpage{45}
+    \subitem {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+I\+N\+U\+T\+E\+\_\+\+A\+L\+A\+RM}, 
+		\hyperpage{45}
+    \subitem {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+I\+N\+U\+TE}, 
+		\hyperpage{45}
+    \subitem {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+O\+N\+TH}, 
+		\hyperpage{45}
+    \subitem {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+S\+E\+C\+O\+N\+D\+\_\+\+A\+L\+A\+RM}, 
+		\hyperpage{45}
+    \subitem {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+S\+E\+C\+O\+ND}, 
+		\hyperpage{45}
+    \subitem {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+Y\+E\+AR}, 
+		\hyperpage{45}
+    \subitem {set\+\_\+date}, \hyperpage{47}
+    \subitem {set\+\_\+date\+\_\+main}, \hyperpage{47}
+    \subitem {set\+\_\+date\+\_\+str}, \hyperpage{48}
+    \subitem {set\+\_\+time}, \hyperpage{49}
+    \subitem {set\+\_\+time\+\_\+main}, \hyperpage{49}
+    \subitem {set\+\_\+time\+\_\+str}, \hyperpage{50}
+  \item {sys\+\_\+clock.\+h}
+    \subitem {get\+\_\+date}, \hyperpage{55}
+    \subitem {get\+\_\+date\+\_\+main}, \hyperpage{56}
+    \subitem {get\+\_\+time}, \hyperpage{56}
+    \subitem {get\+\_\+time\+\_\+main}, \hyperpage{57}
+    \subitem {set\+\_\+date}, \hyperpage{57}
+    \subitem {set\+\_\+date\+\_\+main}, \hyperpage{58}
+    \subitem {set\+\_\+date\+\_\+str}, \hyperpage{58}
+    \subitem {set\+\_\+time}, \hyperpage{59}
+    \subitem {set\+\_\+time\+\_\+main}, \hyperpage{59}
+    \subitem {set\+\_\+time\+\_\+str}, \hyperpage{60}
+
+  \indexspace
+
+  \item {U\+S\+E\+R\+\_\+\+I\+N\+P\+U\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}
+    \subitem {r1.\+c}, \hyperpage{33}
+  \item {usage}
+    \subitem {function\+\_\+name}, \hyperpage{8}
+
+  \indexspace
+
+  \item {V\+E\+R\+S\+I\+ON}
+    \subitem {r1.\+h}, \hyperpage{38}
+
+  \indexspace
+
+  \item {With\+Echo}
+    \subitem {serial.\+h}, \hyperpage{11}
+  \item {Without\+Echo}
+    \subitem {serial.\+h}, \hyperpage{11}
+
+\end{theindex}
