@@ -26,53 +26,57 @@ enum process_running_stat
   PStatBlocked
 };
 
-typedef struct
+struct pcb_struct;
+struct pcb_queues;
+struct pcb_node;
+
+struct pcb_struct
 {
   char pName[10];
   unsigned char pClass;
   unsigned char pPriority;
   enum process_running_stat pRunningStat;
   unsigned char pIsSuspended;
-  unsigned char* pStackTop;
-  unsigned char* pStackBase;
-  void* pOtherPcb;
-} pcb_struct;
+  unsigned char * pStackTop;
+  unsigned char * pStackBase;
+  struct pcb_queue * pOtherPcb;
+};
 
-typedef struct
+struct pcb_node
 {
   void* priv;
-  pcb_struct ActualPcb;
+  struct pcb_struct ActualPcb;
   void* next;
-} pcb_node;
+};
 
-typedef struct
+struct pcb_queues
 {
   int count;
-  pcb_node * head;
-  pcb_node * tail;
-} pcb_queues;
+  struct pcb_queue_node * head;
+  struct pcb_queue_node * tail;
+};
 
 void pcb_init();
 
-pcb_struct * allocate_pcb();
+struct pcb_struct * allocate_pcb();
 
-error_t free_pcb(pcb_struct * PcbPtr);
+error_t free_pcb(struct pcb_struct * PcbPtr);
 
-pcb_struct * setup_pcb(const char * pName, const unsigned char pClass, const unsigned char pPriority);
+struct pcb_struct * setup_pcb(const char * pName, const unsigned char pClass, const unsigned char pPriority);
 
-pcb_struct * find_pcb(const char * pName);
+struct pcb_struct * find_pcb(const char * pName);
 
-error_t insert_pcb(pcb_struct * PcbPtr);
+error_t insert_pcb(struct pcb_struct * PcbPtr);
 
-error_t remove_pcb(pcb_struct * PcbPtr);
+error_t remove_pcb(struct pcb_struct * PcbPtr);
 
-error_t suspend_pcb(pcb_struct * PcbPtr);
+error_t suspend_pcb(struct pcb_struct * PcbPtr);
 
-error_t resume_pcb(pcb_struct * PcbPtr);
+error_t resume_pcb(struct pcb_struct * PcbPtr);
 
-error_t set_pcb_priority(pcb_struct * PcbPtr, const unsigned char pPriority);
+error_t set_pcb_priority(struct pcb_struct * PcbPtr, const unsigned char pPriority);
 
-error_t show_pcb(pcb_struct * PcbPtr);
+error_t show_pcb(struct pcb_struct * PcbPtr);
 
 void show_all_processes();
 
@@ -80,8 +84,8 @@ void show_ready_processes();
 
 void show_blocked_processes();
 
-error_t block_pcb(pcb_struct * PcbPtr);
+error_t block_pcb(struct pcb_struct * PcbPtr);
 
-error_t unblock_pcb(pcb_struct * PcbPtr);
+error_t unblock_pcb(struct pcb_struct * PcbPtr);
 
 #endif
