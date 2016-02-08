@@ -72,9 +72,11 @@ static int exe_function(int argc, char ** argv)
 static int version(int argc, char** argv)
 {
     if (argc >= 2 && !strcmp(argv[2], "--help"))
-   	 printf("%s", functions[VERSION].help);
-    else
-   	 printf("\nMPX-THUNDER-KRAKENS\nCOMPLETION\t%s\nVERSION \t%s\n\n", COMPLETION, MOD_VERSION);
+   		printf("%s", functions[VERSION].help);
+    else if(argc >= 2 && argc <= 2)
+   		printf("\nMPX-THUNDER-KRAKENS\nCOMPLETION\t%s\nVERSION \t%s\n\n", COMPLETION, MOD_VERSION);
+		else
+			printf("ERROR: Incorrect arguments had been given! Please refer to \"-version --help\"\n");
 
     return 0;
 }
@@ -99,6 +101,7 @@ static int shutdown(int argc, char** argv)
     else if (argc >= 3)
     {
    	 printf("ERROR: Invalid arguments. Please refer to \"help\"\n");
+		 return E_INVUSRI;
     }
 
     char ans[] = { 0, 0 };

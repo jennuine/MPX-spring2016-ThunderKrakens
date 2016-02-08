@@ -33,30 +33,47 @@
  */
 int set_time_main(int argc, char** argv)
 {
-  if(argc >= 3 && strcmp(argv[2], "--help") != 0)
-  {
-  	error_t errno = set_time_str(argv[2]);
-  	date_time dateTimeValues;
-  	switch (errno)
-    {
-    	case E_NOERROR:
-   		 get_time(&dateTimeValues);
-      	printf("\n\tSystem time had been successfully set!\n");
-      	printf("\tCurrent time is: %d:%d:%d\n\n", dateTimeValues.hour, dateTimeValues.min, dateTimeValues.sec);
-    	break;
+  if(argc >= 3)
+  {//If num of arguments is more than 3.
+    if(strcmp(argv[2], "--help") == 0)
+    {//If it is "--help"
+      if(argc <= 3)
+      {//If there is nothing after "--help"
+        print_help(SETTIME);
+      }
+      else
+      {
+        printf("ERROR: Too many arguments you had gave! Please refer to \"settime --help\"\n");
+      }
+    }
+    else
+    {//If it is not "--help", which means set time.
+      if(argc <= 3)
+      {//If there is nothing after the time value.
+        error_t errno = set_time_str(argv[2]);
+      	date_time dateTimeValues;
+      	switch (errno)
+        {
+        	case E_NOERROR:
+       		 get_time(&dateTimeValues);
+          	printf("\n\tSystem time had been successfully set!\n");
+          	printf("\tCurrent time is: %d:%d:%d\n\n", dateTimeValues.hour, dateTimeValues.min, dateTimeValues.sec);
+        	break;
 
-    	case E_INVPARA:
-      	printf("ERROR: The time value you gave is invalid!\n");
-    	break;
+        	case E_INVPARA:
+          	printf("ERROR: The time value you gave is invalid!\n");
+        	break;
 
-    	case E_INVSTRF:
-      	printf("ERROR: The format you used is incorrect! Please refer to \"settime --help\"\n");
-    	break;
-  	}
-  }
-  else if(argc >= 3 && strcmp(argv[2], "--help") == 0)
-  {
-	   print_help(SETTIME);
+        	case E_INVSTRF:
+          	printf("ERROR: The format you used is incorrect! Please refer to \"settime --help\"\n");
+        	break;
+      	}
+      }
+      else
+      {
+        printf("ERROR: Too many arguments you had given! Please refer to \"settime --help\"\n");
+      }
+    }
   }
   else
   {
@@ -82,9 +99,16 @@ int get_time_main(int argc, char** argv)
   	get_time(&dateTimeValues);
   	printf("\tCurrent time is: %d:%d:%d\n", dateTimeValues.hour, dateTimeValues.min, dateTimeValues.sec);
   }
-  else if(argc >= 2 && strcmp(argv[2], "--help") == 0)
+  else if(argc >= 3 && strcmp(argv[2], "--help") == 0)
   {
-	   print_help(GETTIME);
+    if(argc <= 3)
+    {
+      print_help(GETTIME);
+    }
+    else
+    {
+      printf("ERROR: Too many arguments you had given! Please refer to \"settime --help\"\n");
+    }
   }
   else
   {
@@ -123,21 +147,21 @@ error_t set_time_str(const char * timeStr){
   strcpy(tempStr, timeStr);
   char * tok = strtok(tempStr, ":");
 
-  if(bIsValid && (bIsValid = (*tok && is_digit(*tok) &&   //first char must digit
+  if(bIsValid && (bIsValid = (strlen(tok) <= 2 && *tok && is_digit(*tok) &&   //first char must digit
                         	(!*(tok + 1) || is_digit(*(tok + 1))))))  //second char either not exsit or a digit
   {
 	   dateTimeValues.hour = atoi(tok);
   }
 
   tok = strtok(NULL, ":");
-  if(bIsValid && (bIsValid = (*tok && is_digit(*tok) &&   //first char must digit
+  if(bIsValid && (bIsValid = (strlen(tok) <= 2 && *tok && is_digit(*tok) &&   //first char must digit
                         	(!*(tok + 1) || is_digit(*(tok + 1))))))  //second char either not exsit or a digit
   {
 	   dateTimeValues.min = atoi(tok);
   }
 
   tok = strtok(NULL, ":");
-  if(bIsValid && (bIsValid = (*tok && is_digit(*tok) &&   //first char must digit
+  if(bIsValid && (bIsValid = (strlen(tok) <= 2 && *tok && is_digit(*tok) &&   //first char must digit
                         	(!*(tok + 1) || is_digit(*(tok + 1))))))  //second char either not exsit or a digit
   {
 	   dateTimeValues.sec = atoi(tok);
@@ -344,9 +368,16 @@ int get_date_main(int argc, char** argv)
     get_date(&dateTimeValues);
     printf("\tCurrent date is: %d/%d/%d\n", dateTimeValues.mon, dateTimeValues.day_m, dateTimeValues.year);
   }
-  else if(argc >= 2 && strcmp(argv[2], "--help") == 0)
+  else if(argc >= 3 && strcmp(argv[2], "--help") == 0)
   {
-    print_help(GETDATE);
+    if(argc <= 3)
+    {
+      print_help(GETDATE);
+    }
+    else
+    {
+      printf("ERROR: Too many arguments you had given! Please refer to \"settime --help\"\n");
+    }
   }
   else
   {
@@ -405,30 +436,45 @@ int set_date_main(int argc, char **argv)
 {
   if(argc >= 3 && strcmp(argv[2], "--help") != 0)
   {
-    error_t errno = set_date_str(argv[2]);
-    date_time dateTimeValues;
+    if(argc <= 3)
+    {
+      error_t errno = set_date_str(argv[2]);
+      date_time dateTimeValues;
 
-    switch (errno) {
-      case E_NOERROR:
-        get_date(&dateTimeValues);
-        printf("\n\tSystem date successfully set!\n");
-        printf("\tCurrent date is: %d/%d/%d\n\n", dateTimeValues.mon, dateTimeValues.day_m, dateTimeValues.year);
-        break;
-      case E_INVPARA:
-        printf("ERROR: The date value you gave is invalid!\n");
-        break;
-      case E_INVSTRF:
-        printf("ERROR: The format you used is incorrect! Please refer to \"setdate --help\"\n");
-        break;
+      switch (errno)
+      {
+        case E_NOERROR:
+          get_date(&dateTimeValues);
+          printf("\n\tSystem date successfully set!\n");
+          printf("\tCurrent date is: %d/%d/%d\n\n", dateTimeValues.mon, dateTimeValues.day_m, dateTimeValues.year);
+          break;
+        case E_INVPARA:
+          printf("ERROR: The date value you gave is invalid!\n");
+          break;
+        case E_INVSTRF:
+          printf("ERROR: The format you used is incorrect! Please refer to \"setdate --help\"\n");
+          break;
+      }
+    }
+    else
+    {
+      printf("ERROR: Too many arguments you had given! Please refer to \"setdate --help\"\n");
     }
   }
   else if(argc >= 3 && strcmp(argv[2], "--help") == 0)
   {
-    print_help(SETDATE);
+    if(argc <= 3)
+    {
+      print_help(SETDATE);
+    }
+    else
+    {
+      printf("ERROR: Too many arguments you had given! Please refer to \"setdate --help\"\n");
+    }
   }
   else
   {
-    printf("ERROR: Please type in the arguments! Please refer to \"settime --help\"\n");
+    printf("ERROR: Please type in the correct arguments! Please refer to \"setdate --help\"\n");
   }
 
   return 0;

@@ -13,6 +13,8 @@
 #define E_INVPARA 1
 /* @brief Invalid [Input] string format */
 #define E_INVSTRF 2
+/* @brief Invalid User Input */
+#define E_INVUSRI 3
 
 /**
  * @name error_t.
