@@ -1,0 +1,288 @@
+\hypertarget{pcb_8h}{}\section{modules/r2/pcb.h File Reference}
+\label{pcb_8h}\index{modules/r2/pcb.\+h@{modules/r2/pcb.\+h}}
+
+
+The Process Control Block.  
+
+
+{\ttfamily \#include \char`\"{}../errno.\+h\char`\"{}}\\*
+Include dependency graph for pcb.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=172pt]{pcb_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=314pt]{pcb_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structpcb__struct}{pcb\+\_\+struct}
+\begin{DoxyCompactList}\small\item\em Struct that will describe P\+CB Processes. \end{DoxyCompactList}\item 
+struct \hyperlink{structpcb__queue__node}{pcb\+\_\+queue\+\_\+node}
+\begin{DoxyCompactList}\small\item\em The P\+CB queue node will represent the P\+CB within \hyperlink{structpcb__queue}{pcb\+\_\+queue} and point to previous/next P\+CB nodes. \end{DoxyCompactList}\item 
+struct \hyperlink{structpcb__queue}{pcb\+\_\+queue}
+\begin{DoxyCompactList}\small\item\em Queue structure that will store P\+C\+Bs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{pcb_8h_ac2efd04eb4eddc71f1ffe5b4a23a689c}{A\+P\+P\+\_\+\+P\+R\+O\+C\+E\+SS}~10;
+\item 
+\#define \hyperlink{pcb_8h_a21a3f031c2c5da51be05fb7b457c2f49}{S\+Y\+S\+\_\+\+P\+R\+O\+C\+E\+SS}~20;
+\item 
+\#define \hyperlink{pcb_8h_a417e28a8cf820ec6d8387986f8997e05}{S\+I\+Z\+E\+\_\+\+O\+F\+\_\+\+S\+T\+A\+CK}~1024;
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{pcb_8h_a4e1a76273cf189daed25256e3ba34aef}{process\+\_\+state} \{ \hyperlink{pcb_8h_a4e1a76273cf189daed25256e3ba34aefab514bba77fe136c3a3b6f56b818f7b0c}{running}, 
+\hyperlink{pcb_8h_a4e1a76273cf189daed25256e3ba34aefa620a31d3a677faaa9e000fb23967a473}{ready}, 
+\hyperlink{pcb_8h_a4e1a76273cf189daed25256e3ba34aefa9ee4e6c1dfe13f0d0f0cb7b29c62b2eb}{blocked}
+ \}\begin{DoxyCompactList}\small\item\em P\+CB process states/statuses. \end{DoxyCompactList}
+\item 
+enum \hyperlink{pcb_8h_ac80b09976226d1f179d0911462a93034}{process\+\_\+suspended} \{ \hyperlink{pcb_8h_ac80b09976226d1f179d0911462a93034a08f175a5505a10b9ed657defeb050e4b}{true}, 
+\hyperlink{pcb_8h_ac80b09976226d1f179d0911462a93034ae9de385ef6fe9bf3360d1038396b884c}{false}
+ \}\begin{DoxyCompactList}\small\item\em P\+CB process suspended or not suspended status. \end{DoxyCompactList}
+\item 
+enum \hyperlink{pcb_8h_aefe309d62b55b4d0be96f1a97fcbbadd}{process\+\_\+class} \{ \hyperlink{pcb_8h_aefe309d62b55b4d0be96f1a97fcbbaddac96a1ececa8c99fb680fd8fe12ab79eb}{application}, 
+\hyperlink{pcb_8h_aefe309d62b55b4d0be96f1a97fcbbadda8057a16ffe0bbd27b6361b5d8fe0b489}{system}
+ \}\begin{DoxyCompactList}\small\item\em P\+CB process class types. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{pcb_8h_a8d00fee50178510712d2ffeaeafae347}{pcb\+\_\+init} ()
+\item 
+struct \hyperlink{structpcb__struct}{pcb\+\_\+struct} $\ast$ \hyperlink{pcb_8h_a8fd9eebd60b5c6838b055b6dab7065e1}{allocate\+\_\+pcb} ()
+\item 
+\hyperlink{errno_8h_aafbeb34410283829794b35fedafeb369}{error\+\_\+t} \hyperlink{pcb_8h_a31e603695448c5bd7bccacce5988eaf2}{free\+\_\+pcb} (struct \hyperlink{structpcb__struct}{pcb\+\_\+struct} $\ast$pcb\+\_\+ptr)
+\item 
+struct \hyperlink{structpcb__struct}{pcb\+\_\+struct} $\ast$ \hyperlink{pcb_8h_a7b44c19889185e06af19e67009a3feed}{setup\+\_\+pcb} (const char $\ast$p\+Name, const unsigned char p\+Class, const unsigned char p\+Priority)
+\item 
+struct \hyperlink{structpcb__struct}{pcb\+\_\+struct} $\ast$ \hyperlink{pcb_8h_acfbb91c24a4b3cdc22d9a27df468013d}{find\+\_\+pcb} (const char $\ast$p\+Name)
+\item 
+\hyperlink{errno_8h_aafbeb34410283829794b35fedafeb369}{error\+\_\+t} \hyperlink{pcb_8h_ae8f8cca202f2232d4396a48db14b7d35}{insert\+\_\+pcb} (struct \hyperlink{structpcb__struct}{pcb\+\_\+struct} $\ast$pcb\+\_\+ptr)
+\item 
+\hyperlink{errno_8h_aafbeb34410283829794b35fedafeb369}{error\+\_\+t} \hyperlink{pcb_8h_a52620da5c66ed459beea65538169547a}{remove\+\_\+pcb} (struct \hyperlink{structpcb__struct}{pcb\+\_\+struct} $\ast$pcb\+\_\+ptr)
+\item 
+\hyperlink{errno_8h_aafbeb34410283829794b35fedafeb369}{error\+\_\+t} \hyperlink{pcb_8h_acb4a05dff84e0ad1777c1991f95be1e0}{suspend\+\_\+pcb} (struct \hyperlink{structpcb__struct}{pcb\+\_\+struct} $\ast$pcb\+\_\+ptr)
+\item 
+\hyperlink{errno_8h_aafbeb34410283829794b35fedafeb369}{error\+\_\+t} \hyperlink{pcb_8h_a24a874ae323c9ef0583c2f179b44fe74}{resume\+\_\+pcb} (struct \hyperlink{structpcb__struct}{pcb\+\_\+struct} $\ast$pcb\+\_\+ptr)
+\item 
+\hyperlink{errno_8h_aafbeb34410283829794b35fedafeb369}{error\+\_\+t} \hyperlink{pcb_8h_a863d9b3d5113d72ebc7b64e01937fc97}{set\+\_\+pcb\+\_\+priority} (struct \hyperlink{structpcb__struct}{pcb\+\_\+struct} $\ast$pcb\+\_\+ptr, const unsigned char p\+Priority)
+\item 
+\hyperlink{errno_8h_aafbeb34410283829794b35fedafeb369}{error\+\_\+t} \hyperlink{pcb_8h_af08c093fa9ecf34738d5e295520a032a}{show\+\_\+pcb} (struct \hyperlink{structpcb__struct}{pcb\+\_\+struct} $\ast$pcb\+\_\+ptr)
+\item 
+void \hyperlink{pcb_8h_a094b4bf39d7297266e9b1336a233841e}{show\+\_\+all\+\_\+processes} ()
+\item 
+void \hyperlink{pcb_8h_a542627a44f5cbaf08ceaab05a419acee}{show\+\_\+ready\+\_\+processes} ()
+\item 
+void \hyperlink{pcb_8h_a918cbc9698ab932896ec81c482fee9f1}{show\+\_\+blocked\+\_\+processes} ()
+\item 
+\hyperlink{errno_8h_aafbeb34410283829794b35fedafeb369}{error\+\_\+t} \hyperlink{pcb_8h_aa5aad077eb0c15c0c76fc4522b11a410}{block\+\_\+pcb} (struct \hyperlink{structpcb__struct}{pcb\+\_\+struct} $\ast$pcb\+\_\+ptr)
+\item 
+\hyperlink{errno_8h_aafbeb34410283829794b35fedafeb369}{error\+\_\+t} \hyperlink{pcb_8h_a0526b69c22b1961dad32f21f9b380f4b}{unblock\+\_\+pcb} (struct \hyperlink{structpcb__struct}{pcb\+\_\+struct} $\ast$pcb\+\_\+ptr)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The Process Control Block. 
+
+\begin{DoxyAuthor}{Author}
+Thunder Krakens 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+February 7th, 2016 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+R2 
+\end{DoxyVersion}
+
+
+\subsection{Macro Definition Documentation}
+\index{pcb.\+h@{pcb.\+h}!A\+P\+P\+\_\+\+P\+R\+O\+C\+E\+SS@{A\+P\+P\+\_\+\+P\+R\+O\+C\+E\+SS}}
+\index{A\+P\+P\+\_\+\+P\+R\+O\+C\+E\+SS@{A\+P\+P\+\_\+\+P\+R\+O\+C\+E\+SS}!pcb.\+h@{pcb.\+h}}
+\subsubsection[{\texorpdfstring{A\+P\+P\+\_\+\+P\+R\+O\+C\+E\+SS}{APP_PROCESS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+P\+P\+\_\+\+P\+R\+O\+C\+E\+SS~10;}\hypertarget{pcb_8h_ac2efd04eb4eddc71f1ffe5b4a23a689c}{}\label{pcb_8h_ac2efd04eb4eddc71f1ffe5b4a23a689c}
+\index{pcb.\+h@{pcb.\+h}!S\+I\+Z\+E\+\_\+\+O\+F\+\_\+\+S\+T\+A\+CK@{S\+I\+Z\+E\+\_\+\+O\+F\+\_\+\+S\+T\+A\+CK}}
+\index{S\+I\+Z\+E\+\_\+\+O\+F\+\_\+\+S\+T\+A\+CK@{S\+I\+Z\+E\+\_\+\+O\+F\+\_\+\+S\+T\+A\+CK}!pcb.\+h@{pcb.\+h}}
+\subsubsection[{\texorpdfstring{S\+I\+Z\+E\+\_\+\+O\+F\+\_\+\+S\+T\+A\+CK}{SIZE_OF_STACK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+Z\+E\+\_\+\+O\+F\+\_\+\+S\+T\+A\+CK~1024;}\hypertarget{pcb_8h_a417e28a8cf820ec6d8387986f8997e05}{}\label{pcb_8h_a417e28a8cf820ec6d8387986f8997e05}
+\index{pcb.\+h@{pcb.\+h}!S\+Y\+S\+\_\+\+P\+R\+O\+C\+E\+SS@{S\+Y\+S\+\_\+\+P\+R\+O\+C\+E\+SS}}
+\index{S\+Y\+S\+\_\+\+P\+R\+O\+C\+E\+SS@{S\+Y\+S\+\_\+\+P\+R\+O\+C\+E\+SS}!pcb.\+h@{pcb.\+h}}
+\subsubsection[{\texorpdfstring{S\+Y\+S\+\_\+\+P\+R\+O\+C\+E\+SS}{SYS_PROCESS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+Y\+S\+\_\+\+P\+R\+O\+C\+E\+SS~20;}\hypertarget{pcb_8h_a21a3f031c2c5da51be05fb7b457c2f49}{}\label{pcb_8h_a21a3f031c2c5da51be05fb7b457c2f49}
+
+
+\subsection{Enumeration Type Documentation}
+\index{pcb.\+h@{pcb.\+h}!process\+\_\+class@{process\+\_\+class}}
+\index{process\+\_\+class@{process\+\_\+class}!pcb.\+h@{pcb.\+h}}
+\subsubsection[{\texorpdfstring{process\+\_\+class}{process_class}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf process\+\_\+class}}\hypertarget{pcb_8h_aefe309d62b55b4d0be96f1a97fcbbadd}{}\label{pcb_8h_aefe309d62b55b4d0be96f1a97fcbbadd}
+
+
+P\+CB process class types. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{application@{application}!pcb.\+h@{pcb.\+h}}\index{pcb.\+h@{pcb.\+h}!application@{application}}\item[{\em 
+application\hypertarget{pcb_8h_aefe309d62b55b4d0be96f1a97fcbbaddac96a1ececa8c99fb680fd8fe12ab79eb}{}\label{pcb_8h_aefe309d62b55b4d0be96f1a97fcbbaddac96a1ececa8c99fb680fd8fe12ab79eb}
+}]Process is an application process. \index{system@{system}!pcb.\+h@{pcb.\+h}}\index{pcb.\+h@{pcb.\+h}!system@{system}}\item[{\em 
+system\hypertarget{pcb_8h_aefe309d62b55b4d0be96f1a97fcbbadda8057a16ffe0bbd27b6361b5d8fe0b489}{}\label{pcb_8h_aefe309d62b55b4d0be96f1a97fcbbadda8057a16ffe0bbd27b6361b5d8fe0b489}
+}]Process is a system process. \end{description}
+\end{Desc}
+\index{pcb.\+h@{pcb.\+h}!process\+\_\+state@{process\+\_\+state}}
+\index{process\+\_\+state@{process\+\_\+state}!pcb.\+h@{pcb.\+h}}
+\subsubsection[{\texorpdfstring{process\+\_\+state}{process_state}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf process\+\_\+state}}\hypertarget{pcb_8h_a4e1a76273cf189daed25256e3ba34aef}{}\label{pcb_8h_a4e1a76273cf189daed25256e3ba34aef}
+
+
+P\+CB process states/statuses. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{running@{running}!pcb.\+h@{pcb.\+h}}\index{pcb.\+h@{pcb.\+h}!running@{running}}\item[{\em 
+running\hypertarget{pcb_8h_a4e1a76273cf189daed25256e3ba34aefab514bba77fe136c3a3b6f56b818f7b0c}{}\label{pcb_8h_a4e1a76273cf189daed25256e3ba34aefab514bba77fe136c3a3b6f56b818f7b0c}
+}]P\+CB in the running state. \index{ready@{ready}!pcb.\+h@{pcb.\+h}}\index{pcb.\+h@{pcb.\+h}!ready@{ready}}\item[{\em 
+ready\hypertarget{pcb_8h_a4e1a76273cf189daed25256e3ba34aefa620a31d3a677faaa9e000fb23967a473}{}\label{pcb_8h_a4e1a76273cf189daed25256e3ba34aefa620a31d3a677faaa9e000fb23967a473}
+}]P\+CB in the ready state. \index{blocked@{blocked}!pcb.\+h@{pcb.\+h}}\index{pcb.\+h@{pcb.\+h}!blocked@{blocked}}\item[{\em 
+blocked\hypertarget{pcb_8h_a4e1a76273cf189daed25256e3ba34aefa9ee4e6c1dfe13f0d0f0cb7b29c62b2eb}{}\label{pcb_8h_a4e1a76273cf189daed25256e3ba34aefa9ee4e6c1dfe13f0d0f0cb7b29c62b2eb}
+}]P\+CB in the blocked state. \end{description}
+\end{Desc}
+\index{pcb.\+h@{pcb.\+h}!process\+\_\+suspended@{process\+\_\+suspended}}
+\index{process\+\_\+suspended@{process\+\_\+suspended}!pcb.\+h@{pcb.\+h}}
+\subsubsection[{\texorpdfstring{process\+\_\+suspended}{process_suspended}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf process\+\_\+suspended}}\hypertarget{pcb_8h_ac80b09976226d1f179d0911462a93034}{}\label{pcb_8h_ac80b09976226d1f179d0911462a93034}
+
+
+P\+CB process suspended or not suspended status. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{true@{true}!pcb.\+h@{pcb.\+h}}\index{pcb.\+h@{pcb.\+h}!true@{true}}\item[{\em 
+true\hypertarget{pcb_8h_ac80b09976226d1f179d0911462a93034a08f175a5505a10b9ed657defeb050e4b}{}\label{pcb_8h_ac80b09976226d1f179d0911462a93034a08f175a5505a10b9ed657defeb050e4b}
+}]P\+CB process is suspended. \index{false@{false}!pcb.\+h@{pcb.\+h}}\index{pcb.\+h@{pcb.\+h}!false@{false}}\item[{\em 
+false\hypertarget{pcb_8h_ac80b09976226d1f179d0911462a93034ae9de385ef6fe9bf3360d1038396b884c}{}\label{pcb_8h_ac80b09976226d1f179d0911462a93034ae9de385ef6fe9bf3360d1038396b884c}
+}]P\+CB process is not suspended. \end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\index{pcb.\+h@{pcb.\+h}!allocate\+\_\+pcb@{allocate\+\_\+pcb}}
+\index{allocate\+\_\+pcb@{allocate\+\_\+pcb}!pcb.\+h@{pcb.\+h}}
+\subsubsection[{\texorpdfstring{allocate\+\_\+pcb()}{allocate_pcb()}}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf pcb\+\_\+struct}$\ast$ allocate\+\_\+pcb (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{pcb_8h_a8fd9eebd60b5c6838b055b6dab7065e1}{}\label{pcb_8h_a8fd9eebd60b5c6838b055b6dab7065e1}
+\index{pcb.\+h@{pcb.\+h}!block\+\_\+pcb@{block\+\_\+pcb}}
+\index{block\+\_\+pcb@{block\+\_\+pcb}!pcb.\+h@{pcb.\+h}}
+\subsubsection[{\texorpdfstring{block\+\_\+pcb(struct pcb\+\_\+struct $\ast$pcb\+\_\+ptr)}{block_pcb(struct pcb_struct *pcb_ptr)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf error\+\_\+t} block\+\_\+pcb (
+\begin{DoxyParamCaption}
+\item[{struct {\bf pcb\+\_\+struct} $\ast$}]{pcb\+\_\+ptr}
+\end{DoxyParamCaption}
+)}\hypertarget{pcb_8h_aa5aad077eb0c15c0c76fc4522b11a410}{}\label{pcb_8h_aa5aad077eb0c15c0c76fc4522b11a410}
+\index{pcb.\+h@{pcb.\+h}!find\+\_\+pcb@{find\+\_\+pcb}}
+\index{find\+\_\+pcb@{find\+\_\+pcb}!pcb.\+h@{pcb.\+h}}
+\subsubsection[{\texorpdfstring{find\+\_\+pcb(const char $\ast$p\+Name)}{find_pcb(const char *pName)}}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf pcb\+\_\+struct}$\ast$ find\+\_\+pcb (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{p\+Name}
+\end{DoxyParamCaption}
+)}\hypertarget{pcb_8h_acfbb91c24a4b3cdc22d9a27df468013d}{}\label{pcb_8h_acfbb91c24a4b3cdc22d9a27df468013d}
+\index{pcb.\+h@{pcb.\+h}!free\+\_\+pcb@{free\+\_\+pcb}}
+\index{free\+\_\+pcb@{free\+\_\+pcb}!pcb.\+h@{pcb.\+h}}
+\subsubsection[{\texorpdfstring{free\+\_\+pcb(struct pcb\+\_\+struct $\ast$pcb\+\_\+ptr)}{free_pcb(struct pcb_struct *pcb_ptr)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf error\+\_\+t} free\+\_\+pcb (
+\begin{DoxyParamCaption}
+\item[{struct {\bf pcb\+\_\+struct} $\ast$}]{pcb\+\_\+ptr}
+\end{DoxyParamCaption}
+)}\hypertarget{pcb_8h_a31e603695448c5bd7bccacce5988eaf2}{}\label{pcb_8h_a31e603695448c5bd7bccacce5988eaf2}
+\index{pcb.\+h@{pcb.\+h}!insert\+\_\+pcb@{insert\+\_\+pcb}}
+\index{insert\+\_\+pcb@{insert\+\_\+pcb}!pcb.\+h@{pcb.\+h}}
+\subsubsection[{\texorpdfstring{insert\+\_\+pcb(struct pcb\+\_\+struct $\ast$pcb\+\_\+ptr)}{insert_pcb(struct pcb_struct *pcb_ptr)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf error\+\_\+t} insert\+\_\+pcb (
+\begin{DoxyParamCaption}
+\item[{struct {\bf pcb\+\_\+struct} $\ast$}]{pcb\+\_\+ptr}
+\end{DoxyParamCaption}
+)}\hypertarget{pcb_8h_ae8f8cca202f2232d4396a48db14b7d35}{}\label{pcb_8h_ae8f8cca202f2232d4396a48db14b7d35}
+\index{pcb.\+h@{pcb.\+h}!pcb\+\_\+init@{pcb\+\_\+init}}
+\index{pcb\+\_\+init@{pcb\+\_\+init}!pcb.\+h@{pcb.\+h}}
+\subsubsection[{\texorpdfstring{pcb\+\_\+init()}{pcb_init()}}]{\setlength{\rightskip}{0pt plus 5cm}void pcb\+\_\+init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{pcb_8h_a8d00fee50178510712d2ffeaeafae347}{}\label{pcb_8h_a8d00fee50178510712d2ffeaeafae347}
+\index{pcb.\+h@{pcb.\+h}!remove\+\_\+pcb@{remove\+\_\+pcb}}
+\index{remove\+\_\+pcb@{remove\+\_\+pcb}!pcb.\+h@{pcb.\+h}}
+\subsubsection[{\texorpdfstring{remove\+\_\+pcb(struct pcb\+\_\+struct $\ast$pcb\+\_\+ptr)}{remove_pcb(struct pcb_struct *pcb_ptr)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf error\+\_\+t} remove\+\_\+pcb (
+\begin{DoxyParamCaption}
+\item[{struct {\bf pcb\+\_\+struct} $\ast$}]{pcb\+\_\+ptr}
+\end{DoxyParamCaption}
+)}\hypertarget{pcb_8h_a52620da5c66ed459beea65538169547a}{}\label{pcb_8h_a52620da5c66ed459beea65538169547a}
+\index{pcb.\+h@{pcb.\+h}!resume\+\_\+pcb@{resume\+\_\+pcb}}
+\index{resume\+\_\+pcb@{resume\+\_\+pcb}!pcb.\+h@{pcb.\+h}}
+\subsubsection[{\texorpdfstring{resume\+\_\+pcb(struct pcb\+\_\+struct $\ast$pcb\+\_\+ptr)}{resume_pcb(struct pcb_struct *pcb_ptr)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf error\+\_\+t} resume\+\_\+pcb (
+\begin{DoxyParamCaption}
+\item[{struct {\bf pcb\+\_\+struct} $\ast$}]{pcb\+\_\+ptr}
+\end{DoxyParamCaption}
+)}\hypertarget{pcb_8h_a24a874ae323c9ef0583c2f179b44fe74}{}\label{pcb_8h_a24a874ae323c9ef0583c2f179b44fe74}
+\index{pcb.\+h@{pcb.\+h}!set\+\_\+pcb\+\_\+priority@{set\+\_\+pcb\+\_\+priority}}
+\index{set\+\_\+pcb\+\_\+priority@{set\+\_\+pcb\+\_\+priority}!pcb.\+h@{pcb.\+h}}
+\subsubsection[{\texorpdfstring{set\+\_\+pcb\+\_\+priority(struct pcb\+\_\+struct $\ast$pcb\+\_\+ptr, const unsigned char p\+Priority)}{set_pcb_priority(struct pcb_struct *pcb_ptr, const unsigned char pPriority)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf error\+\_\+t} set\+\_\+pcb\+\_\+priority (
+\begin{DoxyParamCaption}
+\item[{struct {\bf pcb\+\_\+struct} $\ast$}]{pcb\+\_\+ptr, }
+\item[{const unsigned char}]{p\+Priority}
+\end{DoxyParamCaption}
+)}\hypertarget{pcb_8h_a863d9b3d5113d72ebc7b64e01937fc97}{}\label{pcb_8h_a863d9b3d5113d72ebc7b64e01937fc97}
+\index{pcb.\+h@{pcb.\+h}!setup\+\_\+pcb@{setup\+\_\+pcb}}
+\index{setup\+\_\+pcb@{setup\+\_\+pcb}!pcb.\+h@{pcb.\+h}}
+\subsubsection[{\texorpdfstring{setup\+\_\+pcb(const char $\ast$p\+Name, const unsigned char p\+Class, const unsigned char p\+Priority)}{setup_pcb(const char *pName, const unsigned char pClass, const unsigned char pPriority)}}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf pcb\+\_\+struct}$\ast$ setup\+\_\+pcb (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{p\+Name, }
+\item[{const unsigned char}]{p\+Class, }
+\item[{const unsigned char}]{p\+Priority}
+\end{DoxyParamCaption}
+)}\hypertarget{pcb_8h_a7b44c19889185e06af19e67009a3feed}{}\label{pcb_8h_a7b44c19889185e06af19e67009a3feed}
+\index{pcb.\+h@{pcb.\+h}!show\+\_\+all\+\_\+processes@{show\+\_\+all\+\_\+processes}}
+\index{show\+\_\+all\+\_\+processes@{show\+\_\+all\+\_\+processes}!pcb.\+h@{pcb.\+h}}
+\subsubsection[{\texorpdfstring{show\+\_\+all\+\_\+processes()}{show_all_processes()}}]{\setlength{\rightskip}{0pt plus 5cm}void show\+\_\+all\+\_\+processes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{pcb_8h_a094b4bf39d7297266e9b1336a233841e}{}\label{pcb_8h_a094b4bf39d7297266e9b1336a233841e}
+\index{pcb.\+h@{pcb.\+h}!show\+\_\+blocked\+\_\+processes@{show\+\_\+blocked\+\_\+processes}}
+\index{show\+\_\+blocked\+\_\+processes@{show\+\_\+blocked\+\_\+processes}!pcb.\+h@{pcb.\+h}}
+\subsubsection[{\texorpdfstring{show\+\_\+blocked\+\_\+processes()}{show_blocked_processes()}}]{\setlength{\rightskip}{0pt plus 5cm}void show\+\_\+blocked\+\_\+processes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{pcb_8h_a918cbc9698ab932896ec81c482fee9f1}{}\label{pcb_8h_a918cbc9698ab932896ec81c482fee9f1}
+\index{pcb.\+h@{pcb.\+h}!show\+\_\+pcb@{show\+\_\+pcb}}
+\index{show\+\_\+pcb@{show\+\_\+pcb}!pcb.\+h@{pcb.\+h}}
+\subsubsection[{\texorpdfstring{show\+\_\+pcb(struct pcb\+\_\+struct $\ast$pcb\+\_\+ptr)}{show_pcb(struct pcb_struct *pcb_ptr)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf error\+\_\+t} show\+\_\+pcb (
+\begin{DoxyParamCaption}
+\item[{struct {\bf pcb\+\_\+struct} $\ast$}]{pcb\+\_\+ptr}
+\end{DoxyParamCaption}
+)}\hypertarget{pcb_8h_af08c093fa9ecf34738d5e295520a032a}{}\label{pcb_8h_af08c093fa9ecf34738d5e295520a032a}
+\index{pcb.\+h@{pcb.\+h}!show\+\_\+ready\+\_\+processes@{show\+\_\+ready\+\_\+processes}}
+\index{show\+\_\+ready\+\_\+processes@{show\+\_\+ready\+\_\+processes}!pcb.\+h@{pcb.\+h}}
+\subsubsection[{\texorpdfstring{show\+\_\+ready\+\_\+processes()}{show_ready_processes()}}]{\setlength{\rightskip}{0pt plus 5cm}void show\+\_\+ready\+\_\+processes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{pcb_8h_a542627a44f5cbaf08ceaab05a419acee}{}\label{pcb_8h_a542627a44f5cbaf08ceaab05a419acee}
+\index{pcb.\+h@{pcb.\+h}!suspend\+\_\+pcb@{suspend\+\_\+pcb}}
+\index{suspend\+\_\+pcb@{suspend\+\_\+pcb}!pcb.\+h@{pcb.\+h}}
+\subsubsection[{\texorpdfstring{suspend\+\_\+pcb(struct pcb\+\_\+struct $\ast$pcb\+\_\+ptr)}{suspend_pcb(struct pcb_struct *pcb_ptr)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf error\+\_\+t} suspend\+\_\+pcb (
+\begin{DoxyParamCaption}
+\item[{struct {\bf pcb\+\_\+struct} $\ast$}]{pcb\+\_\+ptr}
+\end{DoxyParamCaption}
+)}\hypertarget{pcb_8h_acb4a05dff84e0ad1777c1991f95be1e0}{}\label{pcb_8h_acb4a05dff84e0ad1777c1991f95be1e0}
+\index{pcb.\+h@{pcb.\+h}!unblock\+\_\+pcb@{unblock\+\_\+pcb}}
+\index{unblock\+\_\+pcb@{unblock\+\_\+pcb}!pcb.\+h@{pcb.\+h}}
+\subsubsection[{\texorpdfstring{unblock\+\_\+pcb(struct pcb\+\_\+struct $\ast$pcb\+\_\+ptr)}{unblock_pcb(struct pcb_struct *pcb_ptr)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf error\+\_\+t} unblock\+\_\+pcb (
+\begin{DoxyParamCaption}
+\item[{struct {\bf pcb\+\_\+struct} $\ast$}]{pcb\+\_\+ptr}
+\end{DoxyParamCaption}
+)}\hypertarget{pcb_8h_a0526b69c22b1961dad32f21f9b380f4b}{}\label{pcb_8h_a0526b69c22b1961dad32f21f9b380f4b}

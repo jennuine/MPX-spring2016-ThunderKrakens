@@ -23,10 +23,10 @@
 */
 typedef struct
 {
-	char * nameStr; /** fuction's name */
-	int (*function) (int argc, char ** argv); /** the function */
-	char * usage; /** function's usage or use cases */
-	char * help; /** function's help information */
+	char * nameStr; /**< fuction's name */
+	int (*function) (int argc, char ** argv); /**< the function */
+	char * usage; /**< function's usage or use cases */
+	char * help; /**< function's help information */
 } function_name;
 
 /**
@@ -240,7 +240,7 @@ enum CommandPaserStat
     NormalWriting,
     DoubleQuoteWriting,
     SingleQuoteWriting
-};
+} __attribute__ ((packed));
 
 
 /**
