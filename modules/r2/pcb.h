@@ -27,8 +27,8 @@ enum process_running_stat
 };
 
 struct pcb_struct;
-struct pcb_queues;
-struct pcb_node;
+struct pcb_queue;
+struct pcb_queue_node;
 
 struct pcb_struct
 {
@@ -42,14 +42,14 @@ struct pcb_struct
   struct pcb_queue * pOtherPcb;
 };
 
-struct pcb_node
+struct pcb_queue_node
 {
-  void* priv;
+  struct pcb_queue_node * prev;
   struct pcb_struct ActualPcb;
-  void* next;
+  struct pcb_queue_node * next;
 };
 
-struct pcb_queues
+struct pcb_queue
 {
   int count;
   struct pcb_queue_node * head;

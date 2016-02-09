@@ -10,8 +10,8 @@
 #include "pcb.h"
 #include "../mpx_supt.h"
 
-static pcb_queue ReadQueue;
-static pcb_queue BlockedQueue;
+static struct pcb_queue ReadQueue;
+static struct pcb_queue BlockedQueue;
 
 void pcb_init()
 {
