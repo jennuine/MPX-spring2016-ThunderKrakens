@@ -19,41 +19,72 @@
 /* @brief The defualt size of the stack for the PCB */
 #define SIZE_OF_STACK 1024;
 
+/**
+* PCB process states/statuses
+*/
 enum process_state
 {
-  running,
-  ready,
-  blocked
-};
+  running, /**< PCB in the running state. */
+  ready, /**< PCB in the ready state. */
+  blocked /**< PCB in the blocked state. */
+} __attribute__ ((packed));
+
+/**
+* PCB process suspended or not suspended status.
+*/
+enum process_suspended
+{
+  true, /**< PCB process is suspended. */
+  false /**< PCB process is not suspended. */
+} __attribute__ ((packed));
+
+/**
+* PCB process class types.
+*/
+enum process_class
+{
+  application, /**< Process is an application process. */
+  system /**< Process is a system process. */
+} __attribute__ ((packed));
 
 struct pcb_struct;
 struct pcb_queue;
 struct pcb_queue_node;
 
+/**
+* Struct that will describe PCB Processes.
+*/
 struct pcb_struct
 {
-  char name[10];
-  unsigned char class;
-  unsigned char priority;
-  enum process_state running_state;
-  unsigned char is_suspended;
-  unsigned char * stack_top;
-  unsigned char * stack_base;
-  struct pcb_queue * other_pcb;
+  char name[10]; /**< PCB's name. */
+  enum process_class class; /**< PCB's class is an application or system process. */
+  unsigned char priority; /**< PCB's priority an integer between 0 and 9. Processes with higher priority values execute before lower priority processes. */
+  enum process_state running_state; /**< PCB's states are ready, running, or blocked. */
+  enum process_suspended is_suspended; /**< PCB process is either suspended or not suspended. */
+  unsigned char * stack_top; /**< Pointer to top of the stack. */
+  unsigned char * stack_base; /**< Pointer to base of the stack. */
+  struct pcb_queue * other_pcb; /**< Pointer to other PCBs */
 };
 
+/**
+* The PCB queue node will represent the PCB within pcb_queue and point to previous/next PCB nodes.
+* This structure is a doubly linked list.
+*/
 struct pcb_queue_node
 {
-  struct pcb_queue_node * prev;
-  struct pcb_struct actual_pcb;
-  struct pcb_queue_node * next;
+  struct pcb_queue_node * prev; /**< Pointer to the previous PCB in the queue. */
+  struct pcb_struct actual_pcb; /**< The PCB process. */
+  struct pcb_queue_node * next; /**< Pointer to the next PCB in the queue. */
 };
 
+/**
+* Queue structure that will store PCBs.
+*/
 struct pcb_queue
 {
-  int count;
-  struct pcb_queue_node * head;
-  struct pcb_queue_node * tail;
+  int count; /**< The length of the queue. */
+  struct pcb_queue_node * head; /**< Pointer to the start/head of the queue. */
+  struct pcb_queue_node * tail; /**< Pointer to the end/tail of the queue. */
 };
 
 void pcb_init();
