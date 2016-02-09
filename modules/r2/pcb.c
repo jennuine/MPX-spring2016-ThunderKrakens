@@ -10,16 +10,16 @@
 #include "pcb.h"
 #include "../mpx_supt.h"
 
-static struct pcb_queue ReadQueue;
-static struct pcb_queue BlockedQueue;
+static struct pcb_queue ready_queue;
+static struct pcb_queue blocked_queue;
 
 void pcb_init()
 {
-  ReadQueue.count = 0;
-  ReadQueue.head = NULL;
-  ReadQueue.tail = NULL;
+  ready_queue.count = 0;
+  ready_queue.head = NULL;
+  ready_queue.tail = NULL;
 
-  BlockedQueue.count = 0;
-  BlockedQueue.head = NULL;
-  BlockedQueue.tail = NULL;
+  blocked_queue.count = 0;
+  blocked_queue.head = NULL;
+  blocked_queue.tail = NULL;
 }
