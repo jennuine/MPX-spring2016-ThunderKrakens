@@ -19,37 +19,37 @@
 /* @brief The defualt size of the stack for the PCB */
 #define SIZE_OF_STACK 1024;
 
-enum process_running_stat
+enum process_state
 {
-  PStatRunning,
-  PStatReady,
-  PStatBlocked
+  running,
+  ready,
+  blocked
 };
 
 struct pcb_struct;
-struct pcb_queues;
+struct pcb_queue;
 struct pcb_node;
 
 struct pcb_struct
 {
-  char pName[10];
-  unsigned char pClass;
-  unsigned char pPriority;
-  enum process_running_stat pRunningStat;
-  unsigned char pIsSuspended;
-  unsigned char * pStackTop;
-  unsigned char * pStackBase;
-  struct pcb_queue * pOtherPcb;
+  char name[10];
+  unsigned char class;
+  unsigned char priority;
+  enum process_state running_state;
+  unsigned char is_suspended;
+  unsigned char * stack_top;
+  unsigned char * stack_base;
+  struct pcb_queue * other_pcb;
 };
 
 struct pcb_node
 {
-  void* priv;
-  struct pcb_struct ActualPcb;
-  void* next;
+  void * prev;
+  struct pcb_struct actual_pcb;
+  void * next;
 };
 
-struct pcb_queues
+struct pcb_queue
 {
   int count;
   struct pcb_queue_node * head;
@@ -60,23 +60,23 @@ void pcb_init();
 
 struct pcb_struct * allocate_pcb();
 
-error_t free_pcb(struct pcb_struct * PcbPtr);
+error_t free_pcb(struct pcb_struct * pcb_ptr);
 
 struct pcb_struct * setup_pcb(const char * pName, const unsigned char pClass, const unsigned char pPriority);
 
 struct pcb_struct * find_pcb(const char * pName);
 
-error_t insert_pcb(struct pcb_struct * PcbPtr);
+error_t insert_pcb(struct pcb_struct * pcb_ptr);
 
-error_t remove_pcb(struct pcb_struct * PcbPtr);
+error_t remove_pcb(struct pcb_struct * pcb_ptr);
 
-error_t suspend_pcb(struct pcb_struct * PcbPtr);
+error_t suspend_pcb(struct pcb_struct * pcb_ptr);
 
-error_t resume_pcb(struct pcb_struct * PcbPtr);
+error_t resume_pcb(struct pcb_struct * pcb_ptr);
 
-error_t set_pcb_priority(struct pcb_struct * PcbPtr, const unsigned char pPriority);
+error_t set_pcb_priority(struct pcb_struct * pcb_ptr, const unsigned char pPriority);
 
-error_t show_pcb(struct pcb_struct * PcbPtr);
+error_t show_pcb(struct pcb_struct * pcb_ptr);
 
 void show_all_processes();
 
@@ -84,8 +84,8 @@ void show_ready_processes();
 
 void show_blocked_processes();
 
-error_t block_pcb(struct pcb_struct * PcbPtr);
+error_t block_pcb(struct pcb_struct * pcb_ptr);
 
-error_t unblock_pcb(struct pcb_struct * PcbPtr);
+error_t unblock_pcb(struct pcb_struct * pcb_ptr);
 
 #endif
