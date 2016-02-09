@@ -42,7 +42,7 @@ struct pcb_struct
   struct pcb_queue * other_pcb;
 };
 
-struct pcb_node
+struct pcb_queue_node
 {
   void * prev;
   struct pcb_struct actual_pcb;
