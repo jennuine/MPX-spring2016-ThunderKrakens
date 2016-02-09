@@ -240,7 +240,7 @@ enum CommandPaserStat
     NormalWriting,
     DoubleQuoteWriting,
     SingleQuoteWriting
-};
+} __attribute__ ((packed));
 
 
 /**

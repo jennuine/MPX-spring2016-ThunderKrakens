@@ -27,7 +27,7 @@ enum process_state
   running, /**< PCB in the running state. */
   ready, /**< PCB in the ready state. */
   blocked /**< PCB in the blocked state. */
-};
+} __attribute__ ((packed));
 
 /**
 * PCB process suspended or not suspended status.
@@ -36,7 +36,7 @@ enum process_suspended
 {
   true, /**< PCB process is suspended. */
   false /**< PCB process is not suspended. */
-};
+} __attribute__ ((packed));
 
 /**
 * PCB process class types.
@@ -45,7 +45,7 @@ enum process_class
 {
   application, /**< Process is an application process. */
   system /**< Process is a system process. */
-};
+} __attribute__ ((packed));
 
 struct pcb_struct;
 struct pcb_queue;
