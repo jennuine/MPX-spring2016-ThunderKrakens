@@ -1,16 +1,16 @@
 <map id="set_time_main" name="set_time_main">
-<area shape="rect" id="node2" href="$string_8c.html#a11bd144d7d44914099a3aeddf1c8567d" title="strcmp" alt="" coords="176,56,239,83"/>
-<area shape="rect" id="node5" href="$sys__clock_8c.html#a2fa1ed5071047b72b357329da498b7aa" title="set_time_str" alt="" coords="160,157,255,184"/>
-<area shape="rect" id="node11" href="$sys__clock_8c.html#ac5f4cb4c73245c0bf8593116fa5580e9" title="get_time" alt="" coords="171,208,243,235"/>
-<area shape="rect" id="node12" href="$string_8c.html#a98631211a4a8aee62f572375d5b637be" title="printf" alt="" coords="313,309,364,336"/>
-<area shape="rect" id="node15" href="$r1_8c.html#ab5b36414d84437d45b388232a0dfa366" title="print_help" alt="" coords="168,309,247,336"/>
-<area shape="rect" id="node3" href="$string_8c.html#a2dee044e4e667b5b789b493abd21cfa4" title="strlen" alt="" coords="311,5,366,32"/>
-<area shape="rect" id="node4" href="$string_8c.html#a8908188ae9fc2f05d993257ef001d553" title="strcat" alt="" coords="311,56,366,83"/>
-<area shape="rect" id="node6" href="$string_8c.html#a1eb9cae61e6a6282c28dbc298ef7297e" title="strcpy" alt="" coords="309,107,368,133"/>
-<area shape="rect" id="node7" href="$string_8c.html#af1a867dcea42fc1215d0eddf19283ef3" title="strtok" alt="" coords="311,157,366,184"/>
-<area shape="rect" id="node8" href="$string_8c.html#a30670a60464f77af17dfb353353d6df8" title="atoi" alt="" coords="317,208,360,235"/>
-<area shape="rect" id="node10" href="$sys__clock_8c.html#a45d698fc822d2a31f93ee49057892800" title="set_time" alt="" coords="303,259,375,285"/>
-<area shape="rect" id="node9" href="$serial_8h.html#a3514f7abff236a4e00a6c46021ce5e22" title="serial_println" alt="" coords="423,208,517,235"/>
-<area shape="rect" id="node13" href="$string_8c.html#ace6ee45c30e71865e6eb635200379db9" title="memset" alt="" coords="435,284,505,311"/>
-<area shape="rect" id="node14" href="$serial_8h.html#a995827efcd4dcfb780c9fbb9645410a4" title="serial_print" alt="" coords="427,335,513,361"/>
+<area shape="rect" id="node2" href="$string_8c.html#a11bd144d7d44914099a3aeddf1c8567d" title="strcmp" alt="" coords="176,132,239,159"/>
+<area shape="rect" id="node5" href="$r1_8c.html#ab5b36414d84437d45b388232a0dfa366" title="print_help" alt="" coords="168,31,247,57"/>
+<area shape="rect" id="node6" href="$string_8c.html#a98631211a4a8aee62f572375d5b637be" title="printf" alt="" coords="313,31,364,57"/>
+<area shape="rect" id="node9" href="$sys__clock_8c.html#a2fa1ed5071047b72b357329da498b7aa" title="set_time_str" alt="" coords="160,183,255,209"/>
+<area shape="rect" id="node15" href="$sys__clock_8c.html#ac5f4cb4c73245c0bf8593116fa5580e9" title="get_time" alt="" coords="171,233,243,260"/>
+<area shape="rect" id="node3" href="$string_8c.html#a2dee044e4e667b5b789b493abd21cfa4" title="strlen" alt="" coords="311,132,366,159"/>
+<area shape="rect" id="node4" href="$string_8c.html#a8908188ae9fc2f05d993257ef001d553" title="strcat" alt="" coords="311,81,366,108"/>
+<area shape="rect" id="node7" href="$string_8c.html#ace6ee45c30e71865e6eb635200379db9" title="memset" alt="" coords="435,56,505,83"/>
+<area shape="rect" id="node8" href="$serial_8h.html#a995827efcd4dcfb780c9fbb9645410a4" title="serial_print" alt="" coords="427,5,513,32"/>
+<area shape="rect" id="node10" href="$string_8c.html#a1eb9cae61e6a6282c28dbc298ef7297e" title="strcpy" alt="" coords="309,335,368,361"/>
+<area shape="rect" id="node11" href="$string_8c.html#af1a867dcea42fc1215d0eddf19283ef3" title="strtok" alt="" coords="311,183,366,209"/>
+<area shape="rect" id="node12" href="$string_8c.html#a30670a60464f77af17dfb353353d6df8" title="atoi" alt="" coords="317,233,360,260"/>
+<area shape="rect" id="node14" href="$sys__clock_8c.html#a45d698fc822d2a31f93ee49057892800" title="set_time" alt="" coords="303,284,375,311"/>
+<area shape="rect" id="node13" href="$serial_8h.html#a3514f7abff236a4e00a6c46021ce5e22" title="serial_println" alt="" coords="423,233,517,260"/>
 </map>
