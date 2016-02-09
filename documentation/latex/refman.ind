@@ -1,57 +1,88 @@
 \begin{theindex}
 
+  \item {A\+P\+P\+\_\+\+P\+R\+O\+C\+E\+SS}
+    \subitem {pcb.\+h}, \hyperpage{69}
+  \item {actual\+\_\+pcb}
+    \subitem {pcb\+\_\+queue\+\_\+node}, \hyperpage{10}
+  \item {allocate\+\_\+pcb}
+    \subitem {pcb.\+h}, \hyperpage{70}
+  \item {application}
+    \subitem {pcb.\+h}, \hyperpage{69}
   \item {atoi}
-    \subitem {string.\+c}, \hyperpage{24}
-    \subitem {string.\+h}, \hyperpage{16}
+    \subitem {string.\+c}, \hyperpage{28}
+    \subitem {string.\+h}, \hyperpage{20}
+
+  \indexspace
+
+  \item {block\+\_\+pcb}
+    \subitem {pcb.\+h}, \hyperpage{70}
+  \item {block\+\_\+pcb\+\_\+main}
+    \subitem {pcb\+\_\+comm.\+h}, \hyperpage{73}
+  \item {blocked}
+    \subitem {pcb.\+h}, \hyperpage{69}
 
   \indexspace
 
   \item {C\+O\+M1}
-    \subitem {serial.\+h}, \hyperpage{10}
+    \subitem {serial.\+h}, \hyperpage{14}
   \item {C\+O\+M2}
-    \subitem {serial.\+h}, \hyperpage{10}
+    \subitem {serial.\+h}, \hyperpage{14}
   \item {C\+O\+M3}
-    \subitem {serial.\+h}, \hyperpage{10}
+    \subitem {serial.\+h}, \hyperpage{14}
   \item {C\+O\+M4}
-    \subitem {serial.\+h}, \hyperpage{11}
+    \subitem {serial.\+h}, \hyperpage{15}
   \item {C\+O\+M\+P\+L\+E\+T\+I\+ON}
-    \subitem {r1.\+c}, \hyperpage{33}
+    \subitem {r1.\+c}, \hyperpage{37}
+  \item {class}
+    \subitem {pcb\+\_\+struct}, \hyperpage{12}
   \item {command\+\_\+line\+\_\+parser}
-    \subitem {r1.\+c}, \hyperpage{34}
-    \subitem {r1.\+h}, \hyperpage{38}
+    \subitem {r1.\+c}, \hyperpage{38}
+    \subitem {r1.\+h}, \hyperpage{42}
   \item {Command\+Paser\+Stat}
-    \subitem {r1.\+c}, \hyperpage{33}
+    \subitem {r1.\+c}, \hyperpage{37}
   \item {commhand}
-    \subitem {r1.\+c}, \hyperpage{34}
-    \subitem {r1.\+h}, \hyperpage{39}
+    \subitem {r1.\+c}, \hyperpage{38}
+    \subitem {r1.\+h}, \hyperpage{43}
+  \item {count}
+    \subitem {pcb\+\_\+queue}, \hyperpage{9}
+  \item {create\+\_\+pcb\+\_\+main}
+    \subitem {pcb\+\_\+comm.\+h}, \hyperpage{73}
 
   \indexspace
 
-  \item {documentation/mainpage.\+dox}, \hyperpage{9}
+  \item {delete\+\_\+pcb\+\_\+main}
+    \subitem {pcb\+\_\+comm.\+h}, \hyperpage{73}
+  \item {documentation/mainpage.\+dox}, \hyperpage{13}
   \item {Double\+Quote\+Writing}
-    \subitem {r1.\+c}, \hyperpage{33}
+    \subitem {r1.\+c}, \hyperpage{37}
 
   \indexspace
 
   \item {E\+\_\+\+I\+N\+V\+P\+A\+RA}
-    \subitem {errno.\+h}, \hyperpage{29}
+    \subitem {errno.\+h}, \hyperpage{33}
   \item {E\+\_\+\+I\+N\+V\+S\+T\+RF}
-    \subitem {errno.\+h}, \hyperpage{29}
+    \subitem {errno.\+h}, \hyperpage{33}
   \item {E\+\_\+\+I\+N\+V\+U\+S\+RI}
-    \subitem {errno.\+h}, \hyperpage{29}
+    \subitem {errno.\+h}, \hyperpage{33}
   \item {E\+\_\+\+N\+O\+E\+R\+R\+OR}
-    \subitem {errno.\+h}, \hyperpage{29}
+    \subitem {errno.\+h}, \hyperpage{33}
   \item {errno.\+h}
-    \subitem {E\+\_\+\+I\+N\+V\+P\+A\+RA}, \hyperpage{29}
-    \subitem {E\+\_\+\+I\+N\+V\+S\+T\+RF}, \hyperpage{29}
-    \subitem {E\+\_\+\+I\+N\+V\+U\+S\+RI}, \hyperpage{29}
-    \subitem {E\+\_\+\+N\+O\+E\+R\+R\+OR}, \hyperpage{29}
-    \subitem {error\+\_\+t}, \hyperpage{29}
+    \subitem {E\+\_\+\+I\+N\+V\+P\+A\+RA}, \hyperpage{33}
+    \subitem {E\+\_\+\+I\+N\+V\+S\+T\+RF}, \hyperpage{33}
+    \subitem {E\+\_\+\+I\+N\+V\+U\+S\+RI}, \hyperpage{33}
+    \subitem {E\+\_\+\+N\+O\+E\+R\+R\+OR}, \hyperpage{33}
+    \subitem {error\+\_\+t}, \hyperpage{33}
   \item {error\+\_\+t}
-    \subitem {errno.\+h}, \hyperpage{29}
+    \subitem {errno.\+h}, \hyperpage{33}
 
   \indexspace
 
+  \item {false}
+    \subitem {pcb.\+h}, \hyperpage{69}
+  \item {find\+\_\+pcb}
+    \subitem {pcb.\+h}, \hyperpage{70}
+  \item {free\+\_\+pcb}
+    \subitem {pcb.\+h}, \hyperpage{70}
   \item {function}
     \subitem {function\+\_\+name}, \hyperpage{7}
   \item {function\+\_\+name}, \hyperpage{7}
@@ -63,279 +94,433 @@
   \indexspace
 
   \item {G\+E\+T\+D\+A\+TE}
-    \subitem {r1.\+h}, \hyperpage{38}
+    \subitem {r1.\+h}, \hyperpage{42}
   \item {G\+E\+T\+T\+I\+ME}
-    \subitem {r1.\+h}, \hyperpage{38}
+    \subitem {r1.\+h}, \hyperpage{42}
   \item {get\+\_\+date}
-    \subitem {sys\+\_\+clock.\+c}, \hyperpage{45}
-    \subitem {sys\+\_\+clock.\+h}, \hyperpage{55}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{49}
+    \subitem {sys\+\_\+clock.\+h}, \hyperpage{59}
   \item {get\+\_\+date\+\_\+main}
-    \subitem {sys\+\_\+clock.\+c}, \hyperpage{45}
-    \subitem {sys\+\_\+clock.\+h}, \hyperpage{56}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{49}
+    \subitem {sys\+\_\+clock.\+h}, \hyperpage{60}
   \item {get\+\_\+input\+\_\+line}
-    \subitem {serial.\+h}, \hyperpage{11}
+    \subitem {serial.\+h}, \hyperpage{15}
   \item {get\+\_\+time}
-    \subitem {sys\+\_\+clock.\+c}, \hyperpage{46}
-    \subitem {sys\+\_\+clock.\+h}, \hyperpage{56}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{50}
+    \subitem {sys\+\_\+clock.\+h}, \hyperpage{60}
   \item {get\+\_\+time\+\_\+main}
-    \subitem {sys\+\_\+clock.\+c}, \hyperpage{46}
-    \subitem {sys\+\_\+clock.\+h}, \hyperpage{57}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{50}
+    \subitem {sys\+\_\+clock.\+h}, \hyperpage{61}
 
   \indexspace
 
   \item {H\+E\+LP}
-    \subitem {r1.\+h}, \hyperpage{38}
+    \subitem {r1.\+h}, \hyperpage{42}
+  \item {head}
+    \subitem {pcb\+\_\+queue}, \hyperpage{9}
   \item {help}
     \subitem {function\+\_\+name}, \hyperpage{7}
 
   \indexspace
 
-  \item {include/core/serial.\+h}, \hyperpage{9}
-  \item {include/string.\+h}, \hyperpage{12}
+  \item {include/core/serial.\+h}, \hyperpage{13}
+  \item {include/string.\+h}, \hyperpage{16}
   \item {init\+\_\+serial}
-    \subitem {serial.\+h}, \hyperpage{11}
+    \subitem {serial.\+h}, \hyperpage{15}
+  \item {insert\+\_\+pcb}
+    \subitem {pcb.\+h}, \hyperpage{70}
+  \item {is\+\_\+suspended}
+    \subitem {pcb\+\_\+struct}, \hyperpage{12}
   \item {isspace}
-    \subitem {string.\+c}, \hyperpage{24}
-    \subitem {string.\+h}, \hyperpage{16}
+    \subitem {string.\+c}, \hyperpage{28}
+    \subitem {string.\+h}, \hyperpage{20}
 
   \indexspace
 
-  \item {lib/string.\+c}, \hyperpage{20}
+  \item {lib/string.\+c}, \hyperpage{24}
 
   \indexspace
 
   \item {M\+A\+X\+\_\+\+A\+R\+GC}
-    \subitem {r1.\+c}, \hyperpage{33}
+    \subitem {r1.\+c}, \hyperpage{37}
   \item {M\+O\+D\+\_\+\+V\+E\+R\+S\+I\+ON}
-    \subitem {r1.\+c}, \hyperpage{33}
+    \subitem {r1.\+c}, \hyperpage{37}
   \item {memset}
-    \subitem {string.\+c}, \hyperpage{25}
-    \subitem {string.\+h}, \hyperpage{17}
-  \item {modules/errno.\+h}, \hyperpage{28}
-  \item {modules/r1/r1.\+c}, \hyperpage{29}
-  \item {modules/r1/r1.\+h}, \hyperpage{36}
-  \item {modules/r1/sys\+\_\+clock.\+c}, \hyperpage{40}
-  \item {modules/r1/sys\+\_\+clock.\+h}, \hyperpage{51}
+    \subitem {string.\+c}, \hyperpage{29}
+    \subitem {string.\+h}, \hyperpage{21}
+  \item {modules/errno.\+h}, \hyperpage{32}
+  \item {modules/r1/r1.\+c}, \hyperpage{33}
+  \item {modules/r1/r1.\+h}, \hyperpage{40}
+  \item {modules/r1/sys\+\_\+clock.\+c}, \hyperpage{44}
+  \item {modules/r1/sys\+\_\+clock.\+h}, \hyperpage{55}
+  \item {modules/r2/pcb.\+c}, \hyperpage{65}
+  \item {modules/r2/pcb.\+h}, \hyperpage{67}
+  \item {modules/r2/pcb\+\_\+comm.\+c}, \hyperpage{70}
+  \item {modules/r2/pcb\+\_\+comm.\+h}, \hyperpage{71}
 
   \indexspace
 
   \item {N\+U\+M\+\_\+\+O\+F\+\_\+\+F\+U\+N\+C\+T\+I\+O\+NS}
-    \subitem {r1.\+h}, \hyperpage{38}
+    \subitem {r1.\+h}, \hyperpage{42}
+  \item {name}
+    \subitem {pcb\+\_\+struct}, \hyperpage{12}
   \item {name\+Str}
     \subitem {function\+\_\+name}, \hyperpage{7}
+  \item {next}
+    \subitem {pcb\+\_\+queue\+\_\+node}, \hyperpage{10}
   \item {Normal\+Writing}
-    \subitem {r1.\+c}, \hyperpage{33}
+    \subitem {r1.\+c}, \hyperpage{37}
   \item {Not\+Writing}
-    \subitem {r1.\+c}, \hyperpage{33}
+    \subitem {r1.\+c}, \hyperpage{37}
 
   \indexspace
 
+  \item {other\+\_\+pcb}
+    \subitem {pcb\+\_\+struct}, \hyperpage{12}
+
+  \indexspace
+
+  \item {pcb.\+c}
+    \subitem {pcb\+\_\+init}, \hyperpage{67}
+  \item {pcb.\+h}
+    \subitem {A\+P\+P\+\_\+\+P\+R\+O\+C\+E\+SS}, \hyperpage{69}
+    \subitem {allocate\+\_\+pcb}, \hyperpage{70}
+    \subitem {application}, \hyperpage{69}
+    \subitem {block\+\_\+pcb}, \hyperpage{70}
+    \subitem {blocked}, \hyperpage{69}
+    \subitem {false}, \hyperpage{69}
+    \subitem {find\+\_\+pcb}, \hyperpage{70}
+    \subitem {free\+\_\+pcb}, \hyperpage{70}
+    \subitem {insert\+\_\+pcb}, \hyperpage{70}
+    \subitem {pcb\+\_\+init}, \hyperpage{70}
+    \subitem {process\+\_\+class}, \hyperpage{69}
+    \subitem {process\+\_\+state}, \hyperpage{69}
+    \subitem {process\+\_\+suspended}, \hyperpage{69}
+    \subitem {ready}, \hyperpage{69}
+    \subitem {remove\+\_\+pcb}, \hyperpage{70}
+    \subitem {resume\+\_\+pcb}, \hyperpage{70}
+    \subitem {running}, \hyperpage{69}
+    \subitem {S\+I\+Z\+E\+\_\+\+O\+F\+\_\+\+S\+T\+A\+CK}, 
+		\hyperpage{69}
+    \subitem {S\+Y\+S\+\_\+\+P\+R\+O\+C\+E\+SS}, \hyperpage{69}
+    \subitem {set\+\_\+pcb\+\_\+priority}, \hyperpage{70}
+    \subitem {setup\+\_\+pcb}, \hyperpage{70}
+    \subitem {show\+\_\+all\+\_\+processes}, \hyperpage{70}
+    \subitem {show\+\_\+blocked\+\_\+processes}, \hyperpage{70}
+    \subitem {show\+\_\+pcb}, \hyperpage{70}
+    \subitem {show\+\_\+ready\+\_\+processes}, \hyperpage{70}
+    \subitem {suspend\+\_\+pcb}, \hyperpage{70}
+    \subitem {system}, \hyperpage{69}
+    \subitem {true}, \hyperpage{69}
+    \subitem {unblock\+\_\+pcb}, \hyperpage{70}
+  \item {pcb\+\_\+comm.\+h}
+    \subitem {block\+\_\+pcb\+\_\+main}, \hyperpage{73}
+    \subitem {create\+\_\+pcb\+\_\+main}, \hyperpage{73}
+    \subitem {delete\+\_\+pcb\+\_\+main}, \hyperpage{73}
+    \subitem {resume\+\_\+pcb\+\_\+main}, \hyperpage{73}
+    \subitem {set\+\_\+pcb\+\_\+priority\+\_\+main}, \hyperpage{73}
+    \subitem {show\+\_\+all\+\_\+processes\+\_\+main}, \hyperpage{73}
+    \subitem {show\+\_\+blocked\+\_\+processes\+\_\+main}, 
+		\hyperpage{73}
+    \subitem {show\+\_\+pcb\+\_\+main}, \hyperpage{73}
+    \subitem {show\+\_\+ready\+\_\+processes\+\_\+main}, \hyperpage{73}
+    \subitem {suspend\+\_\+pcb\+\_\+main}, \hyperpage{73}
+    \subitem {unblock\+\_\+pcb\+\_\+main}, \hyperpage{73}
+  \item {pcb\+\_\+init}
+    \subitem {pcb.\+c}, \hyperpage{67}
+    \subitem {pcb.\+h}, \hyperpage{70}
+  \item {pcb\+\_\+queue}, \hyperpage{8}
+    \subitem {count}, \hyperpage{9}
+    \subitem {head}, \hyperpage{9}
+    \subitem {tail}, \hyperpage{9}
+  \item {pcb\+\_\+queue\+\_\+node}, \hyperpage{9}
+    \subitem {actual\+\_\+pcb}, \hyperpage{10}
+    \subitem {next}, \hyperpage{10}
+    \subitem {prev}, \hyperpage{10}
+  \item {pcb\+\_\+struct}, \hyperpage{11}
+    \subitem {class}, \hyperpage{12}
+    \subitem {is\+\_\+suspended}, \hyperpage{12}
+    \subitem {name}, \hyperpage{12}
+    \subitem {other\+\_\+pcb}, \hyperpage{12}
+    \subitem {priority}, \hyperpage{12}
+    \subitem {running\+\_\+state}, \hyperpage{12}
+    \subitem {stack\+\_\+base}, \hyperpage{12}
+    \subitem {stack\+\_\+top}, \hyperpage{12}
+  \item {prev}
+    \subitem {pcb\+\_\+queue\+\_\+node}, \hyperpage{10}
   \item {print\+\_\+help}
-    \subitem {r1.\+c}, \hyperpage{35}
-    \subitem {r1.\+h}, \hyperpage{39}
+    \subitem {r1.\+c}, \hyperpage{39}
+    \subitem {r1.\+h}, \hyperpage{43}
   \item {printf}
-    \subitem {string.\+c}, \hyperpage{25}
-    \subitem {string.\+h}, \hyperpage{17}
+    \subitem {string.\+c}, \hyperpage{29}
+    \subitem {string.\+h}, \hyperpage{21}
+  \item {priority}
+    \subitem {pcb\+\_\+struct}, \hyperpage{12}
+  \item {process\+\_\+class}
+    \subitem {pcb.\+h}, \hyperpage{69}
+  \item {process\+\_\+state}
+    \subitem {pcb.\+h}, \hyperpage{69}
+  \item {process\+\_\+suspended}
+    \subitem {pcb.\+h}, \hyperpage{69}
 
   \indexspace
 
   \item {r1.\+c}
-    \subitem {C\+O\+M\+P\+L\+E\+T\+I\+ON}, \hyperpage{33}
-    \subitem {command\+\_\+line\+\_\+parser}, \hyperpage{34}
-    \subitem {Command\+Paser\+Stat}, \hyperpage{33}
-    \subitem {commhand}, \hyperpage{34}
-    \subitem {Double\+Quote\+Writing}, \hyperpage{33}
-    \subitem {M\+A\+X\+\_\+\+A\+R\+GC}, \hyperpage{33}
-    \subitem {M\+O\+D\+\_\+\+V\+E\+R\+S\+I\+ON}, \hyperpage{33}
-    \subitem {Normal\+Writing}, \hyperpage{33}
-    \subitem {Not\+Writing}, \hyperpage{33}
-    \subitem {print\+\_\+help}, \hyperpage{35}
-    \subitem {Single\+Quote\+Writing}, \hyperpage{33}
-    \subitem {U\+S\+E\+R\+\_\+\+I\+N\+P\+U\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}, 
-		\hyperpage{33}
-  \item {r1.\+h}
+    \subitem {C\+O\+M\+P\+L\+E\+T\+I\+ON}, \hyperpage{37}
     \subitem {command\+\_\+line\+\_\+parser}, \hyperpage{38}
-    \subitem {commhand}, \hyperpage{39}
-    \subitem {G\+E\+T\+D\+A\+TE}, \hyperpage{38}
-    \subitem {G\+E\+T\+T\+I\+ME}, \hyperpage{38}
-    \subitem {H\+E\+LP}, \hyperpage{38}
-    \subitem {N\+U\+M\+\_\+\+O\+F\+\_\+\+F\+U\+N\+C\+T\+I\+O\+NS}, 
-		\hyperpage{38}
+    \subitem {Command\+Paser\+Stat}, \hyperpage{37}
+    \subitem {commhand}, \hyperpage{38}
+    \subitem {Double\+Quote\+Writing}, \hyperpage{37}
+    \subitem {M\+A\+X\+\_\+\+A\+R\+GC}, \hyperpage{37}
+    \subitem {M\+O\+D\+\_\+\+V\+E\+R\+S\+I\+ON}, \hyperpage{37}
+    \subitem {Normal\+Writing}, \hyperpage{37}
+    \subitem {Not\+Writing}, \hyperpage{37}
     \subitem {print\+\_\+help}, \hyperpage{39}
-    \subitem {S\+E\+T\+D\+A\+TE}, \hyperpage{38}
-    \subitem {S\+E\+T\+T\+I\+ME}, \hyperpage{38}
-    \subitem {S\+H\+U\+T\+D\+O\+WN}, \hyperpage{38}
-    \subitem {V\+E\+R\+S\+I\+ON}, \hyperpage{38}
+    \subitem {Single\+Quote\+Writing}, \hyperpage{37}
+    \subitem {U\+S\+E\+R\+\_\+\+I\+N\+P\+U\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}, 
+		\hyperpage{37}
+  \item {r1.\+h}
+    \subitem {command\+\_\+line\+\_\+parser}, \hyperpage{42}
+    \subitem {commhand}, \hyperpage{43}
+    \subitem {G\+E\+T\+D\+A\+TE}, \hyperpage{42}
+    \subitem {G\+E\+T\+T\+I\+ME}, \hyperpage{42}
+    \subitem {H\+E\+LP}, \hyperpage{42}
+    \subitem {N\+U\+M\+\_\+\+O\+F\+\_\+\+F\+U\+N\+C\+T\+I\+O\+NS}, 
+		\hyperpage{42}
+    \subitem {print\+\_\+help}, \hyperpage{43}
+    \subitem {S\+E\+T\+D\+A\+TE}, \hyperpage{42}
+    \subitem {S\+E\+T\+T\+I\+ME}, \hyperpage{42}
+    \subitem {S\+H\+U\+T\+D\+O\+WN}, \hyperpage{42}
+    \subitem {V\+E\+R\+S\+I\+ON}, \hyperpage{42}
   \item {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+D\+A\+Y\+\_\+\+M\+O\+N\+TH}
-    \subitem {sys\+\_\+clock.\+c}, \hyperpage{45}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{49}
   \item {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+D\+A\+Y\+\_\+\+W\+E\+EK}
-    \subitem {sys\+\_\+clock.\+c}, \hyperpage{45}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{49}
   \item {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+H\+O\+U\+R\+\_\+\+A\+L\+A\+RM}
-    \subitem {sys\+\_\+clock.\+c}, \hyperpage{45}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{49}
   \item {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+H\+O\+UR}
-    \subitem {sys\+\_\+clock.\+c}, \hyperpage{45}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{49}
   \item {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+I\+N\+U\+T\+E\+\_\+\+A\+L\+A\+RM}
-    \subitem {sys\+\_\+clock.\+c}, \hyperpage{45}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{49}
   \item {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+I\+N\+U\+TE}
-    \subitem {sys\+\_\+clock.\+c}, \hyperpage{45}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{49}
   \item {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+O\+N\+TH}
-    \subitem {sys\+\_\+clock.\+c}, \hyperpage{45}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{49}
   \item {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+S\+E\+C\+O\+N\+D\+\_\+\+A\+L\+A\+RM}
-    \subitem {sys\+\_\+clock.\+c}, \hyperpage{45}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{49}
   \item {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+S\+E\+C\+O\+ND}
-    \subitem {sys\+\_\+clock.\+c}, \hyperpage{45}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{49}
   \item {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+Y\+E\+AR}
-    \subitem {sys\+\_\+clock.\+c}, \hyperpage{45}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{49}
+  \item {ready}
+    \subitem {pcb.\+h}, \hyperpage{69}
+  \item {remove\+\_\+pcb}
+    \subitem {pcb.\+h}, \hyperpage{70}
+  \item {resume\+\_\+pcb}
+    \subitem {pcb.\+h}, \hyperpage{70}
+  \item {resume\+\_\+pcb\+\_\+main}
+    \subitem {pcb\+\_\+comm.\+h}, \hyperpage{73}
+  \item {running}
+    \subitem {pcb.\+h}, \hyperpage{69}
+  \item {running\+\_\+state}
+    \subitem {pcb\+\_\+struct}, \hyperpage{12}
 
   \indexspace
 
   \item {S\+E\+T\+D\+A\+TE}
-    \subitem {r1.\+h}, \hyperpage{38}
+    \subitem {r1.\+h}, \hyperpage{42}
   \item {S\+E\+T\+T\+I\+ME}
-    \subitem {r1.\+h}, \hyperpage{38}
+    \subitem {r1.\+h}, \hyperpage{42}
   \item {S\+H\+U\+T\+D\+O\+WN}
-    \subitem {r1.\+h}, \hyperpage{38}
+    \subitem {r1.\+h}, \hyperpage{42}
+  \item {S\+I\+Z\+E\+\_\+\+O\+F\+\_\+\+S\+T\+A\+CK}
+    \subitem {pcb.\+h}, \hyperpage{69}
+  \item {S\+Y\+S\+\_\+\+P\+R\+O\+C\+E\+SS}
+    \subitem {pcb.\+h}, \hyperpage{69}
   \item {serial.\+h}
-    \subitem {C\+O\+M1}, \hyperpage{10}
-    \subitem {C\+O\+M2}, \hyperpage{10}
-    \subitem {C\+O\+M3}, \hyperpage{10}
-    \subitem {C\+O\+M4}, \hyperpage{11}
-    \subitem {get\+\_\+input\+\_\+line}, \hyperpage{11}
-    \subitem {init\+\_\+serial}, \hyperpage{11}
-    \subitem {serial\+\_\+print}, \hyperpage{11}
-    \subitem {serial\+\_\+println}, \hyperpage{11}
-    \subitem {set\+\_\+serial\+\_\+in}, \hyperpage{12}
-    \subitem {set\+\_\+serial\+\_\+out}, \hyperpage{12}
-    \subitem {With\+Echo}, \hyperpage{11}
-    \subitem {Without\+Echo}, \hyperpage{11}
+    \subitem {C\+O\+M1}, \hyperpage{14}
+    \subitem {C\+O\+M2}, \hyperpage{14}
+    \subitem {C\+O\+M3}, \hyperpage{14}
+    \subitem {C\+O\+M4}, \hyperpage{15}
+    \subitem {get\+\_\+input\+\_\+line}, \hyperpage{15}
+    \subitem {init\+\_\+serial}, \hyperpage{15}
+    \subitem {serial\+\_\+print}, \hyperpage{15}
+    \subitem {serial\+\_\+println}, \hyperpage{15}
+    \subitem {set\+\_\+serial\+\_\+in}, \hyperpage{16}
+    \subitem {set\+\_\+serial\+\_\+out}, \hyperpage{16}
+    \subitem {With\+Echo}, \hyperpage{15}
+    \subitem {Without\+Echo}, \hyperpage{15}
   \item {serial\+\_\+print}
-    \subitem {serial.\+h}, \hyperpage{11}
+    \subitem {serial.\+h}, \hyperpage{15}
   \item {serial\+\_\+println}
-    \subitem {serial.\+h}, \hyperpage{11}
+    \subitem {serial.\+h}, \hyperpage{15}
   \item {set\+\_\+date}
-    \subitem {sys\+\_\+clock.\+c}, \hyperpage{47}
-    \subitem {sys\+\_\+clock.\+h}, \hyperpage{57}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{51}
+    \subitem {sys\+\_\+clock.\+h}, \hyperpage{61}
   \item {set\+\_\+date\+\_\+main}
-    \subitem {sys\+\_\+clock.\+c}, \hyperpage{47}
-    \subitem {sys\+\_\+clock.\+h}, \hyperpage{58}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{51}
+    \subitem {sys\+\_\+clock.\+h}, \hyperpage{62}
   \item {set\+\_\+date\+\_\+str}
-    \subitem {sys\+\_\+clock.\+c}, \hyperpage{48}
-    \subitem {sys\+\_\+clock.\+h}, \hyperpage{58}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{52}
+    \subitem {sys\+\_\+clock.\+h}, \hyperpage{62}
+  \item {set\+\_\+pcb\+\_\+priority}
+    \subitem {pcb.\+h}, \hyperpage{70}
+  \item {set\+\_\+pcb\+\_\+priority\+\_\+main}
+    \subitem {pcb\+\_\+comm.\+h}, \hyperpage{73}
   \item {set\+\_\+serial\+\_\+in}
-    \subitem {serial.\+h}, \hyperpage{12}
+    \subitem {serial.\+h}, \hyperpage{16}
   \item {set\+\_\+serial\+\_\+out}
-    \subitem {serial.\+h}, \hyperpage{12}
+    \subitem {serial.\+h}, \hyperpage{16}
   \item {set\+\_\+time}
-    \subitem {sys\+\_\+clock.\+c}, \hyperpage{49}
-    \subitem {sys\+\_\+clock.\+h}, \hyperpage{59}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{53}
+    \subitem {sys\+\_\+clock.\+h}, \hyperpage{63}
   \item {set\+\_\+time\+\_\+main}
-    \subitem {sys\+\_\+clock.\+c}, \hyperpage{49}
-    \subitem {sys\+\_\+clock.\+h}, \hyperpage{59}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{53}
+    \subitem {sys\+\_\+clock.\+h}, \hyperpage{63}
   \item {set\+\_\+time\+\_\+str}
-    \subitem {sys\+\_\+clock.\+c}, \hyperpage{50}
-    \subitem {sys\+\_\+clock.\+h}, \hyperpage{60}
+    \subitem {sys\+\_\+clock.\+c}, \hyperpage{54}
+    \subitem {sys\+\_\+clock.\+h}, \hyperpage{64}
+  \item {setup\+\_\+pcb}
+    \subitem {pcb.\+h}, \hyperpage{70}
+  \item {show\+\_\+all\+\_\+processes}
+    \subitem {pcb.\+h}, \hyperpage{70}
+  \item {show\+\_\+all\+\_\+processes\+\_\+main}
+    \subitem {pcb\+\_\+comm.\+h}, \hyperpage{73}
+  \item {show\+\_\+blocked\+\_\+processes}
+    \subitem {pcb.\+h}, \hyperpage{70}
+  \item {show\+\_\+blocked\+\_\+processes\+\_\+main}
+    \subitem {pcb\+\_\+comm.\+h}, \hyperpage{73}
+  \item {show\+\_\+pcb}
+    \subitem {pcb.\+h}, \hyperpage{70}
+  \item {show\+\_\+pcb\+\_\+main}
+    \subitem {pcb\+\_\+comm.\+h}, \hyperpage{73}
+  \item {show\+\_\+ready\+\_\+processes}
+    \subitem {pcb.\+h}, \hyperpage{70}
+  \item {show\+\_\+ready\+\_\+processes\+\_\+main}
+    \subitem {pcb\+\_\+comm.\+h}, \hyperpage{73}
   \item {Single\+Quote\+Writing}
-    \subitem {r1.\+c}, \hyperpage{33}
+    \subitem {r1.\+c}, \hyperpage{37}
   \item {sprintf}
-    \subitem {string.\+c}, \hyperpage{25}
-    \subitem {string.\+h}, \hyperpage{17}
+    \subitem {string.\+c}, \hyperpage{29}
+    \subitem {string.\+h}, \hyperpage{21}
+  \item {stack\+\_\+base}
+    \subitem {pcb\+\_\+struct}, \hyperpage{12}
+  \item {stack\+\_\+top}
+    \subitem {pcb\+\_\+struct}, \hyperpage{12}
   \item {strcat}
-    \subitem {string.\+c}, \hyperpage{26}
-    \subitem {string.\+h}, \hyperpage{18}
+    \subitem {string.\+c}, \hyperpage{30}
+    \subitem {string.\+h}, \hyperpage{22}
   \item {strcmp}
-    \subitem {string.\+c}, \hyperpage{26}
-    \subitem {string.\+h}, \hyperpage{18}
+    \subitem {string.\+c}, \hyperpage{30}
+    \subitem {string.\+h}, \hyperpage{22}
   \item {strcpy}
-    \subitem {string.\+c}, \hyperpage{27}
-    \subitem {string.\+h}, \hyperpage{19}
+    \subitem {string.\+c}, \hyperpage{31}
+    \subitem {string.\+h}, \hyperpage{23}
   \item {string.\+c}
-    \subitem {atoi}, \hyperpage{24}
-    \subitem {isspace}, \hyperpage{24}
-    \subitem {memset}, \hyperpage{25}
-    \subitem {printf}, \hyperpage{25}
-    \subitem {sprintf}, \hyperpage{25}
-    \subitem {strcat}, \hyperpage{26}
-    \subitem {strcmp}, \hyperpage{26}
-    \subitem {strcpy}, \hyperpage{27}
-    \subitem {strlen}, \hyperpage{27}
-    \subitem {strtok}, \hyperpage{27}
+    \subitem {atoi}, \hyperpage{28}
+    \subitem {isspace}, \hyperpage{28}
+    \subitem {memset}, \hyperpage{29}
+    \subitem {printf}, \hyperpage{29}
+    \subitem {sprintf}, \hyperpage{29}
+    \subitem {strcat}, \hyperpage{30}
+    \subitem {strcmp}, \hyperpage{30}
+    \subitem {strcpy}, \hyperpage{31}
+    \subitem {strlen}, \hyperpage{31}
+    \subitem {strtok}, \hyperpage{31}
   \item {string.\+h}
-    \subitem {atoi}, \hyperpage{16}
-    \subitem {isspace}, \hyperpage{16}
-    \subitem {memset}, \hyperpage{17}
-    \subitem {printf}, \hyperpage{17}
-    \subitem {sprintf}, \hyperpage{17}
-    \subitem {strcat}, \hyperpage{18}
-    \subitem {strcmp}, \hyperpage{18}
-    \subitem {strcpy}, \hyperpage{19}
-    \subitem {strlen}, \hyperpage{19}
-    \subitem {strtok}, \hyperpage{19}
+    \subitem {atoi}, \hyperpage{20}
+    \subitem {isspace}, \hyperpage{20}
+    \subitem {memset}, \hyperpage{21}
+    \subitem {printf}, \hyperpage{21}
+    \subitem {sprintf}, \hyperpage{21}
+    \subitem {strcat}, \hyperpage{22}
+    \subitem {strcmp}, \hyperpage{22}
+    \subitem {strcpy}, \hyperpage{23}
+    \subitem {strlen}, \hyperpage{23}
+    \subitem {strtok}, \hyperpage{23}
   \item {strlen}
-    \subitem {string.\+c}, \hyperpage{27}
-    \subitem {string.\+h}, \hyperpage{19}
+    \subitem {string.\+c}, \hyperpage{31}
+    \subitem {string.\+h}, \hyperpage{23}
   \item {strtok}
-    \subitem {string.\+c}, \hyperpage{27}
-    \subitem {string.\+h}, \hyperpage{19}
+    \subitem {string.\+c}, \hyperpage{31}
+    \subitem {string.\+h}, \hyperpage{23}
+  \item {suspend\+\_\+pcb}
+    \subitem {pcb.\+h}, \hyperpage{70}
+  \item {suspend\+\_\+pcb\+\_\+main}
+    \subitem {pcb\+\_\+comm.\+h}, \hyperpage{73}
   \item {sys\+\_\+clock.\+c}
-    \subitem {get\+\_\+date}, \hyperpage{45}
-    \subitem {get\+\_\+date\+\_\+main}, \hyperpage{45}
-    \subitem {get\+\_\+time}, \hyperpage{46}
-    \subitem {get\+\_\+time\+\_\+main}, \hyperpage{46}
+    \subitem {get\+\_\+date}, \hyperpage{49}
+    \subitem {get\+\_\+date\+\_\+main}, \hyperpage{49}
+    \subitem {get\+\_\+time}, \hyperpage{50}
+    \subitem {get\+\_\+time\+\_\+main}, \hyperpage{50}
     \subitem {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+D\+A\+Y\+\_\+\+M\+O\+N\+TH}, 
-		\hyperpage{45}
+		\hyperpage{49}
     \subitem {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+D\+A\+Y\+\_\+\+W\+E\+EK}, 
-		\hyperpage{45}
+		\hyperpage{49}
     \subitem {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+H\+O\+U\+R\+\_\+\+A\+L\+A\+RM}, 
-		\hyperpage{45}
+		\hyperpage{49}
     \subitem {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+H\+O\+UR}, 
-		\hyperpage{45}
+		\hyperpage{49}
     \subitem {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+I\+N\+U\+T\+E\+\_\+\+A\+L\+A\+RM}, 
-		\hyperpage{45}
+		\hyperpage{49}
     \subitem {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+I\+N\+U\+TE}, 
-		\hyperpage{45}
+		\hyperpage{49}
     \subitem {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+M\+O\+N\+TH}, 
-		\hyperpage{45}
+		\hyperpage{49}
     \subitem {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+S\+E\+C\+O\+N\+D\+\_\+\+A\+L\+A\+RM}, 
-		\hyperpage{45}
+		\hyperpage{49}
     \subitem {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+S\+E\+C\+O\+ND}, 
-		\hyperpage{45}
+		\hyperpage{49}
     \subitem {R\+T\+C\+\_\+\+I\+N\+D\+E\+X\+\_\+\+Y\+E\+AR}, 
-		\hyperpage{45}
-    \subitem {set\+\_\+date}, \hyperpage{47}
-    \subitem {set\+\_\+date\+\_\+main}, \hyperpage{47}
-    \subitem {set\+\_\+date\+\_\+str}, \hyperpage{48}
-    \subitem {set\+\_\+time}, \hyperpage{49}
-    \subitem {set\+\_\+time\+\_\+main}, \hyperpage{49}
-    \subitem {set\+\_\+time\+\_\+str}, \hyperpage{50}
+		\hyperpage{49}
+    \subitem {set\+\_\+date}, \hyperpage{51}
+    \subitem {set\+\_\+date\+\_\+main}, \hyperpage{51}
+    \subitem {set\+\_\+date\+\_\+str}, \hyperpage{52}
+    \subitem {set\+\_\+time}, \hyperpage{53}
+    \subitem {set\+\_\+time\+\_\+main}, \hyperpage{53}
+    \subitem {set\+\_\+time\+\_\+str}, \hyperpage{54}
   \item {sys\+\_\+clock.\+h}
-    \subitem {get\+\_\+date}, \hyperpage{55}
-    \subitem {get\+\_\+date\+\_\+main}, \hyperpage{56}
-    \subitem {get\+\_\+time}, \hyperpage{56}
-    \subitem {get\+\_\+time\+\_\+main}, \hyperpage{57}
-    \subitem {set\+\_\+date}, \hyperpage{57}
-    \subitem {set\+\_\+date\+\_\+main}, \hyperpage{58}
-    \subitem {set\+\_\+date\+\_\+str}, \hyperpage{58}
-    \subitem {set\+\_\+time}, \hyperpage{59}
-    \subitem {set\+\_\+time\+\_\+main}, \hyperpage{59}
-    \subitem {set\+\_\+time\+\_\+str}, \hyperpage{60}
+    \subitem {get\+\_\+date}, \hyperpage{59}
+    \subitem {get\+\_\+date\+\_\+main}, \hyperpage{60}
+    \subitem {get\+\_\+time}, \hyperpage{60}
+    \subitem {get\+\_\+time\+\_\+main}, \hyperpage{61}
+    \subitem {set\+\_\+date}, \hyperpage{61}
+    \subitem {set\+\_\+date\+\_\+main}, \hyperpage{62}
+    \subitem {set\+\_\+date\+\_\+str}, \hyperpage{62}
+    \subitem {set\+\_\+time}, \hyperpage{63}
+    \subitem {set\+\_\+time\+\_\+main}, \hyperpage{63}
+    \subitem {set\+\_\+time\+\_\+str}, \hyperpage{64}
+  \item {system}
+    \subitem {pcb.\+h}, \hyperpage{69}
+
+  \indexspace
+
+  \item {tail}
+    \subitem {pcb\+\_\+queue}, \hyperpage{9}
+  \item {true}
+    \subitem {pcb.\+h}, \hyperpage{69}
 
   \indexspace
 
   \item {U\+S\+E\+R\+\_\+\+I\+N\+P\+U\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}
-    \subitem {r1.\+c}, \hyperpage{33}
+    \subitem {r1.\+c}, \hyperpage{37}
+  \item {unblock\+\_\+pcb}
+    \subitem {pcb.\+h}, \hyperpage{70}
+  \item {unblock\+\_\+pcb\+\_\+main}
+    \subitem {pcb\+\_\+comm.\+h}, \hyperpage{73}
   \item {usage}
     \subitem {function\+\_\+name}, \hyperpage{8}
 
   \indexspace
 
   \item {V\+E\+R\+S\+I\+ON}
-    \subitem {r1.\+h}, \hyperpage{38}
+    \subitem {r1.\+h}, \hyperpage{42}
 
   \indexspace
 
   \item {With\+Echo}
-    \subitem {serial.\+h}, \hyperpage{11}
+    \subitem {serial.\+h}, \hyperpage{15}
   \item {Without\+Echo}
-    \subitem {serial.\+h}, \hyperpage{11}
+    \subitem {serial.\+h}, \hyperpage{15}
 
 \end{theindex}

@@ -1,0 +1,4 @@
+<map id="pcb_struct" name="pcb_struct">
+<area shape="rect" id="node3" href="$structpcb__queue__node.html" title="The PCB queue node will represent the PCB within pcb_queue and point to previous/next PCB nodes..." alt="" coords="5,96,125,123"/>
+<area shape="rect" id="node2" href="$structpcb__queue.html" title="Queue structure that will store PCBs. " alt="" coords="131,201,216,228"/>
+</map>
