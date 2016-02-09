@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['memset',['memset',['../string_8c.html#ace6ee45c30e71865e6eb635200379db9',1,'memset(void *s, int c, size_t n):&#160;string.c'],['../string_8h.html#ace6ee45c30e71865e6eb635200379db9',1,'memset(void *s, int c, size_t n):&#160;string.c']]]
+  ['find_5fpcb',['find_pcb',['../pcb_8h.html#acfbb91c24a4b3cdc22d9a27df468013d',1,'pcb.h']]],
+  ['free_5fpcb',['free_pcb',['../pcb_8h.html#a31e603695448c5bd7bccacce5988eaf2',1,'pcb.h']]]
 ];
