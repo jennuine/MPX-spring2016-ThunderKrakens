@@ -37,11 +37,14 @@
     \subitem {errno.\+h}, \hyperpage{29}
   \item {E\+\_\+\+I\+N\+V\+S\+T\+RF}
     \subitem {errno.\+h}, \hyperpage{29}
+  \item {E\+\_\+\+I\+N\+V\+U\+S\+RI}
+    \subitem {errno.\+h}, \hyperpage{29}
   \item {E\+\_\+\+N\+O\+E\+R\+R\+OR}
     \subitem {errno.\+h}, \hyperpage{29}
   \item {errno.\+h}
     \subitem {E\+\_\+\+I\+N\+V\+P\+A\+RA}, \hyperpage{29}
     \subitem {E\+\_\+\+I\+N\+V\+S\+T\+RF}, \hyperpage{29}
+    \subitem {E\+\_\+\+I\+N\+V\+U\+S\+RI}, \hyperpage{29}
     \subitem {E\+\_\+\+N\+O\+E\+R\+R\+OR}, \hyperpage{29}
     \subitem {error\+\_\+t}, \hyperpage{29}
   \item {error\+\_\+t}
