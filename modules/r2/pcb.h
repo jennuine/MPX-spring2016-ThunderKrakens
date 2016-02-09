@@ -28,7 +28,7 @@ enum process_state
 
 struct pcb_struct;
 struct pcb_queue;
-struct pcb_node;
+struct pcb_queue_node;
 
 struct pcb_struct
 {
@@ -44,9 +44,9 @@ struct pcb_struct
 
 struct pcb_queue_node
 {
-  void * prev;
+  struct pcb_queue_node * prev;
   struct pcb_struct actual_pcb;
-  void * next;
+  struct pcb_queue_node * next;
 };
 
 struct pcb_queue
