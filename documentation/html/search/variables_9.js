@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['stack_5fbase',['stack_base',['../structpcb__struct.html#a8365cb3b483002fecc259df14301f30f',1,'pcb_struct']]],
-  ['stack_5ftop',['stack_top',['../structpcb__struct.html#a277e7babba5b14dc71ffc08bf69f54c3',1,'pcb_struct']]]
+  ['prev',['prev',['../structpcb__queue__node.html#aff49de430038d879a5a58105aa1544d5',1,'pcb_queue_node']]],
+  ['priority',['priority',['../structpcb__struct.html#aff2a92397b2ef3d680c09934ecd5f032',1,'pcb_struct']]]
 ];

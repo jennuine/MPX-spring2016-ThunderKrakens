@@ -7,11 +7,13 @@ The Process Control Block.
 
 {\ttfamily \#include \char`\"{}pcb.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}../mpx\+\_\+supt.\+h\char`\"{}}\\*
-Include dependency graph for pcb.\+c\+:\nopagebreak
+{\ttfamily \#include \char`\"{}string.\+h\char`\"{}}\\*
+Include dependency graph for pcb.\+c\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=224pt]{pcb_8c__incl}
+\includegraphics[width=295pt]{pcb_8c__incl}
 \end{center}
 \end{figure}
 \subsection*{Functions}
@@ -19,6 +21,38 @@ Include dependency graph for pcb.\+c\+:\nopagebreak
 \item 
 void \hyperlink{pcb_8c_a8d00fee50178510712d2ffeaeafae347}{pcb\+\_\+init} ()
 \end{DoxyCompactItemize}
+\begin{Indent}{\bf free\+\_\+pcb}\par
+{\em Frees all memory associated with given P\+CB, including the P\+CB itself, the stack, etc, with sys\+\_\+free\+\_\+mem()
+
+
+\begin{DoxyParams}{Parameters}
+{\em pcb\+\_\+ptr} & The P\+CB pointer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+error\+\_\+t code 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+\hyperlink{errno_8h_aafbeb34410283829794b35fedafeb369}{error\+\_\+t} \hyperlink{pcb_8c_a31e603695448c5bd7bccacce5988eaf2}{free\+\_\+pcb} (struct \hyperlink{structpcb__struct}{pcb\+\_\+struct} $\ast$pcb\+\_\+ptr)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf pcb\+\_\+struct}\par
+{\em Will search all queues for a process named p\+Name
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Name} & The char pointer to the desired searched name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+P\+CB pointer if found, N\+U\+LL if P\+CB is not found 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structpcb__struct}{pcb\+\_\+struct} $\ast$ \hyperlink{pcb_8c_acfbb91c24a4b3cdc22d9a27df468013d}{find\+\_\+pcb} (const char $\ast$p\+Name)
+\end{DoxyCompactItemize}
+\end{Indent}
 
 
 \subsection{Detailed Description}
@@ -36,6 +70,32 @@ R2
 
 
 \subsection{Function Documentation}
+\index{pcb.\+c@{pcb.\+c}!find\+\_\+pcb@{find\+\_\+pcb}}
+\index{find\+\_\+pcb@{find\+\_\+pcb}!pcb.\+c@{pcb.\+c}}
+\subsubsection[{\texorpdfstring{find\+\_\+pcb(const char $\ast$p\+Name)}{find_pcb(const char *pName)}}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf pcb\+\_\+struct}$\ast$ find\+\_\+pcb (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{p\+Name}
+\end{DoxyParamCaption}
+)}\hypertarget{pcb_8c_acfbb91c24a4b3cdc22d9a27df468013d}{}\label{pcb_8c_acfbb91c24a4b3cdc22d9a27df468013d}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=293pt]{pcb_8c_acfbb91c24a4b3cdc22d9a27df468013d_cgraph}
+\end{center}
+\end{figure}
+
+
+\index{pcb.\+c@{pcb.\+c}!free\+\_\+pcb@{free\+\_\+pcb}}
+\index{free\+\_\+pcb@{free\+\_\+pcb}!pcb.\+c@{pcb.\+c}}
+\subsubsection[{\texorpdfstring{free\+\_\+pcb(struct pcb\+\_\+struct $\ast$pcb\+\_\+ptr)}{free_pcb(struct pcb_struct *pcb_ptr)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf error\+\_\+t} free\+\_\+pcb (
+\begin{DoxyParamCaption}
+\item[{struct {\bf pcb\+\_\+struct} $\ast$}]{pcb\+\_\+ptr}
+\end{DoxyParamCaption}
+)}\hypertarget{pcb_8c_a31e603695448c5bd7bccacce5988eaf2}{}\label{pcb_8c_a31e603695448c5bd7bccacce5988eaf2}
 \index{pcb.\+c@{pcb.\+c}!pcb\+\_\+init@{pcb\+\_\+init}}
 \index{pcb\+\_\+init@{pcb\+\_\+init}!pcb.\+c@{pcb.\+c}}
 \subsubsection[{\texorpdfstring{pcb\+\_\+init()}{pcb_init()}}]{\setlength{\rightskip}{0pt plus 5cm}void pcb\+\_\+init (

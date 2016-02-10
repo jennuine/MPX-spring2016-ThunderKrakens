@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['false',['false',['../pcb_8h.html#ac80b09976226d1f179d0911462a93034ae9de385ef6fe9bf3360d1038396b884c',1,'pcb.h']]]
+  ['ready',['ready',['../pcb_8h.html#a4e1a76273cf189daed25256e3ba34aefa620a31d3a677faaa9e000fb23967a473',1,'pcb.h']]],
+  ['running',['running',['../pcb_8h.html#a4e1a76273cf189daed25256e3ba34aefab514bba77fe136c3a3b6f56b818f7b0c',1,'pcb.h']]]
 ];

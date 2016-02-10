@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['running_5fstate',['running_state',['../structpcb__struct.html#a374d522318eb94188698cbb5bd85009d',1,'pcb_struct']]]
+  ['other_5fpcb',['other_pcb',['../structpcb__struct.html#aba9f99ef03e34c9f9ef79053a255ba27',1,'pcb_struct']]]
 ];
