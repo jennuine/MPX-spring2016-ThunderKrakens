@@ -93,7 +93,7 @@ struct pcb_struct * allocate_pcb();
 
 error_t free_pcb(struct pcb_struct * pcb_ptr);
 
-struct pcb_struct * setup_pcb(const char * pName, const unsigned char pClass, const unsigned char pPriority);
+struct pcb_struct * setup_pcb(const char * pName, const enum process_class pClass, const unsigned char pPriority);
 
 struct pcb_struct * find_pcb(const char * pName);
 
