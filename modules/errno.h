@@ -20,6 +20,8 @@
 #define E_FREEMEM 4
 /** @brief Error item was not found */
 #define E_NOT_FOUND 5
+/** @brief Error removing pcb */
+#define E_REMOVE_PCB 6
 
 
 

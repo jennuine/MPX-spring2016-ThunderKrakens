@@ -52,6 +52,9 @@ error_t free_pcb(struct pcb_struct * pcb_ptr)
       return E_FREEMEM;
   }
 
+  if (remove_pcb(pcb_ptr) != E_NOERROR)
+    return E_REMOVE_PCB;
+
   if (sys_free_mem(pcb_ptr) == -1)
     return E_FREEMEM;
 
