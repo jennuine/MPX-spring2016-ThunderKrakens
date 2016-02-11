@@ -50,6 +50,8 @@ enum process_class
 struct pcb_struct;
 struct pcb_queue;
 struct pcb_queue_node;
+error_t add_to_queue;
+error_t remove_from_queue;
 
 /**
 * Struct that will describe PCB Processes.
