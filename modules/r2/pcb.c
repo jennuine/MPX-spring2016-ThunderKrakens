@@ -23,3 +23,12 @@ void pcb_init()
   blocked_queue.head = NULL;
   blocked_queue.tail = NULL;
 }
+
+struct pcb_struct * allocate_pcb()
+{
+  struct pcb_struct * a_pcb = sys_alloc_mem(sizeof(struct pcb_struct));
+  a_pcb->stack_top = sys_alloc_mem(SIZE_OF_STACK);
+  a_pcb->stack_base = a_pcb->stack_top + SIZE_OF_STACK;
+  a_pcb->other_pcb = NULL;
+  return a_pcb;
+}

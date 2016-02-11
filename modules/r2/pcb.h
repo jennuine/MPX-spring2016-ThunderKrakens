@@ -13,11 +13,11 @@
 #include "../errno.h"
 
 /* @brief Represents the process class of application process. */
-#define APP_PROCESS 10;
+#define APP_PROCESS 10
 /* @brief Represents the process class of system process. */
-#define SYS_PROCESS 20;
+#define SYS_PROCESS 20
 /* @brief The defualt size of the stack for the PCB */
-#define SIZE_OF_STACK 1024;
+#define SIZE_OF_STACK 1024
 
 /**
 * PCB process states/statuses
