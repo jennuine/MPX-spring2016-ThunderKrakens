@@ -15,6 +15,17 @@
 #define E_INVSTRF 2
 /* @brief Invalid User Input */
 #define E_INVUSRI 3
+/* @brief PCB was removed */
+#define E_REMOVE_PCB
+/* @brief PCB was failed to be removed */
+#define E_REMOVE_PCB_FAIL
+/* @brief PCB was inserted */
+#define E_INSERT_PCB
+/* @brief PCB was failed to be inserted */
+#define E_INSERT_PCB_FAIL
+/** @brief Error item was not found */
+#define E_NOT_FOUND 5
+
 
 /**
  * @name error_t.
