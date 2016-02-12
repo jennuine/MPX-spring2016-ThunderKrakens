@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['find_5fpcb',['find_pcb',['../pcb_8h.html#acfbb91c24a4b3cdc22d9a27df468013d',1,'pcb.h']]],
-  ['free_5fpcb',['free_pcb',['../pcb_8h.html#a31e603695448c5bd7bccacce5988eaf2',1,'pcb.h']]]
+  ['delete_5fpcb_5fmain',['delete_pcb_main',['../pcb__comm_8h.html#aa179e3011f75970d3202878bd08b58c2',1,'pcb_comm.h']]]
 ];

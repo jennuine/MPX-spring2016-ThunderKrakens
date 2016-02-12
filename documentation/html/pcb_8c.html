@@ -32,7 +32,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">MPX Thunder Krakens
-   &#160;<span id="projectnumber">R1</span>
+   &#160;<span id="projectnumber">R2</span>
    </div>
   </td>
  </tr>
@@ -114,12 +114,14 @@ $(document).ready(function(){initNavTree('pcb_8c.html','');});
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="pcb_8h_source.html">pcb.h</a>&quot;</code><br />
 <code>#include &quot;../mpx_supt.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="string_8h_source.html">string.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for pcb.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="pcb_8c__incl.png" border="0" usemap="#modules_2r2_2pcb_8c" alt=""/></div>
 <map name="modules_2r2_2pcb_8c" id="modules_2r2_2pcb_8c">
 <area shape="rect" id="node2" href="pcb_8h.html" title="The Process Control Block. " alt="" coords="15,80,70,107"/>
+<area shape="rect" id="node5" href="string_8h.html" title="Many usefull functions that used for handling string. " alt="" coords="221,80,286,107"/>
 <area shape="rect" id="node3" href="errno_8h.html" title="This file contains the type of errors. The error can be from invalid paramter passed to a function..." alt="" coords="5,155,80,181"/>
 </map>
 </div>
@@ -128,6 +130,30 @@ Include dependency graph for pcb.c:</div>
 Functions</h2></td></tr>
 <tr class="memitem:a8d00fee50178510712d2ffeaeafae347"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pcb_8c.html#a8d00fee50178510712d2ffeaeafae347">pcb_init</a> ()</td></tr>
 <tr class="separator:a8d00fee50178510712d2ffeaeafae347"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">free_pcb</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Frees all memory associated with given PCB, including the PCB itself, the stack, etc, with sys_free_mem()</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pcb_ptr</td><td>The PCB pointer. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>error_t code </dd></dl>
+</div></td></tr>
+<tr class="memitem:a31e603695448c5bd7bccacce5988eaf2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="errno_8h.html#aafbeb34410283829794b35fedafeb369">error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pcb_8c.html#a31e603695448c5bd7bccacce5988eaf2">free_pcb</a> (struct <a class="el" href="structpcb__struct.html">pcb_struct</a> *pcb_ptr)</td></tr>
+<tr class="separator:a31e603695448c5bd7bccacce5988eaf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">pcb_struct</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Will search all queues for a process named pName</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pName</td><td>The char pointer to the desired searched name </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>PCB pointer if found, NULL if PCB is not found </dd></dl>
+</div></td></tr>
+<tr class="memitem:acfbb91c24a4b3cdc22d9a27df468013d"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structpcb__struct.html">pcb_struct</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pcb_8c.html#acfbb91c24a4b3cdc22d9a27df468013d">find_pcb</a> (const char *pName)</td></tr>
+<tr class="separator:acfbb91c24a4b3cdc22d9a27df468013d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The Process Control Block. </p>
@@ -135,6 +161,50 @@ Functions</h2></td></tr>
 <dl class="section date"><dt>Date</dt><dd>February 7th, 2016 </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>R2 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="acfbb91c24a4b3cdc22d9a27df468013d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structpcb__struct.html">pcb_struct</a>* find_pcb </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>pName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="pcb_8c_acfbb91c24a4b3cdc22d9a27df468013d_cgraph.png" border="0" usemap="#pcb_8c_acfbb91c24a4b3cdc22d9a27df468013d_cgraph" alt=""/></div>
+<map name="pcb_8c_acfbb91c24a4b3cdc22d9a27df468013d_cgraph" id="pcb_8c_acfbb91c24a4b3cdc22d9a27df468013d_cgraph">
+<area shape="rect" id="node2" href="string_8c.html#a11bd144d7d44914099a3aeddf1c8567d" title="strcmp" alt="" coords="124,31,187,57"/>
+<area shape="rect" id="node3" href="string_8c.html#a2dee044e4e667b5b789b493abd21cfa4" title="strlen" alt="" coords="235,5,289,32"/>
+<area shape="rect" id="node4" href="string_8c.html#a8908188ae9fc2f05d993257ef001d553" title="strcat" alt="" coords="235,56,289,83"/>
+</map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a31e603695448c5bd7bccacce5988eaf2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="errno_8h.html#aafbeb34410283829794b35fedafeb369">error_t</a> free_pcb </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structpcb__struct.html">pcb_struct</a> *&#160;</td>
+          <td class="paramname"><em>pcb_ptr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a8d00fee50178510712d2ffeaeafae347"></a>
 <div class="memitem">
 <div class="memproto">

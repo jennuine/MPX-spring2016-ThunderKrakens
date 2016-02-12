@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['head',['head',['../structpcb__queue.html#a183818f26c833aa30aefac583db68388',1,'pcb_queue']]],
-  ['help',['help',['../structfunction__name.html#ac0f73e570d7d03a9f378a70e6d4d5632',1,'function_name']]]
+  ['doublequotewriting',['DoubleQuoteWriting',['../r1_8c.html#afbd72c7a78fdd02cdb873cb1aa05f87d',1,'r1.c']]]
 ];

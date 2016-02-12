@@ -34,5 +34,6 @@ var pcb_8h =
     [ "show_pcb", "pcb_8h.html#af08c093fa9ecf34738d5e295520a032a", null ],
     [ "show_ready_processes", "pcb_8h.html#a542627a44f5cbaf08ceaab05a419acee", null ],
     [ "suspend_pcb", "pcb_8h.html#acb4a05dff84e0ad1777c1991f95be1e0", null ],
-    [ "unblock_pcb", "pcb_8h.html#a0526b69c22b1961dad32f21f9b380f4b", null ]
+    [ "unblock_pcb", "pcb_8h.html#a0526b69c22b1961dad32f21f9b380f4b", null ],
+    [ "__attribute__", "pcb_8h.html#ab515066d2d3435790ec7519e899a2bdd", null ]
 ];

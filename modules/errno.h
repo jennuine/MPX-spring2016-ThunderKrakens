@@ -1,8 +1,8 @@
 /**
  * @file errno.h
  * @author Thunder Krakens
- * @date February 2nd, 2016
- * @version R1
+ * @date February 7nd, 2016
+ * @version R2
  *
  * @brief This file contains the type of errors. The error can be from invalid paramter passed to a function, or invalid input format.
  */
@@ -15,6 +15,16 @@
 #define E_INVSTRF 2
 /* @brief Invalid User Input */
 #define E_INVUSRI 3
+
+/** @brief Error when freeing memory*/
+#define E_FREEMEM 4
+/** @brief Error item was not found */
+#define E_NOT_FOUND 5
+/** @brief Error removing pcb */
+#define E_REMOVE_PCB 6
+
+
+
 
 /**
  * @name error_t.

@@ -1,4 +1,0 @@
-<map id="pcb_queue" name="pcb_queue">
-<area shape="rect" id="node3" href="$structpcb__struct.html" title="Struct that will describe PCB Processes. " alt="" coords="5,96,88,123"/>
-<area shape="rect" id="node2" href="$structpcb__queue__node.html" title="The PCB queue node will represent the PCB within pcb_queue and point to previous/next PCB nodes..." alt="" coords="32,188,152,215"/>
-</map>
