@@ -65,7 +65,7 @@ struct pcb_struct
   enum process_suspended is_suspended; /**< PCB process is either suspended or not suspended. */
   unsigned char * stack_top; /**< Pointer to top of the stack. */
   unsigned char * stack_base; /**< Pointer to base of the stack. */
-  struct pcb_queue * other_pcb; /**< Pointer to other PCBs */
+  struct pcb_queue_node * other_pcb; /**< Pointer to other PCBs */
 };
 
 /**

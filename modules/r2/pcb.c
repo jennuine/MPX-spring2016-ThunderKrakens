@@ -14,6 +14,8 @@
 static struct pcb_queue ready_queue;
 static struct pcb_queue blocked_queue;
 
+enum process_state state;
+
 void pcb_init()
 {
   ready_queue.count = 0;
@@ -26,7 +28,7 @@ void pcb_init()
 }
 
 error_t suspend_pcb(struct pcb_struct * pcb_ptr){
-  pcb_ptr.process_suspended = false;
+  pcb_ptr->is_suspended = true;
   if (insert_pcb(pcb_ptr) != E_NOERROR){
     return E_INSERT_PCB;
   }
@@ -39,7 +41,7 @@ error_t suspend_pcb(struct pcb_struct * pcb_ptr){
 }
 
 error_t resume_pcb(struct pcb_struct * pcb_ptr){
-  pcb_ptr.process_suspended = false;
+  pcb_ptr->is_suspended = false;
   if (insert_pcb(pcb_ptr) != E_NOERROR){
     return E_INSERT_PCB;
   }
@@ -99,21 +101,8 @@ error_t free_pcb(struct pcb_struct * pcb_ptr)
   if (sys_free_mem(pcb_ptr->stack_base) == -1)
     return E_FREEMEM;
 
-  struct pcb_queue_node * curr = pcb_ptr->other_pcb->head;
-
-  while ( curr != NULL )
-  {
-    curr = curr->next;
-
-    if (sys_free_mem(curr->prev) == -1)
-      return E_FREEMEM;
-  }
-
   if (remove_pcb(pcb_ptr) != E_NOERROR)
     return E_REMOVE_PCB;
-
-  if (sys_free_mem(pcb_ptr) == -1)
-    return E_FREEMEM;
 
   return E_NOERROR;
 }
@@ -165,29 +154,30 @@ error_t insert_pcb (struct pcb_struct * pcb_ptr)
     struct pcb_queue_node * current;
 
     //double check how to check enum equals -> It is the other way around
-    if (pcb -> running_state == process_state.ready)
+    if (pcb_ptr->running_state == ready)
     {
         current = ready_queue.head;
 
-        while (current != ready_queue->tail)
+        while (current != ready_queue.tail)
         {
 
-                if (current->actual_pcb->priority <= pcb->priority
-		 && pcb->priority < current->next->actual_pcb->priority)
+                if (current->actual_pcb.priority <= pcb_ptr->priority
+		                && pcb_ptr->priority < current->next->actual_pcb.priority)
                 {
-                    current->next = pcb->next;
-                    current->prev = pcb;
+                    current->next = pcb_ptr->other_pcb->next;
+                    current->prev = pcb_ptr->other_pcb;
 
-                    pcb->next = current;
-                    pcb->next->prev = current;
+                    pcb_ptr->other_pcb->next = current;
+                    pcb_ptr->other_pcb->next->prev = current;
 
-		    return E_INSERT_PCB;
-                    break;
+		                return E_NOERROR;
                 }
 
             current = current->next;
         }
     }
+
+    //will need to do else if process_state.block and insert at tail
 
 	return E_INSERT_PCB_FAIL;
 }
@@ -204,17 +194,17 @@ error_t insert_pcb (struct pcb_struct * pcb_ptr)
 
 error_t remove_pcb(struct pcb_struct * pcb_ptr)
 {
-	struct pcb * current = find_pcb();
+	struct pcb_struct * current = find_pcb(pcb_ptr->name);
 
 	if (pcb_ptr == NULL )
 	{
   	return E_NOT_FOUND;
 	}
 
-	current->next->prev = current->prev;
-	current->prev->next = current->next;
+	current->other_pcb->next->prev = current->other_pcb->prev;
+	current->other_pcb->prev->next = current->other_pcb->next;
 	free_pcb(current);
 
- 	return E_REMOVE_PCB;
+ 	return E_NOERROR;
 
 }

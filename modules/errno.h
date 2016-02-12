@@ -23,7 +23,9 @@
 /** @brief Error removing pcb */
 #define E_REMOVE_PCB 6
 
+#define E_INSERT_PCB 7
 
+#define E_INSERT_PCB_FAIL 8
 
 
 /**
