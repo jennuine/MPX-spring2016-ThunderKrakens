@@ -1,7 +1,0 @@
-.*\.*~$
-.*\.o$
-
-syntax: glob
-documentation/html/**.*
-documentation/latex/**.*
-kernel.bin

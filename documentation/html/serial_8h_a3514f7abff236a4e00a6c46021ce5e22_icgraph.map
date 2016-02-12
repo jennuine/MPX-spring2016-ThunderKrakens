@@ -1,9 +1,0 @@
-<map id="serial_println" name="serial_println">
-<area shape="rect" id="node2" href="$string_8h.html#a30670a60464f77af17dfb353353d6df8" title="atoi" alt="" coords="148,31,191,57"/>
-<area shape="rect" id="node3" href="$sys__clock_8h.html#a2fa1ed5071047b72b357329da498b7aa" title="set_time_str" alt="" coords="239,5,333,32"/>
-<area shape="rect" id="node7" href="$sys__clock_8h.html#ab80d04ed8d251aaea6a09fd01e68eb27" title="set_date_str" alt="" coords="239,56,333,83"/>
-<area shape="rect" id="node4" href="$sys__clock_8h.html#a2afc871aeddaa550badc5e0c6bb65da5" title="set_time_main" alt="" coords="381,5,488,32"/>
-<area shape="rect" id="node5" href="$r1_8h.html#adb6b307c73bca25d17aa7683e14fea16" title="command_line_parser" alt="" coords="536,31,685,57"/>
-<area shape="rect" id="node6" href="$r1_8h.html#a14d85617242501c323a203ee196d3efa" title="commhand" alt="" coords="733,31,820,57"/>
-<area shape="rect" id="node8" href="$sys__clock_8h.html#a626404928f9803307b300e6c60df3afb" title="set_date_main" alt="" coords="381,56,488,83"/>
-</map>
