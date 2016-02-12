@@ -25,6 +25,30 @@ void pcb_init()
   blocked_queue.tail = NULL;
 }
 
+error_t suspend_pcb(struct pcb_struct * pcb_ptr){
+  pcb_ptr.process_suspended = false;
+  if (insert_pcb(pcb_ptr) != E_NOERROR){
+    return E_INSERT_PCB;
+  }
+
+  if (remove_pcb(pcb_ptr) != E_NOERROR){
+    return E_REMOVE_PCB;
+  } 
+  
+  return 0;
+}
+
+error_t resume_pcb(struct pcb_struct * pcb_ptr){
+  pcb_ptr.process_suspended = false;
+  if (insert_pcb(pcb_ptr) != E_NOERROR){
+    return E_INSERT_PCB;
+  }
+  if (remove_pcb(pcb_ptr) != E_NOERROR){
+    return E_REMOVE_PCB;
+  } 
+  return 0;
+}
+
 struct pcb_struct * allocate_pcb()
 {
   struct pcb_struct * a_pcb = sys_alloc_mem(sizeof(struct pcb_struct));
