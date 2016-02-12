@@ -65,18 +65,8 @@ struct pcb_struct
   enum process_suspended is_suspended; /**< PCB process is either suspended or not suspended. */
   unsigned char * stack_top; /**< Pointer to top of the stack. */
   unsigned char * stack_base; /**< Pointer to base of the stack. */
-  struct pcb_queue_node * other_pcb; /**< Pointer to other PCBs */
-};
-
-/**
-* The PCB queue node will represent the PCB within pcb_queue and point to previous/next PCB nodes.
-* This structure is a doubly linked list.
-*/
-struct pcb_queue_node
-{
-  struct pcb_queue_node * prev; /**< Pointer to the previous PCB in the queue. */
-  struct pcb_struct actual_pcb; /**< The PCB process. */
-  struct pcb_queue_node * next; /**< Pointer to the next PCB in the queue. */
+  struct pcb_struct * prev; /**< Pointer to the previous PCB in the queue */
+  struct pcb_struct * next; /**< Pointer to the next PCB in the queue */
 };
 
 /**

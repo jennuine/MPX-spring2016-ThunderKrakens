@@ -14,8 +14,6 @@
 static struct pcb_queue ready_queue;
 static struct pcb_queue blocked_queue;
 
-enum process_state state;
-
 void pcb_init()
 {
   ready_queue.count = 0;
@@ -28,27 +26,19 @@ void pcb_init()
 }
 
 error_t suspend_pcb(struct pcb_struct * pcb_ptr){
+  if (pcb_ptr == NULL)
+    return E_NULL_PTR;
+
   pcb_ptr->is_suspended = true;
-  if (insert_pcb(pcb_ptr) != E_NOERROR){
-    return E_INSERT_PCB;
-  }
-
-  if (remove_pcb(pcb_ptr) != E_NOERROR){
-    return E_REMOVE_PCB;
-  }
-
-  return 0;
+  return E_NOERROR;
 }
 
 error_t resume_pcb(struct pcb_struct * pcb_ptr){
+  if (pcb_ptr == NULL)
+    return E_NULL_PTR;
+
   pcb_ptr->is_suspended = false;
-  if (insert_pcb(pcb_ptr) != E_NOERROR){
-    return E_INSERT_PCB;
-  }
-  if (remove_pcb(pcb_ptr) != E_NOERROR){
-    return E_REMOVE_PCB;
-  }
-  return 0;
+  return E_NOERROR;
 }
 
 struct pcb_struct * allocate_pcb()
@@ -57,9 +47,10 @@ struct pcb_struct * allocate_pcb()
 
   if(a_pcb)
   {
-    a_pcb->stack_top = sys_alloc_mem(SIZE_OF_STACK);
-    a_pcb->stack_base = a_pcb->stack_top + SIZE_OF_STACK;
-    a_pcb->other_pcb = NULL;
+    a_pcb->stack_base = sys_alloc_mem(SIZE_OF_STACK);
+    a_pcb->stack_top = a_pcb->stack_top + SIZE_OF_STACK;
+    a_pcb->prev = NULL;
+    a_pcb->next = NULL;
   }
 
   return a_pcb;
@@ -94,15 +85,14 @@ struct pcb_struct * setup_pcb(const char * pName, const enum process_class pClas
 error_t free_pcb(struct pcb_struct * pcb_ptr)
 {
   if (pcb_ptr == NULL )
-    return E_NOT_FOUND;
-
-  if (sys_free_mem(pcb_ptr->stack_top) == -1)
-    return E_FREEMEM;
-  if (sys_free_mem(pcb_ptr->stack_base) == -1)
-    return E_FREEMEM;
+    return E_NULL_PTR;
 
   if (remove_pcb(pcb_ptr) != E_NOERROR)
     return E_REMOVE_PCB;
+  
+  sys_free_mem(pcb_ptr->stack_base);
+
+  sys_free_mem(pcb_ptr);
 
   return E_NOERROR;
 }
@@ -116,12 +106,12 @@ error_t free_pcb(struct pcb_struct * pcb_ptr)
  */
 struct pcb_struct * find_pcb(const char * pName)
 {
-  struct pcb_queue_node * curr = ready_queue.head;
+  struct pcb_struct * curr = ready_queue.head;
 
   while ( curr != NULL )
   {
-    if (strcmp((curr->actual_pcb).name, pName))
-      return &curr->actual_pcb;
+    if (strcmp(curr->name, pName))
+      return curr;
 
     curr = curr->next;
   }
@@ -130,8 +120,8 @@ struct pcb_struct * find_pcb(const char * pName)
 
   while ( curr != NULL )
   {
-    if (strcmp((curr->actual_pcb).name, pName))
-      return &curr->actual_pcb;
+    if (strcmp(curr->name, pName))
+      return curr;
 
     curr = curr->next;
   }
@@ -151,7 +141,7 @@ struct pcb_struct * find_pcb(const char * pName)
 
 error_t insert_pcb (struct pcb_struct * pcb_ptr)
 {
-    struct pcb_queue_node * current;
+    struct pcb_struct * current;
 
     //double check how to check enum equals -> It is the other way around
     if (pcb_ptr->running_state == ready)
@@ -160,17 +150,16 @@ error_t insert_pcb (struct pcb_struct * pcb_ptr)
 
         while (current != ready_queue.tail)
         {
-
-                if (current->actual_pcb.priority <= pcb_ptr->priority
-		                && pcb_ptr->priority < current->next->actual_pcb.priority)
+                if (current->priority <= pcb_ptr->priority && current->next->priority >pcb_priority
+                 )
                 {
-                    current->next = pcb_ptr->other_pcb->next;
-                    current->prev = pcb_ptr->other_pcb;
+	                 current->next = pcb_ptr->next;
+	                 current->prev = pcb_ptr;
+	
+	                 pcb_ptr->next = current;
+	                 pcb_ptr->next->prev = current;
 
-                    pcb_ptr->other_pcb->next = current;
-                    pcb_ptr->other_pcb->next->prev = current;
-
-		                return E_NOERROR;
+		               return E_NOERROR;
                 }
 
             current = current->next;
@@ -178,6 +167,13 @@ error_t insert_pcb (struct pcb_struct * pcb_ptr)
     }
 
     //will need to do else if process_state.block and insert at tail
+    
+    else if (pcb_ptr->running_state == blocked)
+    {
+      
+      
+      
+    }
 
 	return E_INSERT_PCB_FAIL;
 }
