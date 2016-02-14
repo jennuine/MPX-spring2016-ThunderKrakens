@@ -14,6 +14,11 @@
 static struct pcb_queue ready_queue;
 static struct pcb_queue blocked_queue;
 
+/**
+ * @name  pcb_init
+ * @brief Initiates the PCB queues
+ *
+ */
 void pcb_init()
 {
   ready_queue.count = 0;
@@ -41,6 +46,12 @@ error_t resume_pcb(struct pcb_struct * pcb_ptr){
   return E_NOERROR;
 }
 
+/**
+ * @name  allocate_pcb
+ * @brief allocate a space for the PCB structure.
+ *
+ * @return  The pointer that point to the PCB structure.
+ */
 struct pcb_struct * allocate_pcb()
 {
   struct pcb_struct * a_pcb = sys_alloc_mem(sizeof(struct pcb_struct));
@@ -56,6 +67,14 @@ struct pcb_struct * allocate_pcb()
   return a_pcb;
 }
 
+/**
+ * @name  setup_pcb
+ * @brief allocate a space for the PCB structure, setup the properties of the PCB.
+ *    NOTE: pName must less than 10 character, pClass should be either "application" or "system"
+ *    , and pPriority must within the range of [0, 9].
+ *
+ * @return  NULL if error occured, otherwise, the pointer that point to the PCB structure.
+ */
 struct pcb_struct * setup_pcb(const char * pName, const enum process_class pClass, const unsigned char pPriority)
 {
   if(!(strlen(pName) < 10 && pClass <= system && pPriority <= 9))
@@ -84,17 +103,19 @@ struct pcb_struct * setup_pcb(const char * pName, const enum process_class pClas
  */
 error_t free_pcb(struct pcb_struct * pcb_ptr)
 {
-  if (pcb_ptr == NULL )
-    return E_NULL_PTR;
+  error_t error_code = E_NOERROR;
 
-  if (remove_pcb(pcb_ptr) != E_NOERROR)
-    return E_REMOVE_PCB;
-  
+  if (pcb_ptr == NULL )
+    return E_NOERROR;
+
+  if ((error_code = remove_pcb(pcb_ptr)) != E_NOERROR)
+    return error_code;
+
   sys_free_mem(pcb_ptr->stack_base);
 
   sys_free_mem(pcb_ptr);
 
-  return E_NOERROR;
+  return error_code;
 }
 
 /**
@@ -110,7 +131,7 @@ struct pcb_struct * find_pcb(const char * pName)
 
   while ( curr != NULL )
   {
-    if (strcmp(curr->name, pName))
+    if (!strcmp(curr->name, pName))
       return curr;
 
     curr = curr->next;
@@ -120,7 +141,7 @@ struct pcb_struct * find_pcb(const char * pName)
 
   while ( curr != NULL )
   {
-    if (strcmp(curr->name, pName))
+    if (!strcmp(curr->name, pName))
       return curr;
 
     curr = curr->next;
@@ -137,45 +158,71 @@ struct pcb_struct * find_pcb(const char * pName)
  * @return E_INSERT_PCB	The PCB was inserted.
  *
  */
-
-
 error_t insert_pcb (struct pcb_struct * pcb_ptr)
 {
-    struct pcb_struct * current;
-
-    //double check how to check enum equals -> It is the other way around
-    if (pcb_ptr->running_state == ready)
-    {
-        current = ready_queue.head;
-
-        while (current != ready_queue.tail)
-        {
-                if (current->priority <= pcb_ptr->priority && current->next->priority >pcb_priority
-                 )
-                {
-	                 current->next = pcb_ptr->next;
-	                 current->prev = pcb_ptr;
-	
-	                 pcb_ptr->next = current;
-	                 pcb_ptr->next->prev = current;
-
-		               return E_NOERROR;
-                }
-
-            current = current->next;
-        }
+  struct pcb_struct * current;
+  if (pcb_ptr->running_state == running || pcb_ptr->prev || pcb_ptr->next)
+  {
+    return E_INSERT_PCB_FAIL;
+  }
+  //double check how to check enum equals -> It is the other way around
+  if (pcb_ptr->running_state == ready)
+  {
+    if(!ready_queue.count && !ready_queue.head && !ready_queue.tail)
+    { //Inserts the first one.
+      ready_queue.head = ready_queue.tail = pcb_ptr;
+      ready_queue.count++;
+      return E_NOERROR;
     }
 
-    //will need to do else if process_state.block and insert at tail
-    
-    else if (pcb_ptr->running_state == blocked)
-    {
-      
-      
-      
-    }
+    current = ready_queue.head;
+    while (current)
+    { //Processes with lower priority values should execute after higher priority processes
+      if (current->priority < pcb_ptr->priority)
+      {
+        pcb_ptr->next = current;
+        pcb_ptr->prev = current->prev;
 
-	return E_INSERT_PCB_FAIL;
+        if (current->prev)		//inserts at middle
+          current->prev->next = pcb_ptr;
+        else					//inserts at head.
+          ready_queue.head = pcb_ptr;
+
+        current->prev = pcb_ptr;
+        ready_queue.count++;
+        return E_NOERROR;
+      }
+      else if (!current->next && ready_queue.tail == current)	//inserts at tail.
+      {
+        pcb_ptr->next = NULL;
+        pcb_ptr->prev = current;
+        current->next = pcb_ptr;
+        ready_queue.tail = pcb_ptr;
+        ready_queue.count++;
+        return E_NOERROR;
+      }
+
+      current = current->next;
+    }
+  }
+  else if (pcb_ptr->running_state == blocked) //will need to do else if process_state.block and insert at tail
+  {
+    if(!blocked_queue.count && !blocked_queue.head && !blocked_queue.tail)
+    { //Inserts the first one.
+      blocked_queue.head = blocked_queue.tail = pcb_ptr;
+      blocked_queue.count++;
+      return E_NOERROR;
+    }
+    current = blocked_queue.tail;
+    pcb_ptr->next = NULL;
+    pcb_ptr->prev = current;
+    current->next = pcb_ptr;
+    blocked_queue.tail = pcb_ptr;
+    blocked_queue.count++;
+    return E_NOERROR;
+  }
+
+return E_PROGERR;
 }
 
 /**
@@ -183,23 +230,44 @@ error_t insert_pcb (struct pcb_struct * pcb_ptr)
  * @brief Removes PCB from the queue it is currently in.
  *
  * @param pcb_ptr 	The PCB pointer.
- * @return E_REMOVE_PCB 	PCB removed
- * @return E_REMOVE_PCB_FAIL	Failed to remove PCB
- *
+ * @return The error code.
  */
 
 error_t remove_pcb(struct pcb_struct * pcb_ptr)
 {
-	struct pcb_struct * current = find_pcb(pcb_ptr->name);
+	if(!pcb_ptr)
+  {
+    return E_NULL_PTR;
+  }
 
-	if (pcb_ptr == NULL )
-	{
-  	return E_NOT_FOUND;
-	}
-
-	current->other_pcb->next->prev = current->other_pcb->prev;
-	current->other_pcb->prev->next = current->other_pcb->next;
-	free_pcb(current);
+  if(pcb_ptr->prev && pcb_ptr->next)
+  { //Removes from middle
+    pcb_ptr->prev->next = pcb_ptr->next;
+    pcb_ptr->next->prev = pcb_ptr->prev;
+    pcb_ptr->prev = pcb_ptr->next = NULL;
+  }
+  else if(pcb_ptr->prev && !pcb_ptr->next && (ready_queue.tail == pcb_ptr || blocked_queue.tail == pcb_ptr))
+  { //Removes from tail
+    pcb_ptr->prev->next = NULL;
+    if(pcb_ptr->running_state == blocked)
+      blocked_queue.tail = pcb_ptr->prev;
+    else
+      ready_queue.tail = pcb_ptr->prev;
+    pcb_ptr->prev = pcb_ptr->next = NULL;
+  }
+  else if(!pcb_ptr->prev && pcb_ptr->next && (ready_queue.head == pcb_ptr || blocked_queue.head == pcb_ptr))
+  { //Removes from head
+    pcb_ptr->next->prev = NULL;
+    if(pcb_ptr->running_state == blocked)
+      blocked_queue.head = pcb_ptr->next;
+    else
+      ready_queue.head = pcb_ptr->next;
+    pcb_ptr->prev = pcb_ptr->next = NULL;
+  }
+  else
+  {
+    return E_INVPARA;
+  }
 
  	return E_NOERROR;
 

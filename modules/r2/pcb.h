@@ -49,9 +49,6 @@ enum process_class
 
 struct pcb_struct;
 struct pcb_queue;
-struct pcb_queue_node;
-error_t add_to_queue;
-error_t remove_from_queue;
 
 /**
 * Struct that will describe PCB Processes.
@@ -75,8 +72,8 @@ struct pcb_struct
 struct pcb_queue
 {
   int count; /**< The length of the queue. */
-  struct pcb_queue_node * head; /**< Pointer to the start/head of the queue. */
-  struct pcb_queue_node * tail; /**< Pointer to the end/tail of the queue. */
+  struct pcb_struct * head; /**< Pointer to the start/head of the queue. */
+  struct pcb_struct * tail; /**< Pointer to the end/tail of the queue. */
 };
 
 void pcb_init();
