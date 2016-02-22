@@ -14,6 +14,10 @@
 static struct pcb_queue ready_queue;
 static struct pcb_queue blocked_queue;
 
+static char *enum_process_state[] = {"running", "ready", "blocked"};
+static char *enum_process_suspended[] = {"suspended", "unsuspended"};
+static char *enum_process_class[] = {"application", "system"};
+
 /**
  * @name  pcb_init
  * @brief Initiates the PCB queues
@@ -45,7 +49,7 @@ error_t suspend_pcb(struct pcb_struct * pcb_ptr){
   if (pcb_ptr == NULL)
     return E_NULL_PTR;
 
-  ->is_suspended = true;
+  pcb_ptr->is_suspended = true;
   return E_NOERROR;
 }
 
@@ -497,37 +501,32 @@ error_t set_pcb_priority(struct pcb_struct * pcb_ptr, const unsigned char pPrior
  * @name show_pcb
  * @brief Displays the name, class, state, suspend status, and priority of a PCB.
  *
- * @param   pcb_ptr 	The PCB pointer.
+ * @param   pName 	The PCB's name.
  * @return The error code.
  *    Possible error code to be returned:
  *      E_NOERROR   No error.
  *      E_NULL_PTR  Null pointer error.
- *      E_INVPARA   The pPriority is out of range.
- *                  Or, the given PCB has abnormal data members (By "remove_pcb" or "insert_pcb").
+ *      E_INVPARA   The pName is NULL or an empty string.
  */
-
-
-error_t show_pcb(struct pcb_struct * pcb_ptr)
+error_t show_pcb(const char * pName)
 {
-  if (pcb_ptr == NULL) 
+  if (pName == NULL || pName == '\0') 
   { 
-		return E_NULL_PTR;
+		return E_INVUSRI;
 	}
 	
-	struct pcb_struct * current = find_pcb(pcb_ptr->name);
+	struct pcb_struct * current = find_pcb(pName);
 	
   if (current == NULL) 
   {
-    E_NULL_PTR;
+    return E_NULL_PTR;
   }
   
-  else
-  {
-    printf("Name:\t%s\n", current->name);
-    printf("Class:\t%s\n", enum_process_class[current->class]);
-    printf("State:\t%s\n", enum_process_state[current->running_state]);
-    printf("Suspended:\t%s\n", enum_process_suspended[current->is_suspended]);
-    printf("Priority:\t%d\n\n",  current->priority);
- 
-  }
+  printf("Name:\t%s\n", current->name);
+  printf("Class:\t%s\n", enum_process_class[current->class]);
+  printf("State:\t%s\n", enum_process_state[current->running_state]);
+  printf("Suspended:\t%s\n", enum_process_suspended[current->is_suspended]);
+  printf("Priority:\t%d\n\n",  current->priority);
+  
+  return E_NOERROR;
 }

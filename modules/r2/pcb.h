@@ -29,7 +29,6 @@ enum process_state
   blocked /**< PCB in the blocked state. */
 } __attribute__ ((packed));
 
-char *enum_process_state[] = {"running", "ready", "blocked"};
 /**
 * PCB process suspended or not suspended status.
 */
@@ -39,7 +38,6 @@ enum process_suspended
   false /**< PCB process is not suspended. */
 } __attribute__ ((packed));
 
-char *enum_process_suspended[] = {"suspended", "unsuspended"};
 /**
 * PCB process class types.
 */
@@ -48,8 +46,6 @@ enum process_class
   application, /**< Process is an application process. */
   system /**< Process is a system process. */
 } __attribute__ ((packed));
-
-char *enum_process_class[] = {"application", "system"};
 
 struct pcb_struct;
 struct pcb_queue;
@@ -99,6 +95,8 @@ error_t suspend_pcb(struct pcb_struct * pcb_ptr);
 error_t resume_pcb(struct pcb_struct * pcb_ptr);
 
 error_t set_pcb_priority(struct pcb_struct * pcb_ptr, const unsigned char pPriority);
+
+error_t show_pcb(const char * pName);
 
 void show_all_processes();
 

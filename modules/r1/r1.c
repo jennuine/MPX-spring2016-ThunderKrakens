@@ -12,11 +12,12 @@
 #include <string.h>
 #include <core/serial.h>
 #include <core/io.h>
+#include "../r2/pcb_comm.h"
 
 #define USER_INPUT_BUFFER_SIZE 1000
 #define MAX_ARGC 50
-#define MOD_VERSION "R1"
-#define COMPLETION "02/05/2016"
+#define MOD_VERSION "R2"
+#define COMPLETION "02/26/2016"
 
 /**
 * A structure to represent each function
@@ -347,6 +348,12 @@ static void load_functions()
     functions[SHUTDOWN].nameStr = "-shutdown"; functions[SHUTDOWN].function = &shutdown; functions[SHUTDOWN].usage = "mpx -shutdown";
     functions[SHUTDOWN].help = "\nshutdown : mpx -shutdown\n\n\tShuts down the operating system.\n\n\
     Exit Status: Always Succeeds.\n\n";
+    
+    //R2 Functions
+    functions[SHOWPCB].nameStr = "showpcb"; functions[SHOWPCB].function = &show_pcb_main; functions[SHOWPCB].usage = "mpx showpcb [processName]";
+    functions[SHOWPCB].help = "\nshowpcb : mpx showpcb [processName]\n\n\tDisplays the PCB's process name, class, state, suspended status, and priority.\n\n\
+    \n\nArguments:\n\tprocessName  String process name\n\n\
+    Exit Status:\n\tReturns success unless no PCB named [processName] or string is empty/null.\n\n";
 
 }
 

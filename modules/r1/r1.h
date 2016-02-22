@@ -18,8 +18,10 @@
 #define GETDATE 4
 #define SETDATE 5
 #define SHUTDOWN 6
+#define SETPRIORITY 7
+#define SHOWPCB 8
 
-#define NUM_OF_FUNCTIONS 7
+#define NUM_OF_FUNCTIONS 9
 
 /** @name commhand
  *
