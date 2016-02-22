@@ -30,14 +30,36 @@ void pcb_init()
   blocked_queue.tail = NULL;
 }
 
+/**
+ * @name  suspend_pcb
+ * @brief Suspends the specific PCB.
+ * 
+ * @param   pcb_ptr The pointer to the PCB
+ * 
+ * @return The error code.
+ *    Possible error code to be returned:
+ *      E_NOERROR   No error.
+ *      E_NULL_PTR  Null pointer error.
+ */
 error_t suspend_pcb(struct pcb_struct * pcb_ptr){
   if (pcb_ptr == NULL)
     return E_NULL_PTR;
 
-  pcb_ptr->is_suspended = true;
+  ->is_suspended = true;
   return E_NOERROR;
 }
 
+/**
+ * @name  resume_pcb
+ * @brief Resumes the specific PCB.
+ * 
+ * @param   pcb_ptr The pointer to the PCB
+ * 
+ * @return The error code.
+ *    Possible error code to be returned:
+ *      E_NOERROR   No error.
+ *      E_NULL_PTR  Null pointer error.
+ */
 error_t resume_pcb(struct pcb_struct * pcb_ptr){
   if (pcb_ptr == NULL)
     return E_NULL_PTR;
@@ -72,7 +94,11 @@ struct pcb_struct * allocate_pcb()
  * @brief allocate a space for the PCB structure, setup the properties of the PCB.
  *    NOTE: pName must less than 10 character, pClass should be either "application" or "system"
  *    , and pPriority must within the range of [0, 9].
- *
+ * 
+ * @param   pName       Process Name (length < 10).
+ * @param   pClass      Process class (system or application).
+ * @param   pPriority   Process priority (0 ~ 9).
+ * 
  * @return  NULL if error occured, otherwise, the pointer that point to the PCB structure.
  */
 struct pcb_struct * setup_pcb(const char * pName, const enum process_class pClass, const unsigned char pPriority)
@@ -98,18 +124,21 @@ struct pcb_struct * setup_pcb(const char * pName, const enum process_class pClas
  * @name free_pcb
  * @brief Frees all memory associated with given PCB, including the PCB itself, the stack, etc, with sys_free_mem()
  *
- * @param pcb_ptr    The PCB pointer.
- * @return error_t code
+ * @param   pcb_ptr The pointer to the PCB
+ * 
+ * @return The error code.
+ *    Possible error code to be returned:
+ *      E_NOERROR   No error.
+ *      E_INVPARA   The PCB probably had not been removed from queue before free it.
  */
 error_t free_pcb(struct pcb_struct * pcb_ptr)
 {
   error_t error_code = E_NOERROR;
 
   if (pcb_ptr == NULL )
-    return E_NOERROR;
-
-  if ((error_code = remove_pcb(pcb_ptr)) != E_NOERROR)
-    return error_code;
+    return E_NOERROR; //Already free, return no error.
+  else if(pcb_ptr->prev || pcb_ptr->next)
+    return E_INVPARA; //The PCB probably had not been removed from queue before free it.
 
   sys_free_mem(pcb_ptr->stack_base);
 
@@ -122,7 +151,8 @@ error_t free_pcb(struct pcb_struct * pcb_ptr)
  * @name pcb_struct
  * @brief Will search all queues for a process named pName
  *
- * @param pName  The char pointer to the desired searched name
+ * @param   pName  The char pointer to the desired searched name
+ * 
  * @return PCB pointer if found, NULL if PCB is not found
  */
 struct pcb_struct * find_pcb(const char * pName)
@@ -154,16 +184,24 @@ struct pcb_struct * find_pcb(const char * pName)
  * @name insert_pcb
  * @brief Inserts PCB into the appropriate queue.
  *
- * @param pcb_ptr 	The PCB pointer.
- * @return E_INSERT_PCB	The PCB was inserted.
- *
+ * @param   pcb_ptr The pointer to the PCB
+ * 
+ * @return The error code.
+ *    Possible error code to be returned:
+ *      E_NOERROR   No error.
+ *      E_NULL_PTR  Null pointer error.
+ *      E_INVPARA   The given PCB has running status or abnormal data members.
  */
 error_t insert_pcb (struct pcb_struct * pcb_ptr)
 {
   struct pcb_struct * current;
-  if (pcb_ptr->running_state == running || pcb_ptr->prev || pcb_ptr->next)
+  if(!pcb_ptr)
   {
-    return E_INSERT_PCB_FAIL;
+    return E_NULL_PTR;
+  }
+  if ((pcb_ptr->running_state == running) || pcb_ptr->prev || pcb_ptr->next)
+  {
+    return E_INVPARA;
   }
   //double check how to check enum equals -> It is the other way around
   if (pcb_ptr->running_state == ready)
@@ -222,25 +260,32 @@ error_t insert_pcb (struct pcb_struct * pcb_ptr)
     return E_NOERROR;
   }
 
-return E_PROGERR;
+  return E_INVPARA;
 }
 
 /**
  * @name remove_pcb
  * @brief Removes PCB from the queue it is currently in.
  *
- * @param pcb_ptr 	The PCB pointer.
+ * @param   pcb_ptr The pointer to the PCB
+ * 
  * @return The error code.
+ *    Possible error code to be returned:
+ *      E_NOERROR   No error.
+ *      E_NULL_PTR  Null pointer error.
+ *      E_INVPARA   The given PCB has abnormal data members.
  */
-
 error_t remove_pcb(struct pcb_struct * pcb_ptr)
 {
 	if(!pcb_ptr)
   {
     return E_NULL_PTR;
   }
-
-  if(pcb_ptr->prev && pcb_ptr->next)
+  else if(!pcb_ptr->prev && !pcb_ptr->next)
+  { //This PCB is already not belonging to any queue, return no error.
+    return E_NOERROR;
+  }
+  else if(pcb_ptr->prev && pcb_ptr->next)
   { //Removes from middle
     pcb_ptr->prev->next = pcb_ptr->next;
     pcb_ptr->next->prev = pcb_ptr->prev;
@@ -271,4 +316,218 @@ error_t remove_pcb(struct pcb_struct * pcb_ptr)
 
  	return E_NOERROR;
 
+}
+
+/**
+ * @name show_blocked_processes
+ * @brief displays all blocked processes and their attributes
+ *
+ * @return  VOID.
+ */
+void show_blocked_processes()
+{
+  struct pcb_struct * current;
+  current = blocked_queue.head;
+
+  while(current)
+  {
+    printf("Name:\t%s\n", current->name);
+    printf("Class:\t%s\n", enum_process_class[current->class]);
+    printf("State:\t%s\n", enum_process_state[current->running_state]);
+    printf("Suspended:\t%s\n", enum_process_suspended[current->is_suspended]);
+    printf("Priority:\t%d\n\n",  current->priority);
+    current = current->next;
+  }
+  
+}
+
+/**
+ * @name show_ready_processes
+ * @brief Displays all of the ready processes and their attributes.
+ *
+ * @return  VOID.
+ */
+void show_ready_processes()
+  {
+  struct pcb_struct * current;
+  current = ready_queue.head;
+ 
+  while(current)
+  {
+    printf("Name:\t%s\n", current->name);
+    printf("Class:\t%s\n", enum_process_class[current->class]);
+    printf("State:\t%s\n", enum_process_state[current->running_state]);
+    printf("Suspended:\t%s\n", enum_process_suspended[current->is_suspended]);
+    printf("Priority:\t%d\n\n",  current->priority);
+    current = current->next;
+  }
+  
+}
+
+/**
+ * @name show_all_processes
+ * @brief Displays all of the processes and their attributes.
+ *
+ * @return   VOID.
+ */
+void show_all_processes()
+{
+  
+  show_ready_processes();
+  show_blocked_processes();
+  
+}
+
+
+
+/**
+ * @name block_pcb
+ * @brief puts the given pcb into the blocked state and places it into the correct queue
+ *
+ * @param   pcb_ptr The pointer to the PCB
+ * 
+ * @return The error code.
+ *    Possible error code to be returned:
+ *      E_NOERROR   No error.
+ *      E_NULL_PTR  Null pointer error.
+ *      E_INVPARA   The given PCB has abnormal data members (By "remove_pcb" or "insert_pcb").
+ */
+error_t block_pcb(struct pcb_struct * pcb_ptr)
+{
+  if (pcb_ptr == NULL)
+  {
+    return E_NULL_PTR;
+  }  
+  error_t err = E_NOERROR;
+  
+  if((err = remove_pcb(pcb_ptr)) != E_NOERROR)
+  {
+    return err;
+  }
+  
+  pcb_ptr->running_state = blocked;
+  
+  if((err = insert_pcb(pcb_ptr)) != E_NOERROR)
+  {
+    return err;
+  }
+  
+  return err;
+}
+
+
+
+/**
+ * @name unblock_pcb
+ * @brief puts the given pcb into the unblocked state and places it into the correct queue
+ *
+ * @param   pcb_ptr The pointer to the PCB
+ * 
+ * @return The error code.
+ *    Possible error code to be returned:
+ *      E_NOERROR   No error.
+ *      E_NULL_PTR  Null pointer error.
+ *      E_INVPARA   The given PCB has abnormal data members (By "remove_pcb" or "insert_pcb").
+ */
+error_t unblock_pcb(struct pcb_struct * pcb_ptr)
+{
+  if (pcb_ptr == NULL)
+  {
+    return E_NULL_PTR;
+  }  
+  error_t err = E_NOERROR;
+  
+  if((err = remove_pcb(pcb_ptr)) != E_NOERROR)
+  {
+    return err;
+  }
+  
+  pcb_ptr->running_state = ready;
+  
+  if((err = insert_pcb(pcb_ptr)) != E_NOERROR)
+  {
+    return err;
+  }
+  
+  return err;
+}
+
+/**
+ * @name set_pcb_priority
+ * @brief Sets the priority of the selected PCB
+ *
+ * @param   pcb_ptr 	The PCB pointer.
+ * @param   pPriorty  The assigned priorirty 
+ * @return The error code.
+ *    Possible error code to be returned:
+ *      E_NOERROR   No error.
+ *      E_NULL_PTR  Null pointer error.
+ *      E_INVPARA   The pPriority is out of range.
+ *                  Or, the given PCB has abnormal data members (By "remove_pcb" or "insert_pcb").
+ */
+error_t set_pcb_priority(struct pcb_struct * pcb_ptr, const unsigned char pPriority)
+{
+  if (pcb_ptr == NULL) 
+  { 
+		return E_NULL_PTR;
+	}
+  error_t errno = E_NOERROR;
+  if(pcb_ptr->priority == pPriority)
+  {
+    //Do nothing here.
+  }
+  else if (pPriority <= 9)
+  {
+    errno = remove_pcb(pcb_ptr);
+    if(!errno)
+    {
+      pcb_ptr->priority = pPriority;
+      errno = insert_pcb(pcb_ptr);
+    }
+  }
+  else
+  {
+    errno = E_INVPARA;
+  }
+  
+  return errno;
+}
+
+/**
+ * @name show_pcb
+ * @brief Displays the name, class, state, suspend status, and priority of a PCB.
+ *
+ * @param   pcb_ptr 	The PCB pointer.
+ * @return The error code.
+ *    Possible error code to be returned:
+ *      E_NOERROR   No error.
+ *      E_NULL_PTR  Null pointer error.
+ *      E_INVPARA   The pPriority is out of range.
+ *                  Or, the given PCB has abnormal data members (By "remove_pcb" or "insert_pcb").
+ */
+
+
+error_t show_pcb(struct pcb_struct * pcb_ptr)
+{
+  if (pcb_ptr == NULL) 
+  { 
+		return E_NULL_PTR;
+	}
+	
+	struct pcb_struct * current = find_pcb(pcb_ptr->name);
+	
+  if (current == NULL) 
+  {
+    E_NULL_PTR;
+  }
+  
+  else
+  {
+    printf("Name:\t%s\n", current->name);
+    printf("Class:\t%s\n", enum_process_class[current->class]);
+    printf("State:\t%s\n", enum_process_state[current->running_state]);
+    printf("Suspended:\t%s\n", enum_process_suspended[current->is_suspended]);
+    printf("Priority:\t%d\n\n",  current->priority);
+ 
+  }
 }

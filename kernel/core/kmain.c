@@ -19,6 +19,7 @@
 
 #include "modules/mpx_supt.h"
 #include "modules/r1/r1.h"
+#include "modules/r2/pcb.h"
 
 void kmain(void)
 {
