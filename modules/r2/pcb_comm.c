@@ -11,7 +11,6 @@
 #include "pcb.h"
 #include <string.h>
 #include "../errno.h"
-#include "../mpx_supt.h"
 #include "../r1/r1.h"
 
 static int is_digit(char ch)
@@ -20,14 +19,19 @@ static int is_digit(char ch)
 }
 
 /**
- * 
- * pcb suspend <name> 
- * 
+ * @name suspend_pcb_main.
+ *
+ * @brief The main function for the "suspend PCB".
+ *    Accepted formats: pcb suspend <name>
+ *                      pcb suspend --help
+ * @param argc  The number of tokens found.
+ * @param argv  The array of tokens.
+ * @return  0
  */
 int suspend_pcb_main(int argc, char ** argv)
 {
  struct pcb_struct * pcb_ptr = NULL;
- 
+
  if(argc > 2 && !strcmp(argv[2], "--help"))
  {
   if(argc <= 3)
@@ -61,7 +65,7 @@ int suspend_pcb_main(int argc, char ** argv)
     case E_NOERROR:
      printf("The process had been suspended successfully!\n");
     break;
-    case E_NULL_PTR: 
+    case E_NULL_PTR:
      printf("ERROR: cannot find the PCB with name \"%s\"\n", argv[2]);
     break;
    }
@@ -75,14 +79,19 @@ int suspend_pcb_main(int argc, char ** argv)
 }
 
 /**
- * 
- * pcb resume <name> 
- * 
+ * @name resume_pcb_main.
+ *
+ * @brief The main function for the "resume PCB".
+ *    Accepted formats: pcb resume <name>
+ *                      pcb resume --help
+ * @param argc  The number of tokens found.
+ * @param argv  The array of tokens.
+ * @return  0
  */
 int resume_pcb_main(int argc, char ** argv)
 {
  struct pcb_struct * pcb_ptr = NULL;
- 
+
  if(argc > 2 && !strcmp(argv[2], "--help"))
  {
   if(argc <= 3)
@@ -116,7 +125,7 @@ int resume_pcb_main(int argc, char ** argv)
     case E_NOERROR:
      printf("The process had been resumed successfully!\n");
     break;
-    case E_NULL_PTR: 
+    case E_NULL_PTR:
      printf("ERROR: cannot find the PCB with name \"%s\"\n", argv[2]);
     break;
    }
@@ -129,6 +138,16 @@ int resume_pcb_main(int argc, char ** argv)
  return 0;
 }
 
+/**
+ * @name set_pcb_priority_main.
+ *
+ * @brief The main function for the "set PCB priority".
+ *    Accepted formats: pcb setpriority <name> <priority>
+ *                      pcb setpriority --help
+ * @param argc  The number of tokens found.
+ * @param argv  The array of tokens.
+ * @return  0
+ */
 int set_pcb_priority_main(int argc, char ** argv){
  if (argc > 3 || argc < 2)
  {
@@ -144,14 +163,14 @@ int set_pcb_priority_main(int argc, char ** argv){
   char * name;
   struct pcb_struct * p;
   error_t err = E_NOERROR;
-  
+
   if (strlen(argv[2]) >= 10 || strlen(argv[2]) == 0)
   {
    printf("ERROR: Name of process must be within 10 and more than 0 characters.");
    return 0;
   }
   name = argv[2];
-  
+
   if(strlen(argv[3]) == 1)
   {
    if(is_digit(*argv[3])){
@@ -168,7 +187,7 @@ int set_pcb_priority_main(int argc, char ** argv){
     printf("ERROR: Priority must be a digit between the values 0 and 9.");
     return 0;
   }
-  
+
   if((p = find_pcb(name)) == NULL)
   {
    printf("Priority not set: No process by this name could be found.");
@@ -178,26 +197,31 @@ int set_pcb_priority_main(int argc, char ** argv){
   {
    err = set_pcb_priority(p,priority);
   }
-  
+
   switch(err)
   {
-   case E_NOERROR: 
+   case E_NOERROR:
     printf("Priority successfully set for process %s.", name);
    break;
-   case E_INVPARA: 
+   case E_INVPARA:
     printf("ERROR: The arguments you provided are not valid, please check them again!");
    break;
   }
-  
+
  }
- 
+
  return 0;
 }
 
 /**
- * pcb create --help
- * pcb create <name> <type> <priority>
- * 
+ * @name create_pcb_main.
+ *
+ * @brief The main function for the "Create PCB".
+ *    Accepted formats: pcb create <name> <type> <priority>
+ *                      pcb create --help
+ * @param argc  The number of tokens found.
+ * @param argv  The array of tokens.
+ * @return  0
  */
 int create_pcb_main(int argc, char ** argv)
 {
@@ -236,18 +260,18 @@ int create_pcb_main(int argc, char ** argv)
   }
   else
   {
-   enum process_class pClass = strcmp(argv[3], "application") ? system : application;
+   enum process_class pClass = strcmp(argv[3], "application") ? pcb_class_sys : pcb_class_app;
    unsigned char pPriority = *argv[4] - '0';
-   
+
    struct pcb_struct * created_pcb = setup_pcb(argv[2], pClass, pPriority);
    error_t err = insert_pcb(created_pcb);
    switch(err)
    {
-    case E_NOERROR: 
+    case E_NOERROR:
      printf("Process had been successfully created!\n");
     break;
     case E_INVPARA:
-    case E_NULL_PTR: 
+    case E_NULL_PTR:
      printf("ERROR: The arguments you provided are not valid, please check them again!\n");
     break;
    }
@@ -261,26 +285,33 @@ int create_pcb_main(int argc, char ** argv)
 }
 
 /**
- * pcb show [name]
- * pcb show all
- * pcb show -ready
- * pcb show -blocked
+ * @name show_pcb_main.
+ *
+ * @brief The main function for the "Show PCB", "Show all Processes", "Show Ready Processes", and "Show Blocked Processes".
+ *    Accepted formats: pcb show [name]
+ *                      pcb show -all
+ *                      pcb show -ready
+ *                      pcb show -blocked
+ *                      pcb show --help
+ * @param argc  The number of tokens found.
+ * @param argv  The array of tokens.
+ * @return  0
  */
 int show_pcb_main(int argc, char ** argv)
 {
- 
+
  if (argc > 3 || argc < 2 )
  {
   printf("ERROR: Incorrect number of arguments. Please refer to \"pcb show --help\"\n");
   return 0;
  }
- 
+
  if(argc == 2)
  {
   help_usages(pcb);
   return 0;
  }
- 
+
  if(argc == 3)
  {
   if (strlen(argv[2]) >= 10)
@@ -288,33 +319,33 @@ int show_pcb_main(int argc, char ** argv)
    printf("ERROR: Name of process must be within 10 characters.");
    return 0;
   }
-  
+
   if(strlen(argv[2]) == 0)
   {
    printf("ERROR: The process name cannot be an empty string or NULL\n\n");
    return 0;
   }
-  
+
   if (!strcmp(argv[2], "-all"))
   {
    show_all_processes();
    return 0;
   }
-  
+
   if (!strcmp(argv[2], "-ready"))
   {
    show_ready_processes();
    return 0;
   }
-  
+
   if (!strcmp(argv[2], "-blocked"))
   {
    show_blocked_processes();
    return 0;
   }
-  
+
   struct pcb_struct * pcb_ptr = NULL;
-  
+
   if((pcb_ptr = find_pcb(argv[2])) == NULL)
   {
    printf("ERROR: Could not find PCB named \'%s\'.\n\n", argv[2]);
@@ -327,14 +358,19 @@ int show_pcb_main(int argc, char ** argv)
 }
 
 /**
- * 
- *  pcb del --help
- *  pcb del <name>
+ * @name delete_pcb_main.
+ *
+ * @brief The main function for the "Delete PCB".
+ *    Accepted formats: pcb del <name>
+ *                      pcb del --help
+ * @param argc  The number of tokens found.
+ * @param argv  The array of tokens.
+ * @return  0
  */
 int delete_pcb_main(int argc, char ** argv)
 {
  struct pcb_struct * pcb_ptr = NULL;
- 
+
  if(argc > 2 && !strcmp(argv[2], "--help"))
  {
   if(argc <= 3)
@@ -362,20 +398,26 @@ int delete_pcb_main(int argc, char ** argv)
   }
   else
   {
-   error_t err = remove_pcb(pcb_ptr);
-   switch(err)
-   {
+    error_t err = remove_pcb(pcb_ptr);
+    switch(err)
+    {
     case E_INVPARA:
      printf("ERROR: The PCB you choice cannot be removed now.\n");
     break;
-    case E_NULL_PTR: 
+    case E_NULL_PTR:
      printf("ERROR: cannot find the PCB with name \"%s\"\n", argv[2]);
     break;
-   }
-   if(err == E_NOERROR && (err = free_pcb(pcb_ptr)) == E_NOERROR)
-   {
-    printf("The process had been deleted successfully!\n");
-   }
+    }
+    if(err == E_NOERROR && (err = free_pcb(pcb_ptr)) == E_NOERROR)
+    {
+      printf("The process had been deleted successfully!\n");
+    }
+    else if(err == E_FREEMEM)
+    {
+      printf("The process had been deleted successfully!\n\
+            \t However, The memory space cannot be actually free now,\n\
+            \t since the student_free had not been implemented yet.\n");
+    }
   }
  }
  else
@@ -386,14 +428,19 @@ int delete_pcb_main(int argc, char ** argv)
 }
 
 /**
- * 
- * pcb block <name> 
- * 
+ * @name block_pcb_main.
+ *
+ * @brief The main function for the "block PCB".
+ *    Accepted formats: pcb block <name>
+ *                      pcb block --help
+ * @param argc  The number of tokens found.
+ * @param argv  The array of tokens.
+ * @return  0
  */
 int block_pcb_main(int argc, char ** argv)
 {
  struct pcb_struct * pcb_ptr = NULL;
- 
+
  if(argc > 2 && !strcmp(argv[2], "--help"))
  {
   if(argc <= 3)
@@ -430,7 +477,7 @@ int block_pcb_main(int argc, char ** argv)
     case E_INVPARA:
      printf("ERROR: The PCB you choice cannot be blocked now.\n");
     break;
-    case E_NULL_PTR: 
+    case E_NULL_PTR:
      printf("ERROR: cannot find the PCB with name \"%s\"\n", argv[2]);
     break;
    }
@@ -444,14 +491,19 @@ int block_pcb_main(int argc, char ** argv)
 }
 
 /**
- * 
- * pcb unblock <name> 
- * 
+ * @name unblock_pcb_main.
+ *
+ * @brief The main function for the "unblock PCB".
+ *    Accepted formats: pcb unblock <name>
+ *                      pcb unblock --help
+ * @param argc  The number of tokens found.
+ * @param argv  The array of tokens.
+ * @return  0
  */
 int unblock_pcb_main(int argc, char ** argv)
 {
  struct pcb_struct * pcb_ptr = NULL;
- 
+
  if(argc > 2 && !strcmp(argv[2], "--help"))
  {
   if(argc <= 3)
@@ -488,7 +540,7 @@ int unblock_pcb_main(int argc, char ** argv)
     case E_INVPARA:
      printf("ERROR: The PCB you choice cannot be unblocked now.\n");
     break;
-    case E_NULL_PTR: 
+    case E_NULL_PTR:
      printf("ERROR: cannot find the PCB with name \"%s\"\n", argv[2]);
     break;
    }
@@ -499,5 +551,5 @@ int unblock_pcb_main(int argc, char ** argv)
   printf("ERROR: Invalid arguments you had input. Please refers to \"--help\"!\n");
  }
  return 0;
- 
+
 }

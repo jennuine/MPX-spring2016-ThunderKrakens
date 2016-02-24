@@ -18,6 +18,52 @@ static char *enum_process_state[] = {"running", "ready", "blocked"};
 static char *enum_process_suspended[] = {"suspended", "unsuspended"};
 static char *enum_process_class[] = {"application", "system"};
 
+
+/**
+* PCB process states/statuses
+*/
+enum process_state
+{
+  running, /**< PCB in the running state. */
+  ready, /**< PCB in the ready state. */
+  blocked /**< PCB in the blocked state. */
+} __attribute__ ((packed));
+
+/**
+* PCB process suspended or not suspended status.
+*/
+enum process_suspended
+{
+  true, /**< PCB process is suspended. */
+  false /**< PCB process is not suspended. */
+} __attribute__ ((packed));
+
+/**
+* Struct that will describe PCB Processes.
+*/
+struct pcb_struct
+{
+  char name[10]; /**< PCB's name. */
+  enum process_class class; /**< PCB's class is an application or system process. */
+  unsigned char priority; /**< PCB's priority an integer between 0 and 9. Processes with higher priority values execute before lower priority processes. */
+  enum process_state running_state; /**< PCB's states are ready, running, or blocked. */
+  enum process_suspended is_suspended; /**< PCB process is either suspended or not suspended. */
+  unsigned char * stack_top; /**< Pointer to top of the stack. */
+  unsigned char * stack_base; /**< Pointer to base of the stack. */
+  struct pcb_struct * prev; /**< Pointer to the previous PCB in the queue */
+  struct pcb_struct * next; /**< Pointer to the next PCB in the queue */
+};
+
+/**
+* Queue structure that will store PCBs.
+*/
+struct pcb_queue
+{
+  int count; /**< The length of the queue. */
+  struct pcb_struct * head; /**< Pointer to the start/head of the queue. */
+  struct pcb_struct * tail; /**< Pointer to the end/tail of the queue. */
+};
+
 /**
  * @name  pcb_init
  * @brief Initiates the PCB queues
@@ -107,7 +153,7 @@ struct pcb_struct * allocate_pcb()
  */
 struct pcb_struct * setup_pcb(const char * pName, const enum process_class pClass, const unsigned char pPriority)
 {
-  if(!(strlen(pName) < 10 && pClass <= system && pPriority <= 9 && !find_pcb(pName) && strcmp(pName, "-all") && strcmp(pName, "-ready") && strcmp(pName, "-blocked")))
+  if(!(strlen(pName) < 10 && pClass <= pcb_class_sys && pPriority <= 9 && !find_pcb(pName) && strcmp(pName, "-all") && strcmp(pName, "-ready") && strcmp(pName, "-blocked")))
     return NULL;
 
   struct pcb_struct * a_pcb = allocate_pcb();
@@ -134,6 +180,7 @@ struct pcb_struct * setup_pcb(const char * pName, const enum process_class pClas
  *    Possible error code to be returned:
  *      E_NOERROR   No error.
  *      E_INVPARA   The PCB probably had not been removed from queue before free it.
+ *      E_FREEMEM   The memory space cannot be actually free, since the student_free had not been implemented yet.
  */
 error_t free_pcb(struct pcb_struct * pcb_ptr)
 {
@@ -144,9 +191,9 @@ error_t free_pcb(struct pcb_struct * pcb_ptr)
   else if(pcb_ptr->prev || pcb_ptr->next)
     return E_INVPARA; //The PCB probably had not been removed from queue before free it.
 
-  sys_free_mem(pcb_ptr->stack_base);
+  error_code = sys_free_mem(pcb_ptr->stack_base) == -1 ? E_FREEMEM : E_NOERROR ;
 
-  sys_free_mem(pcb_ptr);
+  error_code = sys_free_mem(pcb_ptr) == -1 ? E_FREEMEM : E_NOERROR ;
 
   return error_code;
 }

@@ -15,15 +15,14 @@
 #define E_INVSTRF 2
 /* @brief Invalid User Input */
 #define E_INVUSRI 3
-
-/** @brief Error when freeing memory*/
+/** @brief Error we cannot actually free the memory space
+  *  since the student_free had not been implemented before R5
+  */
 #define E_FREEMEM 4
+
+
 /** @brief A NULL Pointer Error */
 #define E_NULL_PTR 5
-/** @brief Error removing pcb */
-#define E_REMOVE_PCB 6
-/** @brief Error inserting pcb */
-#define E_INSERT_PCB_FAIL 7
 
 
 /* @brief When this error happen, there is a special case that was not under program's consideration */
