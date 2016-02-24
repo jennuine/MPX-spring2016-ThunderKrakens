@@ -24,7 +24,8 @@
 //ANSI Escape ASCII Characters
 #define ESC_KEY 27
 #define BRACKET_KEY 91
-#define ENTER_KEY 13
+#define ENTER_KEY_1 10
+#define ENTER_KEY_2 13
 #define BACKSPACE_KEY 127
 #define DEL_KEY_SEQ_3 51
 #define DEL_KEY_SEQ_4 126
@@ -166,7 +167,7 @@ void get_input_line(char * buffer, const int buffer_size, const int bWithEcho)
 	int i = 0, cursorPos = 0;
 	char userInputChar[] = { 0, 0 }, tempBuffer[buffer_size];
 
-	while(userInputChar[0] != ENTER_KEY && i < buffer_size - 1)
+	while(userInputChar[0] != ENTER_KEY_1 && userInputChar[0] != ENTER_KEY_2 && i < buffer_size - 1)
 	{//if user did not press enter, and we have enough space to store inputs.
 		if(inb(COM1 + 5) & 1)
 		{ //if there is inputs avalible
@@ -229,7 +230,7 @@ void get_input_line(char * buffer, const int buffer_size, const int bWithEcho)
 					serial_print("");
 				}
 			}
-			else if(userInputChar[0] == ENTER_KEY) //if we recive a Enter key
+			else if(userInputChar[0] == ENTER_KEY_1 || userInputChar[0] == ENTER_KEY_2) //if we recive a Enter key
 			{
 				serial_print("\n");
 				buffer[i++] = '\0';

@@ -149,7 +149,7 @@ int resume_pcb_main(int argc, char ** argv)
  * @return  0
  */
 int set_pcb_priority_main(int argc, char ** argv){
- if (argc > 3 || argc < 2)
+ if (argc > 4 || argc < 3)
  {
   printf("ERROR: Incorrect number of arguments. Please refer to \"setpriority --help\"\n");
  }
@@ -157,7 +157,7 @@ int set_pcb_priority_main(int argc, char ** argv){
  {
    print_help(SETPCBPRIO);
  }
- else if(argc == 3)
+ else if(argc == 4)
  {
   unsigned char priority;
   char * name;
@@ -166,7 +166,7 @@ int set_pcb_priority_main(int argc, char ** argv){
 
   if (strlen(argv[2]) >= 10 || strlen(argv[2]) == 0)
   {
-   printf("ERROR: Name of process must be within 10 and more than 0 characters.");
+   printf("ERROR: Name of process must be within 10 and more than 0 characters.\n");
    return 0;
   }
   name = argv[2];
@@ -178,19 +178,19 @@ int set_pcb_priority_main(int argc, char ** argv){
    }
    else
    {
-     printf("ERROR: Priority must be a digit between the values 0 and 9.");
+     printf("ERROR: Priority must be a digit between the values 0 and 9.\n");
      return 0;
    }
   }
   else
   {
-    printf("ERROR: Priority must be a digit between the values 0 and 9.");
+    printf("ERROR: Priority must be a digit between the values 0 and 9.\n");
     return 0;
   }
 
   if((p = find_pcb(name)) == NULL)
   {
-   printf("Priority not set: No process by this name could be found.");
+   printf("Priority not set: No process by this name could be found.\n");
    return 0;
   }
   else
@@ -201,10 +201,10 @@ int set_pcb_priority_main(int argc, char ** argv){
   switch(err)
   {
    case E_NOERROR:
-    printf("Priority successfully set for process %s.", name);
+    printf("Priority successfully set for process %s.\n", name);
    break;
    case E_INVPARA:
-    printf("ERROR: The arguments you provided are not valid, please check them again!");
+    printf("ERROR: The arguments you provided are not valid, please check them again!\n");
    break;
   }
 
