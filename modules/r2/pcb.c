@@ -37,9 +37,9 @@ void pcb_init()
 /**
  * @name  suspend_pcb
  * @brief Suspends the specific PCB.
- * 
+ *
  * @param   pcb_ptr The pointer to the PCB
- * 
+ *
  * @return The error code.
  *    Possible error code to be returned:
  *      E_NOERROR   No error.
@@ -56,9 +56,9 @@ error_t suspend_pcb(struct pcb_struct * pcb_ptr){
 /**
  * @name  resume_pcb
  * @brief Resumes the specific PCB.
- * 
+ *
  * @param   pcb_ptr The pointer to the PCB
- * 
+ *
  * @return The error code.
  *    Possible error code to be returned:
  *      E_NOERROR   No error.
@@ -98,11 +98,11 @@ struct pcb_struct * allocate_pcb()
  * @brief allocate a space for the PCB structure, setup the properties of the PCB.
  *    NOTE: pName must less than 10 character, pClass should be either "application" or "system"
  *    , and pPriority must within the range of [0, 9].
- * 
+ *
  * @param   pName       Process Name (length < 10).
  * @param   pClass      Process class (system or application).
  * @param   pPriority   Process priority (0 ~ 9).
- * 
+ *
  * @return  NULL if error occured, otherwise, the pointer that point to the PCB structure.
  */
 struct pcb_struct * setup_pcb(const char * pName, const enum process_class pClass, const unsigned char pPriority)
@@ -129,7 +129,7 @@ struct pcb_struct * setup_pcb(const char * pName, const enum process_class pClas
  * @brief Frees all memory associated with given PCB, including the PCB itself, the stack, etc, with sys_free_mem()
  *
  * @param   pcb_ptr The pointer to the PCB
- * 
+ *
  * @return The error code.
  *    Possible error code to be returned:
  *      E_NOERROR   No error.
@@ -156,7 +156,7 @@ error_t free_pcb(struct pcb_struct * pcb_ptr)
  * @brief Will search all queues for a process named pName
  *
  * @param   pName  The char pointer to the desired searched name
- * 
+ *
  * @return PCB pointer if found, NULL if PCB is not found
  */
 struct pcb_struct * find_pcb(const char * pName)
@@ -189,7 +189,7 @@ struct pcb_struct * find_pcb(const char * pName)
  * @brief Inserts PCB into the appropriate queue.
  *
  * @param   pcb_ptr The pointer to the PCB
- * 
+ *
  * @return The error code.
  *    Possible error code to be returned:
  *      E_NOERROR   No error.
@@ -272,7 +272,7 @@ error_t insert_pcb (struct pcb_struct * pcb_ptr)
  * @brief Removes PCB from the queue it is currently in.
  *
  * @param   pcb_ptr The pointer to the PCB
- * 
+ *
  * @return The error code.
  *    Possible error code to be returned:
  *      E_NOERROR   No error.
@@ -285,32 +285,66 @@ error_t remove_pcb(struct pcb_struct * pcb_ptr)
   {
     return E_NULL_PTR;
   }
-  else if(!pcb_ptr->prev && !pcb_ptr->next)
+  else if(!pcb_ptr->prev && !pcb_ptr->next && (ready_queue.head != pcb_ptr && blocked_queue.head != pcb_ptr))
   { //This PCB is already not belonging to any queue, return no error.
     return E_NOERROR;
+  }
+  else if(!pcb_ptr->prev && !pcb_ptr->next && (ready_queue.head == pcb_ptr || blocked_queue.head == pcb_ptr))
+  { //This PCB is the only one in the queue.
+    if(pcb_ptr->running_state == blocked)
+    {
+      blocked_queue.head = blocked_queue.tail = NULL;
+      blocked_queue.count--;
+    }
+    else
+    {
+      ready_queue.head = ready_queue.tail = NULL;
+      ready_queue.count--;
+    }
+    pcb_ptr->prev = pcb_ptr->next = NULL;
   }
   else if(pcb_ptr->prev && pcb_ptr->next)
   { //Removes from middle
     pcb_ptr->prev->next = pcb_ptr->next;
     pcb_ptr->next->prev = pcb_ptr->prev;
     pcb_ptr->prev = pcb_ptr->next = NULL;
+    if(pcb_ptr->running_state == blocked)
+    {
+      blocked_queue.count--;
+    }
+    else
+    {
+      ready_queue.count--;
+    }
   }
   else if(pcb_ptr->prev && !pcb_ptr->next && (ready_queue.tail == pcb_ptr || blocked_queue.tail == pcb_ptr))
   { //Removes from tail
     pcb_ptr->prev->next = NULL;
     if(pcb_ptr->running_state == blocked)
+    {
       blocked_queue.tail = pcb_ptr->prev;
+      blocked_queue.count--;
+    }
     else
+    {
       ready_queue.tail = pcb_ptr->prev;
+      ready_queue.count--;
+    }
     pcb_ptr->prev = pcb_ptr->next = NULL;
   }
   else if(!pcb_ptr->prev && pcb_ptr->next && (ready_queue.head == pcb_ptr || blocked_queue.head == pcb_ptr))
   { //Removes from head
     pcb_ptr->next->prev = NULL;
     if(pcb_ptr->running_state == blocked)
+    {
       blocked_queue.head = pcb_ptr->next;
+      blocked_queue.count--;
+    }
     else
+    {
       ready_queue.head = pcb_ptr->next;
+      ready_queue.count--;
+    }
     pcb_ptr->prev = pcb_ptr->next = NULL;
   }
   else
@@ -334,17 +368,17 @@ error_t remove_pcb(struct pcb_struct * pcb_ptr)
  */
 error_t show_pcb(struct pcb_struct * pcb_ptr)
 {
-  if (!pcb_ptr) 
+  if (!pcb_ptr)
   {
     return E_NULL_PTR;
   }
-  
+
   printf("\tName:\t%s\n", pcb_ptr->name);
   printf("\tClass:\t%s\n", enum_process_class[pcb_ptr->class]);
   printf("\tState:\t%s\n", enum_process_state[pcb_ptr->running_state]);
   printf("\tSuspended:\t%s\n", enum_process_suspended[pcb_ptr->is_suspended]);
   printf("\tPriority:\t%d\n\n",  pcb_ptr->priority);
-  
+
   return E_NOERROR;
 }
 
@@ -374,7 +408,7 @@ void show_blocked_processes()
 void show_ready_processes()
 {
   struct pcb_struct * current = ready_queue.head;
- 
+
   while(current)
   {
     show_pcb(current);
@@ -390,10 +424,10 @@ void show_ready_processes()
  */
 void show_all_processes()
 {
-  
+
   show_ready_processes();
   show_blocked_processes();
-  
+
 }
 
 
@@ -403,7 +437,7 @@ void show_all_processes()
  * @brief puts the given pcb into the blocked state and places it into the correct queue
  *
  * @param   pcb_ptr The pointer to the PCB
- * 
+ *
  * @return The error code.
  *    Possible error code to be returned:
  *      E_NOERROR   No error.
@@ -415,21 +449,21 @@ error_t block_pcb(struct pcb_struct * pcb_ptr)
   if (pcb_ptr == NULL)
   {
     return E_NULL_PTR;
-  }  
+  }
   error_t err = E_NOERROR;
-  
+
   if((err = remove_pcb(pcb_ptr)) != E_NOERROR)
   {
     return err;
   }
-  
+
   pcb_ptr->running_state = blocked;
-  
+
   if((err = insert_pcb(pcb_ptr)) != E_NOERROR)
   {
     return err;
   }
-  
+
   return err;
 }
 
@@ -440,7 +474,7 @@ error_t block_pcb(struct pcb_struct * pcb_ptr)
  * @brief puts the given pcb into the unblocked state and places it into the correct queue
  *
  * @param   pcb_ptr The pointer to the PCB
- * 
+ *
  * @return The error code.
  *    Possible error code to be returned:
  *      E_NOERROR   No error.
@@ -452,21 +486,21 @@ error_t unblock_pcb(struct pcb_struct * pcb_ptr)
   if (pcb_ptr == NULL)
   {
     return E_NULL_PTR;
-  }  
+  }
   error_t err = E_NOERROR;
-  
+
   if((err = remove_pcb(pcb_ptr)) != E_NOERROR)
   {
     return err;
   }
-  
+
   pcb_ptr->running_state = ready;
-  
+
   if((err = insert_pcb(pcb_ptr)) != E_NOERROR)
   {
     return err;
   }
-  
+
   return err;
 }
 
@@ -475,7 +509,7 @@ error_t unblock_pcb(struct pcb_struct * pcb_ptr)
  * @brief Sets the priority of the selected PCB
  *
  * @param   pcb_ptr 	The PCB pointer.
- * @param   pPriorty  The assigned priorirty 
+ * @param   pPriorty  The assigned priorirty
  * @return The error code.
  *    Possible error code to be returned:
  *      E_NOERROR   No error.
@@ -485,8 +519,8 @@ error_t unblock_pcb(struct pcb_struct * pcb_ptr)
  */
 error_t set_pcb_priority(struct pcb_struct * pcb_ptr, const unsigned char pPriority)
 {
-  if (pcb_ptr == NULL) 
-  { 
+  if (pcb_ptr == NULL)
+  {
 		return E_NULL_PTR;
 	}
   error_t errno = E_NOERROR;
@@ -507,6 +541,6 @@ error_t set_pcb_priority(struct pcb_struct * pcb_ptr, const unsigned char pPrior
   {
     errno = E_INVPARA;
   }
-  
+
   return errno;
 }
