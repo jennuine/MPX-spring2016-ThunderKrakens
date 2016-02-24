@@ -19,6 +19,7 @@
 #define MOD_VERSION "R2"
 #define COMPLETION "02/26/2016"
 
+
 /**
 * A structure to represent each function
 */
@@ -132,13 +133,25 @@ static int shutdown(int argc, char** argv)
  *
  *  @return  0
  */
-static int help_usages(int start_from)
+int help_usages(enum comm_type type)
 {
-    if (start_from)
+    int start_from = 0, end_at = NUM_OF_FUNCTIONS;
+    
+    if (type == mpx)
+    {
    	 printf("\nAvailable mpx functions:\n");
+   	 start_from = VERSION;
+   	 end_at = SHUTDOWN + 1;
+    } 
+    
+    if (type == pcb) 
+    {
+     printf("\nAvailable pcb commands:\n");
+   	 start_from = CREATEPCB;
+    }
 
     int i;
-    for (i = start_from; i < NUM_OF_FUNCTIONS; i++)
+    for (i = start_from; i < end_at; i++)
     {
    	 printf("\tusage:\t%s\n", functions[i].usage);
     }
@@ -162,20 +175,23 @@ static int help_function(int argc, char** argv)
    	 printf("\n%s\n", functions[HELP].help);
    	 return 0;
     }
-    else if (argc == 2 && !strcmp(argv[1], "mpx"))
-    {
-   	 return help_usages(VERSION);
-    }
+
     else if (argc == 2)
     {
-   	 for (i = 0; i < NUM_OF_FUNCTIONS; i++)
-   	 {
-   		 if(!strcmp(functions[i].nameStr, argv[1]))
-   		 {
-   			 printf("\n%s\n", functions[i].help);
-   			 return 0;
-   		 }
-   	 }
+        if (!strcmp(argv[1], "mpx"))
+            return help_usages(mpx);
+        
+        if (!strcmp(argv[1], "pcb"))
+            return help_usages(pcb);
+        
+   	    for (i = 0; i < NUM_OF_FUNCTIONS; i++)
+   	    {
+            if(!strcmp(functions[i].nameStr, argv[1]))
+   		    {
+   			    printf("\n%s\n", functions[i].help);
+   			    return 0;
+   		    }
+   	    }
    	 return 0;
     }
     printf("ERROR: Invalid arguments. Please refer to \"help\"\n");
@@ -213,14 +229,21 @@ int commhand()
    		 if (argc > 1)
    			 exe_function(argc, argv);
    		 else
-   			 help_usages(VERSION);
+   			 help_usages(mpx);
+   	 }
+   	 else if(!strcmp(argv[0], "pcb"))
+   	 {
+   		 if (argc > 1)
+   			 exe_function(argc, argv);
+   		 else
+   			 help_usages(pcb);
    	 }
    	 else if (!strcmp(argv[0], "help"))
    	 {
    		 if (argc > 1)
    			 functions[HELP].function(argc, argv);
    		 else
-   			 help_usages(HELP);
+   			 help_usages(help);
    	 }
    	 else if (argc > 0)
    	 {
@@ -349,12 +372,63 @@ static void load_functions()
     functions[SHUTDOWN].help = "\nshutdown : mpx -shutdown\n\n\tShuts down the operating system.\n\n\
     Exit Status: Always Succeeds.\n\n";
     
-    //R2 Functions
-    functions[SHOWPCB].nameStr = "showpcb"; functions[SHOWPCB].function = &show_pcb_main; functions[SHOWPCB].usage = "mpx showpcb [processName]";
-    functions[SHOWPCB].help = "\nshowpcb : mpx showpcb [processName]\n\n\tDisplays the PCB's process name, class, state, suspended status, and priority.\n\n\
+    //R2 Commands
+    functions[CREATEPCB].nameStr = "create"; functions[CREATEPCB].function = &create_pcb_main; functions[CREATEPCB].usage = "pcb create [processName] [processClass] [processPriority]";
+    functions[CREATEPCB].help = "\ncreate : mpx create [processName] [processClass] [processPriority]\n\
+    \n\tCreates the PCB's process given the name, class, and priority.\n\n\
+    \n\nArguments:\n\tprocessName  String process name\n\
+    \tprocessClass  String process class\n\tprocessPriority  String process priority\n\n\
+    Exit Status:\n\tReturns success unless no PCB named [processName] or string is empty/null.\n\n";
+    
+    functions[SHOWPCB].nameStr = "show"; functions[SHOWPCB].function = &show_pcb_main; functions[SHOWPCB].usage = "pcb show [processName]\n\tusage:\tpcb show -all\n\tusage:\tpcb show -ready\n\tusage:\tpcb show -blocked";
+    functions[SHOWPCB].help = "\nshow : pcb show [processName]\n\n\tDisplays the PCB's process name, class, state, suspended status, and priority.\n\n\
+    show : pcb show -all\n\n\tDisplays all PCB's in the ready and blocked queues.\n\n\
+    show : pcb show -ready\n\n\tDisplays all PCB's in the ready queue.\n\n\
+    show : pcb show -blocked\n\n\tDisplays all PCB's in the blocked queue.\n\n\
     \n\nArguments:\n\tprocessName  String process name\n\n\
     Exit Status:\n\tReturns success unless no PCB named [processName] or string is empty/null.\n\n";
-
+    
+    functions[SETPCBPRIO].nameStr = "setpriority"; functions[SETPCBPRIO].function = &set_pcb_priority_main; 
+    functions[SETPCBPRIO].usage = "pcb setpriority [processName] [processPriority]";
+    functions[SETPCBPRIO].help = "\nset priority : pcb setpriority [processName] [processPriority]\n\
+    \n\tSets the PCB's priority.\n\n\
+    \n\nArguments:\n\tprocessName  String process name\nprocessPriority  integer priority value within range [0, 9]\n\n\
+    Exit Status:\n\tReturns success unless no PCB named [processName] or string is empty/null.\n\n";
+    
+    functions[DELPCB].nameStr = "del"; functions[DELPCB].function = &delete_pcb_main; 
+    functions[DELPCB].usage = "pcb del [processName]";
+    functions[DELPCB].help = "\ndelete : pcb del [processName]\n\
+    \n\tDeletes the PCB from the system.\n\n\
+    \n\nArguments:\n\tprocessName  String process name\n\n\
+    Exit Status:\n\tReturns success unless no PCB named [processName] or string is empty/null.\n\n";
+    
+    functions[BLOCKPCB].nameStr = "block"; functions[BLOCKPCB].function = &block_pcb_main; 
+    functions[BLOCKPCB].usage = "pcb block [processName]";
+    functions[BLOCKPCB].help = "\nblock : pcb block [processName]\n\
+    \n\tBlocks the specific PCB.\n\n\
+    \n\nArguments:\n\tprocessName  String process name\n\n\
+    Exit Status:\n\tReturns success unless no PCB named [processName] or string is empty/null.\n\n";
+    
+    functions[UNBLKPCB].nameStr = "unblock"; functions[UNBLKPCB].function = &unblock_pcb_main; 
+    functions[UNBLKPCB].usage = "pcb unblock [processName]";
+    functions[UNBLKPCB].help = "\nblock : pcb unblock [processName]\n\
+    \n\tUnblocks the specific PCB.\n\n\
+    \n\nArguments:\n\tprocessName  String process name\n\n\
+    Exit Status:\n\tReturns success unless no PCB named [processName] or string is empty/null.\n\n";
+    
+    functions[RESUMEPCB].nameStr = "resume"; functions[RESUMEPCB].function = &resume_pcb_main; 
+    functions[RESUMEPCB].usage = "pcb resume [processName]";
+    functions[RESUMEPCB].help = "\nblock : pcb resume [processName]\n\
+    \n\tResumes the specific PCB.\n\n\
+    \n\nArguments:\n\tprocessName  String process name\n\n\
+    Exit Status:\n\tReturns success unless no PCB named [processName] or string is empty/null.\n\n";
+    
+    functions[SUSPDPCB].nameStr = "suspend"; functions[SUSPDPCB].function = &suspend_pcb_main; 
+    functions[SUSPDPCB].usage = "pcb suspend [processName]";
+    functions[SUSPDPCB].help = "\nblock : pcb suspend [processName]\n\
+    \n\tSuspends the specific PCB.\n\n\
+    \n\nArguments:\n\tprocessName  String process name\n\n\
+    Exit Status:\n\tReturns success unless no PCB named [processName] or string is empty/null.\n\n";
 }
 
 /**

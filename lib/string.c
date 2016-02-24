@@ -49,8 +49,9 @@ int strlen(const char *s)
  */
 char* strcpy(char *s1, const char *s2)
 {
+	char * s1_ori = s1;
   while ((*s1++ = *s2++) != '\0');
-  return s1;// return pointer to destination string
+  return s1_ori;// return pointer to destination string
 }
 
 /**
@@ -64,25 +65,30 @@ char* strcpy(char *s1, const char *s2)
  */
 int atoi(const char *s)
 {
-  int sign, i, integer = 0;
+  int sign = 1, integer = 0;
 
-  sign = ((i = (s[0] == '-')) ? -1 : 1);
-
-  while (s[i])
+  while(*s && isspace(s))
+  	s++;
+  if(*s == '-')
   {
-    if (s[i] >= '0' && s[i] <= '9')
-      integer = integer * 10 + (s[i] - '0');
-    else
-    {
-      serial_println("Error (atoi): that was not a valid integer.");
-      return 0;
-    }
-    i++;
+  	sign = -1;
+  	s++;
+  }
+  else if(*s == '+')
+  {
+  	s++;
   }
 
-  integer = sign * integer;
+  while (*s)
+  {
+    if (*s >= '0' && *s <= '9')
+    	integer = integer * 10 + (*s - '0');
+    else
+    	return sign * integer;
+    s++;
+  }
 
-  return integer; // return integer
+  return sign * integer;
 }
 
 /**
@@ -437,7 +443,6 @@ int printf(const char *format, ...)
 	serial_print(tempStr);
 	return result;
 }
-
 /* ---------------------------------------
     Functions below this point are given.
     No need to tamper with these!

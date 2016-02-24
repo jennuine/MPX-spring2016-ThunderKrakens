@@ -107,7 +107,7 @@ struct pcb_struct * allocate_pcb()
  */
 struct pcb_struct * setup_pcb(const char * pName, const enum process_class pClass, const unsigned char pPriority)
 {
-  if(!(strlen(pName) < 10 && pClass <= system && pPriority <= 9))
+  if(!(strlen(pName) < 10 && pClass <= system && pPriority <= 9 && !find_pcb(pName) && strcmp(pName, "-all") && strcmp(pName, "-ready") && strcmp(pName, "-blocked")))
     return NULL;
 
   struct pcb_struct * a_pcb = allocate_pcb();
@@ -152,7 +152,7 @@ error_t free_pcb(struct pcb_struct * pcb_ptr)
 }
 
 /**
- * @name pcb_struct
+ * @name find_pcb
  * @brief Will search all queues for a process named pName
  *
  * @param   pName  The char pointer to the desired searched name
@@ -323,6 +323,32 @@ error_t remove_pcb(struct pcb_struct * pcb_ptr)
 }
 
 /**
+ * @name show_pcb
+ * @brief Displays the name, class, state, suspend status, and priority of a PCB.
+ *
+ * @param   pName 	The PCB pointer.
+ * @return The error code.
+ *    Possible error code to be returned:
+ *      E_NOERROR   No error.
+ *      E_NULL_PTR  Null pointer error.
+ */
+error_t show_pcb(struct pcb_struct * pcb_ptr)
+{
+  if (!pcb_ptr) 
+  {
+    return E_NULL_PTR;
+  }
+  
+  printf("\tName:\t%s\n", pcb_ptr->name);
+  printf("\tClass:\t%s\n", enum_process_class[pcb_ptr->class]);
+  printf("\tState:\t%s\n", enum_process_state[pcb_ptr->running_state]);
+  printf("\tSuspended:\t%s\n", enum_process_suspended[pcb_ptr->is_suspended]);
+  printf("\tPriority:\t%d\n\n",  pcb_ptr->priority);
+  
+  return E_NOERROR;
+}
+
+/**
  * @name show_blocked_processes
  * @brief displays all blocked processes and their attributes
  *
@@ -330,19 +356,13 @@ error_t remove_pcb(struct pcb_struct * pcb_ptr)
  */
 void show_blocked_processes()
 {
-  struct pcb_struct * current;
-  current = blocked_queue.head;
+  struct pcb_struct * current = blocked_queue.head;
 
   while(current)
   {
-    printf("Name:\t%s\n", current->name);
-    printf("Class:\t%s\n", enum_process_class[current->class]);
-    printf("State:\t%s\n", enum_process_state[current->running_state]);
-    printf("Suspended:\t%s\n", enum_process_suspended[current->is_suspended]);
-    printf("Priority:\t%d\n\n",  current->priority);
+    show_pcb(current);
     current = current->next;
   }
-  
 }
 
 /**
@@ -352,20 +372,14 @@ void show_blocked_processes()
  * @return  VOID.
  */
 void show_ready_processes()
-  {
-  struct pcb_struct * current;
-  current = ready_queue.head;
+{
+  struct pcb_struct * current = ready_queue.head;
  
   while(current)
   {
-    printf("Name:\t%s\n", current->name);
-    printf("Class:\t%s\n", enum_process_class[current->class]);
-    printf("State:\t%s\n", enum_process_state[current->running_state]);
-    printf("Suspended:\t%s\n", enum_process_suspended[current->is_suspended]);
-    printf("Priority:\t%d\n\n",  current->priority);
+    show_pcb(current);
     current = current->next;
   }
-  
 }
 
 /**
@@ -495,38 +509,4 @@ error_t set_pcb_priority(struct pcb_struct * pcb_ptr, const unsigned char pPrior
   }
   
   return errno;
-}
-
-/**
- * @name show_pcb
- * @brief Displays the name, class, state, suspend status, and priority of a PCB.
- *
- * @param   pName 	The PCB's name.
- * @return The error code.
- *    Possible error code to be returned:
- *      E_NOERROR   No error.
- *      E_NULL_PTR  Null pointer error.
- *      E_INVPARA   The pName is NULL or an empty string.
- */
-error_t show_pcb(const char * pName)
-{
-  if (pName == NULL || pName == '\0') 
-  { 
-		return E_INVUSRI;
-	}
-	
-	struct pcb_struct * current = find_pcb(pName);
-	
-  if (current == NULL) 
-  {
-    return E_NULL_PTR;
-  }
-  
-  printf("Name:\t%s\n", current->name);
-  printf("Class:\t%s\n", enum_process_class[current->class]);
-  printf("State:\t%s\n", enum_process_state[current->running_state]);
-  printf("Suspended:\t%s\n", enum_process_suspended[current->is_suspended]);
-  printf("Priority:\t%d\n\n",  current->priority);
-  
-  return E_NOERROR;
 }

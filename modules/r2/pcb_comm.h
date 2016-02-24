@@ -18,12 +18,6 @@
 
  int show_pcb_main(int argc, char ** argv);
 
- int show_all_processes_main(int argc, char ** argv);
-
- int show_ready_processes_main(int argc, char ** argv);
-
- int show_blocked_processes_main(int argc, char ** argv);
-
  int create_pcb_main(int argc, char ** argv);
 
  int delete_pcb_main(int argc, char ** argv);
