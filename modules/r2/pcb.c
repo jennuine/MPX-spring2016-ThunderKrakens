@@ -188,7 +188,7 @@ error_t free_pcb(struct pcb_struct * pcb_ptr)
 
   if (pcb_ptr == NULL )
     return E_NOERROR; //Already free, return no error.
-  else if(pcb_ptr->prev || pcb_ptr->next)
+  else if(pcb_ptr->prev || pcb_ptr->next || ready_queue.head == pcb_ptr || blocked_queue.head == pcb_ptr || ready_queue.tail == pcb_ptr || blocked_queue.tail == pcb_ptr)
     return E_INVPARA; //The PCB probably had not been removed from queue before free it.
 
   error_code = sys_free_mem(pcb_ptr->stack_base) == -1 ? E_FREEMEM : E_NOERROR ;

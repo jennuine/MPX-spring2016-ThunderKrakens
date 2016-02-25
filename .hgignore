@@ -2,5 +2,6 @@
 .*\.o$
 
 syntax: glob
-documentation/latex/**.*
+documentation/latex/**
+documentation/html/**
 kernel.bin
