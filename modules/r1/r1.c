@@ -181,10 +181,14 @@ static int help_function(int argc, char** argv)
     {
         if (!strcmp(argv[1], "mpx"))
             return help_usages(mpx);
-
-        if (!strcmp(argv[1], "pcb"))
+        else if (!strcmp(argv[1], "pcb"))
             return help_usages(pcb);
-
+        else 
+        {
+            printf("Invalid help command. Please type \"help\" to view list of programs and commands.\n");
+            return 0;
+        }
+        
    	    for (i = 0; i < NUM_OF_FUNCTIONS; i++)
    	    {
             if(!strcmp(functions[i].nameStr, argv[1]))
