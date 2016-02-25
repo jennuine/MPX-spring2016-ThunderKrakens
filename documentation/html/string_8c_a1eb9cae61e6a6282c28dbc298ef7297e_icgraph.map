@@ -1,0 +1,8 @@
+<map id="strcpy" name="strcpy">
+<area shape="rect" id="node2" href="$sys__clock_8h.html#a2fa1ed5071047b72b357329da498b7aa" title="set_time_str" alt="" coords="112,5,207,32"/>
+<area shape="rect" id="node4" href="$sys__clock_8h.html#ab80d04ed8d251aaea6a09fd01e68eb27" title="set_date_str" alt="" coords="112,56,207,83"/>
+<area shape="rect" id="node6" href="$pcb_8h.html#aa8ef2e50138f1b01310c83d261c2efa9" title="setup_pcb" alt="" coords="118,107,201,133"/>
+<area shape="rect" id="node3" href="$sys__clock_8h.html#a2afc871aeddaa550badc5e0c6bb65da5" title="set_time_main" alt="" coords="262,5,369,32"/>
+<area shape="rect" id="node5" href="$sys__clock_8h.html#a626404928f9803307b300e6c60df3afb" title="set_date_main" alt="" coords="262,56,369,83"/>
+<area shape="rect" id="node7" href="$pcb__comm_8h.html#a49e630c27e7efd9c89f0a0010ac3873d" title="create_pcb_main" alt="" coords="255,107,376,133"/>
+</map>
