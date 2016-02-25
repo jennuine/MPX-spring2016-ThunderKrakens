@@ -227,21 +227,21 @@ int commhand()
    	 printf("Cmd > ");
    	 get_input_line(userInput, USER_INPUT_BUFFER_SIZE, WithEcho);
    	 command_line_parser(userInput, &argc, argv, MAX_ARGC, USER_INPUT_BUFFER_SIZE);
-   	 if(!strcmp(argv[0], "mpx"))
+   	 if(!strcmp(argv[0], "mpx") && argc )
    	 {
    		 if (argc > 1)
    			 exe_function(argc, argv);
    		 else
    			 help_usages(mpx);
    	 }
-   	 else if(!strcmp(argv[0], "pcb"))
+   	 else if(!strcmp(argv[0], "pcb") && argc )
    	 {
    		 if (argc > 1)
    			 exe_function(argc, argv);
    		 else
    			 help_usages(pcb);
    	 }
-   	 else if (!strcmp(argv[0], "help"))
+   	 else if (!strcmp(argv[0], "help") && argc )
    	 {
    		 if (argc > 1)
    			 functions[HELP].function(argc, argv);
