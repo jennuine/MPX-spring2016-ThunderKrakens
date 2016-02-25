@@ -207,8 +207,8 @@ static int help_function(int argc, char** argv)
  */
 int commhand()
 {
-		printf("Initializing PCB queues...\n");
-		pcb_init();
+	printf("Initializing PCB queues...\n");
+	pcb_init();
     static char userInput[USER_INPUT_BUFFER_SIZE];
     static int argc = 0;
     static char ActArgArray[MAX_ARGC][USER_INPUT_BUFFER_SIZE];

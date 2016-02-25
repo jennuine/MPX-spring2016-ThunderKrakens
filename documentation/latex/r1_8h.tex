@@ -1,0 +1,289 @@
+\hypertarget{r1_8h}{\section{modules/r1/r1.h File Reference}
+\label{r1_8h}\index{modules/r1/r1.\-h@{modules/r1/r1.\-h}}
+}
+
+
+The commandhander and functions associations for Module R1.  
+
+
+This graph shows which files directly or indirectly include this file\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{r1_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{r1_8h_ae8a798ec5e0449028e485688e8241b5e}{H\-E\-L\-P}~0
+\item 
+\#define \hyperlink{r1_8h_a1c6d5de492ac61ad29aec7aa9a436bbf}{V\-E\-R\-S\-I\-O\-N}~1
+\item 
+\#define \hyperlink{r1_8h_ab1586d6a1539e7921374aeea8b907805}{G\-E\-T\-T\-I\-M\-E}~2
+\item 
+\#define \hyperlink{r1_8h_a27a942da2560b15dc5291c8f386c426a}{S\-E\-T\-T\-I\-M\-E}~3
+\item 
+\#define \hyperlink{r1_8h_a6ec5835e6ff9d5af0a3a1996746ee5b9}{G\-E\-T\-D\-A\-T\-E}~4
+\item 
+\#define \hyperlink{r1_8h_ac1f0ac55b810f16f95393b27e9780bf3}{S\-E\-T\-D\-A\-T\-E}~5
+\item 
+\#define \hyperlink{r1_8h_a3b61478edd7c1b25c8facd2907cf6c33}{S\-H\-U\-T\-D\-O\-W\-N}~6
+\item 
+\#define \hyperlink{r1_8h_af37d513958454213eef61df94fcf4877}{C\-R\-E\-A\-T\-E\-P\-C\-B}~7
+\item 
+\#define \hyperlink{r1_8h_a379bdf64e88b1c34041f0578326d759f}{S\-H\-O\-W\-P\-C\-B}~8
+\item 
+\#define \hyperlink{r1_8h_a67048c54f78d1883c3f91dd2376e49ea}{S\-E\-T\-P\-C\-B\-P\-R\-I\-O}~9
+\item 
+\#define \hyperlink{r1_8h_ae63767a4063b2bbef2c7604277597db3}{D\-E\-L\-P\-C\-B}~10
+\item 
+\#define \hyperlink{r1_8h_a1571d5cc1e6711d2ae9c21868341bc21}{B\-L\-O\-C\-K\-P\-C\-B}~11
+\item 
+\#define \hyperlink{r1_8h_ad32b0c0e308420525079753ee3058f6f}{U\-N\-B\-L\-K\-P\-C\-B}~12
+\item 
+\#define \hyperlink{r1_8h_a47665849b445cefeaafe6cf9c32b44c4}{R\-E\-S\-U\-M\-E\-P\-C\-B}~13
+\item 
+\#define \hyperlink{r1_8h_a45b69ad77b006c634056e7783da2c013}{S\-U\-S\-P\-D\-P\-C\-B}~14
+\item 
+\#define \hyperlink{r1_8h_a8e8928373d15397e25be8ecb76c727da}{N\-U\-M\-\_\-\-O\-F\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-S}~15
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{r1_8h_a28c7b657e452e70df5119825602a730b}{comm\-\_\-type} 
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{r1_8h_a28c7b657e452e70df5119825602a730b}{comm\-\_\-type} \hyperlink{r1_8h_a8a1df1ee55d4f6945d8374271befc13a}{\-\_\-\-\_\-attribute\-\_\-\-\_\-} ((packed))
+\end{DoxyCompactItemize}
+\begin{Indent}{\bf commhand}\par
+{\em Accepts and handles commands from the user.
+
+\begin{DoxyReturn}{Returns}
+0 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{r1_8h_a14d85617242501c323a203ee196d3efa}{commhand} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf command\-\_\-line\-\_\-parser}\par
+{\em Splits the complete command line into tokens by space, single quote, or double quote.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Cmd\-Str} & The complete input command. \\
+\hline
+{\em argc} & The number of tokens found. \\
+\hline
+{\em argv} & The array of tokens. \\
+\hline
+{\em Max\-Arg\-Num} & The maximum number of tokens that array can hold. \\
+\hline
+{\em Max\-Str\-Len} & The maximum length of each token that string can hold.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{r1_8h_adb6b307c73bca25d17aa7683e14fea16}{command\-\_\-line\-\_\-parser} (const char $\ast$Cmd\-Str, int $\ast$argc, char $\ast$$\ast$argv, const int Max\-Arg\-Num, const int Max\-Str\-Len)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf print\-\_\-help}\par
+{\em prints the help message of a certain function that specified by the index number
+
+
+\begin{DoxyParams}{Parameters}
+{\em function\-\_\-index} & The index number of that function.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+}\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{r1_8h_ab5b36414d84437d45b388232a0dfa366}{print\-\_\-help} (const int function\-\_\-index)
+\item 
+int \hyperlink{r1_8h_abe3e9e9be5d3ad22784d12d72f398c92}{help\-\_\-usages} (enum \hyperlink{r1_8h_a28c7b657e452e70df5119825602a730b}{comm\-\_\-type} type)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{r1_8h_ad3f9163c821f2f39ec8958218a9f6758}{mpx}
+\item 
+\hyperlink{r1_8h_a535d36feab047cbf4daffdbea9be8bf1}{pcb}
+\item 
+\hyperlink{r1_8h_a81ae9faedaa69e3e28e2960a0548df8d}{help}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The commandhander and functions associations for Module R1. \begin{DoxyAuthor}{Author}
+Thunder Krakens 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+February 2nd, 2016 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+R1 
+\end{DoxyVersion}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{r1_8h_a1571d5cc1e6711d2ae9c21868341bc21}{\index{r1.\-h@{r1.\-h}!B\-L\-O\-C\-K\-P\-C\-B@{B\-L\-O\-C\-K\-P\-C\-B}}
+\index{B\-L\-O\-C\-K\-P\-C\-B@{B\-L\-O\-C\-K\-P\-C\-B}!r1.h@{r1.\-h}}
+\subsubsection[{B\-L\-O\-C\-K\-P\-C\-B}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\-L\-O\-C\-K\-P\-C\-B~11}}\label{r1_8h_a1571d5cc1e6711d2ae9c21868341bc21}
+\hypertarget{r1_8h_af37d513958454213eef61df94fcf4877}{\index{r1.\-h@{r1.\-h}!C\-R\-E\-A\-T\-E\-P\-C\-B@{C\-R\-E\-A\-T\-E\-P\-C\-B}}
+\index{C\-R\-E\-A\-T\-E\-P\-C\-B@{C\-R\-E\-A\-T\-E\-P\-C\-B}!r1.h@{r1.\-h}}
+\subsubsection[{C\-R\-E\-A\-T\-E\-P\-C\-B}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-R\-E\-A\-T\-E\-P\-C\-B~7}}\label{r1_8h_af37d513958454213eef61df94fcf4877}
+\hypertarget{r1_8h_ae63767a4063b2bbef2c7604277597db3}{\index{r1.\-h@{r1.\-h}!D\-E\-L\-P\-C\-B@{D\-E\-L\-P\-C\-B}}
+\index{D\-E\-L\-P\-C\-B@{D\-E\-L\-P\-C\-B}!r1.h@{r1.\-h}}
+\subsubsection[{D\-E\-L\-P\-C\-B}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\-E\-L\-P\-C\-B~10}}\label{r1_8h_ae63767a4063b2bbef2c7604277597db3}
+\hypertarget{r1_8h_a6ec5835e6ff9d5af0a3a1996746ee5b9}{\index{r1.\-h@{r1.\-h}!G\-E\-T\-D\-A\-T\-E@{G\-E\-T\-D\-A\-T\-E}}
+\index{G\-E\-T\-D\-A\-T\-E@{G\-E\-T\-D\-A\-T\-E}!r1.h@{r1.\-h}}
+\subsubsection[{G\-E\-T\-D\-A\-T\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\-E\-T\-D\-A\-T\-E~4}}\label{r1_8h_a6ec5835e6ff9d5af0a3a1996746ee5b9}
+\hypertarget{r1_8h_ab1586d6a1539e7921374aeea8b907805}{\index{r1.\-h@{r1.\-h}!G\-E\-T\-T\-I\-M\-E@{G\-E\-T\-T\-I\-M\-E}}
+\index{G\-E\-T\-T\-I\-M\-E@{G\-E\-T\-T\-I\-M\-E}!r1.h@{r1.\-h}}
+\subsubsection[{G\-E\-T\-T\-I\-M\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\-E\-T\-T\-I\-M\-E~2}}\label{r1_8h_ab1586d6a1539e7921374aeea8b907805}
+\hypertarget{r1_8h_ae8a798ec5e0449028e485688e8241b5e}{\index{r1.\-h@{r1.\-h}!H\-E\-L\-P@{H\-E\-L\-P}}
+\index{H\-E\-L\-P@{H\-E\-L\-P}!r1.h@{r1.\-h}}
+\subsubsection[{H\-E\-L\-P}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\-E\-L\-P~0}}\label{r1_8h_ae8a798ec5e0449028e485688e8241b5e}
+\hypertarget{r1_8h_a8e8928373d15397e25be8ecb76c727da}{\index{r1.\-h@{r1.\-h}!N\-U\-M\-\_\-\-O\-F\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-S@{N\-U\-M\-\_\-\-O\-F\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-S}}
+\index{N\-U\-M\-\_\-\-O\-F\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-S@{N\-U\-M\-\_\-\-O\-F\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-S}!r1.h@{r1.\-h}}
+\subsubsection[{N\-U\-M\-\_\-\-O\-F\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\-U\-M\-\_\-\-O\-F\-\_\-\-F\-U\-N\-C\-T\-I\-O\-N\-S~15}}\label{r1_8h_a8e8928373d15397e25be8ecb76c727da}
+\hypertarget{r1_8h_a47665849b445cefeaafe6cf9c32b44c4}{\index{r1.\-h@{r1.\-h}!R\-E\-S\-U\-M\-E\-P\-C\-B@{R\-E\-S\-U\-M\-E\-P\-C\-B}}
+\index{R\-E\-S\-U\-M\-E\-P\-C\-B@{R\-E\-S\-U\-M\-E\-P\-C\-B}!r1.h@{r1.\-h}}
+\subsubsection[{R\-E\-S\-U\-M\-E\-P\-C\-B}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\-E\-S\-U\-M\-E\-P\-C\-B~13}}\label{r1_8h_a47665849b445cefeaafe6cf9c32b44c4}
+\hypertarget{r1_8h_ac1f0ac55b810f16f95393b27e9780bf3}{\index{r1.\-h@{r1.\-h}!S\-E\-T\-D\-A\-T\-E@{S\-E\-T\-D\-A\-T\-E}}
+\index{S\-E\-T\-D\-A\-T\-E@{S\-E\-T\-D\-A\-T\-E}!r1.h@{r1.\-h}}
+\subsubsection[{S\-E\-T\-D\-A\-T\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-E\-T\-D\-A\-T\-E~5}}\label{r1_8h_ac1f0ac55b810f16f95393b27e9780bf3}
+\hypertarget{r1_8h_a67048c54f78d1883c3f91dd2376e49ea}{\index{r1.\-h@{r1.\-h}!S\-E\-T\-P\-C\-B\-P\-R\-I\-O@{S\-E\-T\-P\-C\-B\-P\-R\-I\-O}}
+\index{S\-E\-T\-P\-C\-B\-P\-R\-I\-O@{S\-E\-T\-P\-C\-B\-P\-R\-I\-O}!r1.h@{r1.\-h}}
+\subsubsection[{S\-E\-T\-P\-C\-B\-P\-R\-I\-O}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-E\-T\-P\-C\-B\-P\-R\-I\-O~9}}\label{r1_8h_a67048c54f78d1883c3f91dd2376e49ea}
+\hypertarget{r1_8h_a27a942da2560b15dc5291c8f386c426a}{\index{r1.\-h@{r1.\-h}!S\-E\-T\-T\-I\-M\-E@{S\-E\-T\-T\-I\-M\-E}}
+\index{S\-E\-T\-T\-I\-M\-E@{S\-E\-T\-T\-I\-M\-E}!r1.h@{r1.\-h}}
+\subsubsection[{S\-E\-T\-T\-I\-M\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-E\-T\-T\-I\-M\-E~3}}\label{r1_8h_a27a942da2560b15dc5291c8f386c426a}
+\hypertarget{r1_8h_a379bdf64e88b1c34041f0578326d759f}{\index{r1.\-h@{r1.\-h}!S\-H\-O\-W\-P\-C\-B@{S\-H\-O\-W\-P\-C\-B}}
+\index{S\-H\-O\-W\-P\-C\-B@{S\-H\-O\-W\-P\-C\-B}!r1.h@{r1.\-h}}
+\subsubsection[{S\-H\-O\-W\-P\-C\-B}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-H\-O\-W\-P\-C\-B~8}}\label{r1_8h_a379bdf64e88b1c34041f0578326d759f}
+\hypertarget{r1_8h_a3b61478edd7c1b25c8facd2907cf6c33}{\index{r1.\-h@{r1.\-h}!S\-H\-U\-T\-D\-O\-W\-N@{S\-H\-U\-T\-D\-O\-W\-N}}
+\index{S\-H\-U\-T\-D\-O\-W\-N@{S\-H\-U\-T\-D\-O\-W\-N}!r1.h@{r1.\-h}}
+\subsubsection[{S\-H\-U\-T\-D\-O\-W\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-H\-U\-T\-D\-O\-W\-N~6}}\label{r1_8h_a3b61478edd7c1b25c8facd2907cf6c33}
+\hypertarget{r1_8h_a45b69ad77b006c634056e7783da2c013}{\index{r1.\-h@{r1.\-h}!S\-U\-S\-P\-D\-P\-C\-B@{S\-U\-S\-P\-D\-P\-C\-B}}
+\index{S\-U\-S\-P\-D\-P\-C\-B@{S\-U\-S\-P\-D\-P\-C\-B}!r1.h@{r1.\-h}}
+\subsubsection[{S\-U\-S\-P\-D\-P\-C\-B}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-U\-S\-P\-D\-P\-C\-B~14}}\label{r1_8h_a45b69ad77b006c634056e7783da2c013}
+\hypertarget{r1_8h_ad32b0c0e308420525079753ee3058f6f}{\index{r1.\-h@{r1.\-h}!U\-N\-B\-L\-K\-P\-C\-B@{U\-N\-B\-L\-K\-P\-C\-B}}
+\index{U\-N\-B\-L\-K\-P\-C\-B@{U\-N\-B\-L\-K\-P\-C\-B}!r1.h@{r1.\-h}}
+\subsubsection[{U\-N\-B\-L\-K\-P\-C\-B}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\-N\-B\-L\-K\-P\-C\-B~12}}\label{r1_8h_ad32b0c0e308420525079753ee3058f6f}
+\hypertarget{r1_8h_a1c6d5de492ac61ad29aec7aa9a436bbf}{\index{r1.\-h@{r1.\-h}!V\-E\-R\-S\-I\-O\-N@{V\-E\-R\-S\-I\-O\-N}}
+\index{V\-E\-R\-S\-I\-O\-N@{V\-E\-R\-S\-I\-O\-N}!r1.h@{r1.\-h}}
+\subsubsection[{V\-E\-R\-S\-I\-O\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define V\-E\-R\-S\-I\-O\-N~1}}\label{r1_8h_a1c6d5de492ac61ad29aec7aa9a436bbf}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{r1_8h_a28c7b657e452e70df5119825602a730b}{\index{r1.\-h@{r1.\-h}!comm\-\_\-type@{comm\-\_\-type}}
+\index{comm\-\_\-type@{comm\-\_\-type}!r1.h@{r1.\-h}}
+\subsubsection[{comm\-\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf comm\-\_\-type}}}\label{r1_8h_a28c7b657e452e70df5119825602a730b}
+
+
+\subsection{Function Documentation}
+\hypertarget{r1_8h_a8a1df1ee55d4f6945d8374271befc13a}{\index{r1.\-h@{r1.\-h}!\-\_\-\-\_\-attribute\-\_\-\-\_\-@{\-\_\-\-\_\-attribute\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-attribute\-\_\-\-\_\-@{\-\_\-\-\_\-attribute\-\_\-\-\_\-}!r1.h@{r1.\-h}}
+\subsubsection[{\-\_\-\-\_\-attribute\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf comm\-\_\-type} \-\_\-\-\_\-attribute\-\_\-\-\_\- (
+\begin{DoxyParamCaption}
+\item[{(packed)}]{}
+\end{DoxyParamCaption}
+)}}\label{r1_8h_a8a1df1ee55d4f6945d8374271befc13a}
+\hypertarget{r1_8h_adb6b307c73bca25d17aa7683e14fea16}{\index{r1.\-h@{r1.\-h}!command\-\_\-line\-\_\-parser@{command\-\_\-line\-\_\-parser}}
+\index{command\-\_\-line\-\_\-parser@{command\-\_\-line\-\_\-parser}!r1.h@{r1.\-h}}
+\subsubsection[{command\-\_\-line\-\_\-parser}]{\setlength{\rightskip}{0pt plus 5cm}void command\-\_\-line\-\_\-parser (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{Cmd\-Str, }
+\item[{int $\ast$}]{argc, }
+\item[{char $\ast$$\ast$}]{argv, }
+\item[{const int}]{Max\-Arg\-Num, }
+\item[{const int}]{Max\-Str\-Len}
+\end{DoxyParamCaption}
+)}}\label{r1_8h_adb6b307c73bca25d17aa7683e14fea16}
+\hypertarget{r1_8h_a14d85617242501c323a203ee196d3efa}{\index{r1.\-h@{r1.\-h}!commhand@{commhand}}
+\index{commhand@{commhand}!r1.h@{r1.\-h}}
+\subsubsection[{commhand}]{\setlength{\rightskip}{0pt plus 5cm}int commhand (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{r1_8h_a14d85617242501c323a203ee196d3efa}
+\hypertarget{r1_8h_abe3e9e9be5d3ad22784d12d72f398c92}{\index{r1.\-h@{r1.\-h}!help\-\_\-usages@{help\-\_\-usages}}
+\index{help\-\_\-usages@{help\-\_\-usages}!r1.h@{r1.\-h}}
+\subsubsection[{help\-\_\-usages}]{\setlength{\rightskip}{0pt plus 5cm}int help\-\_\-usages (
+\begin{DoxyParamCaption}
+\item[{enum {\bf comm\-\_\-type}}]{type}
+\end{DoxyParamCaption}
+)}}\label{r1_8h_abe3e9e9be5d3ad22784d12d72f398c92}
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=326pt]{r1_8h_abe3e9e9be5d3ad22784d12d72f398c92_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=276pt]{r1_8h_abe3e9e9be5d3ad22784d12d72f398c92_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{r1_8h_ab5b36414d84437d45b388232a0dfa366}{\index{r1.\-h@{r1.\-h}!print\-\_\-help@{print\-\_\-help}}
+\index{print\-\_\-help@{print\-\_\-help}!r1.h@{r1.\-h}}
+\subsubsection[{print\-\_\-help}]{\setlength{\rightskip}{0pt plus 5cm}void print\-\_\-help (
+\begin{DoxyParamCaption}
+\item[{const int}]{function\-\_\-index}
+\end{DoxyParamCaption}
+)}}\label{r1_8h_ab5b36414d84437d45b388232a0dfa366}
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=314pt]{r1_8h_ab5b36414d84437d45b388232a0dfa366_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{r1_8h_ab5b36414d84437d45b388232a0dfa366_icgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{r1_8h_a81ae9faedaa69e3e28e2960a0548df8d}{\index{r1.\-h@{r1.\-h}!help@{help}}
+\index{help@{help}!r1.h@{r1.\-h}}
+\subsubsection[{help}]{\setlength{\rightskip}{0pt plus 5cm}help}}\label{r1_8h_a81ae9faedaa69e3e28e2960a0548df8d}
+\hypertarget{r1_8h_ad3f9163c821f2f39ec8958218a9f6758}{\index{r1.\-h@{r1.\-h}!mpx@{mpx}}
+\index{mpx@{mpx}!r1.h@{r1.\-h}}
+\subsubsection[{mpx}]{\setlength{\rightskip}{0pt plus 5cm}mpx}}\label{r1_8h_ad3f9163c821f2f39ec8958218a9f6758}
+\hypertarget{r1_8h_a535d36feab047cbf4daffdbea9be8bf1}{\index{r1.\-h@{r1.\-h}!pcb@{pcb}}
+\index{pcb@{pcb}!r1.h@{r1.\-h}}
+\subsubsection[{pcb}]{\setlength{\rightskip}{0pt plus 5cm}pcb}}\label{r1_8h_a535d36feab047cbf4daffdbea9be8bf1}
