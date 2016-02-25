@@ -45,13 +45,9 @@ int suspend_pcb_main(int argc, char ** argv)
  }
  else if(argc == 3)
  {
-  if(strlen(argv[2]) >= 10 || strlen(argv[2]) == 0)
+  if(strlen(argv[2]) >= SIZE_OF_PCB_NAME || strlen(argv[2]) == 0)
   {
-   printf("ERROR: The length of the name must be greater than zero and smaller than 10!\n");
-  }
-  else if (!strcmp(argv[2], "-all") && !strcmp(argv[2], "-ready") && !strcmp(argv[2], "-blocked"))
-  {
-   printf("ERROR: The name of the PCB can not be \"%s\"\n", argv[2]);
+   printf("ERROR: The length of the name must be greater than zero and smaller than %d!\n", SIZE_OF_PCB_NAME);
   }
   else if((pcb_ptr = find_pcb(argv[2])) == NULL)
   {
@@ -105,13 +101,9 @@ int resume_pcb_main(int argc, char ** argv)
  }
  else if(argc == 3)
  {
-  if(strlen(argv[2]) >= 10 || strlen(argv[2]) == 0)
+  if(strlen(argv[2]) >= SIZE_OF_PCB_NAME || strlen(argv[2]) == 0)
   {
-   printf("ERROR: The length of the name must be greater than zero and smaller than 10!\n");
-  }
-  else if (!strcmp(argv[2], "-all") && !strcmp(argv[2], "-ready") && !strcmp(argv[2], "-blocked"))
-  {
-   printf("ERROR: The name of the PCB can not be \"%s\"\n", argv[2]);
+   printf("ERROR: The length of the name must be greater than zero and smaller than %!\n", SIZE_OF_PCB_NAME);
   }
   else if((pcb_ptr = find_pcb(argv[2])) == NULL)
   {
@@ -164,9 +156,9 @@ int set_pcb_priority_main(int argc, char ** argv){
   struct pcb_struct * p;
   error_t err = E_NOERROR;
 
-  if (strlen(argv[2]) >= 10 || strlen(argv[2]) == 0)
+  if (strlen(argv[2]) >= SIZE_OF_PCB_NAME || strlen(argv[2]) == 0)
   {
-   printf("ERROR: Name of process must be within 10 and more than 0 characters.\n");
+   printf("ERROR: Name of process must be within %d and more than 0 characters.\n", SIZE_OF_PCB_NAME);
    return 0;
   }
   name = argv[2];
@@ -238,13 +230,9 @@ int create_pcb_main(int argc, char ** argv)
  }
  else if(argc == 5)
  {
-  if(strlen(argv[2]) >= 10 || strlen(argv[2]) == 0)
+  if(strlen(argv[2]) >= SIZE_OF_PCB_NAME || strlen(argv[2]) == 0)
   {
-   printf("ERROR: The length of the name must be greater than zero and smaller than 10!\n");
-  }
-  else if (!strcmp(argv[2], "-all") && !strcmp(argv[2], "-ready") && !strcmp(argv[2], "-blocked"))
-  {
-   printf("ERROR: The name of the PCB can not be \"%s\"\n", argv[2]);
+   printf("ERROR: The length of the name must be greater than zero and smaller than %d!\n", SIZE_OF_PCB_NAME);
   }
   else if(find_pcb(argv[2]))
   {
@@ -288,7 +276,7 @@ int create_pcb_main(int argc, char ** argv)
  * @name show_pcb_main.
  *
  * @brief The main function for the "Show PCB", "Show all Processes", "Show Ready Processes", and "Show Blocked Processes".
- *    Accepted formats: pcb show [name]
+ *    Accepted formats: pcb show -name [name]
  *                      pcb show -all
  *                      pcb show -ready
  *                      pcb show -blocked
@@ -300,59 +288,95 @@ int create_pcb_main(int argc, char ** argv)
 int show_pcb_main(int argc, char ** argv)
 {
 
- if (argc > 3 || argc < 2 )
+ if (argc > 4 || argc < 3 )
  {
   printf("ERROR: Incorrect number of arguments. Please refer to \"pcb show --help\"\n");
   return 0;
  }
-
- if(argc == 2)
+ else if(argc == 3)
  {
-  help_usages(pcb);
-  return 0;
- }
+//  if (strlen(argv[2]) >= SIZE_OF_PCB_NAME)
+//  {
+//   printf("ERROR: Name of process must be within %d characters.", SIZE_OF_PCB_NAME);
+//   return 0;
+//  }
+//
+//  if(strlen(argv[2]) == 0)
+//  {
+//   printf("ERROR: The process name cannot be an empty string or NULL\n\n");
+//   return 0;
+//  }
 
- if(argc == 3)
- {
-  if (strlen(argv[2]) >= 10)
+  if (!strcmp(argv[2], "--help"))
   {
-   printf("ERROR: Name of process must be within 10 characters.");
-   return 0;
+   print_help(SHOWPCB);
   }
-
-  if(strlen(argv[2]) == 0)
-  {
-   printf("ERROR: The process name cannot be an empty string or NULL\n\n");
-   return 0;
-  }
-
-  if (!strcmp(argv[2], "-all"))
+  else if (!strcmp(argv[2], "-all"))
   {
    show_all_processes();
-   return 0;
   }
-
-  if (!strcmp(argv[2], "-ready"))
+  else if (!strcmp(argv[2], "-ready"))
   {
    show_ready_processes();
-   return 0;
   }
-
-  if (!strcmp(argv[2], "-blocked"))
+  else if (!strcmp(argv[2], "-blocked"))
   {
    show_blocked_processes();
-   return 0;
   }
-
-  struct pcb_struct * pcb_ptr = NULL;
-
-  if((pcb_ptr = find_pcb(argv[2])) == NULL)
+  else if (!strcmp(argv[2], "-name"))
   {
-   printf("ERROR: Could not find PCB named \'%s\'.\n\n", argv[2]);
-   return 0;
+   printf("ERROR: Too few arguments for the \"-name\"! \n\n");
+  }
+  else
+  {
+   printf("ERROR: Invalid arugment, \"%s\", provided!\n\n", argv[2]);
   }
 
-  show_pcb(pcb_ptr);
+//  struct pcb_struct * pcb_ptr = NULL;
+//
+//  if((pcb_ptr = find_pcb(argv[2])) == NULL)
+//  {
+//   printf("ERROR: Could not find PCB named \'%s\'.\n\n", argv[2]);
+//   return 0;
+//  }
+
+//  show_pcb(pcb_ptr);
+ }
+ else if(argc == 4)
+ {
+  if (!strcmp(argv[2], "--help"))
+  {
+   printf("ERROR: Too many arguments for the \"--help\"! \n\n");
+  }
+  else if (!strcmp(argv[2], "-all"))
+  {
+   printf("ERROR: Too many arguments for the \"-all\"! \n\n");
+  }
+  else if (!strcmp(argv[2], "-ready"))
+  {
+   printf("ERROR: Too many arguments for the \"-ready\"! \n\n");
+  }
+  else if (!strcmp(argv[2], "-blocked"))
+  {
+   printf("ERROR: Too many arguments for the \"-blocked\"! \n\n");
+  }
+  else if (!strcmp(argv[2], "-name"))
+  {
+   struct pcb_struct * pcb_ptr = NULL;
+
+   if((pcb_ptr = find_pcb(argv[3])) == NULL)
+   {
+    printf("ERROR: Could not find PCB named \'%s\'.\n\n", argv[3]);
+   }
+   else
+   {
+    show_pcb(pcb_ptr);
+   }
+  }
+  else
+  {
+   printf("ERROR: Invalid arugment, \"%s\", provided!\n\n", argv[2]);
+  }
  }
  return 0;
 }
@@ -384,13 +408,9 @@ int delete_pcb_main(int argc, char ** argv)
  }
  else if(argc == 3)
  {
-  if(strlen(argv[2]) >= 10 || strlen(argv[2]) == 0)
+  if(strlen(argv[2]) >= SIZE_OF_PCB_NAME || strlen(argv[2]) == 0)
   {
-   printf("ERROR: The length of the name must be greater than zero and smaller than 10!\n");
-  }
-  else if (!strcmp(argv[2], "-all") && !strcmp(argv[2], "-ready") && !strcmp(argv[2], "-blocked"))
-  {
-   printf("ERROR: The name of the PCB can not be \"%s\"\n", argv[2]);
+   printf("ERROR: The length of the name must be greater than zero and smaller than %d!\n", SIZE_OF_PCB_NAME);
   }
   else if((pcb_ptr = find_pcb(argv[2])) == NULL)
   {
@@ -454,13 +474,9 @@ int block_pcb_main(int argc, char ** argv)
  }
  else if(argc == 3)
  {
-  if(strlen(argv[2]) >= 10 || strlen(argv[2]) == 0)
+  if(strlen(argv[2]) >= SIZE_OF_PCB_NAME || strlen(argv[2]) == 0)
   {
-   printf("ERROR: The length of the name must be greater than zero and smaller than 10!\n");
-  }
-  else if (!strcmp(argv[2], "-all") && !strcmp(argv[2], "-ready") && !strcmp(argv[2], "-blocked"))
-  {
-   printf("ERROR: The name of the PCB can not be \"%s\"\n", argv[2]);
+   printf("ERROR: The length of the name must be greater than zero and smaller than %d!\n", SIZE_OF_PCB_NAME);
   }
   else if((pcb_ptr = find_pcb(argv[2])) == NULL)
   {
@@ -517,13 +533,9 @@ int unblock_pcb_main(int argc, char ** argv)
  }
  else if(argc == 3)
  {
-  if(strlen(argv[2]) >= 10 || strlen(argv[2]) == 0)
+  if(strlen(argv[2]) >= SIZE_OF_PCB_NAME || strlen(argv[2]) == 0)
   {
-   printf("ERROR: The length of the name must be greater than zero and smaller than 10!\n");
-  }
-  else if (!strcmp(argv[2], "-all") && !strcmp(argv[2], "-ready") && !strcmp(argv[2], "-blocked"))
-  {
-   printf("ERROR: The name of the PCB can not be \"%s\"\n", argv[2]);
+   printf("ERROR: The length of the name must be greater than zero and smaller than %d!\n", SIZE_OF_PCB_NAME);
   }
   else if((pcb_ptr = find_pcb(argv[2])) == NULL)
   {

@@ -227,28 +227,28 @@ int commhand()
    	 printf("Cmd > ");
    	 get_input_line(userInput, USER_INPUT_BUFFER_SIZE, WithEcho);
    	 command_line_parser(userInput, &argc, argv, MAX_ARGC, USER_INPUT_BUFFER_SIZE);
-   	 if(!strcmp(argv[0], "mpx") && argc )
+   	 if(argc && !strcmp(argv[0], "mpx"))
    	 {
    		 if (argc > 1)
    			 exe_function(argc, argv);
    		 else
    			 help_usages(mpx);
    	 }
-   	 else if(!strcmp(argv[0], "pcb") && argc )
+   	 else if(argc && !strcmp(argv[0], "pcb"))
    	 {
    		 if (argc > 1)
    			 exe_function(argc, argv);
    		 else
    			 help_usages(pcb);
    	 }
-   	 else if (!strcmp(argv[0], "help") && argc )
+   	 else if (argc && !strcmp(argv[0], "help"))
    	 {
    		 if (argc > 1)
    			 functions[HELP].function(argc, argv);
    		 else
    			 help_usages(help);
    	 }
-   	 else if (argc > 0)
+   	 else if (argc)
    	 {
    		 printf("There is no program called \"%s\". Please refer to \"help\"\n", argv[0]);
    	 }
@@ -383,8 +383,8 @@ static void load_functions()
     \tprocessClass  String process class\n\tprocessPriority  String process priority\n\n\
     Exit Status:\n\tReturns success unless no PCB named [processName] or string is empty/null.\n\n";
 
-    functions[SHOWPCB].nameStr = "show"; functions[SHOWPCB].function = &show_pcb_main; functions[SHOWPCB].usage = "pcb show [processName]\n\tusage:\tpcb show -all\n\tusage:\tpcb show -ready\n\tusage:\tpcb show -blocked";
-    functions[SHOWPCB].help = "\nshow : pcb show [processName]\n\n\tDisplays the PCB's process name, class, state, suspended status, and priority.\n\n\
+    functions[SHOWPCB].nameStr = "show"; functions[SHOWPCB].function = &show_pcb_main; functions[SHOWPCB].usage = "pcb show -name [processName]\n\tusage:\tpcb show -all\n\tusage:\tpcb show -ready\n\tusage:\tpcb show -blocked";
+    functions[SHOWPCB].help = "\nshow : pcb show -name [processName]\n\n\tDisplays the PCB's process name, class, state, suspended status, and priority.\n\n\
     show : pcb show -all\n\n\tDisplays all PCB's in the ready and blocked queues.\n\n\
     show : pcb show -ready\n\n\tDisplays all PCB's in the ready queue.\n\n\
     show : pcb show -blocked\n\n\tDisplays all PCB's in the blocked queue.\n\n\

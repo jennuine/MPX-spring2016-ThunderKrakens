@@ -43,7 +43,7 @@ enum process_suspended
 */
 struct pcb_struct
 {
-  char name[10]; /**< PCB's name. */
+  char name[SIZE_OF_PCB_NAME]; /**< PCB's name. */
   enum process_class class; /**< PCB's class is an application or system process. */
   unsigned char priority; /**< PCB's priority an integer between 0 and 9. Processes with higher priority values execute before lower priority processes. */
   enum process_state running_state; /**< PCB's states are ready, running, or blocked. */
@@ -142,10 +142,10 @@ struct pcb_struct * allocate_pcb()
 /**
  * @name  setup_pcb
  * @brief allocate a space for the PCB structure, setup the properties of the PCB.
- *    NOTE: pName must less than 10 character, pClass should be either "application" or "system"
+ *    NOTE: pName must less than SIZE_OF_PCB_NAME character, pClass should be either "application" or "system"
  *    , and pPriority must within the range of [0, 9].
  *
- * @param   pName       Process Name (length < 10).
+ * @param   pName       Process Name (length < SIZE_OF_PCB_NAME).
  * @param   pClass      Process class (system or application).
  * @param   pPriority   Process priority (0 ~ 9).
  *
@@ -153,7 +153,7 @@ struct pcb_struct * allocate_pcb()
  */
 struct pcb_struct * setup_pcb(const char * pName, const enum process_class pClass, const unsigned char pPriority)
 {
-  if(!(strlen(pName) < 10 && pClass <= pcb_class_sys && pPriority <= 9 && !find_pcb(pName) && strcmp(pName, "-all") && strcmp(pName, "-ready") && strcmp(pName, "-blocked")))
+  if(!(strlen(pName) < SIZE_OF_PCB_NAME && pClass <= pcb_class_sys && pPriority <= 9 && !find_pcb(pName)))
     return NULL;
 
   struct pcb_struct * a_pcb = allocate_pcb();

@@ -14,7 +14,8 @@
 
 /* @brief The defualt size of the stack for the PCB */
 #define SIZE_OF_STACK 1024
-
+/* @brief The max length of the PCB name string */
+#define SIZE_OF_PCB_NAME 10
 
 /**
 * PCB process class types.
