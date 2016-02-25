@@ -1,16 +1,19 @@
-\hypertarget{r1_8c}{}\section{modules/r1/r1.c File Reference}
-\label{r1_8c}\index{modules/r1/r1.\+c@{modules/r1/r1.\+c}}
+\hypertarget{r1_8c}{\section{modules/r1/r1.c File Reference}
+\label{r1_8c}\index{modules/r1/r1.\-c@{modules/r1/r1.\-c}}
+}
 
 
 The commandhander and functions associations for Module R1.  
 
 
-{\ttfamily \#include \char`\"{}r1.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}sys\+\_\+clock.\+h\char`\"{}}\\*
-{\ttfamily \#include $<$string.\+h$>$}\\*
-{\ttfamily \#include $<$core/serial.\+h$>$}\\*
-{\ttfamily \#include $<$core/io.\+h$>$}\\*
-Include dependency graph for r1.\+c\+:\nopagebreak
+{\ttfamily \#include \char`\"{}r1.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}sys\-\_\-clock.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$core/serial.\-h$>$}\\*
+{\ttfamily \#include $<$core/io.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}../r2/pcb\-\_\-comm.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}../r2/pcb.\-h\char`\"{}}\\*
+Include dependency graph for r1.\-c\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -20,21 +23,21 @@ Include dependency graph for r1.\+c\+:\nopagebreak
 \subsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
-struct \hyperlink{structfunction__name}{function\+\_\+name}
+struct \hyperlink{structfunction__name}{function\-\_\-name}
 \begin{DoxyCompactList}\small\item\em A structure to represent each function. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{r1_8c_abcc7a443a9849435cd308e774dd0c8de}{U\+S\+E\+R\+\_\+\+I\+N\+P\+U\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}~1000
+\#define \hyperlink{r1_8c_abcc7a443a9849435cd308e774dd0c8de}{U\-S\-E\-R\-\_\-\-I\-N\-P\-U\-T\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}~1000
 \item 
-\#define \hyperlink{r1_8c_ae1da50c0d24fa0390a6c287d6cb4befe}{M\+A\+X\+\_\+\+A\+R\+GC}~50
+\#define \hyperlink{r1_8c_ae1da50c0d24fa0390a6c287d6cb4befe}{M\-A\-X\-\_\-\-A\-R\-G\-C}~50
 \item 
-\#define \hyperlink{r1_8c_a88a929d879ebd5f0d64773050f62aef5}{M\+O\+D\+\_\+\+V\+E\+R\+S\+I\+ON}~\char`\"{}R1\char`\"{}
+\#define \hyperlink{r1_8c_a88a929d879ebd5f0d64773050f62aef5}{M\-O\-D\-\_\-\-V\-E\-R\-S\-I\-O\-N}~\char`\"{}R2\char`\"{}
 \item 
-\#define \hyperlink{r1_8c_afc29c35952a1ce914016dbfa4b91c2aa}{C\+O\+M\+P\+L\+E\+T\+I\+ON}~\char`\"{}02/05/2016\char`\"{}
+\#define \hyperlink{r1_8c_afc29c35952a1ce914016dbfa4b91c2aa}{C\-O\-M\-P\-L\-E\-T\-I\-O\-N}~\char`\"{}02/26/2016\char`\"{}
 \end{DoxyCompactItemize}
 \subsection*{Functions}
-\begin{Indent}{\bf exe\+\_\+function.}\par
+\begin{Indent}{\bf exe\-\_\-function.}\par
 {\em Executes the specific fucntion.
 
 
@@ -76,19 +79,23 @@ struct \hyperlink{structfunction__name}{function\+\_\+name}
 0 for shutdown, 1 for keep running. 
 \end{DoxyReturn}
 }\end{Indent}
-\begin{Indent}{\bf help\+\_\+usages}\par
+\begin{Indent}{\bf help\-\_\-usages}\par
 {\em shows usage message for each function.
 
 
 \begin{DoxyParams}{Parameters}
-{\em start\+\_\+from} & the index of the beginning function.\\
+{\em start\-\_\-from} & the index of the beginning function.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 0 
 \end{DoxyReturn}
-}\end{Indent}
-\begin{Indent}{\bf help\+\_\+function}\par
+}\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{r1_8c_abe3e9e9be5d3ad22784d12d72f398c92}{help\-\_\-usages} (enum \hyperlink{r1_8h_a28c7b657e452e70df5119825602a730b}{comm\-\_\-type} type)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf help\-\_\-function}\par
 {\em displays help text for all functions.
 
 
@@ -113,20 +120,20 @@ struct \hyperlink{structfunction__name}{function\+\_\+name}
 int \hyperlink{r1_8c_a14d85617242501c323a203ee196d3efa}{commhand} ()
 \end{DoxyCompactItemize}
 \end{Indent}
-\begin{Indent}{\bf command\+\_\+line\+\_\+parser}\par
+\begin{Indent}{\bf command\-\_\-line\-\_\-parser}\par
 {\em Splits the complete command line into tokens by space, single quote, or double quote.
 
 
 \begin{DoxyParams}{Parameters}
-{\em Cmd\+Str} & The complete input command. \\
+{\em Cmd\-Str} & The complete input command. \\
 \hline
 {\em argc} & The number of tokens found. \\
 \hline
 {\em argv} & The array of tokens. \\
 \hline
-{\em Max\+Arg\+Num} & The maximum number of tokens that array can hold. \\
+{\em Max\-Arg\-Num} & The maximum number of tokens that array can hold. \\
 \hline
-{\em Max\+Str\+Len} & The maximum length of each token that string can hold.\\
+{\em Max\-Str\-Len} & The maximum length of each token that string can hold.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -134,15 +141,15 @@ void
 \end{DoxyReturn}
 }\begin{DoxyCompactItemize}
 \item 
-void \hyperlink{r1_8c_adb6b307c73bca25d17aa7683e14fea16}{command\+\_\+line\+\_\+parser} (const char $\ast$Cmd\+Str, int $\ast$argc, char $\ast$$\ast$argv, const int Max\+Arg\+Num, const int Max\+Str\+Len)
+void \hyperlink{r1_8c_adb6b307c73bca25d17aa7683e14fea16}{command\-\_\-line\-\_\-parser} (const char $\ast$Cmd\-Str, int $\ast$argc, char $\ast$$\ast$argv, const int Max\-Arg\-Num, const int Max\-Str\-Len)
 \end{DoxyCompactItemize}
 \end{Indent}
-\begin{Indent}{\bf print\+\_\+help}\par
+\begin{Indent}{\bf print\-\_\-help}\par
 {\em prints the help message of a certain function that specified by the index number
 
 
 \begin{DoxyParams}{Parameters}
-{\em function\+\_\+index} & The index number of that function.\\
+{\em function\-\_\-index} & The index number of that function.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -150,34 +157,32 @@ void
 \end{DoxyReturn}
 }\begin{DoxyCompactItemize}
 \item 
-void \hyperlink{r1_8c_ab5b36414d84437d45b388232a0dfa366}{print\+\_\+help} (const int function\+\_\+index)
+void \hyperlink{r1_8c_ab5b36414d84437d45b388232a0dfa366}{print\-\_\-help} (const int function\-\_\-index)
 \end{DoxyCompactItemize}
 \end{Indent}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{r1_8c_aa61a2474de335d9fa914abf380a726b8}{Not\+Writing}
+\hyperlink{r1_8c_aa61a2474de335d9fa914abf380a726b8}{Not\-Writing}
 \item 
-\hyperlink{r1_8c_ab79ed52fb11464be544a3c1a487b0de5}{Normal\+Writing}
+\hyperlink{r1_8c_ab79ed52fb11464be544a3c1a487b0de5}{Normal\-Writing}
 \item 
-\hyperlink{r1_8c_afbd72c7a78fdd02cdb873cb1aa05f87d}{Double\+Quote\+Writing}
+\hyperlink{r1_8c_afbd72c7a78fdd02cdb873cb1aa05f87d}{Double\-Quote\-Writing}
 \item 
-\hyperlink{r1_8c_ab76a3cf588a6139cb9d094a5d49d278f}{Single\+Quote\+Writing}
+\hyperlink{r1_8c_ab76a3cf588a6139cb9d094a5d49d278f}{Single\-Quote\-Writing}
 \end{DoxyCompactItemize}
-\subsection*{Command\+Parser\+Stat}
+\subsection*{Command\-Parser\-Stat}
 \label{_amgrpa4c87762e5736fd5881563d5525037bc}%
 The status of the command parser \begin{DoxyCompactItemize}
 \item 
-enum \hyperlink{r1_8c_abb950b1df1e3f5562228a4eae8ebb925}{Command\+Paser\+Stat} 
+enum \hyperlink{r1_8c_abb950b1df1e3f5562228a4eae8ebb925}{Command\-Paser\-Stat} 
 \item 
-enum \hyperlink{r1_8c_abb950b1df1e3f5562228a4eae8ebb925}{Command\+Paser\+Stat} \hyperlink{r1_8c_af8a80137a0533f620e1ce92482a1b8b3}{\+\_\+\+\_\+attribute\+\_\+\+\_\+} ((packed))
+enum \hyperlink{r1_8c_abb950b1df1e3f5562228a4eae8ebb925}{Command\-Paser\-Stat} \hyperlink{r1_8c_af8a80137a0533f620e1ce92482a1b8b3}{\-\_\-\-\_\-attribute\-\_\-\-\_\-} ((packed))
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-The commandhander and functions associations for Module R1. 
-
-\begin{DoxyAuthor}{Author}
+The commandhander and functions associations for Module R1. \begin{DoxyAuthor}{Author}
 Thunder Krakens 
 \end{DoxyAuthor}
 \begin{DoxyDate}{Date}
@@ -189,89 +194,106 @@ R1
 
 
 \subsection{Macro Definition Documentation}
-\index{r1.\+c@{r1.\+c}!C\+O\+M\+P\+L\+E\+T\+I\+ON@{C\+O\+M\+P\+L\+E\+T\+I\+ON}}
-\index{C\+O\+M\+P\+L\+E\+T\+I\+ON@{C\+O\+M\+P\+L\+E\+T\+I\+ON}!r1.\+c@{r1.\+c}}
-\subsubsection[{\texorpdfstring{C\+O\+M\+P\+L\+E\+T\+I\+ON}{COMPLETION}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+O\+M\+P\+L\+E\+T\+I\+ON~\char`\"{}02/05/2016\char`\"{}}\hypertarget{r1_8c_afc29c35952a1ce914016dbfa4b91c2aa}{}\label{r1_8c_afc29c35952a1ce914016dbfa4b91c2aa}
-\index{r1.\+c@{r1.\+c}!M\+A\+X\+\_\+\+A\+R\+GC@{M\+A\+X\+\_\+\+A\+R\+GC}}
-\index{M\+A\+X\+\_\+\+A\+R\+GC@{M\+A\+X\+\_\+\+A\+R\+GC}!r1.\+c@{r1.\+c}}
-\subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+A\+R\+GC}{MAX_ARGC}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+A\+R\+GC~50}\hypertarget{r1_8c_ae1da50c0d24fa0390a6c287d6cb4befe}{}\label{r1_8c_ae1da50c0d24fa0390a6c287d6cb4befe}
-\index{r1.\+c@{r1.\+c}!M\+O\+D\+\_\+\+V\+E\+R\+S\+I\+ON@{M\+O\+D\+\_\+\+V\+E\+R\+S\+I\+ON}}
-\index{M\+O\+D\+\_\+\+V\+E\+R\+S\+I\+ON@{M\+O\+D\+\_\+\+V\+E\+R\+S\+I\+ON}!r1.\+c@{r1.\+c}}
-\subsubsection[{\texorpdfstring{M\+O\+D\+\_\+\+V\+E\+R\+S\+I\+ON}{MOD_VERSION}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+O\+D\+\_\+\+V\+E\+R\+S\+I\+ON~\char`\"{}R1\char`\"{}}\hypertarget{r1_8c_a88a929d879ebd5f0d64773050f62aef5}{}\label{r1_8c_a88a929d879ebd5f0d64773050f62aef5}
-\index{r1.\+c@{r1.\+c}!U\+S\+E\+R\+\_\+\+I\+N\+P\+U\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE@{U\+S\+E\+R\+\_\+\+I\+N\+P\+U\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}}
-\index{U\+S\+E\+R\+\_\+\+I\+N\+P\+U\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE@{U\+S\+E\+R\+\_\+\+I\+N\+P\+U\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}!r1.\+c@{r1.\+c}}
-\subsubsection[{\texorpdfstring{U\+S\+E\+R\+\_\+\+I\+N\+P\+U\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}{USER_INPUT_BUFFER_SIZE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+S\+E\+R\+\_\+\+I\+N\+P\+U\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE~1000}\hypertarget{r1_8c_abcc7a443a9849435cd308e774dd0c8de}{}\label{r1_8c_abcc7a443a9849435cd308e774dd0c8de}
+\hypertarget{r1_8c_afc29c35952a1ce914016dbfa4b91c2aa}{\index{r1.\-c@{r1.\-c}!C\-O\-M\-P\-L\-E\-T\-I\-O\-N@{C\-O\-M\-P\-L\-E\-T\-I\-O\-N}}
+\index{C\-O\-M\-P\-L\-E\-T\-I\-O\-N@{C\-O\-M\-P\-L\-E\-T\-I\-O\-N}!r1.c@{r1.\-c}}
+\subsubsection[{C\-O\-M\-P\-L\-E\-T\-I\-O\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-O\-M\-P\-L\-E\-T\-I\-O\-N~\char`\"{}02/26/2016\char`\"{}}}\label{r1_8c_afc29c35952a1ce914016dbfa4b91c2aa}
+\hypertarget{r1_8c_ae1da50c0d24fa0390a6c287d6cb4befe}{\index{r1.\-c@{r1.\-c}!M\-A\-X\-\_\-\-A\-R\-G\-C@{M\-A\-X\-\_\-\-A\-R\-G\-C}}
+\index{M\-A\-X\-\_\-\-A\-R\-G\-C@{M\-A\-X\-\_\-\-A\-R\-G\-C}!r1.c@{r1.\-c}}
+\subsubsection[{M\-A\-X\-\_\-\-A\-R\-G\-C}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-A\-X\-\_\-\-A\-R\-G\-C~50}}\label{r1_8c_ae1da50c0d24fa0390a6c287d6cb4befe}
+\hypertarget{r1_8c_a88a929d879ebd5f0d64773050f62aef5}{\index{r1.\-c@{r1.\-c}!M\-O\-D\-\_\-\-V\-E\-R\-S\-I\-O\-N@{M\-O\-D\-\_\-\-V\-E\-R\-S\-I\-O\-N}}
+\index{M\-O\-D\-\_\-\-V\-E\-R\-S\-I\-O\-N@{M\-O\-D\-\_\-\-V\-E\-R\-S\-I\-O\-N}!r1.c@{r1.\-c}}
+\subsubsection[{M\-O\-D\-\_\-\-V\-E\-R\-S\-I\-O\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-O\-D\-\_\-\-V\-E\-R\-S\-I\-O\-N~\char`\"{}R2\char`\"{}}}\label{r1_8c_a88a929d879ebd5f0d64773050f62aef5}
+\hypertarget{r1_8c_abcc7a443a9849435cd308e774dd0c8de}{\index{r1.\-c@{r1.\-c}!U\-S\-E\-R\-\_\-\-I\-N\-P\-U\-T\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E@{U\-S\-E\-R\-\_\-\-I\-N\-P\-U\-T\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}}
+\index{U\-S\-E\-R\-\_\-\-I\-N\-P\-U\-T\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E@{U\-S\-E\-R\-\_\-\-I\-N\-P\-U\-T\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}!r1.c@{r1.\-c}}
+\subsubsection[{U\-S\-E\-R\-\_\-\-I\-N\-P\-U\-T\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\-S\-E\-R\-\_\-\-I\-N\-P\-U\-T\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E~1000}}\label{r1_8c_abcc7a443a9849435cd308e774dd0c8de}
 
 
 \subsection{Enumeration Type Documentation}
-\index{r1.\+c@{r1.\+c}!Command\+Paser\+Stat@{Command\+Paser\+Stat}}
-\index{Command\+Paser\+Stat@{Command\+Paser\+Stat}!r1.\+c@{r1.\+c}}
-\subsubsection[{\texorpdfstring{Command\+Paser\+Stat}{CommandPaserStat}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Command\+Paser\+Stat}}\hypertarget{r1_8c_abb950b1df1e3f5562228a4eae8ebb925}{}\label{r1_8c_abb950b1df1e3f5562228a4eae8ebb925}
+\hypertarget{r1_8c_abb950b1df1e3f5562228a4eae8ebb925}{\index{r1.\-c@{r1.\-c}!Command\-Paser\-Stat@{Command\-Paser\-Stat}}
+\index{Command\-Paser\-Stat@{Command\-Paser\-Stat}!r1.c@{r1.\-c}}
+\subsubsection[{Command\-Paser\-Stat}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Command\-Paser\-Stat}}}\label{r1_8c_abb950b1df1e3f5562228a4eae8ebb925}
 
 
 \subsection{Function Documentation}
-\index{r1.\+c@{r1.\+c}!\+\_\+\+\_\+attribute\+\_\+\+\_\+@{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}
-\index{\+\_\+\+\_\+attribute\+\_\+\+\_\+@{\+\_\+\+\_\+attribute\+\_\+\+\_\+}!r1.\+c@{r1.\+c}}
-\subsubsection[{\texorpdfstring{\+\_\+\+\_\+attribute\+\_\+\+\_\+((packed))}{__attribute__((packed))}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Command\+Paser\+Stat} \+\_\+\+\_\+attribute\+\_\+\+\_\+ (
+\hypertarget{r1_8c_af8a80137a0533f620e1ce92482a1b8b3}{\index{r1.\-c@{r1.\-c}!\-\_\-\-\_\-attribute\-\_\-\-\_\-@{\-\_\-\-\_\-attribute\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-attribute\-\_\-\-\_\-@{\-\_\-\-\_\-attribute\-\_\-\-\_\-}!r1.c@{r1.\-c}}
+\subsubsection[{\-\_\-\-\_\-attribute\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Command\-Paser\-Stat} \-\_\-\-\_\-attribute\-\_\-\-\_\- (
 \begin{DoxyParamCaption}
 \item[{(packed)}]{}
 \end{DoxyParamCaption}
-)}\hypertarget{r1_8c_af8a80137a0533f620e1ce92482a1b8b3}{}\label{r1_8c_af8a80137a0533f620e1ce92482a1b8b3}
-\index{r1.\+c@{r1.\+c}!command\+\_\+line\+\_\+parser@{command\+\_\+line\+\_\+parser}}
-\index{command\+\_\+line\+\_\+parser@{command\+\_\+line\+\_\+parser}!r1.\+c@{r1.\+c}}
-\subsubsection[{\texorpdfstring{command\+\_\+line\+\_\+parser(const char $\ast$\+Cmd\+Str, int $\ast$argc, char $\ast$$\ast$argv, const int Max\+Arg\+Num, const int Max\+Str\+Len)}{command_line_parser(const char *CmdStr, int *argc, char **argv, const int MaxArgNum, const int MaxStrLen)}}]{\setlength{\rightskip}{0pt plus 5cm}void command\+\_\+line\+\_\+parser (
+)}}\label{r1_8c_af8a80137a0533f620e1ce92482a1b8b3}
+\hypertarget{r1_8c_adb6b307c73bca25d17aa7683e14fea16}{\index{r1.\-c@{r1.\-c}!command\-\_\-line\-\_\-parser@{command\-\_\-line\-\_\-parser}}
+\index{command\-\_\-line\-\_\-parser@{command\-\_\-line\-\_\-parser}!r1.c@{r1.\-c}}
+\subsubsection[{command\-\_\-line\-\_\-parser}]{\setlength{\rightskip}{0pt plus 5cm}void command\-\_\-line\-\_\-parser (
 \begin{DoxyParamCaption}
-\item[{const char $\ast$}]{Cmd\+Str, }
+\item[{const char $\ast$}]{Cmd\-Str, }
 \item[{int $\ast$}]{argc, }
 \item[{char $\ast$$\ast$}]{argv, }
-\item[{const int}]{Max\+Arg\+Num, }
-\item[{const int}]{Max\+Str\+Len}
+\item[{const int}]{Max\-Arg\-Num, }
+\item[{const int}]{Max\-Str\-Len}
 \end{DoxyParamCaption}
-)}\hypertarget{r1_8c_adb6b307c73bca25d17aa7683e14fea16}{}\label{r1_8c_adb6b307c73bca25d17aa7683e14fea16}
-
-
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{r1_8c_adb6b307c73bca25d17aa7683e14fea16_cgraph}
-\end{center}
-\end{figure}
-
-
-\index{r1.\+c@{r1.\+c}!commhand@{commhand}}
-\index{commhand@{commhand}!r1.\+c@{r1.\+c}}
-\subsubsection[{\texorpdfstring{commhand()}{commhand()}}]{\setlength{\rightskip}{0pt plus 5cm}int commhand (
+)}}\label{r1_8c_adb6b307c73bca25d17aa7683e14fea16}
+\hypertarget{r1_8c_a14d85617242501c323a203ee196d3efa}{\index{r1.\-c@{r1.\-c}!commhand@{commhand}}
+\index{commhand@{commhand}!r1.c@{r1.\-c}}
+\subsubsection[{commhand}]{\setlength{\rightskip}{0pt plus 5cm}int commhand (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\hypertarget{r1_8c_a14d85617242501c323a203ee196d3efa}{}\label{r1_8c_a14d85617242501c323a203ee196d3efa}
-\index{r1.\+c@{r1.\+c}!print\+\_\+help@{print\+\_\+help}}
-\index{print\+\_\+help@{print\+\_\+help}!r1.\+c@{r1.\+c}}
-\subsubsection[{\texorpdfstring{print\+\_\+help(const int function\+\_\+index)}{print_help(const int function_index)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+\_\+help (
+)}}\label{r1_8c_a14d85617242501c323a203ee196d3efa}
+\hypertarget{r1_8c_abe3e9e9be5d3ad22784d12d72f398c92}{\index{r1.\-c@{r1.\-c}!help\-\_\-usages@{help\-\_\-usages}}
+\index{help\-\_\-usages@{help\-\_\-usages}!r1.c@{r1.\-c}}
+\subsubsection[{help\-\_\-usages}]{\setlength{\rightskip}{0pt plus 5cm}int help\-\_\-usages (
 \begin{DoxyParamCaption}
-\item[{const int}]{function\+\_\+index}
+\item[{enum {\bf comm\-\_\-type}}]{type}
 \end{DoxyParamCaption}
-)}\hypertarget{r1_8c_ab5b36414d84437d45b388232a0dfa366}{}\label{r1_8c_ab5b36414d84437d45b388232a0dfa366}
+)}}\label{r1_8c_abe3e9e9be5d3ad22784d12d72f398c92}
 
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=313pt]{r1_8c_ab5b36414d84437d45b388232a0dfa366_cgraph}
+\includegraphics[width=326pt]{r1_8c_abe3e9e9be5d3ad22784d12d72f398c92_cgraph}
 \end{center}
 \end{figure}
 
 
 
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{r1_8c_ab5b36414d84437d45b388232a0dfa366_icgraph}
+\includegraphics[width=276pt]{r1_8c_abe3e9e9be5d3ad22784d12d72f398c92_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{r1_8c_ab5b36414d84437d45b388232a0dfa366}{\index{r1.\-c@{r1.\-c}!print\-\_\-help@{print\-\_\-help}}
+\index{print\-\_\-help@{print\-\_\-help}!r1.c@{r1.\-c}}
+\subsubsection[{print\-\_\-help}]{\setlength{\rightskip}{0pt plus 5cm}void print\-\_\-help (
+\begin{DoxyParamCaption}
+\item[{const int}]{function\-\_\-index}
+\end{DoxyParamCaption}
+)}}\label{r1_8c_ab5b36414d84437d45b388232a0dfa366}
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=314pt]{r1_8c_ab5b36414d84437d45b388232a0dfa366_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{r1_8c_ab5b36414d84437d45b388232a0dfa366_icgraph}
 \end{center}
 \end{figure}
 
@@ -279,15 +301,15 @@ Here is the caller graph for this function\+:
 
 
 \subsection{Variable Documentation}
-\index{r1.\+c@{r1.\+c}!Double\+Quote\+Writing@{Double\+Quote\+Writing}}
-\index{Double\+Quote\+Writing@{Double\+Quote\+Writing}!r1.\+c@{r1.\+c}}
-\subsubsection[{\texorpdfstring{Double\+Quote\+Writing}{DoubleQuoteWriting}}]{\setlength{\rightskip}{0pt plus 5cm}Double\+Quote\+Writing}\hypertarget{r1_8c_afbd72c7a78fdd02cdb873cb1aa05f87d}{}\label{r1_8c_afbd72c7a78fdd02cdb873cb1aa05f87d}
-\index{r1.\+c@{r1.\+c}!Normal\+Writing@{Normal\+Writing}}
-\index{Normal\+Writing@{Normal\+Writing}!r1.\+c@{r1.\+c}}
-\subsubsection[{\texorpdfstring{Normal\+Writing}{NormalWriting}}]{\setlength{\rightskip}{0pt plus 5cm}Normal\+Writing}\hypertarget{r1_8c_ab79ed52fb11464be544a3c1a487b0de5}{}\label{r1_8c_ab79ed52fb11464be544a3c1a487b0de5}
-\index{r1.\+c@{r1.\+c}!Not\+Writing@{Not\+Writing}}
-\index{Not\+Writing@{Not\+Writing}!r1.\+c@{r1.\+c}}
-\subsubsection[{\texorpdfstring{Not\+Writing}{NotWriting}}]{\setlength{\rightskip}{0pt plus 5cm}Not\+Writing}\hypertarget{r1_8c_aa61a2474de335d9fa914abf380a726b8}{}\label{r1_8c_aa61a2474de335d9fa914abf380a726b8}
-\index{r1.\+c@{r1.\+c}!Single\+Quote\+Writing@{Single\+Quote\+Writing}}
-\index{Single\+Quote\+Writing@{Single\+Quote\+Writing}!r1.\+c@{r1.\+c}}
-\subsubsection[{\texorpdfstring{Single\+Quote\+Writing}{SingleQuoteWriting}}]{\setlength{\rightskip}{0pt plus 5cm}Single\+Quote\+Writing}\hypertarget{r1_8c_ab76a3cf588a6139cb9d094a5d49d278f}{}\label{r1_8c_ab76a3cf588a6139cb9d094a5d49d278f}
+\hypertarget{r1_8c_afbd72c7a78fdd02cdb873cb1aa05f87d}{\index{r1.\-c@{r1.\-c}!Double\-Quote\-Writing@{Double\-Quote\-Writing}}
+\index{Double\-Quote\-Writing@{Double\-Quote\-Writing}!r1.c@{r1.\-c}}
+\subsubsection[{Double\-Quote\-Writing}]{\setlength{\rightskip}{0pt plus 5cm}Double\-Quote\-Writing}}\label{r1_8c_afbd72c7a78fdd02cdb873cb1aa05f87d}
+\hypertarget{r1_8c_ab79ed52fb11464be544a3c1a487b0de5}{\index{r1.\-c@{r1.\-c}!Normal\-Writing@{Normal\-Writing}}
+\index{Normal\-Writing@{Normal\-Writing}!r1.c@{r1.\-c}}
+\subsubsection[{Normal\-Writing}]{\setlength{\rightskip}{0pt plus 5cm}Normal\-Writing}}\label{r1_8c_ab79ed52fb11464be544a3c1a487b0de5}
+\hypertarget{r1_8c_aa61a2474de335d9fa914abf380a726b8}{\index{r1.\-c@{r1.\-c}!Not\-Writing@{Not\-Writing}}
+\index{Not\-Writing@{Not\-Writing}!r1.c@{r1.\-c}}
+\subsubsection[{Not\-Writing}]{\setlength{\rightskip}{0pt plus 5cm}Not\-Writing}}\label{r1_8c_aa61a2474de335d9fa914abf380a726b8}
+\hypertarget{r1_8c_ab76a3cf588a6139cb9d094a5d49d278f}{\index{r1.\-c@{r1.\-c}!Single\-Quote\-Writing@{Single\-Quote\-Writing}}
+\index{Single\-Quote\-Writing@{Single\-Quote\-Writing}!r1.c@{r1.\-c}}
+\subsubsection[{Single\-Quote\-Writing}]{\setlength{\rightskip}{0pt plus 5cm}Single\-Quote\-Writing}}\label{r1_8c_ab76a3cf588a6139cb9d094a5d49d278f}

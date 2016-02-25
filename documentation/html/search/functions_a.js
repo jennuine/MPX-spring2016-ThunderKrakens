@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['remove_5fpcb',['remove_pcb',['../pcb_8h.html#a52620da5c66ed459beea65538169547a',1,'pcb.h']]],
-  ['resume_5fpcb',['resume_pcb',['../pcb_8h.html#a24a874ae323c9ef0583c2f179b44fe74',1,'pcb.h']]],
-  ['resume_5fpcb_5fmain',['resume_pcb_main',['../pcb__comm_8h.html#a89d9dbb74279bd8e3e5e9fdaadeeeb6b',1,'pcb_comm.h']]]
+  ['pcb_5finit',['pcb_init',['../pcb_8c.html#a8d00fee50178510712d2ffeaeafae347',1,'pcb_init():&#160;pcb.c'],['../pcb_8h.html#a8d00fee50178510712d2ffeaeafae347',1,'pcb_init():&#160;pcb.c']]],
+  ['print_5fhelp',['print_help',['../r1_8c.html#ab5b36414d84437d45b388232a0dfa366',1,'print_help(const int function_index):&#160;r1.c'],['../r1_8h.html#ab5b36414d84437d45b388232a0dfa366',1,'print_help(const int function_index):&#160;r1.c']]],
+  ['printf',['printf',['../string_8c.html#a98631211a4a8aee62f572375d5b637be',1,'printf(const char *format,...):&#160;string.c'],['../string_8h.html#a98631211a4a8aee62f572375d5b637be',1,'printf(const char *format,...):&#160;string.c']]]
 ];

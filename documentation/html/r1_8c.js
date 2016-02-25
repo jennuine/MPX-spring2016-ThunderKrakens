@@ -9,6 +9,7 @@ var r1_8c =
     [ "__attribute__", "r1_8c.html#af8a80137a0533f620e1ce92482a1b8b3", null ],
     [ "command_line_parser", "r1_8c.html#adb6b307c73bca25d17aa7683e14fea16", null ],
     [ "commhand", "r1_8c.html#a14d85617242501c323a203ee196d3efa", null ],
+    [ "help_usages", "r1_8c.html#abe3e9e9be5d3ad22784d12d72f398c92", null ],
     [ "print_help", "r1_8c.html#ab5b36414d84437d45b388232a0dfa366", null ],
     [ "DoubleQuoteWriting", "r1_8c.html#afbd72c7a78fdd02cdb873cb1aa05f87d", null ],
     [ "NormalWriting", "r1_8c.html#ab79ed52fb11464be544a3c1a487b0de5", null ],

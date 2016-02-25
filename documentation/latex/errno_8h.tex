@@ -1,11 +1,12 @@
-\hypertarget{errno_8h}{}\section{modules/errno.h File Reference}
-\label{errno_8h}\index{modules/errno.\+h@{modules/errno.\+h}}
+\hypertarget{errno_8h}{\section{modules/errno.h File Reference}
+\label{errno_8h}\index{modules/errno.\-h@{modules/errno.\-h}}
+}
 
 
 This file contains the type of errors. The error can be from invalid paramter passed to a function, or invalid input format.  
 
 
-This graph shows which files directly or indirectly include this file\+:\nopagebreak
+This graph shows which files directly or indirectly include this file\-:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,31 +16,31 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{errno_8h_a910656a3ce04eecb0e4479fd35d343fb}{E\+\_\+\+N\+O\+E\+R\+R\+OR}~0
+\#define \hyperlink{errno_8h_a910656a3ce04eecb0e4479fd35d343fb}{E\-\_\-\-N\-O\-E\-R\-R\-O\-R}~0
 \item 
-\#define \hyperlink{errno_8h_ad38311f7eadb9042f7c98dd31ffc69c3}{E\+\_\+\+I\+N\+V\+P\+A\+RA}~1
+\#define \hyperlink{errno_8h_ad38311f7eadb9042f7c98dd31ffc69c3}{E\-\_\-\-I\-N\-V\-P\-A\-R\-A}~1
 \item 
-\#define \hyperlink{errno_8h_a17ad8897d139d58bb84714b2e7861ba2}{E\+\_\+\+I\+N\+V\+S\+T\+RF}~2
+\#define \hyperlink{errno_8h_a17ad8897d139d58bb84714b2e7861ba2}{E\-\_\-\-I\-N\-V\-S\-T\-R\-F}~2
 \item 
-\#define \hyperlink{errno_8h_a5273e7742dd7c18937e5191b8070f08f}{E\+\_\+\+I\+N\+V\+U\+S\+RI}~3
+\#define \hyperlink{errno_8h_a5273e7742dd7c18937e5191b8070f08f}{E\-\_\-\-I\-N\-V\-U\-S\-R\-I}~3
 \item 
-\#define \hyperlink{errno_8h_a7fcfdab3c40ca9d8eb249d636908c3fd}{E\+\_\+\+F\+R\+E\+E\+M\+EM}~4
-\begin{DoxyCompactList}\small\item\em Error when freeing memory. \end{DoxyCompactList}\item 
-\#define \hyperlink{errno_8h_a9c12061ab40785715ea031861dffddf9}{E\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+ND}~5
-\begin{DoxyCompactList}\small\item\em Error item was not found. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\#define \hyperlink{errno_8h_a7fcfdab3c40ca9d8eb249d636908c3fd}{E\-\_\-\-F\-R\-E\-E\-M\-E\-M}~4
+\begin{DoxyCompactList}\small\item\em Error we cannot actually free the memory space since the student\-\_\-free had not been implemented before R5. \end{DoxyCompactList}\item 
+\#define \hyperlink{errno_8h_a97fcdfde06438bcf94181400389bd7b9}{E\-\_\-\-N\-U\-L\-L\-\_\-\-P\-T\-R}~5
+\begin{DoxyCompactList}\small\item\em A N\-U\-L\-L Pointer Error. \end{DoxyCompactList}\item 
+\#define \hyperlink{errno_8h_af40255ba5e6a1e879803d699b4393cac}{E\-\_\-\-P\-R\-O\-G\-E\-R\-R}~99
+\end{DoxyCompactItemize}
 \subsection*{Typedefs}
-\begin{Indent}{\bf error\+\_\+t.}\par
+\begin{Indent}{\bf error\-\_\-t.}\par
 {\em The datetype that holds the error code. }\begin{DoxyCompactItemize}
 \item 
-typedef unsigned int \hyperlink{errno_8h_aafbeb34410283829794b35fedafeb369}{error\+\_\+t}
+typedef unsigned int \hyperlink{errno_8h_aafbeb34410283829794b35fedafeb369}{error\-\_\-t}
 \end{DoxyCompactItemize}
 \end{Indent}
 
 
 \subsection{Detailed Description}
-This file contains the type of errors. The error can be from invalid paramter passed to a function, or invalid input format. 
-
-\begin{DoxyAuthor}{Author}
+This file contains the type of errors. The error can be from invalid paramter passed to a function, or invalid input format. \begin{DoxyAuthor}{Author}
 Thunder Krakens 
 \end{DoxyAuthor}
 \begin{DoxyDate}{Date}
@@ -51,35 +52,38 @@ R2
 
 
 \subsection{Macro Definition Documentation}
-\index{errno.\+h@{errno.\+h}!E\+\_\+\+F\+R\+E\+E\+M\+EM@{E\+\_\+\+F\+R\+E\+E\+M\+EM}}
-\index{E\+\_\+\+F\+R\+E\+E\+M\+EM@{E\+\_\+\+F\+R\+E\+E\+M\+EM}!errno.\+h@{errno.\+h}}
-\subsubsection[{\texorpdfstring{E\+\_\+\+F\+R\+E\+E\+M\+EM}{E_FREEMEM}}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+\_\+\+F\+R\+E\+E\+M\+EM~4}\hypertarget{errno_8h_a7fcfdab3c40ca9d8eb249d636908c3fd}{}\label{errno_8h_a7fcfdab3c40ca9d8eb249d636908c3fd}
+\hypertarget{errno_8h_a7fcfdab3c40ca9d8eb249d636908c3fd}{\index{errno.\-h@{errno.\-h}!E\-\_\-\-F\-R\-E\-E\-M\-E\-M@{E\-\_\-\-F\-R\-E\-E\-M\-E\-M}}
+\index{E\-\_\-\-F\-R\-E\-E\-M\-E\-M@{E\-\_\-\-F\-R\-E\-E\-M\-E\-M}!errno.h@{errno.\-h}}
+\subsubsection[{E\-\_\-\-F\-R\-E\-E\-M\-E\-M}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-\_\-\-F\-R\-E\-E\-M\-E\-M~4}}\label{errno_8h_a7fcfdab3c40ca9d8eb249d636908c3fd}
 
 
-Error when freeing memory. 
+Error we cannot actually free the memory space since the student\-\_\-free had not been implemented before R5. 
 
-\index{errno.\+h@{errno.\+h}!E\+\_\+\+I\+N\+V\+P\+A\+RA@{E\+\_\+\+I\+N\+V\+P\+A\+RA}}
-\index{E\+\_\+\+I\+N\+V\+P\+A\+RA@{E\+\_\+\+I\+N\+V\+P\+A\+RA}!errno.\+h@{errno.\+h}}
-\subsubsection[{\texorpdfstring{E\+\_\+\+I\+N\+V\+P\+A\+RA}{E_INVPARA}}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+\_\+\+I\+N\+V\+P\+A\+RA~1}\hypertarget{errno_8h_ad38311f7eadb9042f7c98dd31ffc69c3}{}\label{errno_8h_ad38311f7eadb9042f7c98dd31ffc69c3}
-\index{errno.\+h@{errno.\+h}!E\+\_\+\+I\+N\+V\+S\+T\+RF@{E\+\_\+\+I\+N\+V\+S\+T\+RF}}
-\index{E\+\_\+\+I\+N\+V\+S\+T\+RF@{E\+\_\+\+I\+N\+V\+S\+T\+RF}!errno.\+h@{errno.\+h}}
-\subsubsection[{\texorpdfstring{E\+\_\+\+I\+N\+V\+S\+T\+RF}{E_INVSTRF}}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+\_\+\+I\+N\+V\+S\+T\+RF~2}\hypertarget{errno_8h_a17ad8897d139d58bb84714b2e7861ba2}{}\label{errno_8h_a17ad8897d139d58bb84714b2e7861ba2}
-\index{errno.\+h@{errno.\+h}!E\+\_\+\+I\+N\+V\+U\+S\+RI@{E\+\_\+\+I\+N\+V\+U\+S\+RI}}
-\index{E\+\_\+\+I\+N\+V\+U\+S\+RI@{E\+\_\+\+I\+N\+V\+U\+S\+RI}!errno.\+h@{errno.\+h}}
-\subsubsection[{\texorpdfstring{E\+\_\+\+I\+N\+V\+U\+S\+RI}{E_INVUSRI}}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+\_\+\+I\+N\+V\+U\+S\+RI~3}\hypertarget{errno_8h_a5273e7742dd7c18937e5191b8070f08f}{}\label{errno_8h_a5273e7742dd7c18937e5191b8070f08f}
-\index{errno.\+h@{errno.\+h}!E\+\_\+\+N\+O\+E\+R\+R\+OR@{E\+\_\+\+N\+O\+E\+R\+R\+OR}}
-\index{E\+\_\+\+N\+O\+E\+R\+R\+OR@{E\+\_\+\+N\+O\+E\+R\+R\+OR}!errno.\+h@{errno.\+h}}
-\subsubsection[{\texorpdfstring{E\+\_\+\+N\+O\+E\+R\+R\+OR}{E_NOERROR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+\_\+\+N\+O\+E\+R\+R\+OR~0}\hypertarget{errno_8h_a910656a3ce04eecb0e4479fd35d343fb}{}\label{errno_8h_a910656a3ce04eecb0e4479fd35d343fb}
-\index{errno.\+h@{errno.\+h}!E\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+ND@{E\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+ND}}
-\index{E\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+ND@{E\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+ND}!errno.\+h@{errno.\+h}}
-\subsubsection[{\texorpdfstring{E\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+ND}{E_NOT_FOUND}}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+ND~5}\hypertarget{errno_8h_a9c12061ab40785715ea031861dffddf9}{}\label{errno_8h_a9c12061ab40785715ea031861dffddf9}
+\hypertarget{errno_8h_ad38311f7eadb9042f7c98dd31ffc69c3}{\index{errno.\-h@{errno.\-h}!E\-\_\-\-I\-N\-V\-P\-A\-R\-A@{E\-\_\-\-I\-N\-V\-P\-A\-R\-A}}
+\index{E\-\_\-\-I\-N\-V\-P\-A\-R\-A@{E\-\_\-\-I\-N\-V\-P\-A\-R\-A}!errno.h@{errno.\-h}}
+\subsubsection[{E\-\_\-\-I\-N\-V\-P\-A\-R\-A}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-\_\-\-I\-N\-V\-P\-A\-R\-A~1}}\label{errno_8h_ad38311f7eadb9042f7c98dd31ffc69c3}
+\hypertarget{errno_8h_a17ad8897d139d58bb84714b2e7861ba2}{\index{errno.\-h@{errno.\-h}!E\-\_\-\-I\-N\-V\-S\-T\-R\-F@{E\-\_\-\-I\-N\-V\-S\-T\-R\-F}}
+\index{E\-\_\-\-I\-N\-V\-S\-T\-R\-F@{E\-\_\-\-I\-N\-V\-S\-T\-R\-F}!errno.h@{errno.\-h}}
+\subsubsection[{E\-\_\-\-I\-N\-V\-S\-T\-R\-F}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-\_\-\-I\-N\-V\-S\-T\-R\-F~2}}\label{errno_8h_a17ad8897d139d58bb84714b2e7861ba2}
+\hypertarget{errno_8h_a5273e7742dd7c18937e5191b8070f08f}{\index{errno.\-h@{errno.\-h}!E\-\_\-\-I\-N\-V\-U\-S\-R\-I@{E\-\_\-\-I\-N\-V\-U\-S\-R\-I}}
+\index{E\-\_\-\-I\-N\-V\-U\-S\-R\-I@{E\-\_\-\-I\-N\-V\-U\-S\-R\-I}!errno.h@{errno.\-h}}
+\subsubsection[{E\-\_\-\-I\-N\-V\-U\-S\-R\-I}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-\_\-\-I\-N\-V\-U\-S\-R\-I~3}}\label{errno_8h_a5273e7742dd7c18937e5191b8070f08f}
+\hypertarget{errno_8h_a910656a3ce04eecb0e4479fd35d343fb}{\index{errno.\-h@{errno.\-h}!E\-\_\-\-N\-O\-E\-R\-R\-O\-R@{E\-\_\-\-N\-O\-E\-R\-R\-O\-R}}
+\index{E\-\_\-\-N\-O\-E\-R\-R\-O\-R@{E\-\_\-\-N\-O\-E\-R\-R\-O\-R}!errno.h@{errno.\-h}}
+\subsubsection[{E\-\_\-\-N\-O\-E\-R\-R\-O\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-\_\-\-N\-O\-E\-R\-R\-O\-R~0}}\label{errno_8h_a910656a3ce04eecb0e4479fd35d343fb}
+\hypertarget{errno_8h_a97fcdfde06438bcf94181400389bd7b9}{\index{errno.\-h@{errno.\-h}!E\-\_\-\-N\-U\-L\-L\-\_\-\-P\-T\-R@{E\-\_\-\-N\-U\-L\-L\-\_\-\-P\-T\-R}}
+\index{E\-\_\-\-N\-U\-L\-L\-\_\-\-P\-T\-R@{E\-\_\-\-N\-U\-L\-L\-\_\-\-P\-T\-R}!errno.h@{errno.\-h}}
+\subsubsection[{E\-\_\-\-N\-U\-L\-L\-\_\-\-P\-T\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-\_\-\-N\-U\-L\-L\-\_\-\-P\-T\-R~5}}\label{errno_8h_a97fcdfde06438bcf94181400389bd7b9}
 
 
-Error item was not found. 
+A N\-U\-L\-L Pointer Error. 
 
+\hypertarget{errno_8h_af40255ba5e6a1e879803d699b4393cac}{\index{errno.\-h@{errno.\-h}!E\-\_\-\-P\-R\-O\-G\-E\-R\-R@{E\-\_\-\-P\-R\-O\-G\-E\-R\-R}}
+\index{E\-\_\-\-P\-R\-O\-G\-E\-R\-R@{E\-\_\-\-P\-R\-O\-G\-E\-R\-R}!errno.h@{errno.\-h}}
+\subsubsection[{E\-\_\-\-P\-R\-O\-G\-E\-R\-R}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-\_\-\-P\-R\-O\-G\-E\-R\-R~99}}\label{errno_8h_af40255ba5e6a1e879803d699b4393cac}
 
 
 \subsection{Typedef Documentation}
-\index{errno.\+h@{errno.\+h}!error\+\_\+t@{error\+\_\+t}}
-\index{error\+\_\+t@{error\+\_\+t}!errno.\+h@{errno.\+h}}
-\subsubsection[{\texorpdfstring{error\+\_\+t}{error_t}}]{\setlength{\rightskip}{0pt plus 5cm}typedef unsigned int {\bf error\+\_\+t}}\hypertarget{errno_8h_aafbeb34410283829794b35fedafeb369}{}\label{errno_8h_aafbeb34410283829794b35fedafeb369}
+\hypertarget{errno_8h_aafbeb34410283829794b35fedafeb369}{\index{errno.\-h@{errno.\-h}!error\-\_\-t@{error\-\_\-t}}
+\index{error\-\_\-t@{error\-\_\-t}!errno.h@{errno.\-h}}
+\subsubsection[{error\-\_\-t}]{\setlength{\rightskip}{0pt plus 5cm}typedef unsigned int {\bf error\-\_\-t}}}\label{errno_8h_aafbeb34410283829794b35fedafeb369}

@@ -1,9 +1,21 @@
 <map id="serial_print" name="serial_print">
-<area shape="rect" id="node2" href="$string_8h.html#a98631211a4a8aee62f572375d5b637be" title="printf" alt="" coords="139,81,189,108"/>
-<area shape="rect" id="node3" href="$r1_8h.html#ab5b36414d84437d45b388232a0dfa366" title="print_help" alt="" coords="237,81,316,108"/>
-<area shape="rect" id="node4" href="$sys__clock_8h.html#a2afc871aeddaa550badc5e0c6bb65da5" title="set_time_main" alt="" coords="364,5,471,32"/>
-<area shape="rect" id="node6" href="$sys__clock_8h.html#a323e417952cced55a3cf9acfe8691635" title="get_time_main" alt="" coords="364,56,471,83"/>
-<area shape="rect" id="node7" href="$sys__clock_8h.html#a1ef51abc1a538e8582ccfa61e356e8a9" title="get_date_main" alt="" coords="364,107,471,133"/>
-<area shape="rect" id="node8" href="$sys__clock_8h.html#a626404928f9803307b300e6c60df3afb" title="set_date_main" alt="" coords="364,157,471,184"/>
-<area shape="rect" id="node5" href="$r1_8h.html#adb6b307c73bca25d17aa7683e14fea16" title="command_line_parser" alt="" coords="519,81,668,108"/>
+<area shape="rect" id="node2" href="$string_8h.html#a98631211a4a8aee62f572375d5b637be" title="printf" alt="" coords="139,454,189,480"/>
+<area shape="rect" id="node3" href="$r1_8h.html#abe3e9e9be5d3ad22784d12d72f398c92" title="help_usages" alt="" coords="613,48,707,75"/>
+<area shape="rect" id="node4" href="$pcb__comm_8h.html#a3a73e4ab30f0c854242d08cf1430d8c2" title="show_pcb_main" alt="" coords="779,124,895,151"/>
+<area shape="rect" id="node5" href="$r1_8h.html#ab5b36414d84437d45b388232a0dfa366" title="print_help" alt="" coords="239,555,318,582"/>
+<area shape="rect" id="node6" href="$sys__clock_8h.html#a2afc871aeddaa550badc5e0c6bb65da5" title="set_time_main" alt="" coords="401,302,508,328"/>
+<area shape="rect" id="node7" href="$sys__clock_8h.html#a323e417952cced55a3cf9acfe8691635" title="get_time_main" alt="" coords="401,352,508,379"/>
+<area shape="rect" id="node8" href="$sys__clock_8h.html#a1ef51abc1a538e8582ccfa61e356e8a9" title="get_date_main" alt="" coords="401,403,508,430"/>
+<area shape="rect" id="node9" href="$sys__clock_8h.html#a626404928f9803307b300e6c60df3afb" title="set_date_main" alt="" coords="401,454,508,480"/>
+<area shape="rect" id="node10" href="$pcb__comm_8h.html#af11f291806e2e5e44ee290505d3f484d" title="suspend_pcb_main" alt="" coords="387,504,522,531"/>
+<area shape="rect" id="node11" href="$pcb__comm_8h.html#a89d9dbb74279bd8e3e5e9fdaadeeeb6b" title="resume_pcb_main" alt="" coords="391,555,519,582"/>
+<area shape="rect" id="node12" href="$pcb__comm_8h.html#a109bb7036fa918efd9aab7e49d426793" title="set_pcb_priority_main" alt="" coords="380,606,529,632"/>
+<area shape="rect" id="node13" href="$pcb__comm_8h.html#a49e630c27e7efd9c89f0a0010ac3873d" title="create_pcb_main" alt="" coords="394,656,515,683"/>
+<area shape="rect" id="node14" href="$pcb__comm_8h.html#aa179e3011f75970d3202878bd08b58c2" title="delete_pcb_main" alt="" coords="395,707,515,734"/>
+<area shape="rect" id="node15" href="$pcb__comm_8h.html#acdef59e071a90ef0454654a2370b48f5" title="block_pcb_main" alt="" coords="397,758,513,784"/>
+<area shape="rect" id="node16" href="$pcb__comm_8h.html#ad2ea4efe085819cc1bf987786bd24b3b" title="unblock_pcb_main" alt="" coords="389,808,520,835"/>
+<area shape="rect" id="node17" href="$pcb_8h.html#af08c093fa9ecf34738d5e295520a032a" title="show_pcb" alt="" coords="238,200,319,227"/>
+<area shape="rect" id="node18" href="$pcb_8h.html#a918cbc9698ab932896ec81c482fee9f1" title="show_blocked_processes" alt="" coords="369,150,541,176"/>
+<area shape="rect" id="node20" href="$pcb_8h.html#a542627a44f5cbaf08ceaab05a419acee" title="show_ready_processes" alt="" coords="375,200,534,227"/>
+<area shape="rect" id="node19" href="$pcb_8h.html#a094b4bf39d7297266e9b1336a233841e" title="show_all_processes" alt="" coords="590,150,730,176"/>
 </map>

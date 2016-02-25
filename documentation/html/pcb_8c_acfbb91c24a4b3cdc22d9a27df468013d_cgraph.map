@@ -1,5 +1,3 @@
 <map id="find_pcb" name="find_pcb">
-<area shape="rect" id="node2" href="$string_8c.html#a11bd144d7d44914099a3aeddf1c8567d" title="strcmp" alt="" coords="124,31,187,57"/>
-<area shape="rect" id="node3" href="$string_8c.html#a2dee044e4e667b5b789b493abd21cfa4" title="strlen" alt="" coords="235,5,289,32"/>
-<area shape="rect" id="node4" href="$string_8c.html#a8908188ae9fc2f05d993257ef001d553" title="strcat" alt="" coords="235,56,289,83"/>
+<area shape="rect" id="node2" href="$string_8c.html#a11bd144d7d44914099a3aeddf1c8567d" title="strcmp" alt="" coords="126,5,189,32"/>
 </map>
