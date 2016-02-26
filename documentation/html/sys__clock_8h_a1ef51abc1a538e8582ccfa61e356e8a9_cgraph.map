@@ -1,8 +1,8 @@
 <map id="get_date_main" name="get_date_main">
-<area shape="rect" id="node2" href="$sys__clock_8c.html#acba98d47b98d09cf32f44e9383cad7ec" title="get_date" alt="" coords="163,5,235,32"/>
-<area shape="rect" id="node3" href="$string_8c.html#a98631211a4a8aee62f572375d5b637be" title="printf" alt="" coords="287,107,337,133"/>
-<area shape="rect" id="node6" href="$string_8c.html#a11bd144d7d44914099a3aeddf1c8567d" title="strcmp" alt="" coords="168,107,231,133"/>
-<area shape="rect" id="node7" href="$r1_8c.html#ab5b36414d84437d45b388232a0dfa366" title="print_help" alt="" coords="160,157,239,184"/>
-<area shape="rect" id="node4" href="$string_8c.html#ace6ee45c30e71865e6eb635200379db9" title="memset" alt="" coords="393,81,463,108"/>
-<area shape="rect" id="node5" href="$serial_8h.html#a995827efcd4dcfb780c9fbb9645410a4" title="serial_print" alt="" coords="385,132,471,159"/>
+<area shape="rect" id="node2" href="$sys__clock_8c.html#acba98d47b98d09cf32f44e9383cad7ec" title="get_date" alt="" coords="164,5,236,32"/>
+<area shape="rect" id="node3" href="$string_8c.html#a98631211a4a8aee62f572375d5b637be" title="printf" alt="" coords="288,107,339,133"/>
+<area shape="rect" id="node6" href="$string_8c.html#a11bd144d7d44914099a3aeddf1c8567d" title="strcmp" alt="" coords="169,107,231,133"/>
+<area shape="rect" id="node7" href="$r1_8c.html#ab5b36414d84437d45b388232a0dfa366" title="print_help" alt="" coords="161,157,239,184"/>
+<area shape="rect" id="node4" href="$string_8c.html#ace6ee45c30e71865e6eb635200379db9" title="memset" alt="" coords="395,81,464,108"/>
+<area shape="rect" id="node5" href="$serial_8h.html#a995827efcd4dcfb780c9fbb9645410a4" title="serial_print" alt="" coords="387,132,472,159"/>
 </map>

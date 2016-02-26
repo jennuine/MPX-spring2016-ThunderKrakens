@@ -1,7 +1,7 @@
 <map id="modules/r2/pcb_comm.c" name="modules/r2/pcb_comm.c">
-<area shape="rect" id="node2" href="$pcb__comm_8h.html" title="The main functions that manipulate the PCB. " alt="" coords="5,80,103,107"/>
-<area shape="rect" id="node3" href="$pcb_8h.html" title="The Process Control Block. " alt="" coords="127,80,181,107"/>
-<area shape="rect" id="node4" href="$errno_8h.html" title="This file contains the type of errors. The error can be from invalid paramter passed to a function..." alt="" coords="134,155,209,181"/>
-<area shape="rect" id="node5" href="$string_8h.html" title="Many usefull functions that used for handling string. " alt="" coords="257,80,323,107"/>
-<area shape="rect" id="node7" href="$r1_8h.html" title="The commandhander and functions associations for Module R1. " alt="" coords="347,80,417,107"/>
+<area shape="rect" id="node2" href="$pcb__comm_8h.html" title="The main functions that manipulate the PCB. " alt="" coords="5,80,101,107"/>
+<area shape="rect" id="node3" href="$pcb_8h.html" title="The Process Control Block. " alt="" coords="126,80,180,107"/>
+<area shape="rect" id="node4" href="$errno_8h.html" title="This file contains the type of errors. The error can be from invalid paramter passed to a function..." alt="" coords="133,155,207,181"/>
+<area shape="rect" id="node5" href="$string_8h.html" title="Many usefull functions that used for handling string. " alt="" coords="257,80,321,107"/>
+<area shape="rect" id="node7" href="$r1_8h.html" title="The commandhander and functions associations for Module R1. " alt="" coords="346,80,416,107"/>
 </map>

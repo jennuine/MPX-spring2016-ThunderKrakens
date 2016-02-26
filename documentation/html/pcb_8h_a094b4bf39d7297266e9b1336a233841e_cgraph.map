@@ -1,8 +1,8 @@
 <map id="show_all_processes" name="show_all_processes">
-<area shape="rect" id="node2" href="$pcb_8c.html#a542627a44f5cbaf08ceaab05a419acee" title="show_ready_processes" alt="" coords="200,5,359,32"/>
-<area shape="rect" id="node7" href="$pcb_8c.html#a918cbc9698ab932896ec81c482fee9f1" title="show_blocked_processes" alt="" coords="193,56,365,83"/>
-<area shape="rect" id="node3" href="$pcb_8c.html#af08c093fa9ecf34738d5e295520a032a" title="show_pcb" alt="" coords="413,31,495,57"/>
-<area shape="rect" id="node4" href="$string_8c.html#a98631211a4a8aee62f572375d5b637be" title="printf" alt="" coords="543,31,593,57"/>
-<area shape="rect" id="node5" href="$string_8c.html#ace6ee45c30e71865e6eb635200379db9" title="memset" alt="" coords="649,5,719,32"/>
-<area shape="rect" id="node6" href="$serial_8h.html#a995827efcd4dcfb780c9fbb9645410a4" title="serial_print" alt="" coords="641,56,727,83"/>
+<area shape="rect" id="node2" href="$pcb_8c.html#a542627a44f5cbaf08ceaab05a419acee" title="show_ready_processes" alt="" coords="202,5,361,32"/>
+<area shape="rect" id="node7" href="$pcb_8c.html#a918cbc9698ab932896ec81c482fee9f1" title="show_blocked_processes" alt="" coords="195,56,367,83"/>
+<area shape="rect" id="node3" href="$pcb_8c.html#af08c093fa9ecf34738d5e295520a032a" title="show_pcb" alt="" coords="417,31,498,57"/>
+<area shape="rect" id="node4" href="$string_8c.html#a98631211a4a8aee62f572375d5b637be" title="printf" alt="" coords="547,31,597,57"/>
+<area shape="rect" id="node5" href="$string_8c.html#ace6ee45c30e71865e6eb635200379db9" title="memset" alt="" coords="653,5,723,32"/>
+<area shape="rect" id="node6" href="$serial_8h.html#a995827efcd4dcfb780c9fbb9645410a4" title="serial_print" alt="" coords="645,56,731,83"/>
 </map>
