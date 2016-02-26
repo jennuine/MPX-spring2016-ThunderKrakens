@@ -20,7 +20,6 @@
 #define MOD_VERSION "R2"
 #define COMPLETION "02/26/2016"
 
-
 /**
 * A structure to represent each function
 */
@@ -229,6 +228,7 @@ int commhand()
     while(run_mpx)
     {
    	 printf("Cmd > ");
+
    	 get_input_line(userInput, USER_INPUT_BUFFER_SIZE, WithEcho);
    	 command_line_parser(userInput, &argc, argv, MAX_ARGC, USER_INPUT_BUFFER_SIZE);
    	 if(argc && !strcmp(argv[0], "mpx"))
@@ -255,6 +255,7 @@ int commhand()
    	 else if (argc)
    	 {
    		 printf("There is no program called \"%s\". Please refer to \"help\"\n", argv[0]);
+   		 
    	 }
    	 argc = 0;  //reset the argument list
     }
