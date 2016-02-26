@@ -295,17 +295,6 @@ int show_pcb_main(int argc, char ** argv)
  }
  else if(argc == 3)
  {
-//  if (strlen(argv[2]) >= SIZE_OF_PCB_NAME)
-//  {
-//   printf("ERROR: Name of process must be within %d characters.", SIZE_OF_PCB_NAME);
-//   return 0;
-//  }
-//
-//  if(strlen(argv[2]) == 0)
-//  {
-//   printf("ERROR: The process name cannot be an empty string or NULL\n\n");
-//   return 0;
-//  }
 
   if (!strcmp(argv[2], "--help"))
   {
@@ -331,16 +320,6 @@ int show_pcb_main(int argc, char ** argv)
   {
    printf("ERROR: Invalid arugment, \"%s\", provided!\n\n", argv[2]);
   }
-
-//  struct pcb_struct * pcb_ptr = NULL;
-//
-//  if((pcb_ptr = find_pcb(argv[2])) == NULL)
-//  {
-//   printf("ERROR: Could not find PCB named \'%s\'.\n\n", argv[2]);
-//   return 0;
-//  }
-
-//  show_pcb(pcb_ptr);
  }
  else if(argc == 4)
  {

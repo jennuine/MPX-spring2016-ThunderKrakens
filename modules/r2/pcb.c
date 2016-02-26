@@ -11,7 +11,14 @@
 #include <string.h>
 #include "../mpx_supt.h"
 
+/**
+ * PCBs stored in priority order with highest priority at head 
+ */
 static struct pcb_queue ready_queue;
+
+/**
+ * PCBs stored in FIFO order
+ */
 static struct pcb_queue blocked_queue;
 
 static char *enum_process_state[] = {"running", "ready", "blocked"};

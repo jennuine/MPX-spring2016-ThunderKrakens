@@ -227,6 +227,7 @@ int commhand()
 
     while(run_mpx)
     {
+   	 argc = 0;  //reset the argument list
    	 printf("Cmd > ");
 
    	 get_input_line(userInput, USER_INPUT_BUFFER_SIZE, WithEcho);
@@ -257,7 +258,6 @@ int commhand()
    		 printf("There is no program called \"%s\". Please refer to \"help\"\n", argv[0]);
    		 
    	 }
-   	 argc = 0;  //reset the argument list
     }
     return 0;
 }
@@ -293,11 +293,11 @@ void command_line_parser(const char * CmdStr, int * argc, char ** argv, const in
     char * LinePtr = NULL;
     while(*CmdStr && *argc <= MaxArgNum - 1)
     {
-   	 if(*CmdStr == ' ' && WritingStat == NotWriting)
+   	 if(isspace(CmdStr) && WritingStat == NotWriting)
    	 {
    		 //Space before writing, just ignore it.
    	 }
-   	 else if( (*CmdStr == ' ' && WritingStat == NormalWriting) ||
+   	 else if( (isspace(CmdStr) && WritingStat == NormalWriting) ||
    		  (*CmdStr == '\"' && WritingStat == DoubleQuoteWriting) ||
    		  (*CmdStr == '\'' && WritingStat == SingleQuoteWriting) ||
    		  (LinePtr && LinePtr - argv[*argc] >= MaxStrLen - 1) )
