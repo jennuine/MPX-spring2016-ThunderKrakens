@@ -120,4 +120,22 @@ coprocessor:
 ;;; access the registers. The C handler returns the address of the
 ;;; new processes stack top/pointer.
 sys_call_isr:
+	pusha
+	;;segment registers
+	push ds
+	push es
+	push fs
+	push gs
+	
+	push esp ;;indirect memory operand pointing to top of stack
+	call sys_call
+	mov esp, easx
+	
+	pop gs
+	pop fs
+	pop es
+	pop ds
+	
+	popa
+	
 	iret

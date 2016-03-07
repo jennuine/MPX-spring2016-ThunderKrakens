@@ -14,11 +14,14 @@
 #include <core/io.h>
 #include "../r2/pcb_comm.h"
 #include "../r2/pcb.h"
+#include "../mpx_supt.h"
 
 #define USER_INPUT_BUFFER_SIZE 1000
 #define MAX_ARGC 50
 #define MOD_VERSION "R2"
 #define COMPLETION "02/26/2016"
+
+#define MAX_HISTORY 10
 
 /**
 * A structure to represent each function
@@ -232,6 +235,7 @@ int commhand()
 
    	 get_input_line(userInput, USER_INPUT_BUFFER_SIZE, WithEcho);
    	 command_line_parser(userInput, &argc, argv, MAX_ARGC, USER_INPUT_BUFFER_SIZE);
+
    	 if(argc && !strcmp(argv[0], "mpx"))
    	 {
    		 if (argc > 1)
@@ -419,21 +423,21 @@ static void load_functions()
 
     functions[UNBLKPCB].nameStr = "unblock"; functions[UNBLKPCB].function = &unblock_pcb_main;
     functions[UNBLKPCB].usage = "pcb unblock [processName]";
-    functions[UNBLKPCB].help = "\nblock : pcb unblock [processName]\n\
+    functions[UNBLKPCB].help = "\nunblock : pcb unblock [processName]\n\
     \n\tUnblocks the specific PCB.\n\n\
     \n\nArguments:\n\tprocessName  String process name\n\n\
     Exit Status:\n\tReturns success unless no PCB named [processName] or string is empty/null.\n\n";
 
     functions[RESUMEPCB].nameStr = "resume"; functions[RESUMEPCB].function = &resume_pcb_main;
     functions[RESUMEPCB].usage = "pcb resume [processName]";
-    functions[RESUMEPCB].help = "\nblock : pcb resume [processName]\n\
+    functions[RESUMEPCB].help = "\nresume : pcb resume [processName]\n\
     \n\tResumes the specific PCB.\n\n\
     \n\nArguments:\n\tprocessName  String process name\n\n\
     Exit Status:\n\tReturns success unless no PCB named [processName] or string is empty/null.\n\n";
 
     functions[SUSPDPCB].nameStr = "suspend"; functions[SUSPDPCB].function = &suspend_pcb_main;
     functions[SUSPDPCB].usage = "pcb suspend [processName]";
-    functions[SUSPDPCB].help = "\nblock : pcb suspend [processName]\n\
+    functions[SUSPDPCB].help = "\nsuspend : pcb suspend [processName]\n\
     \n\tSuspends the specific PCB.\n\n\
     \n\nArguments:\n\tprocessName  String process name\n\n\
     Exit Status:\n\tReturns success unless no PCB named [processName] or string is empty/null.\n\n";

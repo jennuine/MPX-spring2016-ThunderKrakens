@@ -12,6 +12,11 @@
 
 #include "../errno.h"
 
+/**
+ * R3 data
+ */
+#include "../r3/context.h"
+
 /* @brief The defualt size of the stack for the PCB */
 #define SIZE_OF_STACK 1024
 /* @brief The max length of the PCB name string */
@@ -28,6 +33,7 @@ enum process_class
 
 struct pcb_struct;
 struct pcb_queue;
+struct context;
 
 /**
  * @name  pcb_init
