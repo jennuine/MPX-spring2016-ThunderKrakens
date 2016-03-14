@@ -94,10 +94,11 @@ void init_irq(void)
     if (i<17) idt_set_gate(i, isrs[i], 0x08, 0x8e);
     else idt_set_gate(i, (u32int)reserved, 0x08, 0x8e);
   }
-  // Ignore interrupts from the real time clock
-  idt_set_gate(0x08, (u32int)rtc_isr, 0x08, 0x8e);
   
   idt_set_gate(60, (u32int)sys_call_isr, 0x08, 0x8e);
+  
+  // Ignore interrupts from the real time clock
+  idt_set_gate(0x08, (u32int)rtc_isr, 0x08, 0x8e);
 }
 
 /*

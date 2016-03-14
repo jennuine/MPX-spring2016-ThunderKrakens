@@ -50,10 +50,8 @@ u32int* sys_call(struct context* registers)
  return result;
 }
 
-error_t load_process(const char * pName, const enum process_class pClass, const unsigned char pPriority, void (*function)())
+struct pcb_struct * load_process(const char * pName, const enum process_class pClass, const unsigned char pPriority, void (*function)())
 {
- error_t result = E_NOERROR;
- 
  struct pcb_struct * new_pcb = setup_pcb( pName , pClass , pPriority );
  if(new_pcb)
  {
@@ -71,14 +69,14 @@ error_t load_process(const char * pName, const enum process_class pClass, const 
   //printf("*Debug* load: %s, @ %X <= %X.\n", pName, cp->eip, function);
   cp->eflags = 0x202;
   
-  result = insert_pcb(new_pcb);
- }
- else
- {
-  result = E_INVPARA;
+  if(insert_pcb(new_pcb) != E_NOERROR)
+  {
+   free_pcb(new_pcb);
+   new_pcb = NULL;
+  }
  }
  
- return result;
+ return new_pcb;
 }
 
 
@@ -127,19 +125,18 @@ int load_r3_main(int argc, char ** argv)
   }
   else
   {
-   error_t error_code = E_NOERROR;
-   if(error_code == E_NOERROR) 
-    error_code = load_process("proc1", pcb_class_app, 1, &proc1);
-   if(error_code == E_NOERROR) 
-    error_code = load_process("proc2", pcb_class_app, 1, &proc2);
-   if(error_code == E_NOERROR) 
-    error_code = load_process("proc3", pcb_class_app, 1, &proc3);
-   if(error_code == E_NOERROR) 
-    error_code = load_process("proc4", pcb_class_app, 1, &proc4);
-   if(error_code == E_NOERROR) 
-    error_code = load_process("proc5", pcb_class_app, 1, &proc5);
+   unsigned char priority = (unsigned char)atoi(argv[2]);
+   struct pcb_struct * new_pcb = load_process("proc1", pcb_class_app, priority, &proc1);
+   if(new_pcb) 
+    new_pcb = load_process("proc2", pcb_class_app, priority, &proc2);
+   if(new_pcb) 
+    new_pcb = load_process("proc3", pcb_class_app, priority, &proc3);
+   if(new_pcb) 
+    new_pcb = load_process("proc4", pcb_class_app, priority, &proc4);
+   if(new_pcb) 
+    new_pcb = load_process("proc5", pcb_class_app, priority, &proc5);
    
-   if(error_code == E_NOERROR)
+   if(new_pcb)
    {
     printf("Processes loaded successfully!\n");
    }

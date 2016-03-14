@@ -19,6 +19,8 @@
 #define WithoutEcho 0
 #define WithEcho 1
 
+#define USER_INPUT_BUFFER_SIZE 1000
+
 /*
   Procedure..: init_serial
   Description..: Initializes devices for user interaction, logging, ...
@@ -65,5 +67,5 @@ int set_serial_in(int device);
  *
  * @return VOID
  */
-void get_input_line(char * buffer, const int buffer_size, const int bWithEcho);
+void get_input_line(char * buffer, const int bWithEcho);
 #endif

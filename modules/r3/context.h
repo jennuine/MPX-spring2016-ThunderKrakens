@@ -26,7 +26,7 @@ struct context {
  
 u32int * sys_call(struct context* registers);
 
-error_t load_process(const char * pName, const enum process_class pClass, const unsigned char pPriority, void (*function)());
+struct pcb_struct * load_process(const char * pName, const enum process_class pClass, const unsigned char pPriority, void (*function)());
 
 int yield_main(int argc, char ** argv);
 

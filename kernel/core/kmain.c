@@ -20,6 +20,7 @@
 #include "modules/mpx_supt.h"
 #include "modules/r1/r1.h"
 #include "modules/r2/pcb.h"
+#include "modules/r3/context.h"
 
 void kmain(void)
 {
@@ -35,7 +36,7 @@ void kmain(void)
    set_serial_in(COM1);
    set_serial_out(COM1);
 
-   mpx_init(MODULE_R2);
+   mpx_init(MODULE_R4);
 
    klogv("Initialized serial I/O on COM1 device...");
 
@@ -58,12 +59,19 @@ void kmain(void)
 
    // 4) Virtual Memory
    klogv("Initializing virtual memory...");
-
    init_paging();
-
+   
+	klogv("Initializing PCB queues...");
+	pcb_init();
+	
    // 5) Call Commhand
-   klogv("Transferring control to commhand...");
-   commhand();
+   //klogv("Transferring control to commhand...");
+   //commhand();
+   
+   resume_pcb(load_process("commhand", pcb_class_sys, 5, &commhand));
+   resume_pcb(load_process("idle", pcb_class_sys, 0, &idle));
+   //asm volatile ("int $60");
+   sys_req(IDLE);
 
    // 11) System Shutdown
    klogv("Starting system shutdown procedure...");

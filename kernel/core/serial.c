@@ -162,12 +162,15 @@ static void EchoInput(const char * InputStr, const int bWithEcho)
  *
  * @return VOID
  */
-void get_input_line(char * buffer, const int buffer_size, const int bWithEcho)
+void get_input_line(char * buffer, const int bWithEcho)
 {
 	int i = 0, cursorPos = 0;
-	char userInputChar[] = { 0, 0 }, tempBuffer[buffer_size];
+	static char userInputChar[] = { 0, 0 };
+	static char tempBuffer[USER_INPUT_BUFFER_SIZE];
+	userInputChar[0] = userInputChar[1] = 0;
+	memset(tempBuffer, 0, USER_INPUT_BUFFER_SIZE);
 
-	while(userInputChar[0] != ENTER_KEY_1 && userInputChar[0] != ENTER_KEY_2 && i < buffer_size - 1)
+	while(userInputChar[0] != ENTER_KEY_1 && userInputChar[0] != ENTER_KEY_2 && i < USER_INPUT_BUFFER_SIZE - 1)
 	{//if user did not press enter, and we have enough space to store inputs.
 		if(inb(COM1 + 5) & 1)
 		{ //if there is inputs avalible
@@ -207,7 +210,7 @@ void get_input_line(char * buffer, const int buffer_size, const int bWithEcho)
 					}
 				}else
 				{//It is only a ESC key, return without any input string.
-					memset(buffer, '\0', buffer_size); //clean all the input chars
+					memset(buffer, '\0', USER_INPUT_BUFFER_SIZE); //clean all the input chars
 					serial_print("\n");
 					return;
 				}

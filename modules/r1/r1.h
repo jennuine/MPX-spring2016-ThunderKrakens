@@ -41,9 +41,9 @@ enum comm_type
  *
  *	@brief Accepts and handles commands from the user.
  *
- * 	@return 0
+ * 	@return VOID
  */
-int commhand();
+void commhand();
 
 /**
 * @name   command_line_parser

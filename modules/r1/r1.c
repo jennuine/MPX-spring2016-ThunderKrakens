@@ -17,7 +17,6 @@
 #include "../mpx_supt.h"
 #include "../r3/context.h"
 
-#define USER_INPUT_BUFFER_SIZE 1000
 #define MAX_ARGC 50
 #define MOD_VERSION "R2"
 #define COMPLETION "02/26/2016"
@@ -212,10 +211,13 @@ static int help_function(int argc, char** argv)
  *
  * 	@return 0
  */
-int commhand()
+void commhand()
 {
-	printf("Initializing PCB queues...\n");
-	pcb_init();
+    //char ans = 0;
+    //while (!ans)
+    //     if (inb(COM1 + 5) & 1)
+   	//	    ans = inb(COM1);
+   	//printf("c: %c.", ans);
     static char userInput[USER_INPUT_BUFFER_SIZE];
     static int argc = 0;
     static char ActArgArray[MAX_ARGC][USER_INPUT_BUFFER_SIZE];
@@ -234,7 +236,7 @@ int commhand()
    	 argc = 0;  //reset the argument list
    	 printf("Cmd > ");
 
-   	 get_input_line(userInput, USER_INPUT_BUFFER_SIZE, WithEcho);
+   	 get_input_line(userInput, WithEcho);
    	 command_line_parser(userInput, &argc, argv, MAX_ARGC, USER_INPUT_BUFFER_SIZE);
 
    	 if(argc && !strcmp(argv[0], "mpx"))
@@ -263,8 +265,19 @@ int commhand()
    		 printf("There is no program called \"%s\". Please refer to \"help\"\n", argv[0]);
    		 
    	 }
+   	 
+   	 if(!run_mpx)
+   	 {
+   	     struct pcb_struct * idle_proc = find_pcb("idle");
+   	     suspend_pcb(idle_proc);
+   	 }
+   	 else
+   	 {
+   	     sys_req(IDLE);
+   	 }
     }
-    return 0;
+    sys_req(EXIT);
+    //return 0;
 }
 
 /** @name CommandParserStat
