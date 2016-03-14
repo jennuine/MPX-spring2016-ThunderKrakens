@@ -12,6 +12,11 @@
 #include "../mpx_supt.h"
 
 /**
+ * R3 data
+ */
+#include "../r3/context.h"
+
+/**
  * PCBs stored in priority order with highest priority at head 
  */
 static struct pcb_queue ready_queue;
@@ -138,7 +143,7 @@ struct pcb_struct * allocate_pcb()
   if(a_pcb)
   {
     a_pcb->stack_base = sys_alloc_mem(SIZE_OF_STACK);
-    a_pcb->stack_top = a_pcb->stack_top + SIZE_OF_STACK;
+    a_pcb->stack_top = a_pcb->stack_base + SIZE_OF_STACK - sizeof(struct context);
     a_pcb->prev = NULL;
     a_pcb->next = NULL;
   }
@@ -597,4 +602,94 @@ error_t set_pcb_priority(struct pcb_struct * pcb_ptr, const unsigned char pPrior
   }
 
   return errno;
+}
+
+/**
+ * @name get_running_process
+ * @brief gets a unsuspended and unblocked process from the front of the queue, and sets it to running state.
+ *
+ * @param   None
+ *
+ * @return NULL if there is no process available, otherwise, the pointer that point to the PCB structure.
+ */
+struct pcb_struct * get_running_process()
+{
+  struct pcb_struct * result = NULL;
+  struct pcb_struct * currentPCB = ready_queue.head;
+  unsigned char bIsFound = 0;
+  while(currentPCB && !bIsFound)
+  {
+    if(currentPCB->is_suspended == false)
+    {
+      bIsFound = 1;
+      if((remove_pcb(currentPCB)) == E_NOERROR)
+      {
+        //printf("*Debug Log* Return process: %s\n", currentPCB->name);
+        currentPCB->running_state = running;
+        result = currentPCB;
+      }
+    }
+    else
+    {
+      currentPCB = currentPCB->next;
+    }
+  }
+  return result;
+}
+
+/**
+ * @name save_running_process
+ * @brief sets the running process to ready state, and inserts it to the ready queue.
+ *
+ * @param   pcb_ptr The pointer to the PCB.
+ * @param   new_stack_top The pointer to the new stack top.
+ *
+ * @return The error code.
+ *    Possible error code to be returned:
+ *      E_NOERROR   No error.
+ *      E_NULL_PTR  Null pointer error.
+ *      E_INVPARA   The given PCB has abnormal data members (By "insert_pcb").
+ */
+error_t save_running_process(struct pcb_struct * pcb_ptr, struct context * new_stack_top)
+{
+  if(!pcb_ptr)
+    return E_NULL_PTR;
+    
+  //printf("*Debug Log* save process: %s\n", pcb_ptr->name);
+  pcb_ptr->running_state = ready;
+  pcb_ptr->stack_top = (unsigned char *)new_stack_top;
+  
+  return insert_pcb(pcb_ptr);
+}
+
+/**
+ * @name get_stack_top
+ * @brief gets the pointer to the stack top of the specific PCB.
+ *
+ * @param   pcb_ptr The pointer to the PCB.
+ *
+ * @return NULL if the pcb_ptr is NULL, otherwise, the pointer that point to the stack top of the specific PCB.
+ */
+unsigned char * get_stack_top(struct pcb_struct * pcb_ptr)
+{
+  if(!pcb_ptr)
+    return NULL;
+    
+  return pcb_ptr->stack_top;
+}
+
+/**
+ * @name get_stack_base
+ * @brief gets the pointer to the stack base of the specific PCB.
+ *
+ * @param   pcb_ptr The pointer to the PCB.
+ *
+ * @return NULL if the pcb_ptr is NULL, otherwise, the pointer that point to the stack base of the specific PCB.
+ */
+unsigned char * get_stack_base(struct pcb_struct * pcb_ptr)
+{
+  if(!pcb_ptr)
+    return NULL;
+    
+  return pcb_ptr->stack_base;
 }

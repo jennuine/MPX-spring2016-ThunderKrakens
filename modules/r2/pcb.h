@@ -12,10 +12,6 @@
 
 #include "../errno.h"
 
-/**
- * R3 data
- */
-#include "../r3/context.h"
 
 /* @brief The defualt size of the stack for the PCB */
 #define SIZE_OF_STACK 1024
@@ -219,5 +215,50 @@ error_t block_pcb(struct pcb_struct * pcb_ptr);
  *      E_INVPARA   The given PCB has abnormal data members (By "remove_pcb" or "insert_pcb").
  */
 error_t unblock_pcb(struct pcb_struct * pcb_ptr);
+
+/**
+ * @name get_running_process
+ * @brief gets a unsuspended and unblocked process from the front of the queue, and sets it to running state.
+ *
+ * @param   None
+ *
+ * @return NULL if there is no process available, otherwise, the pointer that point to the PCB structure.
+ */
+struct pcb_struct * get_running_process();
+
+/**
+ * @name save_running_process
+ * @brief sets the running process to ready state, and inserts it to the ready queue.
+ *
+ * @param   pcb_ptr The pointer to the PCB.
+ * @param   new_stack_top The pointer to the new stack top.
+ *
+ * @return The error code.
+ *    Possible error code to be returned:
+ *      E_NOERROR   No error.
+ *      E_NULL_PTR  Null pointer error.
+ *      E_INVPARA   The given PCB has abnormal data members (By "insert_pcb").
+ */
+error_t save_running_process(struct pcb_struct * pcb_ptr, struct context * new_stack_top);
+
+/**
+ * @name get_stack_top
+ * @brief gets the pointer to the stack top of the specific PCB.
+ *
+ * @param   pcb_ptr The pointer to the PCB.
+ *
+ * @return NULL if the pcb_ptr is NULL, otherwise, the pointer that point to the stack top of the specific PCB.
+ */
+unsigned char * get_stack_top(struct pcb_struct * pcb_ptr);
+
+/**
+ * @name get_stack_base
+ * @brief gets the pointer to the stack base of the specific PCB.
+ *
+ * @param   pcb_ptr The pointer to the PCB.
+ *
+ * @return NULL if the pcb_ptr is NULL, otherwise, the pointer that point to the stack base of the specific PCB.
+ */
+unsigned char * get_stack_base(struct pcb_struct * pcb_ptr);
 
 #endif

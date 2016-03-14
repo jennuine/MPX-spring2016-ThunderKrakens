@@ -69,4 +69,6 @@ int sys_free_mem(void *ptr);
 */
 void idle();
 
+int get_op_code();
+
 #endif

@@ -24,6 +24,7 @@
 [GLOBAL reserved]
 [GLOBAL coprocessor]
 [GLOBAL rtc_isr]
+[GLOBAL sys_call_isr]
 
 ;; Names of the C handlers
 extern do_divide_error
@@ -43,6 +44,7 @@ extern do_general_protection
 extern do_page_fault
 extern do_reserved
 extern do_coprocessor
+extern sys_call
 
 ; RTC interrupt handler
 ; Tells the slave PIC to ignore
@@ -120,8 +122,9 @@ coprocessor:
 ;;; access the registers. The C handler returns the address of the
 ;;; new processes stack top/pointer.
 sys_call_isr:
+	
 	pusha
-	;;segment registers
+	
 	push ds
 	push es
 	push fs
@@ -129,7 +132,7 @@ sys_call_isr:
 	
 	push esp ;;indirect memory operand pointing to top of stack
 	call sys_call
-	mov esp, easx
+	mov esp, eax
 	
 	pop gs
 	pop fs

@@ -32,8 +32,10 @@ enum comm_type
 #define UNBLKPCB    12
 #define RESUMEPCB   13
 #define SUSPDPCB    14
+#define YIELD       15
+#define LOADR3      16
 
-#define NUM_OF_FUNCTIONS 15
+#define NUM_OF_FUNCTIONS 17
 
 /** @name commhand
  *

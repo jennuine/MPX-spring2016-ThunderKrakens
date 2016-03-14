@@ -24,6 +24,9 @@
 /** @brief A NULL Pointer Error */
 #define E_NULL_PTR 5
 
+/** @brief The pcb queue is empty */
+#define E_EMPTPCB 6
+
 
 /* @brief When this error happen, there is a special case that was not under program's consideration */
 #define E_PROGERR 99

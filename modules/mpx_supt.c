@@ -50,3 +50,8 @@ void idle()
     sys_req(IDLE);
   }
 }
+
+int get_op_code()
+{
+  return params.op_code;
+}

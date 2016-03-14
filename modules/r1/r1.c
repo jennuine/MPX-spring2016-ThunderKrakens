@@ -15,6 +15,7 @@
 #include "../r2/pcb_comm.h"
 #include "../r2/pcb.h"
 #include "../mpx_supt.h"
+#include "../r3/context.h"
 
 #define USER_INPUT_BUFFER_SIZE 1000
 #define MAX_ARGC 50
@@ -441,6 +442,21 @@ static void load_functions()
     \n\tSuspends the specific PCB.\n\n\
     \n\nArguments:\n\tprocessName  String process name\n\n\
     Exit Status:\n\tReturns success unless no PCB named [processName] or string is empty/null.\n\n";
+    
+    //R3 Commands
+    functions[YIELD].nameStr = "yield"; functions[YIELD].function = &yield_main;
+    functions[YIELD].usage = "mpx yield";
+    functions[YIELD].help = "\nyield : mpx yield\n\
+    \n\tcause commhand to yield to other processes\n\n\
+    \n\nArguments:\n\tNone\n\n\
+    Exit Status:\n\tReturns success only.\n\n";
+    
+    functions[LOADR3].nameStr = "loadr3"; functions[LOADR3].function = &load_r3_main;
+    functions[LOADR3].usage = "mpx loadr3 [processPriority]";
+    functions[LOADR3].help = "\nloadr3 : mpx loadr3 [processPriority]\n\
+    \n\tload all r3 ”processes” into memory in a suspended ready state at any priority of your choosing.\n\n\
+    \n\nArguments:\n\t processPriority  String process priority\n\n\
+    Exit Status:\n\tReturns success unless the value of priority is not in the correct range.\n\n";
 }
 
 /**
