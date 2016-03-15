@@ -52,17 +52,17 @@ static void load_functions();
  * @param argv  	The array of tokens.
  * @return  0
  */
-static int exe_function(int argc, char ** argv)
+static int exe_function(int argc, char ** argv, int start_from, int end_at)
 {
-    int i = 0;
-    for(i = 0; i < NUM_OF_FUNCTIONS; i++)
+    int i;
+    for(i = start_from; i < end_at; i++)
     {
    	 if(!strcmp(functions[i].nameStr, argv[1]))
    	 {
    		 return functions[i].function(argc, argv);
    	 }
     }
-    printf("There is no function called %s. Please refer to \"help\"\n", argv[1]);
+    printf("There is no %s function called %s. Please refer to \"help\"\n", argv[0], argv[1]);
     return 0;
 }
 
@@ -143,14 +143,14 @@ int help_usages(enum comm_type type)
     if (type == mpx)
     {
    	 printf("\nAvailable mpx functions:\n");
-   	 start_from = VERSION;
-   	 end_at = SHUTDOWN + 1;
+   	 start_from = POS_OF_MPX;
+   	 end_at = NUM_MPX_FUNCTIONS;
     }
 
     if (type == pcb)
     {
      printf("\nAvailable pcb commands:\n");
-   	 start_from = CREATEPCB;
+   	 start_from = POS_OF_PCB;
     }
 
     int i;
@@ -213,11 +213,6 @@ static int help_function(int argc, char** argv)
  */
 void commhand()
 {
-    //char ans = 0;
-    //while (!ans)
-    //     if (inb(COM1 + 5) & 1)
-   	//	    ans = inb(COM1);
-   	//printf("c: %c.", ans);
     static char userInput[USER_INPUT_BUFFER_SIZE];
     static int argc = 0;
     static char ActArgArray[MAX_ARGC][USER_INPUT_BUFFER_SIZE];
@@ -242,14 +237,14 @@ void commhand()
    	 if(argc && !strcmp(argv[0], "mpx"))
    	 {
    		 if (argc > 1)
-   			 exe_function(argc, argv);
+   			 exe_function(argc, argv, POS_OF_MPX, NUM_MPX_FUNCTIONS);
    		 else
    			 help_usages(mpx);
    	 }
    	 else if(argc && !strcmp(argv[0], "pcb"))
    	 {
    		 if (argc > 1)
-   			 exe_function(argc, argv);
+   			 exe_function(argc, argv, POS_OF_PCB, NUM_OF_FUNCTIONS);
    		 else
    			 help_usages(pcb);
    	 }

@@ -17,23 +17,32 @@ enum comm_type
     help
 } __attribute__ ((packed));
 
+
 #define HELP        0
+
+#define POS_OF_MPX 1
+
 #define VERSION     1
 #define GETTIME     2
 #define SETTIME     3
 #define GETDATE     4
 #define SETDATE     5
 #define SHUTDOWN    6
-#define CREATEPCB   7
-#define SHOWPCB     8
+#define YIELD       7
+#define LOADR3      8
+
+#define NUM_MPX_FUNCTIONS 9
+
+#define POS_OF_PCB 9
+
 #define SETPCBPRIO  9
 #define DELPCB      10
 #define BLOCKPCB    11
 #define UNBLKPCB    12
 #define RESUMEPCB   13
 #define SUSPDPCB    14
-#define YIELD       15
-#define LOADR3      16
+#define CREATEPCB   15
+#define SHOWPCB     16
 
 #define NUM_OF_FUNCTIONS 17
 
