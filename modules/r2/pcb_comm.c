@@ -206,73 +206,6 @@ int set_pcb_priority_main(int argc, char ** argv){
 }
 
 /**
- * @name create_pcb_main.
- *
- * @brief The main function for the "Create PCB".
- *    Accepted formats: pcb create <name> <type> <priority>
- *                      pcb create --help
- * @param argc  The number of tokens found.
- * @param argv  The array of tokens.
- * @return  0
- */
-int create_pcb_main(int argc, char ** argv)
-{
- if(argc > 2 && !strcmp(argv[2], "--help"))
- {
-  if(argc <= 3)
-  {
-   print_help(CREATEPCB);
-  }
-  else
-  {
-   printf("ERROR: Too many arguments for \"--help\" option!\n");
-  }
- }
- else if(argc == 5)
- {
-  if(strlen(argv[2]) >= SIZE_OF_PCB_NAME || strlen(argv[2]) == 0)
-  {
-   printf("ERROR: The length of the name must be greater than zero and smaller than %d!\n", SIZE_OF_PCB_NAME);
-  }
-  else if(find_pcb(argv[2]))
-  {
-   printf("ERROR: The name of the PCB must be unique!\n");
-  }
-  else if(strcmp(argv[3], "application") && strcmp(argv[3], "system"))
-  {
-   printf("ERROR: The class of the process can only be \"system\" or \"application\"!\n");
-  }
-  else if(!(strlen(argv[4]) == 1 && is_digit(*argv[4])))
-  {
-   printf("ERROR: The priority must be a single digit number with range [0, 9]!\n");
-  }
-  else
-  {
-   enum process_class pClass = strcmp(argv[3], "application") ? pcb_class_sys : pcb_class_app;
-   unsigned char pPriority = *argv[4] - '0';
-
-   struct pcb_struct * created_pcb = setup_pcb(argv[2], pClass, pPriority);
-   error_t err = insert_pcb(created_pcb);
-   switch(err)
-   {
-    case E_NOERROR:
-     printf("Process had been successfully created!\n");
-    break;
-    case E_INVPARA:
-    case E_NULL_PTR:
-     printf("ERROR: The arguments you provided are not valid, please check them again!\n");
-    break;
-   }
-  }
- }
- else
- {
-  printf("ERROR: Invalid arguments you had input. Please refers to \"--help\"!\n");
- }
- return 0;
-}
-
-/**
  * @name show_pcb_main.
  *
  * @brief The main function for the "Show PCB", "Show all Processes", "Show Ready Processes", and "Show Blocked Processes".
@@ -356,6 +289,75 @@ int show_pcb_main(int argc, char ** argv)
   {
    printf("ERROR: Invalid arugment, \"%s\", provided!\n\n", argv[2]);
   }
+ }
+ return 0;
+}
+
+#if 0
+
+/**
+ * @name create_pcb_main.
+ *
+ * @brief The main function for the "Create PCB".
+ *    Accepted formats: pcb create <name> <type> <priority>
+ *                      pcb create --help
+ * @param argc  The number of tokens found.
+ * @param argv  The array of tokens.
+ * @return  0
+ */
+int create_pcb_main(int argc, char ** argv)
+{
+ if(argc > 2 && !strcmp(argv[2], "--help"))
+ {
+  if(argc <= 3)
+  {
+   print_help(CREATEPCB);
+  }
+  else
+  {
+   printf("ERROR: Too many arguments for \"--help\" option!\n");
+  }
+ }
+ else if(argc == 5)
+ {
+  if(strlen(argv[2]) >= SIZE_OF_PCB_NAME || strlen(argv[2]) == 0)
+  {
+   printf("ERROR: The length of the name must be greater than zero and smaller than %d!\n", SIZE_OF_PCB_NAME);
+  }
+  else if(find_pcb(argv[2]))
+  {
+   printf("ERROR: The name of the PCB must be unique!\n");
+  }
+  else if(strcmp(argv[3], "application") && strcmp(argv[3], "system"))
+  {
+   printf("ERROR: The class of the process can only be \"system\" or \"application\"!\n");
+  }
+  else if(!(strlen(argv[4]) == 1 && is_digit(*argv[4])))
+  {
+   printf("ERROR: The priority must be a single digit number with range [0, 9]!\n");
+  }
+  else
+  {
+   enum process_class pClass = strcmp(argv[3], "application") ? pcb_class_sys : pcb_class_app;
+   unsigned char pPriority = *argv[4] - '0';
+
+   struct pcb_struct * created_pcb = setup_pcb(argv[2], pClass, pPriority);
+   error_t err = insert_pcb(created_pcb);
+   switch(err)
+   {
+    case E_NOERROR:
+     printf("Process had been successfully created!\n");
+    break;
+    case E_INVPARA:
+    case E_NULL_PTR:
+     printf("ERROR: The arguments you provided are not valid, please check them again!\n");
+    break;
+   }
+  }
+ }
+ else
+ {
+  printf("ERROR: Invalid arguments you had input. Please refers to \"--help\"!\n");
  }
  return 0;
 }
@@ -544,3 +546,5 @@ int unblock_pcb_main(int argc, char ** argv)
  return 0;
 
 }
+
+#endif

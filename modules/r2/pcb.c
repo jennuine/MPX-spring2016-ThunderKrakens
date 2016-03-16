@@ -693,3 +693,32 @@ unsigned char * get_stack_base(struct pcb_struct * pcb_ptr)
     
   return pcb_ptr->stack_base;
 }
+
+/**
+ * @name shutdown_pcb
+ * @brief called when system is going to shutdown, removes all PCBs, free all PCBs.
+ * 
+ * @return VOID
+ */
+void shutdown_pcb()
+{
+  struct pcb_struct * curr = ready_queue.head;
+  struct pcb_struct * temp = NULL;
+  while ( curr != NULL )
+  {
+    temp = curr;
+    curr = curr->next;
+    remove_pcb(temp);
+    free_pcb(temp);
+  }
+
+  curr = blocked_queue.head;
+
+  while ( curr != NULL )
+  {
+    temp = curr;
+    curr = curr->next;
+    remove_pcb(temp);
+    free_pcb(temp);
+  }
+}

@@ -18,8 +18,8 @@
 #include "../r3/context.h"
 
 #define MAX_ARGC 50
-#define MOD_VERSION "R2"
-#define COMPLETION "02/26/2016"
+#define MOD_VERSION "R4"
+#define COMPLETION "03/18/2016"
 
 #define MAX_HISTORY 10
 
@@ -263,8 +263,7 @@ void commhand()
    	 
    	 if(!run_mpx)
    	 {
-   	     struct pcb_struct * idle_proc = find_pcb("idle");
-   	     suspend_pcb(idle_proc);
+   	     shutdown_pcb();
    	 }
    	 else
    	 {
@@ -394,11 +393,25 @@ static void load_functions()
     Exit Status: Always Succeeds.\n\n";
 
     //R2 Commands
-    functions[CREATEPCB].nameStr = "create"; functions[CREATEPCB].function = &create_pcb_main; functions[CREATEPCB].usage = "pcb create [processName] [processClass] [processPriority]";
-    functions[CREATEPCB].help = "\ncreate : mpx create [processName] [processClass] [processPriority]\n\
-    \n\tCreates the PCB's process given the name, class, and priority.\n\n\
-    \n\nArguments:\n\tprocessName  String process name\n\
-    \tprocessClass  String process class\n\tprocessPriority  String process priority\n\n\
+    functions[SUSPDPCB].nameStr = "suspend"; functions[SUSPDPCB].function = &suspend_pcb_main;
+    functions[SUSPDPCB].usage = "pcb suspend [processName]";
+    functions[SUSPDPCB].help = "\nsuspend : pcb suspend [processName]\n\
+    \n\tSuspends the specific PCB.\n\n\
+    \n\nArguments:\n\tprocessName  String process name\n\n\
+    Exit Status:\n\tReturns success unless no PCB named [processName] or string is empty/null.\n\n";
+
+    functions[RESUMEPCB].nameStr = "resume"; functions[RESUMEPCB].function = &resume_pcb_main;
+    functions[RESUMEPCB].usage = "pcb resume [processName]";
+    functions[RESUMEPCB].help = "\nresume : pcb resume [processName]\n\
+    \n\tResumes the specific PCB.\n\n\
+    \n\nArguments:\n\tprocessName  String process name\n\n\
+    Exit Status:\n\tReturns success unless no PCB named [processName] or string is empty/null.\n\n";
+
+    functions[SETPCBPRIO].nameStr = "setpriority"; functions[SETPCBPRIO].function = &set_pcb_priority_main;
+    functions[SETPCBPRIO].usage = "pcb setpriority [processName] [processPriority]";
+    functions[SETPCBPRIO].help = "\nset priority : pcb setpriority [processName] [processPriority]\n\
+    \n\tSets the PCB's priority.\n\n\
+    \n\nArguments:\n\tprocessName  String process name\nprocessPriority  integer priority value within range [0, 9]\n\n\
     Exit Status:\n\tReturns success unless no PCB named [processName] or string is empty/null.\n\n";
 
     functions[SHOWPCB].nameStr = "show"; functions[SHOWPCB].function = &show_pcb_main; functions[SHOWPCB].usage = "pcb show -name [processName]\n\tusage:\tpcb show -all\n\tusage:\tpcb show -ready\n\tusage:\tpcb show -blocked";
@@ -408,12 +421,12 @@ static void load_functions()
     show : pcb show -blocked\n\n\tDisplays all PCB's in the blocked queue.\n\n\
     \n\nArguments:\n\tprocessName  String process name\n\n\
     Exit Status:\n\tReturns success unless no PCB named [processName] or string is empty/null.\n\n";
-
-    functions[SETPCBPRIO].nameStr = "setpriority"; functions[SETPCBPRIO].function = &set_pcb_priority_main;
-    functions[SETPCBPRIO].usage = "pcb setpriority [processName] [processPriority]";
-    functions[SETPCBPRIO].help = "\nset priority : pcb setpriority [processName] [processPriority]\n\
-    \n\tSets the PCB's priority.\n\n\
-    \n\nArguments:\n\tprocessName  String process name\nprocessPriority  integer priority value within range [0, 9]\n\n\
+/*
+    functions[CREATEPCB].nameStr = "create"; functions[CREATEPCB].function = &create_pcb_main; functions[CREATEPCB].usage = "pcb create [processName] [processClass] [processPriority]";
+    functions[CREATEPCB].help = "\ncreate : mpx create [processName] [processClass] [processPriority]\n\
+    \n\tCreates the PCB's process given the name, class, and priority.\n\n\
+    \n\nArguments:\n\tprocessName  String process name\n\
+    \tprocessClass  String process class\n\tprocessPriority  String process priority\n\n\
     Exit Status:\n\tReturns success unless no PCB named [processName] or string is empty/null.\n\n";
 
     functions[DELPCB].nameStr = "del"; functions[DELPCB].function = &delete_pcb_main;
@@ -436,21 +449,7 @@ static void load_functions()
     \n\tUnblocks the specific PCB.\n\n\
     \n\nArguments:\n\tprocessName  String process name\n\n\
     Exit Status:\n\tReturns success unless no PCB named [processName] or string is empty/null.\n\n";
-
-    functions[RESUMEPCB].nameStr = "resume"; functions[RESUMEPCB].function = &resume_pcb_main;
-    functions[RESUMEPCB].usage = "pcb resume [processName]";
-    functions[RESUMEPCB].help = "\nresume : pcb resume [processName]\n\
-    \n\tResumes the specific PCB.\n\n\
-    \n\nArguments:\n\tprocessName  String process name\n\n\
-    Exit Status:\n\tReturns success unless no PCB named [processName] or string is empty/null.\n\n";
-
-    functions[SUSPDPCB].nameStr = "suspend"; functions[SUSPDPCB].function = &suspend_pcb_main;
-    functions[SUSPDPCB].usage = "pcb suspend [processName]";
-    functions[SUSPDPCB].help = "\nsuspend : pcb suspend [processName]\n\
-    \n\tSuspends the specific PCB.\n\n\
-    \n\nArguments:\n\tprocessName  String process name\n\n\
-    Exit Status:\n\tReturns success unless no PCB named [processName] or string is empty/null.\n\n";
-    
+*/
     //R3 Commands
     functions[YIELD].nameStr = "yield"; functions[YIELD].function = &yield_main;
     functions[YIELD].usage = "mpx yield";

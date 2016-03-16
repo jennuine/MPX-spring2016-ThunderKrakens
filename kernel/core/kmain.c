@@ -68,7 +68,7 @@ void kmain(void)
    //klogv("Transferring control to commhand...");
    //commhand();
    
-   resume_pcb(load_process("commhand", pcb_class_sys, 5, &commhand));
+   resume_pcb(load_process("commhand", pcb_class_sys, 0, &commhand));
    resume_pcb(load_process("idle", pcb_class_sys, 0, &idle));
    //asm volatile ("int $60");
    sys_req(IDLE);

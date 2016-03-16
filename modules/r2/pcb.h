@@ -261,4 +261,12 @@ unsigned char * get_stack_top(struct pcb_struct * pcb_ptr);
  */
 unsigned char * get_stack_base(struct pcb_struct * pcb_ptr);
 
+/**
+ * @name shutdown_pcb
+ * @brief called when system is going to shutdown, removes all PCBs, free all PCBs.
+ * 
+ * @return VOID
+ */
+void shutdown_pcb();
+
 #endif

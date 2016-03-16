@@ -35,16 +35,16 @@ enum comm_type
 
 #define POS_OF_PCB 9
 
-#define SETPCBPRIO  9
-#define DELPCB      10
-#define BLOCKPCB    11
-#define UNBLKPCB    12
-#define RESUMEPCB   13
-#define SUSPDPCB    14
-#define CREATEPCB   15
-#define SHOWPCB     16
+#define SUSPDPCB    9
+#define RESUMEPCB   10
+#define SETPCBPRIO  11
+#define SHOWPCB     12
+//#define CREATEPCB   13
+//#define DELPCB      14
+//#define BLOCKPCB    15
+//#define UNBLKPCB    16
 
-#define NUM_OF_FUNCTIONS 17
+#define NUM_OF_FUNCTIONS 13
 
 /** @name commhand
  *
