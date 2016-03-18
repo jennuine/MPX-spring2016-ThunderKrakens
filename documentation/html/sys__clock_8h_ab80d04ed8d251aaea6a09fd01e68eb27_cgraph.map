@@ -1,7 +1,0 @@
-<map id="set_date_str" name="set_date_str">
-<area shape="rect" id="node2" href="$string_8c.html#a1eb9cae61e6a6282c28dbc298ef7297e" title="strcpy" alt="" coords="156,5,215,32"/>
-<area shape="rect" id="node3" href="$string_8c.html#af1a867dcea42fc1215d0eddf19283ef3" title="strtok" alt="" coords="158,56,213,83"/>
-<area shape="rect" id="node4" href="$string_8c.html#a30670a60464f77af17dfb353353d6df8" title="atoi" alt="" coords="164,107,207,133"/>
-<area shape="rect" id="node6" href="$sys__clock_8c.html#a5e0c140320ec0309fab102e2ad34d279" title="set_date" alt="" coords="149,157,221,184"/>
-<area shape="rect" id="node5" href="$string_8c.html#a0f3d37d605e9e6d4fc1853ff9d4b91bf" title="isspace" alt="" coords="269,107,336,133"/>
-</map>

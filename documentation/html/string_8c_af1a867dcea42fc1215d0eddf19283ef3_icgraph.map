@@ -1,6 +1,0 @@
-<map id="strtok" name="strtok">
-<area shape="rect" id="node2" href="$sys__clock_8h.html#a2fa1ed5071047b72b357329da498b7aa" title="set_time_str" alt="" coords="110,5,205,32"/>
-<area shape="rect" id="node4" href="$sys__clock_8h.html#ab80d04ed8d251aaea6a09fd01e68eb27" title="set_date_str" alt="" coords="110,56,205,83"/>
-<area shape="rect" id="node3" href="$sys__clock_8h.html#a2afc871aeddaa550badc5e0c6bb65da5" title="set_time_main" alt="" coords="253,5,360,32"/>
-<area shape="rect" id="node5" href="$sys__clock_8h.html#a626404928f9803307b300e6c60df3afb" title="set_date_main" alt="" coords="253,56,360,83"/>
-</map>
