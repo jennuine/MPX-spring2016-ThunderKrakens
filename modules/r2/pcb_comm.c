@@ -59,7 +59,7 @@ int suspend_pcb_main(int argc, char ** argv)
    switch(err)
    {
     case E_NOERROR:
-     printf("The process had been suspended successfully!\n");
+     printf("The process is suspended!\n");
     break;
     case E_NULL_PTR:
      printf("ERROR: cannot find the PCB with name \"%s\"\n", argv[2]);
@@ -115,7 +115,7 @@ int resume_pcb_main(int argc, char ** argv)
    switch(err)
    {
     case E_NOERROR:
-     printf("The process had been resumed successfully!\n");
+     printf("The process is resumed!\n");
     break;
     case E_NULL_PTR:
      printf("ERROR: cannot find the PCB with name \"%s\"\n", argv[2]);
@@ -469,7 +469,7 @@ int block_pcb_main(int argc, char ** argv)
    switch(err)
    {
     case E_NOERROR:
-     printf("The process had been blocked successfully!\n");
+     printf("The process is blocked!\n");
     break;
     case E_INVPARA:
      printf("ERROR: The PCB you choice cannot be blocked now.\n");
@@ -528,10 +528,10 @@ int unblock_pcb_main(int argc, char ** argv)
    switch(err)
    {
     case E_NOERROR:
-     printf("The process had been unblocked successfully!\n");
+     printf("The process is unblocked!\n");
     break;
     case E_INVPARA:
-     printf("ERROR: The PCB you choice cannot be unblocked now.\n");
+     printf("ERROR: The PCB you chose cannot be unblocked now.\n");
     break;
     case E_NULL_PTR:
      printf("ERROR: cannot find the PCB with name \"%s\"\n", argv[2]);

@@ -332,6 +332,7 @@ static int vsprintf(char *str, const char *format, const int * ap)
 					AddPad(StrPtr, Width - StrSize);
 					StrPtr += (Width - StrSize);
 				}
+				*StrPtr = '\0';
 				strcat(StrPtr, InputStr);
 				StrPtr += StrSize;
 				if(!bIsRight && Width > StrSize)
@@ -345,6 +346,7 @@ static int vsprintf(char *str, const char *format, const int * ap)
 				char ValueStr[100] = { 0 };
 				int ActValue = (int)*ap++;
 				itoa(ValueStr, ActValue, Width, bIsRight, bHasSign);
+				*StrPtr = '\0';
 				strcat(StrPtr, ValueStr);
 				StrPtr += strlen(ValueStr);
 			}
@@ -361,6 +363,7 @@ static int vsprintf(char *str, const char *format, const int * ap)
 					AddPad(StrPtr, Width - HexStrSize);
 					StrPtr += (Width - HexStrSize);
 				}
+				*StrPtr = '\0';
 				strcat(StrPtr, ValueStr);
 				StrPtr += HexStrSize;
 				if(!bIsRight && Width > HexStrSize)

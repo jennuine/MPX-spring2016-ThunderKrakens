@@ -155,6 +155,7 @@ int yield_main(int argc, char ** argv)
  return 0;
 }
 
+
 /**
  * @name load_r3_main
  * @brief Loads the main function of R3.
@@ -192,33 +193,30 @@ int load_r3_main(int argc, char ** argv)
    else
     printf("Failed to load process %s!\n", "proc1");
     
-   if(new_pcb) 
-    new_pcb = load_process("proc2", pcb_class_app, priority, &proc2);
+   new_pcb = load_process("proc2", pcb_class_app, priority, &proc2);
    if(new_pcb)
     printf("Process %s loaded successfully!\n", "proc2");
    else
     printf("Failed to load process %s!\n", "proc2");
     
-   if(new_pcb) 
-    new_pcb = load_process("proc3", pcb_class_app, priority, &proc3);
+   new_pcb = load_process("proc3", pcb_class_app, priority, &proc3);
    if(new_pcb)
     printf("Process %s loaded successfully!\n", "proc3");
    else
     printf("Failed to load process %s!\n", "proc3");
     
-   if(new_pcb) 
-    new_pcb = load_process("proc4", pcb_class_app, priority, &proc4);
+   new_pcb = load_process("proc4", pcb_class_app, priority, &proc4);
    if(new_pcb)
     printf("Process %s loaded successfully!\n", "proc4");
    else
     printf("Failed to load process %s!\n", "proc4");
     
-   if(new_pcb) 
-    new_pcb = load_process("proc5", pcb_class_app, priority, &proc5);
+   new_pcb = load_process("proc5", pcb_class_app, priority, &proc5);
    if(new_pcb)
     printf("Process %s loaded successfully!\n", "proc5");
    else
-    printf("Failed to load process %s!\n", "proc5");   
+    printf("Failed to load process %s!\n", "proc5"); 
+    
   }
  }
  else

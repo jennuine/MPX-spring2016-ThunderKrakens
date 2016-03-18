@@ -508,6 +508,10 @@ error_t block_pcb(struct pcb_struct * pcb_ptr)
   {
     return E_NULL_PTR;
   }
+  if(pcb_ptr->running_state == blocked)
+  {
+    return E_NOERROR;
+  }
   error_t err = E_NOERROR;
 
   if((err = remove_pcb(pcb_ptr)) != E_NOERROR)
@@ -544,6 +548,10 @@ error_t unblock_pcb(struct pcb_struct * pcb_ptr)
   if (pcb_ptr == NULL)
   {
     return E_NULL_PTR;
+  }
+  if(pcb_ptr->running_state == ready)
+  {
+    return E_NOERROR;
   }
   error_t err = E_NOERROR;
 

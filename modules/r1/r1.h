@@ -41,8 +41,8 @@ enum comm_type
 #define SHOWPCB     12
 //#define CREATEPCB   13
 //#define DELPCB      14
-//#define BLOCKPCB    15
-//#define UNBLKPCB    16
+//#define BLOCKPCB    13
+//#define UNBLKPCB    14
 
 #define NUM_OF_FUNCTIONS 13
 
