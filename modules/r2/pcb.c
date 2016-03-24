@@ -589,6 +589,12 @@ error_t set_pcb_priority(struct pcb_struct * pcb_ptr, const unsigned char pPrior
   {
 		return E_NULL_PTR;
 	}
+	
+	if (pcb_ptr->class == pcb_class_sys)
+	{
+	  return E_PCB_SYS;
+	}
+	
   error_t errno = E_NOERROR;
   if(pcb_ptr->priority == pPriority)
   {

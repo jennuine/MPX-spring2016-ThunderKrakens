@@ -12,6 +12,7 @@
 #include <string.h>
 #include "../errno.h"
 #include "../r1/r1.h"
+#include "../r3/context.h"
 
 static int is_digit(char ch)
 {
@@ -195,9 +196,14 @@ int set_pcb_priority_main(int argc, char ** argv){
    case E_NOERROR:
     printf("Priority successfully set for process %s.\n", name);
    break;
+   
    case E_INVPARA:
     printf("ERROR: The arguments you provided are not valid, please check them again!\n");
    break;
+   
+   case E_PCB_SYS:
+    printf("ERROR: Can not set priority for system processes.\n");
+    break;
   }
 
  }
@@ -235,6 +241,7 @@ int show_pcb_main(int argc, char ** argv)
   }
   else if (!strcmp(argv[2], "-all"))
   {
+   show_pcb(cop);
    show_all_processes();
   }
   else if (!strcmp(argv[2], "-ready"))
@@ -320,6 +327,7 @@ int create_pcb_main(int argc, char ** argv)
  }
  else if(argc == 5)
  {
+
   if(strlen(argv[2]) >= SIZE_OF_PCB_NAME || strlen(argv[2]) == 0)
   {
    printf("ERROR: The length of the name must be greater than zero and smaller than %d!\n", SIZE_OF_PCB_NAME);

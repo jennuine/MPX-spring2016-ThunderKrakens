@@ -13,7 +13,7 @@
 #include "../r1/r1.h"
 #include "procsr3.c"
 
-static struct pcb_struct * cop = NULL;
+struct pcb_struct * cop = NULL;
 struct context* old_context = NULL;
 
 /**

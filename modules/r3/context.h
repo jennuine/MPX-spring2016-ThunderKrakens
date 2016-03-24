@@ -15,15 +15,27 @@
 #include "../errno.h"
 
 extern struct context* old_context;
+extern struct pcb_struct *cop;
 
 /**
- *  Context struct 
+ * Context structure that holds the 15 CPU register values to begin and resume process execution 
  */
- 
 struct context {
-    u32int gs, fs, es, ds;
-    u32int edi, esi, ebp, esp, ebx, edx, ecx, eax;
-    u32int eip, cs, eflags;
+    u32int gs, /**< Segment register */
+        fs, /**< Segment register */
+        es, /**< Segment register */
+        ds; /**< Segment register */
+    u32int edi,  /**< General-purpose register */
+        esi, /**< General-purpose register */ 
+        ebp, /**< General-purpose register */
+        esp, /**< General-purpose register */ 
+        ebx, /**< General-purpose register */
+        edx, /**< General-purpose register */
+        ecx, /**< General-purpose register */
+        eax; /**< General-purpose register */
+    u32int eip,  /**< Status and control register */
+        cs,  /**< Status and control register */
+        eflags; /**< Status and control register */
 };
  
 /**
