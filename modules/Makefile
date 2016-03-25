@@ -16,7 +16,8 @@ r1/r1.o\
 r1/sys_clock.o\
 r2/pcb.o\
 r2/pcb_comm.o\
-r3/context.o
+r3/context.o\
+r5/mcb.o
 
 .c.s:
 	$(CC) $(CFLAGS) -S -o $@ $<
