@@ -33,9 +33,9 @@ enum mcb_type
  */
 struct cmcb {
     enum mcb_type type; /**< Type indicating free or allocated */
-    struct context *begin_address; /**< Beginning address */
+    void * begin_address; /**< Beginning address */
     u32int size; /**< Indicates size of block in bytes */
-    char *pcb_name[SIZE_OF_PCB_NAME]; /**< Name of PCB process that is housed in block */
+    //char *pcb_name[SIZE_OF_PCB_NAME]; /**< Name of PCB process that is housed in block */
     struct cmcb *prev, *next; /**< Links to previous and next blocks of same type */
 };
 
@@ -53,7 +53,7 @@ struct lmcb {
 struct mcb {
     struct cmcb * complete_mcb; /**< Complete Memory Control Block */
     struct lmcb * limited_mcb; /**< Limited Memory Control Block */
-    u32int size; /**< Amount of free space or space required to hold item */
+    //u32int size; /**< Amount of free space or space required to hold item */
 };
 
 #endif
