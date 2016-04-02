@@ -16,6 +16,7 @@
 #include "../r2/pcb.h"
 #include "../mpx_supt.h"
 #include "../r3/context.h"
+#include "../r5/mcb.h"
 
 #define MAX_ARGC 50
 #define MOD_VERSION "R4"
@@ -138,21 +139,29 @@ static int shutdown(int argc, char** argv)
  */
 int help_usages(enum comm_type type)
 {
-    int start_from = 0, end_at = NUM_OF_FUNCTIONS;
+    int start_from = FUNCTIONS_BEGIN, end_at = NUM_OF_FUNCTIONS;
 
     if (type == mpx)
     {
    	 printf("\nAvailable mpx functions:\n");
-   	 start_from = POS_OF_MPX;
-   	 end_at = NUM_MPX_FUNCTIONS;
+   	 start_from = MPX_FUNCTIONS_BEGIN;
+   	 end_at = PCB_FUNCTIONS_BEGIN;
     }
 
     if (type == pcb)
     {
      printf("\nAvailable pcb commands:\n");
-   	 start_from = POS_OF_PCB;
+   	 start_from = PCB_FUNCTIONS_BEGIN;
+   	 end_at = MCB_FUNCTIONS_BEGIN;
     }
 
+    if (type == mcb)
+    {
+     printf("\nAvailable pcb commands:\n");
+   	 start_from = MCB_FUNCTIONS_BEGIN;
+   	 end_at = NUM_OF_FUNCTIONS;
+    }
+    
     int i;
     for (i = start_from; i < end_at; i++)
     {
@@ -238,16 +247,23 @@ void commhand()
    	 if(argc && !strcmp(argv[0], "mpx"))
    	 {
    		 if (argc > 1)
-   			 exe_function(argc, argv, POS_OF_MPX, NUM_MPX_FUNCTIONS);
+   			 exe_function(argc, argv, MPX_FUNCTIONS_BEGIN, PCB_FUNCTIONS_BEGIN);
    		 else
    			 help_usages(mpx);
    	 }
    	 else if(argc && !strcmp(argv[0], "pcb"))
    	 {
    		 if (argc > 1)
-   			 exe_function(argc, argv, POS_OF_PCB, NUM_OF_FUNCTIONS);
+   			 exe_function(argc, argv, PCB_FUNCTIONS_BEGIN, MCB_FUNCTIONS_BEGIN);
    		 else
    			 help_usages(pcb);
+   	 }
+   	 else if(argc && !strcmp(argv[0], "mcb"))
+   	 {
+   		 if (argc > 1)
+   			 exe_function(argc, argv, MCB_FUNCTIONS_BEGIN, NUM_OF_FUNCTIONS);
+   		 else
+   			 help_usages(mcb);
    	 }
    	 else if (argc && !strcmp(argv[0], "help"))
    	 {
@@ -415,7 +431,8 @@ static void load_functions()
     \n\nArguments:\n\tprocessName  String process name\nprocessPriority  integer priority value within range [0, 9]\n\n\
     Exit Status:\n\tReturns success unless no PCB named [processName] or string is empty/null.\n\n";
 
-    functions[SHOWPCB].nameStr = "show"; functions[SHOWPCB].function = &show_pcb_main; functions[SHOWPCB].usage = "pcb show -name [processName]\n\tusage:\tpcb show -all\n\tusage:\tpcb show -ready\n\tusage:\tpcb show -blocked";
+    functions[SHOWPCB].nameStr = "show"; functions[SHOWPCB].function = &show_pcb_main; 
+    functions[SHOWPCB].usage = "pcb show -name [processName]\n\tusage:\tpcb show -all\n\tusage:\tpcb show -ready\n\tusage:\tpcb show -blocked";
     functions[SHOWPCB].help = "\nshow : pcb show -name [processName]\n\n\tDisplays the PCB's process name, class, state, suspended status, and priority.\n\n\
     show : pcb show -all\n\n\tDisplays all PCB's in the ready and blocked queues.\n\n\
     show : pcb show -ready\n\n\tDisplays all PCB's in the ready queue.\n\n\
@@ -465,6 +482,12 @@ static void load_functions()
     \n\tload all r3 ”processes” into memory in a suspended ready state at any priority of your choosing.\n\n\
     \n\nArguments:\n\t processPriority  String process priority\n\n\
     Exit Status:\n\tReturns success unless the value of priority is not in the correct range.\n\n";
+    
+    functions[SHOWMCB].nameStr = "show"; functions[SHOWMCB].function = &show_mcb_main;
+    functions[SHOWMCB].usage = "mcb show -free\n\tusage:\tmcb show -allocated";
+    functions[SHOWMCB].help = "\nshow : mcb show -free\n\n\tDisplays the address and size of free MCBs.\n\n\
+    show: mcb show -allocated\n\n\tDisplays the address and size of allocated MCBs.\n\n\
+    Exit Status:\n\tAlways returns success.\n\n";
 }
 
 /**

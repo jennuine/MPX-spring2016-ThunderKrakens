@@ -36,7 +36,7 @@ struct cmcb {
     void * begin_address; /**< Beginning address */
     u32int size; /**< Indicates size of block in bytes */
     //char *pcb_name[SIZE_OF_PCB_NAME]; /**< Name of PCB process that is housed in block */
-    struct cmcb *prev, *next; /**< Links to previous and next blocks of same type */
+    struct mcb *prev, *next; /**< Links to previous and next blocks of same type */
 };
 
 /**
@@ -55,5 +55,30 @@ struct mcb {
     struct lmcb * limited_mcb; /**< Limited Memory Control Block */
     //u32int size; /**< Amount of free space or space required to hold item */
 };
+
+void init_heap(u32int size);
+
+void * mcb_allocate(u32int size);
+
+error_t mcb_free(void * mem_ptr);
+
+void show_mcb(struct mcb * mcb_ptr);
+
+void show_free_mcb();
+
+void show_allocated_mcb();
+
+int is_mcb_empty();
+
+
+int init_heap_main(int argc, char ** argv);
+
+int mcb_allocate_main(int argc, char ** argv);
+
+int mcb_free_main(int argc, char ** argv);
+
+int show_mcb_main(int argc, char ** argv);
+
+int is_mcb_empty_main(int argc, char ** argv);
 
 #endif
