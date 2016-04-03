@@ -75,7 +75,13 @@ void init_heap(u32int size)
     //free_mem_list.next = block;
     //free_mem_list.prev = NULL;
 }
-
+/*//commented temp for compilation... 
+void * mcb_allocate(u32int size)
+{
+    u32int alloc_size = size + sizeof(struct cmcb) + sizeof(struct lmcb);
+    
+}
+*/
 void show_mcb(struct mcb * mcb_ptr)
 {
     if(!mcb_ptr)
@@ -225,7 +231,7 @@ void show_allocated_mcb(){
         show_mcb(ptr);
         ptr = ptr->complete_mcb->next;
     }
-    printf("/n");
+    printf("\n");
 }
 
 void show_free_mcb(){
@@ -235,8 +241,20 @@ void show_free_mcb(){
         show_mcb(ptr);
         ptr = ptr->complete_mcb->next;
     }
-    printf("/n");
+    printf("\n");
 }
+
+void show_all_mcb(){
+    struct mcb * ptr = (struct mcb *)start_of_memory;
+    while (ptr != NULL){
+        show_mcb(ptr);
+        ptr = next_adjacent_mcb(ptr);
+    }
+    printf("\n");
+}
+
+//#############################################################################
+//Permanent User's Commands
 
 int show_mcb_main(int argc, char ** argv)
 {
@@ -259,6 +277,64 @@ int show_mcb_main(int argc, char ** argv)
         else if (!strcmp(argv[2], "-allocated"))
         {
             show_allocated_mcb();
+        }
+        else if (!strcmp(argv[2], "-all"))
+        {
+            show_all_mcb();
+        }
+        else
+        {
+            printf("ERROR: Invalid arugment, \"%s\", provided!\n\n", argv[2]);
+        }
+    }
+    return 0;
+}
+
+//#############################################################################
+//Temperary User's Commands
+static unsigned char is_digit(const char ch)
+{
+    return ('0' <= ch && ch <= '9');
+}
+static unsigned char is_all_digit(const char * str_ptr)
+{
+    unsigned char result = 1;
+    while(result && *str_ptr && (result = is_digit(*(str_ptr++)))) { }
+    return result;
+}
+
+int mcb_free_main(int argc, char ** argv)
+{
+    if (argc != 3 )
+    {
+        printf("ERROR: Incorrect number of arguments. Please refer to \"mcb free --help\"\n");
+        return 0;
+    }
+    else
+    {
+        if (!strcmp(argv[2], "--help"))
+        {
+            print_help(FREEMCB);
+        }
+        else if (is_all_digit(argv[2]))
+        {
+            const unsigned int mcb_index = atoi(argv[2]);
+            unsigned int i = 0;
+            struct mcb * found_mcb = allocated_mem_list;
+            for(i = 0; found_mcb && i < mcb_index - 1; i++)
+            {
+                found_mcb = found_mcb->complete_mcb->next;
+            }
+            
+            if(found_mcb)
+            {
+                error_t errno = mcb_free(found_mcb->complete_mcb->begin_address);
+                printf("The mcb is free %s error.\n", (errno == E_NOERROR ? "without" : "with"));
+            }
+            else
+            {
+                printf("ERROR: The mcb you want (with index %d) does not exist!\n\n", mcb_index);
+            }
         }
         else
         {

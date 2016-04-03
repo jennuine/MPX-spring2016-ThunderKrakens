@@ -46,8 +46,9 @@ enum comm_type
 #define MCB_FUNCTIONS_BEGIN 13
 
 #define SHOWMCB  13
+#define FREEMCB  14
 
-#define NUM_OF_FUNCTIONS    14
+#define NUM_OF_FUNCTIONS    15
 
 /** @name commhand
  *

@@ -53,7 +53,7 @@ struct lmcb {
 struct mcb {
     struct cmcb * complete_mcb; /**< Complete Memory Control Block */
     struct lmcb * limited_mcb; /**< Limited Memory Control Block */
-    //u32int size; /**< Amount of free space or space required to hold item */
+    u32int size; /**< Amount of free space or space required to hold item */
 };
 
 void init_heap(u32int size);
@@ -68,16 +68,19 @@ void show_free_mcb();
 
 void show_allocated_mcb();
 
+void show_all_mcb();
+
 int is_mcb_empty();
 
+//Permanent User's Commands
+int show_mcb_main(int argc, char ** argv);
 
+//Temperary User's Commands
 int init_heap_main(int argc, char ** argv);
 
 int mcb_allocate_main(int argc, char ** argv);
 
 int mcb_free_main(int argc, char ** argv);
-
-int show_mcb_main(int argc, char ** argv);
 
 int is_mcb_empty_main(int argc, char ** argv);
 

@@ -483,11 +483,17 @@ static void load_functions()
     \n\nArguments:\n\t processPriority  String process priority\n\n\
     Exit Status:\n\tReturns success unless the value of priority is not in the correct range.\n\n";
     
+    //R5 commands
     functions[SHOWMCB].nameStr = "show"; functions[SHOWMCB].function = &show_mcb_main;
     functions[SHOWMCB].usage = "mcb show -free\n\tusage:\tmcb show -allocated";
-    functions[SHOWMCB].help = "\nshow : mcb show -free\n\n\tDisplays the address and size of free MCBs.\n\n\
+    functions[SHOWMCB].help = "\n show : mcb show -free\n\n\tDisplays the address and size of free MCBs.\n\n\
     show: mcb show -allocated\n\n\tDisplays the address and size of allocated MCBs.\n\n\
     Exit Status:\n\tAlways returns success.\n\n";
+    
+    functions[FREEMCB].nameStr = "free"; functions[FREEMCB].function = &mcb_free_main;
+    functions[FREEMCB].usage = "mcb free <index of mcb>\n\tusage:\tmcb free <index of mcb>";
+    functions[FREEMCB].help = "\n free : mcb free <index of mcb>\n\n\tFree the mcb with a specified index.\n\n\
+    Exit Status:\n\tReturns success unless the index value is not in the valid range.\n\n";
 }
 
 /**
