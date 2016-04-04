@@ -26,14 +26,17 @@ u32int end_of_memory;
 struct mcb * free_mem_list;
 struct mcb * allocated_mem_list;
 
+struct mcb * alloc_head;
+struct mcb * free_head;
+
 static u32int get_mcb_total_size(u32int mem_size)
 {
-    return (sizeof(struct mcb) + sizeof(struct cmcb) + mem_size + sizeof(struct lmcb));
+    return ( sizeof(struct mcb) + sizeof(struct cmcb) + mem_size + sizeof(struct lmcb));
 }
 
 static void init_mem_block(struct mcb * start_pos, u32int size, enum mcb_type type)
 {
-    void * start_pos_ptr = (void *)start_pos;
+   void * start_pos_ptr = (void *)start_pos;
     start_pos->complete_mcb = (struct cmcb *)start_pos_ptr + sizeof(struct mcb);
     start_pos->limited_mcb = (struct lmcb *)(start_pos_ptr + sizeof(struct mcb) + sizeof(struct cmcb) + size);
     start_pos->complete_mcb->begin_address = (void *)(start_pos_ptr + sizeof(struct mcb) + sizeof(struct cmcb));
@@ -41,7 +44,7 @@ static void init_mem_block(struct mcb * start_pos, u32int size, enum mcb_type ty
     start_pos->complete_mcb->size = start_pos->limited_mcb->size = size;
     start_pos->complete_mcb->type = start_pos->limited_mcb->type = type;
     
-    start_pos->complete_mcb->prev = start_pos->complete_mcb->next = NULL;
+    start_pos->prev = start_pos->next = NULL;
 }
 
 void init_heap(u32int size) 
@@ -52,36 +55,15 @@ void init_heap(u32int size)
     struct mcb * first_free_mem = (struct mcb *)start_of_memory;
     
     init_mem_block(first_free_mem, size, free);
+    first_free_mem->complete_mcb->size = get_mcb_total_size(size);
     
     free_mem_list = first_free_mem;
     allocated_mem_list = NULL;
-    //struct mcb * block = sys_alloc_mem(sizeof(struct mcb));
-    //struct cmcb * complete = sys_alloc_mem(sizeof(struct cmcb));
-    //struct lmcb * limited = sys_alloc_mem(sizeof(struct lmcb));
+    
+    alloc_head = allocated_mem_list;
 
-    //complete->type = free;
-    //limited->type = free;
-    //block->complete_mcb = complete;
-    //block->limited_mcb = limited;
+}
 
-    // slides: 'put a cmcb at top of heap & lmcb at bottom both type free'
-    //call make_heap ?
-    
-    //allocated_mem_list = sys_alloc_mem(sizeof(struct mcb_list));
-    //allocated_mem_list.next = NULL;
-    //allocated_mem_list.prev = NULL;
-    
-    //free_mem_list = sys_alloc_mem(sizeof(struct mcb_list));
-    //free_mem_list.next = block;
-    //free_mem_list.prev = NULL;
-}
-/*//commented temp for compilation... 
-void * mcb_allocate(u32int size)
-{
-    u32int alloc_size = size + sizeof(struct cmcb) + sizeof(struct lmcb);
-    
-}
-*/
 void show_mcb(struct mcb * mcb_ptr)
 {
     if(!mcb_ptr)
@@ -93,7 +75,7 @@ void show_mcb(struct mcb * mcb_ptr)
                                                                  "      Free     \0" ;
     printf("\t\t  ______________________________________ \n");
     printf("%X\t |%X|%s|%X | \n", mcb_ptr->complete_mcb, 
-            mcb_ptr->complete_mcb->prev, type_str_c, mcb_ptr->complete_mcb->next);
+            mcb_ptr->prev->complete_mcb, type_str_c, mcb_ptr->next->complete_mcb);
     printf("\t\t |__________|_______________|___________| \n");
     printf("%X\t |\t\t   DATA  \t\t| \n", mcb_ptr->complete_mcb->begin_address);
     printf("\t\t |Size: %-25d Bytes | \n", mcb_ptr->complete_mcb->size);
@@ -104,19 +86,22 @@ void show_mcb(struct mcb * mcb_ptr)
 
 static struct mcb * prev_adjacent_mcb(struct mcb * mcb_ptr)
 {    
-    struct lmcb * prev_lmcb = (struct lmcb *)((u32int)mcb_ptr - sizeof(struct lmcb));
+    // struct lmcb * prev_lmcb = (struct lmcb *)((u32int)mcb_ptr - sizeof(struct lmcb));
+    struct lmcb * prev_lmcb = mcb_ptr->prev->limited_mcb;
     
     if((u32int)prev_lmcb <= start_of_memory)
         return NULL;
     
-    struct mcb * prev_mcb = (struct mcb *)((u32int)mcb_ptr - get_mcb_total_size(prev_lmcb->size));
+    // struct mcb * prev_mcb = (struct mcb *)((u32int)mcb_total_size(prev_lmcb->size));
+    struct mcb * prev_mcb = mcb_ptr->next;
     
     return prev_mcb;
 }
 
 static struct mcb * next_adjacent_mcb(struct mcb * mcb_ptr)
 {    
-    struct mcb * next_mcb = (struct mcb *)((u32int)mcb_ptr + get_mcb_total_size(mcb_ptr->complete_mcb->size));
+    struct mcb * next_mcb = mcb_ptr->next;
+    // struct mcb * next_mcb = (struct mcb *)((u32int)mcb_ptr + get_mcb_total_size(mcb_ptr->complete_mcb->size));
     
     if((u32int)next_mcb >= end_of_memory)
         return NULL;
@@ -130,7 +115,7 @@ static struct mcb * find_mcb_by_address(void * mem_ptr)
     while (mcb_ptr != NULL){
         if(mcb_ptr->complete_mcb->begin_address == mem_ptr)
             break;
-        mcb_ptr = mcb_ptr->complete_mcb->next;
+        mcb_ptr = mcb_ptr->next;
     }
     return mcb_ptr;
 }
@@ -145,18 +130,18 @@ error_t mcb_free(void * mem_ptr)
         return E_INVPARA;
     
     //Remove from allocated memory queue first.
-    if(mcb_ptr->complete_mcb->prev) //It is not first node.
+    if(mcb_ptr->prev) //It is not first node.
     {
-        mcb_ptr->complete_mcb->prev->complete_mcb->next = mcb_ptr->complete_mcb->next;
+        mcb_ptr->prev->next = mcb_ptr->next;
     }
     else //It is first node.
     {
-        allocated_mem_list = mcb_ptr->complete_mcb->next;
+        allocated_mem_list = mcb_ptr->next;
     }
     
-    if(mcb_ptr->complete_mcb->next) //It is not last node.
+    if(mcb_ptr->next) //It is not last node.
     {
-        mcb_ptr->complete_mcb->next->complete_mcb->prev = mcb_ptr->complete_mcb->prev;
+        mcb_ptr->next->prev = mcb_ptr->prev;
     }
     
     //Insert to free memory queue.
@@ -171,26 +156,26 @@ error_t mcb_free(void * mem_ptr)
         if(adja_mcb && adja_mcb->complete_mcb->type == free)
         {
             is_found_adja = 1;
-            new_prev = adja_mcb->complete_mcb->prev;
-            new_next = adja_mcb->complete_mcb->next;
+            new_prev = adja_mcb->prev;
+            new_next = adja_mcb->next;
             new_size = get_mcb_total_size(adja_mcb->complete_mcb->size) + get_mcb_total_size(mcb_ptr->complete_mcb->size)
                         - sizeof(struct mcb) - sizeof(struct cmcb) - sizeof(struct lmcb);
             init_mem_block(adja_mcb, new_size, free);
             mcb_ptr = adja_mcb;
-            mcb_ptr->complete_mcb->prev = new_prev;
-            mcb_ptr->complete_mcb->next = new_next;
+            mcb_ptr->prev = new_prev;
+            mcb_ptr->next = new_next;
         }
         adja_mcb = next_adjacent_mcb(mcb_ptr);
         if(adja_mcb && adja_mcb->complete_mcb->type == free)
         {
             is_found_adja = 1;
-            new_prev = new_prev ? new_prev : adja_mcb->complete_mcb->prev;
-            new_next = adja_mcb->complete_mcb->next;
+            new_prev = new_prev ? new_prev : adja_mcb->prev;
+            new_next = adja_mcb->next;
             new_size = get_mcb_total_size(adja_mcb->complete_mcb->size) + get_mcb_total_size(mcb_ptr->complete_mcb->size)
                         - sizeof(struct mcb) - sizeof(struct cmcb) - sizeof(struct lmcb);
             init_mem_block(mcb_ptr, new_size, free);
-            mcb_ptr->complete_mcb->prev = new_prev;
-            mcb_ptr->complete_mcb->next = new_next;
+            mcb_ptr->prev = new_prev;
+            mcb_ptr->next = new_next;
         }
     }
     
@@ -206,19 +191,19 @@ error_t mcb_free(void * mem_ptr)
         
         if(prev_free_mcb) //If it is not inserting to first node.
         {
-            mcb_ptr->complete_mcb->prev = prev_free_mcb;
-            mcb_ptr->complete_mcb->next = prev_free_mcb->complete_mcb->next;
-            prev_free_mcb->complete_mcb->next = mcb_ptr;
-            if(mcb_ptr->complete_mcb->next)
-                mcb_ptr->complete_mcb->next->complete_mcb->prev = mcb_ptr;
+            mcb_ptr->prev = prev_free_mcb;
+            mcb_ptr->next = prev_free_mcb->next;
+            prev_free_mcb->next = mcb_ptr;
+            if(mcb_ptr->next)
+                mcb_ptr->next->prev = mcb_ptr;
         }
         else //If it is inserting to first node.
         {
-            mcb_ptr->complete_mcb->prev = NULL;
-            mcb_ptr->complete_mcb->next = free_mem_list;
+            mcb_ptr->prev = NULL;
+            mcb_ptr->next = free_mem_list;
             free_mem_list = mcb_ptr;
-            if(mcb_ptr->complete_mcb->next)
-                mcb_ptr->complete_mcb->next->complete_mcb->prev = mcb_ptr;
+            if(mcb_ptr->next)
+                mcb_ptr->next->prev = mcb_ptr;
         }
     }
     return E_NOERROR;
@@ -229,7 +214,8 @@ void show_allocated_mcb(){
     ptr = allocated_mem_list;
     while (ptr != NULL){
         show_mcb(ptr);
-        ptr = ptr->complete_mcb->next;
+        // ptr = ptr->complete_mcb->next;
+        ptr = ptr->next;
     }
     printf("\n");
 }
@@ -239,19 +225,28 @@ void show_free_mcb(){
     ptr = free_mem_list;
     while (ptr != NULL){
         show_mcb(ptr);
-        ptr = ptr->complete_mcb->next;
+        // ptr = ptr->complete_mcb->next;
+        ptr = ptr->next;
     }
     printf("\n");
 }
 
 void show_all_mcb(){
+    show_allocated_mcb();
     struct mcb * ptr = (struct mcb *)start_of_memory;
     while (ptr != NULL){
         show_mcb(ptr);
-        ptr = next_adjacent_mcb(ptr);
+        // ptr = next_adjacent_mcb(ptr);
+        ptr = ptr->next;
     }
     printf("\n");
 }
+
+// int is_mcb_empty(){
+    
+
+// }
+
 
 //#############################################################################
 //Permanent User's Commands
@@ -290,8 +285,94 @@ int show_mcb_main(int argc, char ** argv)
     return 0;
 }
 
+
 //#############################################################################
 //Temperary User's Commands
+
+int init_heap_main(int argc, char ** argv) 
+{
+    if ( argc != 3 )
+    {
+        printf("ERROR: Incorrect number of arguments. Please refer to \"mcb init --help\"\n");
+        return 0;
+    }
+        
+    u32int size = (u32int)atoi(argv[2]);
+    
+    init_heap(size);
+    
+    printf("Heap initialized!\n");
+    
+    return 0;
+}
+
+
+void * mcb_allocate(u32int size)
+{
+    u32int alloc_size = size + sizeof(struct cmcb) + sizeof(struct lmcb);
+    
+    struct mcb * curr_free = free_mem_list;
+    struct mcb * curr_alloc = allocated_mem_list;
+    
+    while ( curr_free != NULL )
+    {
+        printf("curr_free size %d\nalloc size %d\n", curr_free->complete_mcb->size, alloc_size);
+        if (curr_free->complete_mcb->size >= alloc_size)
+        {
+            
+            curr_free->complete_mcb->size = curr_free->complete_mcb->size - alloc_size;
+            
+            curr_free->complete_mcb->begin_address = curr_free->complete_mcb->begin_address + size;
+            struct mcb * alloc = (struct mcb *)size;
+
+            init_mem_block(alloc, alloc_size, allocated);
+            
+            
+            if ( curr_alloc == NULL )
+            {
+                alloc_head = alloc;
+                allocated_mem_list = alloc;
+                allocated_mem_list->next = NULL;
+                printf("%d\n", allocated_mem_list->complete_mcb->size);
+                
+            } else {
+                
+                while ( curr_alloc != NULL )
+                {
+                    if ( curr_alloc->complete_mcb->size <= alloc_size )
+                        curr_alloc = curr_alloc->next;
+                }
+                
+                alloc->next = curr_alloc->next;
+                alloc->prev = NULL;
+                curr_alloc->next = NULL;
+                curr_alloc->prev = alloc;
+                
+            }
+            break;
+        }
+        curr_free = curr_free->next;
+    }
+    
+    return 0;
+}
+
+int mcb_allocate_main( int argc, char ** argv )
+{
+    if ( argc != 3 )
+    {
+        printf("ERROR: Incorrect number of arguments. Please refer to \"mcb init --help\"\n");
+        return 0;
+    }
+    
+    u32int size = (u32int)atoi(argv[2]);
+    
+    mcb_allocate(size);
+    
+    printf("MCB allocated!\n");
+    return 0;
+}
+
 static unsigned char is_digit(const char ch)
 {
     return ('0' <= ch && ch <= '9');
@@ -323,7 +404,8 @@ int mcb_free_main(int argc, char ** argv)
             struct mcb * found_mcb = allocated_mem_list;
             for(i = 0; found_mcb && i < mcb_index - 1; i++)
             {
-                found_mcb = found_mcb->complete_mcb->next;
+                // found_mcb = found_mcb->complete_mcb->next;
+                found_mcb = found_mcb->next;
             }
             
             if(found_mcb)
@@ -343,3 +425,6 @@ int mcb_free_main(int argc, char ** argv)
     }
     return 0;
 }
+
+
+

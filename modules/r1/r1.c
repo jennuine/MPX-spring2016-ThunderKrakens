@@ -484,16 +484,31 @@ static void load_functions()
     Exit Status:\n\tReturns success unless the value of priority is not in the correct range.\n\n";
     
     //R5 commands
+    functions[INITMCB].nameStr = "init"; functions[INITMCB].function = &init_heap_main;
+    functions[INITMCB].usage = "mcb init [size]";
+    functions[INITMCB].help = "\n init : mcb init [size]\n\n\tAllocates all available memory for MPX\n\n\
+    \n\nArguments:\n\t size  Integer parameter that indicates size of heap in bytes\n\n\
+    Exit Status:\n\tReturns success unless invalid parameter size.\n\n";    
+    
+    functions[ALLOCMCB].nameStr = "alloc"; functions[ALLOCMCB].function = &mcb_allocate_main;
+    functions[ALLOCMCB].usage = "mcb alloc [size]";
+    functions[ALLOCMCB].help = "\n alloc : mcb alloc [size]\n\n\tAllocates memory from the heap\n\n\
+    \n\nArguments:\n\t size  Integer parameter that indicates size of bytes to be taken from heap\n\n\
+    Exit Status:\n\tReturns success unless invalid parameter size or not enough memory to allocate.\n\n";    
+    
     functions[SHOWMCB].nameStr = "show"; functions[SHOWMCB].function = &show_mcb_main;
-    functions[SHOWMCB].usage = "mcb show -free\n\tusage:\tmcb show -allocated";
-    functions[SHOWMCB].help = "\n show : mcb show -free\n\n\tDisplays the address and size of free MCBs.\n\n\
+    functions[SHOWMCB].usage = "mcb show -all\n\tusage:\tmcb show -free\n\tusage:\tmcb show -allocated";
+    functions[SHOWMCB].help = "\n show : mcb show -all\n\n\tDisplays the address and size of all MCBs.\n\n\
+    show : mcb show -free\n\n\tDisplays the address and size of free MCBs.\n\n\
     show: mcb show -allocated\n\n\tDisplays the address and size of allocated MCBs.\n\n\
     Exit Status:\n\tAlways returns success.\n\n";
     
+    #if 0
     functions[FREEMCB].nameStr = "free"; functions[FREEMCB].function = &mcb_free_main;
     functions[FREEMCB].usage = "mcb free <index of mcb>\n\tusage:\tmcb free <index of mcb>";
     functions[FREEMCB].help = "\n free : mcb free <index of mcb>\n\n\tFree the mcb with a specified index.\n\n\
     Exit Status:\n\tReturns success unless the index value is not in the valid range.\n\n";
+    #endif
 }
 
 /**
