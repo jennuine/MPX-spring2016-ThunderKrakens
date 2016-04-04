@@ -211,9 +211,11 @@ void * mcb_allocate(u32int mem_size)
             init_mem_block(next_adja_mcb, new_free_mem_size, free);
             insert_mcb_to_queue(next_adja_mcb, free);
         }
+        
+        return first_fit_mcb->complete_mcb->begin_address;
     }
     
-    return first_fit_mcb;
+    return NULL;
 }
 
 /*
