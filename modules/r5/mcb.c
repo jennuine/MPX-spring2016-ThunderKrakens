@@ -145,7 +145,6 @@ void init_heap(u32int size)
     struct mcb * first_free_mem = (struct mcb *)start_of_memory;
     
     init_mem_block(first_free_mem, size, free);
-    first_free_mem->complete_mcb->size = size;
     
     free_mem_list = first_free_mem;
     allocated_mem_list = NULL;
@@ -217,58 +216,6 @@ void * mcb_allocate(u32int mem_size)
     
     return NULL;
 }
-
-/*
-void * mcb_allocate(u32int size)
-{
-    u32int alloc_size = size + sizeof(struct cmcb) + sizeof(struct lmcb);
-    
-    struct mcb * curr_free = free_mem_list;
-    struct mcb * curr_alloc = allocated_mem_list;
-    
-    while ( curr_free != NULL )
-    {
-        printf("curr_free size %d\nalloc size %d\n", curr_free->complete_mcb->size, alloc_size);
-        if (curr_free->complete_mcb->size >= alloc_size)
-        {
-            
-            curr_free->complete_mcb->size = curr_free->complete_mcb->size - alloc_size;
-            
-            curr_free->complete_mcb->begin_address = curr_free->complete_mcb->begin_address + size;
-            struct mcb * alloc = (struct mcb *)size;
-
-            init_mem_block(alloc, alloc_size, allocated);
-            
-            
-            if ( curr_alloc == NULL )
-            {
-                alloc_head = alloc;
-                allocated_mem_list = alloc;
-                allocated_mem_list->next = NULL;
-                printf("%d\n", allocated_mem_list->complete_mcb->size);
-                
-            } else {
-                
-                while ( curr_alloc != NULL )
-                {
-                    if ( curr_alloc->complete_mcb->size <= alloc_size )
-                        curr_alloc = curr_alloc->next;
-                }
-                
-                alloc->next = curr_alloc->next;
-                alloc->prev = NULL;
-                curr_alloc->next = NULL;
-                curr_alloc->prev = alloc;
-                
-            }
-            break;
-        }
-        curr_free = curr_free->next;
-    }
-    
-    return 0;
-}
-*/
 
 error_t mcb_free(void * mem_ptr)
 {
@@ -355,18 +302,32 @@ void show_all_mcb(){
     printf("\n");
 }
 
+u32int mcb_allocate_mpx(u32int size)
+{
+    // printf("Testing student_malloc: Using mcb_allocate\n");
+    return (u32int)mcb_allocate(size);
+}
+
+int mcb_free_mpx(void * mem_ptr)
+{
+    // printf("Testing student_free: Using student_free\n");
+
+    if(mem_ptr)
+    {
+        error_t errno = mcb_free(mem_ptr);
+        printf("The mcb is free %s error.\n", (errno == E_NOERROR ? "without" : "with"));
+    }
+    else
+    {
+        printf("ERROR: The mcb you want (with address %X) does not exist!\n\n", mem_ptr);
+    }
+    return 0;
+}
+
 #if 0 //Jafar, I added this because I am testing the program. You can keep working on your part.
 
-int is_mcb_empty(struct mcb * mcb_ptr){
-    if(!mcb_ptr) {
-        return;    
-    }
-  
-    if(mcb_ptr->type == free) {
-        return 0;
-    } else if (mcb_ptr->type == allocated) {
-        return 1;
-    }
+int is_mcb_empty(){
+    return (allocated_mem_list == NULL);
 }
 
 #endif

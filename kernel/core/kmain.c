@@ -21,6 +21,9 @@
 #include "modules/r1/r1.h"
 #include "modules/r2/pcb.h"
 #include "modules/r3/context.h"
+#include "modules/r5/mcb.h"
+
+#define HEAP_SIZE 50000
 
 void kmain(void)
 {
@@ -36,7 +39,7 @@ void kmain(void)
    set_serial_in(COM1);
    set_serial_out(COM1);
 
-   mpx_init(MODULE_R4);
+   mpx_init(MODULE_R5);
 
    klogv("Initialized serial I/O on COM1 device...");
 
@@ -60,6 +63,11 @@ void kmain(void)
    // 4) Virtual Memory
    klogv("Initializing virtual memory...");
    init_paging();
+   
+   sys_set_malloc(&mcb_allocate_mpx);
+   sys_set_free(&mcb_free_mpx);
+   init_heap(HEAP_SIZE);
+
    
 	klogv("Initializing PCB queues...");
 	pcb_init();
