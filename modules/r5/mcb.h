@@ -35,7 +35,7 @@ struct cmcb {
     enum mcb_type type; /**< Type indicating free or allocated */
     void * begin_address; /**< Beginning address */
     u32int size; /**< Indicates size of block in bytes */
-    //char *pcb_name[SIZE_OF_PCB_NAME]; /**< Name of PCB process that is housed in block */
+    char pcb_name[SIZE_OF_PCB_NAME]; /**< Name of PCB process that is housed in block */
 };
 
 /**
@@ -74,6 +74,7 @@ int is_mcb_empty();
 int mcb_free_mpx(void * mem_ptr);
 
 u32int mcb_allocate_mpx(u32int size);
+void *mcb_allocate_mpx2(u32int size, const char *name);
 
 //Permanent User's Commands
 int show_mcb_main(int argc, char ** argv);

@@ -13,6 +13,7 @@
 #include <mem/heap.h>
 #include "../mpx_supt.h"
 #include "../r1/r1.h"
+#include "../r2/pcb.h"
 
 
 u32int start_of_memory;
@@ -164,7 +165,15 @@ void show_mcb(struct mcb * mcb_ptr)
     printf("%X\t |%X|%s|%X | \n", mcb_ptr, 
             mcb_ptr->prev, type_str_c, mcb_ptr->next);
     printf("\t\t |__________|_______________|___________| \n");
-    printf("%X\t |\t\t   DATA  \t\t| \n", mcb_ptr->complete_mcb->begin_address);
+    // printf("%X\t |\t\t   DATA  \t\t| \n", mcb_ptr->complete_mcb->begin_address);
+   
+    printf("%10s\t |%38s|\n", "", "");
+    
+    if (strcmp(mcb_ptr->complete_mcb->pcb_name, "_base") == 0)
+        printf("%X\t |\t %-11s%20s| \n", mcb_ptr->complete_mcb->begin_address, (prev_adjacent_mcb(mcb_ptr))->complete_mcb->pcb_name, mcb_ptr->complete_mcb->pcb_name);
+    else
+        printf("%X\t |\t\t %15s  \t| \n", mcb_ptr->complete_mcb->begin_address, mcb_ptr->complete_mcb->pcb_name);
+        
     printf("\t\t |Size: %-25d Bytes | \n", mcb_ptr->complete_mcb->size);
     printf("\t\t |______________________________________| \n");
     printf("%X\t |%s %-15d Bytes | \n", mcb_ptr->limited_mcb, type_str_l, mcb_ptr->limited_mcb->size);
@@ -225,6 +234,8 @@ error_t mcb_free(void * mem_ptr)
     struct mcb * mcb_ptr = find_mcb_by_address(mem_ptr);
     if(!mcb_ptr)
         return E_INVPARA;
+    
+    mcb_ptr->complete_mcb->pcb_name[0] = '\0';
     
     //Remove from allocated memory queue first.
     remove_mcb_from_queue(mcb_ptr, allocated);
@@ -314,8 +325,11 @@ int mcb_free_mpx(void * mem_ptr)
 
     if(mem_ptr)
     {
+        char pName[SIZE_OF_PCB_NAME];
+        strcpy(pName, find_mcb_by_address(mem_ptr)->complete_mcb->pcb_name);
+        
         error_t errno = mcb_free(mem_ptr);
-        printf("The mcb is free %s error.\n", (errno == E_NOERROR ? "without" : "with"));
+        printf("The mcb %s is free %s error.\n", pName, (errno == E_NOERROR ? "without" : "with"));
     }
     else
     {
@@ -447,7 +461,8 @@ int mcb_free_main(int argc, char ** argv)
             if(found_mcb)
             {
                 error_t errno = mcb_free(found_mcb->complete_mcb->begin_address);
-                printf("The mcb is free %s error.\n", (errno == E_NOERROR ? "without" : "with"));
+                printf("The mcb is free %s error.\n", (errno == E_NOERROR ? "without" : "with"));                
+
             }
             else
             {
@@ -456,7 +471,25 @@ int mcb_free_main(int argc, char ** argv)
         }
         else
         {
-            printf("ERROR: Invalid arugment, \"%s\", provided!\n\n", argv[2]);
+            // printf("ERROR: Invalid arugment, \"%s\", provided!\n\n", argv[2]);
+            struct mcb * found_mcb = allocated_mem_list;
+            while ( strcmp(found_mcb->complete_mcb->pcb_name, argv[2]) != 0 && (found_mcb = found_mcb->next));
+            
+            if(found_mcb)
+            {
+                // error_t errno = mcb_free(found_mcb->complete_mcb->begin_address);
+                // printf("The mcb %s is free %s error.\n", found_mcb->complete_mcb->pcb_name, (errno == E_NOERROR ? "without" : "with"));
+                char pName[SIZE_OF_PCB_NAME];
+                strcpy(pName, found_mcb->complete_mcb->pcb_name);
+                struct pcb_struct * found_pcb = find_pcb(found_mcb->complete_mcb->pcb_name);
+                remove_pcb(found_pcb);
+                error_t errno = free_pcb(found_pcb);
+                printf("Finished freeing mcb %s and is %s free.\n", pName, (errno == E_NOERROR ? "now" : "not"));
+            }
+            else
+            {
+                printf("ERROR: The mcb you want (with name %s) does not exist!\n\n", argv[2]);
+            }
         }
     }
     return 0;
@@ -480,3 +513,30 @@ int is_mcb_empty_main(int argc, char ** argv) {
 }
 
 #endif
+
+void *mcb_allocate_mpx2(u32int mem_size, const char *name)
+{
+    struct mcb * first_fit_mcb = find_first_fit_mcb(mem_size);
+    
+    if(first_fit_mcb) //If we found the suitable memory space.
+    {
+        
+        remove_mcb_from_queue(first_fit_mcb, free);
+        u32int free_mcb_size = get_mcb_total_size(first_fit_mcb->complete_mcb->size);
+        init_mem_block(first_fit_mcb, mem_size, allocated);
+        insert_mcb_to_queue(first_fit_mcb, allocated);
+        strcpy(first_fit_mcb->complete_mcb->pcb_name, name);
+        
+        if(free_mcb_size > get_mcb_total_size(first_fit_mcb->complete_mcb->size))
+        {//If the space we found is a litte biger.
+            struct mcb * next_adja_mcb = next_adjacent_mcb(first_fit_mcb);
+            u32int new_free_mem_size = free_mcb_size - get_mcb_total_size(first_fit_mcb->complete_mcb->size) - get_mcb_total_size(0);
+            init_mem_block(next_adja_mcb, new_free_mem_size, free);
+            insert_mcb_to_queue(next_adja_mcb, free);
+        }
+        
+        return (void *)first_fit_mcb->complete_mcb->begin_address;
+    }
+    
+    return (void *) NULL;
+}

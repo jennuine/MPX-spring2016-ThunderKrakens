@@ -269,4 +269,6 @@ unsigned char * get_stack_base(struct pcb_struct * pcb_ptr);
  */
 void shutdown_pcb();
 
+char * get_pcb_name(struct pcb_struct *pcb);
+
 #endif
