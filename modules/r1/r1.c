@@ -503,12 +503,10 @@ static void load_functions()
     show: mcb show -allocated\n\n\tDisplays the address and size of allocated MCBs.\n\n\
     Exit Status:\n\tAlways returns success.\n\n";
     
-    #if 0
     functions[FREEMCB].nameStr = "free"; functions[FREEMCB].function = &mcb_free_main;
     functions[FREEMCB].usage = "mcb free <index of mcb>\n\tusage:\tmcb free <index of mcb>";
     functions[FREEMCB].help = "\n free : mcb free <index of mcb>\n\n\tFree the mcb with a specified index.\n\n\
     Exit Status:\n\tReturns success unless the index value is not in the valid range.\n\n";
-    #endif
 }
 
 /**

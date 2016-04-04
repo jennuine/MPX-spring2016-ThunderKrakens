@@ -59,7 +59,7 @@ struct mcb {
 
 void init_heap(u32int size);
 
-void * mcb_allocate(u32int size);
+void * mcb_allocate(u32int mem_size);
 
 error_t mcb_free(void * mem_ptr);
 
