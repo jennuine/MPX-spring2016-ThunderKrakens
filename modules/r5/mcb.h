@@ -35,7 +35,6 @@ struct cmcb {
     enum mcb_type type; /**< Type indicating free or allocated */
     void * begin_address; /**< Beginning address */
     u32int size; /**< Indicates size of block in bytes */
-    char pcb_name[SIZE_OF_PCB_NAME]; /**< Name of PCB process that is housed in block */
 };
 
 /**

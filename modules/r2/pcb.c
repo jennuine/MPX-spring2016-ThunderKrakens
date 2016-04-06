@@ -15,8 +15,6 @@
  */
 #include "../r3/context.h"
 
-#include "../r5/mcb.h"
-
 
 /**
  * PCBs stored in priority order with highest priority at head 
@@ -138,15 +136,13 @@ error_t resume_pcb(struct pcb_struct * pcb_ptr){
  *
  * @return  The pointer that point to the PCB structure.
  */
-struct pcb_struct * allocate_pcb(const char *name)
+struct pcb_struct * allocate_pcb()
 {
-  // struct pcb_struct * a_pcb = sys_alloc_mem(sizeof(struct pcb_struct));
-  struct pcb_struct * a_pcb = mcb_allocate_mpx2(sizeof(struct pcb_struct), name);
+  struct pcb_struct * a_pcb = sys_alloc_mem(sizeof(struct pcb_struct));
 
   if(a_pcb)
   {
-    // a_pcb->stack_base = sys_alloc_mem(SIZE_OF_STACK);
-    a_pcb->stack_base = mcb_allocate_mpx2(SIZE_OF_STACK, "_base");
+    a_pcb->stack_base = sys_alloc_mem(SIZE_OF_STACK);
     a_pcb->stack_top = a_pcb->stack_base + SIZE_OF_STACK - sizeof(struct context);
     a_pcb->prev = NULL;
     a_pcb->next = NULL;
@@ -172,7 +168,7 @@ struct pcb_struct * setup_pcb(const char * pName, const enum process_class pClas
   if(!(strlen(pName) < SIZE_OF_PCB_NAME && pClass <= pcb_class_sys && pPriority <= 9 && !find_pcb(pName)))
     return NULL;
 
-  struct pcb_struct * a_pcb = allocate_pcb(pName);
+  struct pcb_struct * a_pcb = allocate_pcb();
 
   if(a_pcb)
   {
@@ -739,9 +735,4 @@ void shutdown_pcb()
     remove_pcb(temp);
     free_pcb(temp);
   }
-}
-
-char * get_pcb_name(struct pcb_struct * pcb)
-{
-  return pcb->name;
 }
