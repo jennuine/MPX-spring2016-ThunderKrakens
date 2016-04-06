@@ -1,9 +1,9 @@
 /**
  * @file r1.c
  * @author Thunder Krakens
- * @date February 2nd, 2016
+ * @date April 8th, 2016
  * @brief The commandhander and functions associations for Module R1
- * @version R4
+ * @version R5
  *
  */
 
@@ -19,8 +19,8 @@
 #include "../r5/mcb.h"
 
 #define MAX_ARGC 50
-#define MOD_VERSION "R4"
-#define COMPLETION "03/18/2016"
+#define MOD_VERSION "R5"
+#define COMPLETION "04/08/2016"
 
 #define MAX_HISTORY 10
 

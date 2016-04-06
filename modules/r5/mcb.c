@@ -19,22 +19,31 @@
 u32int start_of_memory;
 u32int end_of_memory;
 
-//struct mcb_list {
-//    struct mcb *prev;
-//    struct mcb *next;
-//};
-
 struct mcb * free_mem_list;
 struct mcb * allocated_mem_list;
 
-//struct mcb * alloc_head;
-//struct mcb * free_head;
-
+/**
+ * @name get_mcb_total_size
+ * @brief Finds MCB's total size
+ *
+ * @param   mem_size  The size of memory
+ *
+ * @return the total size of memory
+ */
 static u32int get_mcb_total_size(u32int mem_size)
 {
     return ( sizeof(struct mcb) + sizeof(struct cmcb) + mem_size + sizeof(struct lmcb));
 }
 
+/**
+ * @name init_mem_block
+ * @brief Initiate memory block
+ *
+ * @param   start_pos  Starting position
+ * @param   size        Size of MCB
+ * @param   type        Type of MCB
+ * @return VOID
+ */
 static void init_mem_block(struct mcb * start_pos, u32int size, enum mcb_type type)
 {
     void * start_pos_ptr = (void *)start_pos;
@@ -48,6 +57,14 @@ static void init_mem_block(struct mcb * start_pos, u32int size, enum mcb_type ty
     start_pos->prev = start_pos->next = NULL;
 }
 
+/**
+ * @name prev_adjacent_mcb
+ * @brief Previous adjacent MCB in Memory
+ *
+ * @param  mcb_ptr  MCB Pointer
+ *
+ * @return the pointer to the previous MCB
+ */
 static struct mcb * prev_adjacent_mcb(struct mcb * mcb_ptr)
 {    
     struct lmcb * prev_lmcb = (struct lmcb *)((u32int)mcb_ptr - sizeof(struct lmcb));
@@ -62,6 +79,14 @@ static struct mcb * prev_adjacent_mcb(struct mcb * mcb_ptr)
     return prev_mcb;
 }
 
+/**
+ * @name next_adjacent_mcb
+ * @brief Next adjacent MCB in Memory
+ *
+ * @param  mcb_ptr  MCB Pointer
+ *
+ * @return the pointer to the next MCB
+ */
 static struct mcb * next_adjacent_mcb(struct mcb * mcb_ptr)
 {    
     struct mcb * next_mcb = (struct mcb *)((u32int)mcb_ptr + get_mcb_total_size(mcb_ptr->complete_mcb->size));
@@ -72,6 +97,14 @@ static struct mcb * next_adjacent_mcb(struct mcb * mcb_ptr)
     return next_mcb;
 }
 
+/**
+ * @name find_mcb_by_address
+ * @brief Finds the MCB by address
+ *
+ * @param  mem_ptr  Memory address pointer
+ *
+ * @return Pointer to the MCB
+ */
 static struct mcb * find_mcb_by_address(void * mem_ptr)
 {
     struct mcb * mcb_ptr = allocated_mem_list;
@@ -83,6 +116,14 @@ static struct mcb * find_mcb_by_address(void * mem_ptr)
     return mcb_ptr;
 }
 
+/**
+ * @name insert_mcb_to_queue
+ * @brief Inserts MCB to the queue
+ *
+ * @param  mcb_ptr  MCB Pointer
+ * @param  type     The type of MCB
+ * 
+ */
 static void insert_mcb_to_queue(struct mcb * mcb_ptr, enum mcb_type type)
 {
     struct mcb ** target_list = &free_mem_list;
@@ -116,6 +157,14 @@ static void insert_mcb_to_queue(struct mcb * mcb_ptr, enum mcb_type type)
     }
 }
 
+/**
+ * @name remove_mcb_to_queue
+ * @brief Removes MCB from the queue
+ *
+ * @param  mcb_ptr  MCB Pointer
+ * @param  type     The type of MCB
+ * 
+ */
 static void remove_mcb_from_queue(struct mcb * mcb_ptr, enum mcb_type type)
 {
     struct mcb ** target_list = &free_mem_list;
@@ -138,6 +187,13 @@ static void remove_mcb_from_queue(struct mcb * mcb_ptr, enum mcb_type type)
     mcb_ptr->next = mcb_ptr->prev = NULL;
 }
 
+/**
+ * @name init_heap
+ * @brief Allocates all the memory for MPX
+ *
+ * @param  size  Size of heap in bytes
+ * 
+ */
 void init_heap(u32int size) 
 {
     start_of_memory = kmalloc(get_mcb_total_size(size));
@@ -152,6 +208,14 @@ void init_heap(u32int size)
 
 }
 
+/**
+ * @name show_mcb
+ * @brief Displays the allocated or free memory block's address, 
+ *      previous and next pointers, and block's size.
+ * 
+ * @param  mcb_ptr  MCB Pointer
+ * 
+ */
 void show_mcb(struct mcb * mcb_ptr)
 {
     if(!mcb_ptr)
@@ -180,6 +244,14 @@ void show_mcb(struct mcb * mcb_ptr)
     printf("\t\t |______________________________________| \n");
 }
 
+/**
+ * @name find_first_fit_mcb
+ * @brief Finds the first block in the free_mem_list big enough to hold mem_size
+ *
+ * @param  mem_size     The size to be allocated from the heap
+ * 
+ * @return  The pointer to the MCB
+ */
 static struct mcb * find_first_fit_mcb(u32int mem_size)
 {
     struct mcb * mcb_ptr = free_mem_list;
@@ -194,13 +266,22 @@ static struct mcb * find_first_fit_mcb(u32int mem_size)
         {
             return mcb_ptr;
         }
-        // ptr = ptr->complete_mcb->next;
         mcb_ptr = mcb_ptr->next;
     }
     
     return NULL;
 }
 
+/**
+ * @name mcb_allocate
+ * @brief Allocates a memory block
+ *
+ * @param  mem_size     The MCB size to be allocated
+ * 
+ *
+ * @return  Address to allocated MCB
+ * @return  NULL if not enough space in free memory found
+ */
 void * mcb_allocate(u32int mem_size)
 {
     struct mcb * first_fit_mcb = find_first_fit_mcb(mem_size);
@@ -226,6 +307,15 @@ void * mcb_allocate(u32int mem_size)
     return NULL;
 }
 
+/**
+ * @name mcb_free
+ * @brief Frees a block of memory that was previously allocated
+ *
+ * @param  mem_ptr     Memory address pointer
+ * 
+ * @return  E_NOERROR   No Error found
+ * @return  E_INVPARA   Invalid Parameter
+ */
 error_t mcb_free(void * mem_ptr)
 {
     if(mem_ptr == NULL)
@@ -279,28 +369,44 @@ error_t mcb_free(void * mem_ptr)
     return E_NOERROR;
 }
 
+/**
+ * @name show_allocated_mcb
+ * @brief Displays all the allocated MCBs
+ */
 void show_allocated_mcb(){
+    
     struct mcb * ptr = NULL;
     ptr = allocated_mem_list;
-    while (ptr != NULL){
+    
+    while (ptr != NULL) {
         show_mcb(ptr);
-        // ptr = ptr->complete_mcb->next;
         ptr = ptr->next;
     }
+    
     printf("\n");
 }
 
+/**
+ * @name show_free_mcb
+ * @brief Displays all the free memory
+ */
 void show_free_mcb(){
+    
     struct mcb * ptr = NULL;
     ptr = free_mem_list;
-    while (ptr != NULL){
+    
+    while (ptr != NULL) {
         show_mcb(ptr);
-        // ptr = ptr->complete_mcb->next;
         ptr = ptr->next;
     }
+    
     printf("\n");
 }
 
+/**
+ * @name show_all_mcb
+ * @brief Displays all the free and allocated memory
+ */
 void show_all_mcb(){
     printf("Free list -> %X \n", free_mem_list);
     printf("allocated list -> %X \n", allocated_mem_list);
@@ -313,12 +419,28 @@ void show_all_mcb(){
     printf("\n");
 }
 
+/**
+ * @name mcb_allocate_mpx
+ * @brief Calls mcb_allocate to allocate memory block, used as parameter for sys_set_malloc in kmain.c
+ *
+ * @param  size     Size of block in bytes to allocate
+ * 
+ * @return Address of allocated MCB
+ */
 u32int mcb_allocate_mpx(u32int size)
 {
     // printf("Testing student_malloc: Using mcb_allocate\n");
     return (u32int)mcb_allocate(size);
 }
 
+/**
+ * @name mcb_free_mpx
+ * @brief Calls mcb_free to free memory block, used as parameter for sys_set_free in kmain.c
+ *
+ * @param  mem_ptr    Memory Pointer
+ * 
+ * @return 0
+ */
 int mcb_free_mpx(void * mem_ptr)
 {
     // printf("Testing student_free: Using student_free\n");
@@ -338,18 +460,27 @@ int mcb_free_mpx(void * mem_ptr)
     return 0;
 }
 
-#if 0 //Jafar, I added this because I am testing the program. You can keep working on your part.
-
+/**
+ * @name is_mcb_empty
+ * @brief Checks if the heap is empty
+ * 
+ * @return 0 or 1 (true or false)
+ */
 int is_mcb_empty(){
     return (allocated_mem_list == NULL);
 }
 
-#endif
-
-
 //#############################################################################
 //Permanent User's Commands
 
+/**
+ * @name show_mcb_main.
+ * @brief The function of show MCB for commhand.
+ * 
+ * @param argc  The number of tokens found.
+ * @param argv  The array of tokens.
+ * @return  0
+ */
 int show_mcb_main(int argc, char ** argv)
 {
     
@@ -388,17 +519,40 @@ int show_mcb_main(int argc, char ** argv)
 //#############################################################################
 //Temperary User's Commands
 
+/**
+ * @name is_digit
+ * @brief Checks if input is a digit used for testing for module R5
+ * 
+ * @param ch    single character
+ * @return 0 or 1 (true or false)
+ */
 static unsigned char is_digit(const char ch)
 {
     return ('0' <= ch && ch <= '9');
 }
+
+/**
+ * @name is_all_digit
+ * @brief Checks if string is a digit used for testing for module R5
+ * 
+ * @param str_ptr    string array
+ * @brief 0 or 1 (true or false)
+ */
 static unsigned char is_all_digit(const char * str_ptr)
 {
     unsigned char result = 1;
-    while(result && *str_ptr && (result = is_digit(*(str_ptr++)))) { }
+    while(result && *str_ptr && (result = is_digit(*(str_ptr++))));
     return result;
 }
 
+/**
+ * @name init_heap_main
+ * @brief The main function of initate heap only used for testing in commhand for module R5 
+ * 
+ * @param argc  The number of tokens found.
+ * @param argv  The array of tokens.
+ * @return  0
+ */
 int init_heap_main(int argc, char ** argv) 
 {
     if ( argc != 3 )
@@ -416,8 +570,14 @@ int init_heap_main(int argc, char ** argv)
     return 0;
 }
 
-
-
+/**
+ * @name mcb_allocate_main.
+ * @brief The main function of MCB allocate only used for testing in commhand for module R5
+ * 
+ * @param argc  The number of tokens found.
+ * @param argv  The array of tokens.
+ * @return  0
+ */
 int mcb_allocate_main( int argc, char ** argv )
 {
     if ( argc != 3 )
@@ -434,6 +594,14 @@ int mcb_allocate_main( int argc, char ** argv )
     return 0;
 }
 
+/**
+ * @name mcb_free_main.
+ * @brief The main function of free MCB only used for testing in commhand for module R5
+ * 
+ * @param argc  The number of tokens found.
+ * @param argv  The array of tokens.
+ * @return  0
+ */
 int mcb_free_main(int argc, char ** argv)
 {
     if (argc != 3 )
@@ -495,25 +663,39 @@ int mcb_free_main(int argc, char ** argv)
     return 0;
 }
 
-#if 0 // I am done with this part, if you want to test it out, feel free to. 
-
-int is_mcb_empty_main(int argc, char ** argv) {
+/**
+ * @name is_mcb_empty_main.
+ * @brief The main function of is MCB empty only used for testing in commhand for module R5
+ * 
+ * @param argc  The number of tokens found.
+ * @param argv  The array of tokens.
+ * @return  0
+ */
+int is_mcb_empty_main(int argc, char **argv) {
+    argv[0] = ""; // to avoid unsed-parameter warning
+    
     if (argc != 3 )
     {
         printf("ERROR: Incorrect number of arguments. Please refer to \"mcb free --help\"\n");
         return 0;
     }
-     int check = 0;
-     
-     if (is_mcb_empty(mcb_ptr) == 0) {
+    
+     if (is_mcb_empty() == 0) {
          printf("The MCB is empty.");
-     } else if (is_mcb_empty(mcb_ptr) == 1){
-         printf("The MCB is allocated.")
+     } else if (is_mcb_empty() == 1) {
+         printf("The MCB is allocated.");
      }
+     return 0;
 }
 
-#endif
-
+/**
+ * @name mcb_allocate_mpx2
+ * @brief MCB allocate MPX
+ * 
+ * @param mem_size  Block size to allocate
+ * @param name  name of the pcb process
+ * @return  Address pointer to allocated memory only used for testing in commhand for module R5
+ */
 void *mcb_allocate_mpx2(u32int mem_size, const char *name)
 {
     struct mcb * first_fit_mcb = find_first_fit_mcb(mem_size);
@@ -537,6 +719,5 @@ void *mcb_allocate_mpx2(u32int mem_size, const char *name)
         
         return (void *)first_fit_mcb->complete_mcb->begin_address;
     }
-    
     return (void *) NULL;
 }
