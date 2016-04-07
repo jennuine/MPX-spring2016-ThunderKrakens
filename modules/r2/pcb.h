@@ -18,6 +18,10 @@
 /* @brief The max length of the PCB name string */
 #define SIZE_OF_PCB_NAME 10
 
+#define COMMHAND_PCB_NAME "commhand"
+
+#define IDLE_PCB_NAME "idle"
+
 /**
 * PCB process class types.
 */

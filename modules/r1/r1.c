@@ -101,32 +101,40 @@ static int shutdown(int argc, char** argv)
 {
     if (argc >= 3 && !strcmp(argv[2], "--help"))
     {
-   	 printf("%s", functions[VERSION].help);
-   	 return run_mpx;
+        printf("%s", functions[VERSION].help);
     }
     else if (argc >= 3)
     {
-   	 printf("ERROR: Invalid arguments. Please refer to \"help\"\n");
-		 return E_INVUSRI;
+        printf("ERROR: Invalid arguments. Please refer to \"help\"\n");
+    }
+    else
+    {
+        char ans[] = { 0, 0 };
+        printf("\nAre you sure you would like to shutdown?\n( Type y/n )\n");
+
+        while (!ans[0])
+            if (inb(COM1 + 5) & 1)
+                ans[0] = inb(COM1);
+                
+        printf("\n");
+        if (!strcmp(ans, "y") || !strcmp(ans, "Y"))
+        {
+            run_mpx = 0;
+            suspend_pcb(find_pcb(COMMHAND_PCB_NAME));
+            suspend_pcb(find_pcb(IDLE_PCB_NAME));
+            suspend_pcb(cop);
+        }
+        else if (!strcmp(ans, "n") || !strcmp(ans, "N"))
+        {
+            run_mpx = 1;
+        }    
+        else
+        {
+            printf("Error: %s was invalid.\n\n", ans);
+        }
     }
 
-    char ans[] = { 0, 0 };
-    printf("\nAre you sure you would like to shutdown?\n( Type y/n )\n");
-
-    while (!ans[0])
-         if (inb(COM1 + 5) & 1)
-   		 ans[0] = inb(COM1);
-
-    printf("\n");
-    if (!strcmp(ans, "y") || !strcmp(ans, "Y"))
-   	 return run_mpx = !run_mpx;
-    else if (!strcmp(ans, "n") || !strcmp(ans, "N"))
-   	 return run_mpx;
-    else
-   	 {
-   		 printf("Error: %s was invalid.\n\n", ans);
-   		 return run_mpx;
-   	 }
+   	return 0;
 }
 
 /** @name help_usages
@@ -229,63 +237,56 @@ void commhand()
     int i = 0;
     for(i = 0; i < 50; i++)
     {
-   	 argv[i] = ActArgArray[i];
+        argv[i] = ActArgArray[i];
     }
 
-    printf("\nWelcome! This is Thunder Krakens Operating System!\n\n");
     load_functions();
+    printf("\nWelcome! This is Thunder Krakens Operating System!\n\n");
 
     while(run_mpx)
     {
-   	 argc = 0;  //reset the argument list
-   	 printf("\nCmd > ");
-
-   	 get_input_line(userInput, WithEcho);
-   	 command_line_parser(userInput, &argc, argv, MAX_ARGC, USER_INPUT_BUFFER_SIZE);
-    
-    printf("\n");
-   	 if(argc && !strcmp(argv[0], "mpx"))
-   	 {
-   		 if (argc > 1)
-   			 exe_function(argc, argv, MPX_FUNCTIONS_BEGIN, PCB_FUNCTIONS_BEGIN);
-   		 else
-   			 help_usages(mpx);
-   	 }
-   	 else if(argc && !strcmp(argv[0], "pcb"))
-   	 {
-   		 if (argc > 1)
-   			 exe_function(argc, argv, PCB_FUNCTIONS_BEGIN, MCB_FUNCTIONS_BEGIN);
-   		 else
-   			 help_usages(pcb);
-   	 }
-   	 else if(argc && !strcmp(argv[0], "mcb"))
-   	 {
-   		 if (argc > 1)
-   			 exe_function(argc, argv, MCB_FUNCTIONS_BEGIN, NUM_OF_FUNCTIONS);
-   		 else
-   			 help_usages(mcb);
-   	 }
-   	 else if (argc && !strcmp(argv[0], "help"))
-   	 {
-   		 if (argc > 1)
-   			 functions[HELP].function(argc, argv);
-   		 else
-   			 help_usages(help);
-   	 }
-   	 else if (argc)
-   	 {
-   		 printf("There is no program called \"%s\". Please refer to \"help\"\n", argv[0]);
-   		 
-   	 }
-   	 
-   	 if(!run_mpx)
-   	 {
-   	     shutdown_pcb();
-   	 }
-   	 else
-   	 {
-   	     sys_req(IDLE);
-   	 }
+        argc = 0;  //reset the argument list
+        printf("\nCmd > ");
+        
+        get_input_line(userInput, WithEcho);
+        command_line_parser(userInput, &argc, argv, MAX_ARGC, USER_INPUT_BUFFER_SIZE);
+        
+        printf("\n");
+        if(argc && !strcmp(argv[0], "mpx"))
+        {
+            if (argc > 1)
+                exe_function(argc, argv, MPX_FUNCTIONS_BEGIN, PCB_FUNCTIONS_BEGIN);
+            else
+                help_usages(mpx);
+        }
+        else if(argc && !strcmp(argv[0], "pcb"))
+        {
+            if (argc > 1)
+                exe_function(argc, argv, PCB_FUNCTIONS_BEGIN, MCB_FUNCTIONS_BEGIN);
+            else
+                help_usages(pcb);
+        }
+        else if(argc && !strcmp(argv[0], "mcb"))
+        {
+            if (argc > 1)
+                exe_function(argc, argv, MCB_FUNCTIONS_BEGIN, NUM_OF_FUNCTIONS);
+            else
+                help_usages(mcb);
+        }
+        else if (argc && !strcmp(argv[0], "help"))
+        {
+            if (argc > 1)
+                functions[HELP].function(argc, argv);
+            else
+                help_usages(help);
+        }
+        else if (argc)
+        {
+            printf("There is no program called \"%s\". Please refer to \"help\"\n", argv[0]);
+        
+        }
+        
+        sys_req(IDLE);
     }
     sys_req(EXIT);
     //return 0;

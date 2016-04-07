@@ -76,17 +76,6 @@ void init_heap(u32int size);
 void * mcb_allocate(u32int mem_size);
 
 /**
- * @name mcb_free
- * @brief Frees a block of memory that was previously allocated
- *
- * @param  mem_ptr     Memory address pointer
- * 
- * @return  E_NOERROR   No Error found
- * @return  E_INVPARA   Invalid Parameter
- */
-error_t mcb_free(void * mem_ptr);
-
-/**
  * @name show_mcb
  * @brief Displays the allocated or free memory block's address, 
  *      previous and next pointers, and block's size.
@@ -205,5 +194,13 @@ int mcb_free_main(int argc, char ** argv);
  * @return  0
  */
 int is_mcb_empty_main(int argc, char ** argv);
+
+/**
+ * @name shutdown_mcb.
+ * @brief Shutdown the pcb during the shutdown procedure.
+ * 
+ * @return  0
+ */
+void shutdown_mcb();
 
 #endif

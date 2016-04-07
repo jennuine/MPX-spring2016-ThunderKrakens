@@ -304,19 +304,15 @@ void * mcb_allocate(u32int mem_size)
  * @name mcb_free
  * @brief Frees a block of memory that was previously allocated
  *
- * @param  mem_ptr     Memory address pointer
+ * @param  mcb_ptr     MCB Node pointer
  * 
  * @return  E_NOERROR   No Error found
  * @return  E_INVPARA   Invalid Parameter
  */
-error_t mcb_free(void * mem_ptr)
+static error_t mcb_free(struct mcb * mcb_ptr)
 {
-    if(mem_ptr == NULL)
+    if(mcb_ptr == NULL)
         return E_NOERROR; //It is already free, return no error.
-    
-    struct mcb * mcb_ptr = find_mcb_by_address(mem_ptr);
-    if(!mcb_ptr)
-        return E_INVPARA;
     
     //Remove from allocated memory queue first.
     remove_mcb_from_queue(mcb_ptr, allocated);
@@ -434,7 +430,14 @@ u32int mcb_allocate_mpx(u32int size)
  */
 int mcb_free_mpx(void * mem_ptr)
 {
-    return (int)(mcb_free(mem_ptr));
+    if(mem_ptr == NULL)
+        return (int)E_NOERROR; //It is already free, return no error.
+    
+    struct mcb * mcb_ptr = find_mcb_by_address(mem_ptr);
+    if(!mcb_ptr)
+        return (int)E_INVPARA;
+        
+    return (int)(mcb_free(mcb_ptr));
 }
 
 /**
@@ -445,6 +448,23 @@ int mcb_free_mpx(void * mem_ptr)
  */
 int is_mcb_empty(){
     return (allocated_mem_list == NULL);
+}
+
+/**
+ * @name shutdown_mcb.
+ * @brief Shutdown the pcb during the shutdown procedure.
+ * 
+ * @return  0
+ */
+void shutdown_mcb()
+{
+    struct mcb * mcb_ptr = allocated_mem_list;
+    
+    while (mcb_ptr)
+    {
+        mcb_free(mcb_ptr);
+        mcb_ptr = mcb_ptr->next;
+    }
 }
 
 //#############################################################################
@@ -682,3 +702,4 @@ int is_mcb_empty_main(int argc, char **argv) {
     
     return 0;
 }
+

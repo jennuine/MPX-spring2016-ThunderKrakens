@@ -64,6 +64,7 @@ void kmain(void)
    klogv("Initializing virtual memory...");
    init_paging();
    
+   klogv("Initializing heap and memory control blocks...");
    sys_set_malloc(&mcb_allocate_mpx);
    sys_set_free(&mcb_free_mpx);
    init_heap(HEAP_SIZE);
@@ -76,12 +77,16 @@ void kmain(void)
    //klogv("Transferring control to commhand...");
    //commhand();
    
-   resume_pcb(load_process("commhand", pcb_class_sys, 0, &commhand));
-   resume_pcb(load_process("idle", pcb_class_sys, 0, &idle));
+   resume_pcb(load_process(COMMHAND_PCB_NAME, pcb_class_sys, 0, &commhand));
+   resume_pcb(load_process(IDLE_PCB_NAME, pcb_class_sys, 0, &idle));
    sys_req(IDLE);
 
    // 11) System Shutdown
    klogv("Starting system shutdown procedure...");
+   klogv("\t shutdown PCB...");
+   shutdown_pcb();
+   klogv("\t shutdown MCB...");
+   shutdown_mcb();
 
    /* Shutdown Procedure */
    klogv("Shutdown complete. You may now turn off the machine. (QEMU: C-a x)");
