@@ -9,6 +9,8 @@
 
  #ifndef _PCB_COMM_H
  #define _PCB_COMM_H
+ 
+#include "../cmd_orders.h"
 
  /**
   * @name suspend_pcb_main.
@@ -61,6 +63,7 @@
   */
  int show_pcb_main(int argc, char ** argv);
 
+#if WITH_R2_TEMP_CMD
  /**
   * @name create_pcb_main.
   *
@@ -108,5 +111,6 @@
   * @return  0
   */
  int unblock_pcb_main(int argc, char ** argv);
+#endif
 
 #endif

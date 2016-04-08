@@ -120,41 +120,6 @@ struct pcb_struct * load_process(const char * pName, const enum process_class pC
  return new_pcb;
 }
 
-/**
- * @name yield_main
- * @brief Requests an IDLE interrupt.
- *
- * @param argc  The number of tokens found.
- * @param argv  The array of tokens.
- *
- * @return  0
- */
-
-int yield_main(int argc, char ** argv)
-{
- if(argc > 2 && !strcmp(argv[2], "--help"))
- {
-  if(argc <= 3)
-  {
-   print_help(YIELD);
-  }
-  else
-  {
-   printf("ERROR: Too many arguments for \"--help\" option!\n");
-  }
- }
- else if(argc == 2)
- {
-  sys_req(IDLE);
-  
- }
- else
- {
-  printf("ERROR: Invalid arguments you had input. Please refers to \"--help\"!\n");
- }
- return 0;
-}
-
 
 /**
  * @name load_r3_main
@@ -225,3 +190,41 @@ int load_r3_main(int argc, char ** argv)
  }
  return 0;
 }
+
+#if WITH_R3_TEMP_CMD
+/**
+ * @name yield_main
+ * @brief Requests an IDLE interrupt.
+ *
+ * @param argc  The number of tokens found.
+ * @param argv  The array of tokens.
+ *
+ * @return  0
+ */
+
+int yield_main(int argc, char ** argv)
+{
+ if(argc > 2 && !strcmp(argv[2], "--help"))
+ {
+  if(argc <= 3)
+  {
+   print_help(YIELD);
+  }
+  else
+  {
+   printf("ERROR: Too many arguments for \"--help\" option!\n");
+  }
+ }
+ else if(argc == 2)
+ {
+  sys_req(IDLE);
+  
+ }
+ else
+ {
+  printf("ERROR: Invalid arguments you had input. Please refers to \"--help\"!\n");
+ }
+ return 0;
+}
+
+#endif

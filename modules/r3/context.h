@@ -13,6 +13,7 @@
 #include <system.h>
 #include "../r2/pcb.h"
 #include "../errno.h"
+#include "../cmd_orders.h"
 
 extern struct context* old_context;
 extern struct pcb_struct *cop;
@@ -64,18 +65,6 @@ u32int * sys_call(struct context* registers);
 struct pcb_struct * load_process(const char * pName, const enum process_class pClass, const unsigned char pPriority, void (*function)());
 
 /**
- * @name yield_main
- * @brief Requests an IDLE interrupt.
- *
- * @param argc  The number of tokens found.
- * @param argv  The array of tokens.
- *
- * @return  0
- */
-
-int yield_main(int argc, char ** argv);
-
-/**
  * @name load_r3_main
  * @brief Loads the main function of R3.
  *
@@ -86,5 +75,19 @@ int yield_main(int argc, char ** argv);
  */
 
 int load_r3_main(int argc, char ** argv);
+
+#if WITH_R3_TEMP_CMD
+/**
+ * @name yield_main
+ * @brief Requests an IDLE interrupt.
+ *
+ * @param argc  The number of tokens found.
+ * @param argv  The array of tokens.
+ *
+ * @return  0
+ */
+
+int yield_main(int argc, char ** argv);
+#endif
 
 #endif

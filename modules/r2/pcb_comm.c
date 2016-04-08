@@ -300,8 +300,8 @@ int show_pcb_main(int argc, char ** argv)
  return 0;
 }
 
-#if 0
 
+#if WITH_R2_TEMP_CMD
 /**
  * @name create_pcb_main.
  *

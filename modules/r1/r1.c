@@ -165,7 +165,7 @@ int help_usages(enum comm_type type)
 
     if (type == mcb)
     {
-     printf("\nAvailable pcb commands:\n");
+     printf("\nAvailable mcb commands:\n");
    	 start_from = MCB_FUNCTIONS_BEGIN;
    	 end_at = NUM_OF_FUNCTIONS;
     }
@@ -440,7 +440,8 @@ static void load_functions()
     show : pcb show -blocked\n\n\tDisplays all PCB's in the blocked queue.\n\n\
     \n\nArguments:\n\tprocessName  String process name\n\n\
     Exit Status:\n\tReturns success unless no PCB named [processName] or string is empty/null.\n\n";
-/*
+    
+#if WITH_R2_TEMP_CMD
     functions[CREATEPCB].nameStr = "create"; functions[CREATEPCB].function = &create_pcb_main; functions[CREATEPCB].usage = "pcb create [processName] [processClass] [processPriority]";
     functions[CREATEPCB].help = "\ncreate : mpx create [processName] [processClass] [processPriority]\n\
     \n\tCreates the PCB's process given the name, class, and priority.\n\n\
@@ -468,15 +469,9 @@ static void load_functions()
     \n\tUnblocks the specific PCB.\n\n\
     \n\nArguments:\n\tprocessName  String process name\n\n\
     Exit Status:\n\tReturns success unless no PCB named [processName] or string is empty/null.\n\n";
-*/
+#endif
+
     //R3 Commands
-    functions[YIELD].nameStr = "yield"; functions[YIELD].function = &yield_main;
-    functions[YIELD].usage = "mpx yield";
-    functions[YIELD].help = "\nyield : mpx yield\n\
-    \n\tcause commhand to yield to other processes\n\n\
-    \n\nArguments:\n\tNone\n\n\
-    Exit Status:\n\tReturns success only.\n\n";
-    
     functions[LOADR3].nameStr = "loadr3"; functions[LOADR3].function = &load_r3_main;
     functions[LOADR3].usage = "mpx loadr3 [processPriority]";
     functions[LOADR3].help = "\nloadr3 : mpx loadr3 [processPriority]\n\
@@ -484,6 +479,15 @@ static void load_functions()
     \n\nArguments:\n\t processPriority  String process priority\n\n\
     Exit Status:\n\tReturns success unless the value of priority is not in the correct range.\n\n";
     
+#if WITH_R3_TEMP_CMD
+    functions[YIELD].nameStr = "yield"; functions[YIELD].function = &yield_main;
+    functions[YIELD].usage = "mpx yield";
+    functions[YIELD].help = "\nyield : mpx yield\n\
+    \n\tcause commhand to yield to other processes\n\n\
+    \n\nArguments:\n\tNone\n\n\
+    Exit Status:\n\tReturns success only.\n\n";
+#endif
+
     //R5 commands    
     functions[SHOWMCB].nameStr = "show"; functions[SHOWMCB].function = &show_mcb_main;
     functions[SHOWMCB].usage = "mcb show -all\n\tusage:\tmcb show -free\n\tusage:\tmcb show -allocated";
@@ -492,6 +496,7 @@ static void load_functions()
     show: mcb show -allocated\n\n\tDisplays the address and size of allocated MCBs.\n\n\
     Exit Status:\n\tAlways returns success.\n\n";
     
+#if WITH_R5_TEMP_CMD
     functions[INITMCB].nameStr = "init"; functions[INITMCB].function = &init_heap_main;
     functions[INITMCB].usage = "mcb init [size]";
     functions[INITMCB].help = "\n init : mcb init [size]\n\n\tAllocates all available memory for MPX\n\n\
@@ -505,14 +510,15 @@ static void load_functions()
     Exit Status:\n\tReturns success unless invalid parameter size or not enough memory to allocate.\n\n";
     
     functions[FREEMCB].nameStr = "free"; functions[FREEMCB].function = &mcb_free_main;
-    functions[FREEMCB].usage = "mcb free <index of mcb>\n\tusage:\tmcb free <index of mcb>";
-    functions[FREEMCB].help = "\n free : mcb free <index of mcb>\n\n\tFree the mcb with a specified index.\n\n\
+    functions[FREEMCB].usage = "mcb free [index]";
+    functions[FREEMCB].help = "\n free : mcb free [index]\n\n\tFree the mcb with a specified index.\n\n\
     Exit Status:\n\tReturns success unless the index value is not in the valid range.\n\n";
     
     functions[ISMCBEMPT].nameStr = "isempty"; functions[ISMCBEMPT].function = &mcb_free_main;
-    functions[ISMCBEMPT].usage = "mcb isempty \n\tusage:\tmcb isempty";
+    functions[ISMCBEMPT].usage = "mcb isempty";
     functions[ISMCBEMPT].help = "\n isempty : mcb isempty\n\n\tCheck if the memory only contains empty mcb.\n\n\
     Exit Status:\n\tAlways returns success.\n\n";
+#endif
 }
 
 /**

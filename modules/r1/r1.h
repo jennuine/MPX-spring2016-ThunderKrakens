@@ -18,40 +18,8 @@ enum comm_type
     help
 } __attribute__ ((packed));
 
-#define FUNCTIONS_BEGIN     0
-#define HELP            0
+#include "../cmd_orders.h"
 
-#define MPX_FUNCTIONS_BEGIN 1
-
-#define VERSION       1
-#define GETTIME       2
-#define SETTIME       3
-#define GETDATE       4
-#define SETDATE       5
-#define SHUTDOWN      6
-#define YIELD         7
-#define LOADR3        8
-
-#define PCB_FUNCTIONS_BEGIN 9
-
-#define SUSPDPCB      9
-#define RESUMEPCB     10
-#define SETPCBPRIO    11
-#define SHOWPCB       12
-//#define CREATEPCB   13
-//#define DELPCB      14
-//#define BLOCKPCB    13
-//#define UNBLKPCB    14
-
-#define MCB_FUNCTIONS_BEGIN 13
-
-#define SHOWMCB  13
-#define FREEMCB  14
-#define INITMCB  15
-#define ALLOCMCB 16
-#define ISMCBEMPT 17
-
-#define NUM_OF_FUNCTIONS    18
 
 /** @name commhand
  *

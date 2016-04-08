@@ -23,6 +23,41 @@ struct mcb * free_mem_list;
 struct mcb * allocated_mem_list;
 
 /**
+* PCB process class types.
+*/
+enum mcb_type
+{
+  free, /**< Process is an application process. */
+  allocated /**< Process is a system process. */
+} __attribute__ ((packed));
+
+/**
+ * Complete Memory Control Block Struct
+ */
+struct cmcb {
+    enum mcb_type type; /**< Type indicating free or allocated */
+    void * begin_address; /**< Beginning address */
+    u32int size; /**< Indicates size of block in bytes */
+};
+
+/**
+ * Limited Memory Control Block Struct
+ */
+struct lmcb {
+    enum mcb_type type; /**< Type indicating free or allocated */
+    u32int size; /**< Indicates size of block in bytes */
+};
+
+/**
+ * Memory Control Block Struct
+ */
+struct mcb {
+    struct cmcb * complete_mcb; /**< Complete Memory Control Block */
+    struct lmcb * limited_mcb; /**< Limited Memory Control Block */
+    struct mcb *prev, *next;
+};
+
+/**
  * @name get_mcb_total_size
  * @brief Finds MCB's total size
  *
@@ -513,6 +548,7 @@ int show_mcb_main(int argc, char ** argv)
 }
 
 
+#ifdef WITH_R5_TEMP_CMD
 //#############################################################################
 //Temperary User's Commands
 
@@ -702,4 +738,4 @@ int is_mcb_empty_main(int argc, char **argv) {
     
     return 0;
 }
-
+#endif

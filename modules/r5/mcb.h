@@ -11,48 +11,13 @@
 #define _MCB_H
 
 #include <system.h>
-#include "../r2/pcb.h"
 
 #define MAX_HEAP_SIZE 5000
 
 /** Global variable labeling start of memory */
 extern u32int start_of_memory;
 
-/**
-* PCB process class types.
-*/
-enum mcb_type
-{
-  free, /**< Process is an application process. */
-  allocated /**< Process is a system process. */
-} __attribute__ ((packed));
-
-
-/**
- * Complete Memory Control Block Struct
- */
-struct cmcb {
-    enum mcb_type type; /**< Type indicating free or allocated */
-    void * begin_address; /**< Beginning address */
-    u32int size; /**< Indicates size of block in bytes */
-};
-
-/**
- * Limited Memory Control Block Struct
- */
-struct lmcb {
-    enum mcb_type type; /**< Type indicating free or allocated */
-    u32int size; /**< Indicates size of block in bytes */
-};
-
-/**
- * Memory Control Block Struct
- */
-struct mcb {
-    struct cmcb * complete_mcb; /**< Complete Memory Control Block */
-    struct lmcb * limited_mcb; /**< Limited Memory Control Block */
-    struct mcb *prev, *next;
-};
+struct mcb;
 
 /**
  * @name init_heap
@@ -153,6 +118,15 @@ void *mcb_allocate_mpx2(u32int size, const char *name);
  */
 int show_mcb_main(int argc, char ** argv);
 
+/**
+ * @name shutdown_mcb.
+ * @brief Shutdown the pcb during the shutdown procedure.
+ * 
+ * @return  0
+ */
+void shutdown_mcb();
+
+#ifdef WITH_R5_TEMP_CMD
 //Temperary User's Commands
 
 /**
@@ -194,13 +168,6 @@ int mcb_free_main(int argc, char ** argv);
  * @return  0
  */
 int is_mcb_empty_main(int argc, char ** argv);
-
-/**
- * @name shutdown_mcb.
- * @brief Shutdown the pcb during the shutdown procedure.
- * 
- * @return  0
- */
-void shutdown_mcb();
+#endif
 
 #endif
