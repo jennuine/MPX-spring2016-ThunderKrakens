@@ -548,7 +548,7 @@ int show_mcb_main(int argc, char ** argv)
 }
 
 
-#ifdef WITH_R5_TEMP_CMD
+#if WITH_R5_TEMP_CMD
 //#############################################################################
 //Temperary User's Commands
 
