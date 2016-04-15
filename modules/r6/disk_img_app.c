@@ -1,12 +1,23 @@
 #include "disk_img_manager.h"
 #include "disk_folder_manager.h"
 
-int main()
+int main(int argc, char **argv)
 {
-    load_image_file("winb98se.IMA");
+    
+    // load_image_file("imgs/winb98se.IMA");
+    
+    if (argv[0] == NULL) 
+    {
+        printf("Please enter the image filepath.\n");
+        return 0;
+    }
+    
+    
+    
+    load_image_file(argv[1]);
     folder_manager_init();
     
-    //print_curr_dir_entry_list();
+    print_curr_dir_entry_list();
     list_curr_file_and_dir();
     char * command_str;
     size_t command_str_len = 0;

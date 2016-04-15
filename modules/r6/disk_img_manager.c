@@ -11,6 +11,7 @@ struct data_sector * data_area = NULL;
 void load_image_file(const char * path_to_file)
 {
     FILE * img_file = fopen(path_to_file, "rb");
+    
     if(!img_file)
     {
         printf("Failed to read the image file!\n");
@@ -58,7 +59,11 @@ void print_boot_sec_info(const struct img_boot_sector * boot_sec)
 {
     if(!boot_sec)
         return;
-        
+    char vol_label[12];
+    char file_sys_type[9];
+    ch_arr_to_str(vol_label, boot_sec->vol_label, 11);
+    ch_arr_to_str(file_sys_type, boot_sec->file_sys_type, 8);
+    
     printf("Bytes per Sector:              %d\n", boot_sec->byte_per_sector);
     printf("Sectors per Cluster:           %d\n", boot_sec->sector_per_cluster);
     printf("Num of Reserved Sectors:       %d\n", boot_sec->reserved_sec_num);
@@ -66,7 +71,14 @@ void print_boot_sec_info(const struct img_boot_sector * boot_sec)
     printf("Max Num of Root Dir Entries:   %d\n", boot_sec->root_dir_max_num);
     printf("Total num of Sec in File Sys:  %d\n", boot_sec->sec_num);
     printf("Num of Sectors per FAT:        %d\n", boot_sec->sec_per_fat_num);
-    //we need more from here...
+    printf("Sectors per Track:             %d\n", boot_sec->sec_per_track);
+    printf("Number of heads:               %d\n", boot_sec->head_num);
+    printf("Total sector count for FAT32 : %d\n", boot_sec->total_sec_fat32);
+    printf("Boot Signature:                %d\n", boot_sec->boot_sign);
+    printf("Volume ID:                     %d\n", boot_sec->vol_id);
+    printf("Volume Label:                  %s\n", vol_label);
+    printf("File System Type:              %s\n", file_sys_type);
+    printf("\n");
 }
 
 void ch_arr_to_str(char * dest, const char * src, const unsigned int size)

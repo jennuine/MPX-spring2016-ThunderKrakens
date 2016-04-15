@@ -71,10 +71,17 @@ void print_curr_dir_entry_list()
 {
     //need to be corrected later...
     int i = 0;
-    for(i = 0; i < boot_sec->root_dir_max_num; i++)
-    {
-        if(current_folder->file_array[i].file_name[0] != 0xE5 && current_folder->file_array[i].file_name[0] != 0)
-            print_dir_entry_info(&(current_folder->file_array[i]));
+    if(folder_stack_top == 0)
+    {//if it is in the root folder.
+        for(i = 0; i < boot_sec->root_dir_max_num; i++)
+        {
+            if(current_folder->file_array[i].file_name[0] != 0xE5 && current_folder->file_array[i].file_name[0] != 0)
+                print_dir_entry_info(&(current_folder->file_array[i]));
+        }
+    }
+    else
+    {//else it is in any subdirectory
+        
     }
 }
 
@@ -84,26 +91,40 @@ void list_curr_file_and_dir()
     char file_ext[4] = { 0 };
     int i = 0;
     printf("\n");
-    printf("Directories: ");
-    for(i = 0; i < boot_sec->root_dir_max_num; i++)
-    {
-        if(current_folder->file_array[i].file_name[0] != 0xE5 && current_folder->file_array[i].file_name[0] != 0 && (current_folder->file_array[i].attributes & ATTRIBUTE_SUBD))
+    printf("Directories: \n");
+    if(folder_stack_top == 0)
+    {//if it is in the root folder.
+        for(i = 0; i < boot_sec->root_dir_max_num; i++)
         {
-            ch_arr_to_str(file_name, current_folder->file_array[i].file_name, 8);
-            printf("%s || ", file_name);
+            if(current_folder->file_array[i].file_name[0] != 0xE5 && current_folder->file_array[i].file_name[0] != 0 && (current_folder->file_array[i].attributes & ATTRIBUTE_SUBD))
+            {
+                ch_arr_to_str(file_name, current_folder->file_array[i].file_name, 8);
+                printf("%s \t\t ", file_name);
+            }
         }
+    }
+    else
+    {//else it is in any subdirectory
+        
     }
     printf("\n\n");
     
-    printf("Files: ");
-    for(i = 0; i < boot_sec->root_dir_max_num; i++)
-    {
-        if(current_folder->file_array[i].file_name[0] != 0xE5 && current_folder->file_array[i].file_name[0] != 0 && !(current_folder->file_array[i].attributes & ATTRIBUTE_SUBD))
+    printf("Files: \n");
+    if(folder_stack_top == 0)
+    {//if it is in the root folder.
+        for(i = 0; i < boot_sec->root_dir_max_num; i++)
         {
-            ch_arr_to_str(file_name, current_folder->file_array[i].file_name, 8);
-            ch_arr_to_str(file_ext, current_folder->file_array[i].extension, 3);
-            printf("%s.%s || ", file_name, file_ext);
+            if(current_folder->file_array[i].file_name[0] != 0xE5 && current_folder->file_array[i].file_name[0] != 0 && !(current_folder->file_array[i].attributes & ATTRIBUTE_SUBD))
+            {
+                ch_arr_to_str(file_name, current_folder->file_array[i].file_name, 8);
+                ch_arr_to_str(file_ext, current_folder->file_array[i].extension, 3);
+                printf("%s.%s \t\t ", file_name, file_ext);
+            }
         }
+    }
+    else
+    {//else it is in any subdirectory
+        
     }
     printf("\n\n");
 }
