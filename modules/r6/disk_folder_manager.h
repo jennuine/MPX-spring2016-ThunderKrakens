@@ -11,3 +11,7 @@ void print_dir_entry_info(const struct dir_entry_info * folder_ptr);
 void print_curr_dir_entry_list();
 
 void print_curr_path();
+
+void ls();
+
+void rename_file(const char * old_name, const char * new_name);

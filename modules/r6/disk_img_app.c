@@ -1,6 +1,8 @@
 #include "disk_img_manager.h"
 #include "disk_folder_manager.h"
 #include "../errno.h"
+#include "ansi.h"
+
 
 int main(int argc, char **argv)
 {
@@ -25,39 +27,80 @@ int main(int argc, char **argv)
         printf("\nTODO: THUNDERKRAKENS - Implement me!\n\n");
     }
     
+    // printf("%s%sTEST%s\n", T_BOLD, T_CYAN, T_RESET);
     folder_manager_init();
+    
     
     print_curr_dir_entry_list();
     list_curr_file_and_dir();
+    
     char * command_str;
     size_t command_str_len = 0;
+
     int is_run = 1;
+    
     while(is_run)
     {
         print_curr_path();
         printf("> ");
+
         getline(&command_str, &command_str_len, stdin);
-        int i = 0;
-        for(i = 0; i < command_str_len; i++)
+        int i;
+        
+        // Needs fixed
+        char arg1[20];
+        char arg2[20];
+        char arg3[20];
+        
+        sscanf(command_str, "%s %s %s", arg1, arg2, arg3);
+
+        
+        if (!strcmp(arg1, "print"))
         {
-            if(isspace(command_str[i]) && command_str[i] != ' ')
+            if (!strcmp(arg2, "boot"))
             {
-                command_str[i] = '\0';
-            }
+                print_boot_sec_info(boot_sec);
+            } 
+            continue; //goes back to beginning of while loop
         }
         
-        if(!strcmp(command_str, "exit"))
+        if (!strcmp(arg1, "rename")) 
+        {
+            rename_file(arg2, arg3);
+            continue;
+        }
+        
+        //needs implemented
+        if (!strcmp(arg1, "cd"))
+        {
+            continue;
+        }
+        
+        if (!strcmp(arg1, "ls"))
+        {
+            if (!strcmp(arg2, "-l"))
+            {
+                print_curr_dir_entry_list();
+            } else {
+                ls();
+            }
+            continue;
+        }
+        
+        if (!strcmp(arg1, "exit"))
         {
             is_run = 0;
         }
         
     }
     
-    free(command_str);
-    command_str = NULL;
+    // free(command_str);
+    // command_str = NULL;
     clean_buffers();
     return 0;
 }
+
+
 
 #if 0
 ------------------------------
@@ -114,6 +157,7 @@ EMPLOYEE.JAV POSTER1.PDF  POSTER2.PDF
 //      list dir
 //      Type
 //      Rename
+//      handle arrow keys
 //Extra Credit:
 //      Move
 //      Adding file

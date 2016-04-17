@@ -21,8 +21,6 @@ error_t load_image_file(const char * path_to_file)
     boot_sec = malloc(sizeof(struct img_boot_sector));
     fread(boot_sec, 512, 1, img_file);
     
-    print_boot_sec_info(boot_sec);
-    
     int fats_bytes_size = boot_sec->byte_per_sector * boot_sec->sec_per_fat_num * boot_sec->fat_copies_num;
     fat_arr = malloc(fats_bytes_size);
     fread(fat_arr, fats_bytes_size, 1, img_file);
@@ -38,6 +36,7 @@ error_t load_image_file(const char * path_to_file)
     fclose(img_file);
     return E_NOERROR;
 }
+
 
 void clean_buffers()
 {
@@ -100,6 +99,7 @@ uint8_t * get_fat_val(const unsigned int copy_index, const unsigned int byte_ind
 {
     return &fat_arr[(copy_index * boot_sec->byte_per_sector * boot_sec->sec_per_fat_num) + byte_index];
 }
+
 
 
 #if 0

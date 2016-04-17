@@ -1,5 +1,6 @@
 #include "disk_img_manager.h"
 #include "disk_folder_manager.h"
+#include "ansi.h"
 
 struct folder
 {
@@ -24,7 +25,7 @@ void folder_manager_init()
     ch_arr_to_str(vol_label, boot_sec->vol_label, 11);
     strcpy(current_folder->folder_name, vol_label);
 
-    *root_dir_file_arr++;
+    *root_dir_file_arr++; //Moved pointer so .img's name won't be labeled as file
     current_folder->file_array = root_dir_file_arr;
 }
 
@@ -118,7 +119,6 @@ void list_curr_file_and_dir()
         
     }
     printf("\n\n");
-    
     printf("Files: \n");
     if(folder_stack_top == 0)
     {//if it is in the root folder.
@@ -151,4 +151,57 @@ void print_curr_path()
         printf("%s\\", folder_stack[i]->folder_name);
     }
     printf("%s\\", current_folder->folder_name);
+}
+
+
+void ls()
+{
+    char file_name[10] = { 0 };
+    char file_ext[5] = { 0 };
+    int i = 0;
+    if(folder_stack_top == 0)
+    {
+        for(i = 0; i < boot_sec->root_dir_max_num; i++)
+        {
+            if(current_folder->file_array[i].file_name[0] != 0xE5 
+                && current_folder->file_array[i].file_name[0] != 0
+                && !(current_folder->file_array[i].attributes & 0x02))
+            {    
+                if (current_folder->file_array[i].attributes & 0x10)
+                { 
+                    ch_arr_to_str(file_name, current_folder->file_array[i].file_name, 8);
+                    printf("%s%s%s/\t", T_DIR, file_name, T_DIR_OFF);
+                }    
+                else if (!(current_folder->file_array[i].attributes & 0x02))
+                {   
+                    ch_arr_to_str(file_name, current_folder->file_array[i].file_name, 8);
+                    ch_arr_to_str(file_ext, current_folder->file_array[i].extension, 3);
+                    printf("%s.%s\t", file_name, file_ext);
+                }
+            }
+        }
+        printf("\n");
+    }
+}
+
+void rename_file(const char * old_name, const char * new_name)
+{
+    int i;
+    char file_name[50];
+    for(i = 0; i < boot_sec->root_dir_max_num; i++)
+    {
+        if(current_folder->file_array[i].file_name[0] != 0xE5 
+            && current_folder->file_array[i].file_name[0] != 0
+            && !(current_folder->file_array[i].attributes & 0x02))
+            {
+                ch_arr_to_str(file_name, current_folder->file_array[i].file_name, 8);
+                if (!strcmp(file_name, old_name))
+                {
+                    strcpy(current_folder->file_array[i].file_name, new_name);
+                    return;
+                }
+            }
+    }
+    
+    printf("\t%sCould not locate file named: %s%s\n\n", T_ITCS, old_name, T_ITCS_OFF);
 }
