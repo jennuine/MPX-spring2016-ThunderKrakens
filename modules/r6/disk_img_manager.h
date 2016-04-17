@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
+#include "../errno.h"
 
 struct img_boot_sector
 {
@@ -61,7 +62,7 @@ extern struct dir_entry_info * root_dir_file_arr;
 extern struct data_sector * data_area;
 
 
-void load_image_file(const char * path_to_file);
+error_t load_image_file(const char * path_to_file);
 
 void print_boot_sec_info(const struct img_boot_sector * boot_sec);
 

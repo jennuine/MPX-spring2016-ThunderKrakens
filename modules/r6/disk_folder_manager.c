@@ -18,7 +18,13 @@ struct folder * current_folder = NULL;
 void folder_manager_init()
 {
     current_folder = malloc(sizeof(struct folder));
-    strcpy(current_folder->folder_name, "root\0");
+    // strcpy(current_folder->folder_name, "root\0");
+    
+    char vol_label[12];
+    ch_arr_to_str(vol_label, boot_sec->vol_label, 11);
+    strcpy(current_folder->folder_name, vol_label);
+
+    *root_dir_file_arr++;
     current_folder->file_array = root_dir_file_arr;
 }
 
@@ -76,7 +82,8 @@ void print_curr_dir_entry_list()
         for(i = 0; i < boot_sec->root_dir_max_num; i++)
         {
             if(current_folder->file_array[i].file_name[0] != 0xE5 && current_folder->file_array[i].file_name[0] != 0)
-                print_dir_entry_info(&(current_folder->file_array[i]));
+                if (!(current_folder->file_array[i].attributes & 0x02))
+                    print_dir_entry_info(&(current_folder->file_array[i]));
         }
     }
     else
@@ -98,8 +105,11 @@ void list_curr_file_and_dir()
         {
             if(current_folder->file_array[i].file_name[0] != 0xE5 && current_folder->file_array[i].file_name[0] != 0 && (current_folder->file_array[i].attributes & ATTRIBUTE_SUBD))
             {
-                ch_arr_to_str(file_name, current_folder->file_array[i].file_name, 8);
-                printf("%s \t\t ", file_name);
+                if (!(current_folder->file_array[i].attributes & 0x02))
+                {
+                    ch_arr_to_str(file_name, current_folder->file_array[i].file_name, 8);
+                    printf("%s \t\t ", file_name);
+                }
             }
         }
     }
@@ -116,9 +126,12 @@ void list_curr_file_and_dir()
         {
             if(current_folder->file_array[i].file_name[0] != 0xE5 && current_folder->file_array[i].file_name[0] != 0 && !(current_folder->file_array[i].attributes & ATTRIBUTE_SUBD))
             {
-                ch_arr_to_str(file_name, current_folder->file_array[i].file_name, 8);
-                ch_arr_to_str(file_ext, current_folder->file_array[i].extension, 3);
-                printf("%s.%s \t\t ", file_name, file_ext);
+                if (!(current_folder->file_array[i].attributes & 0x02) && !(current_folder->file_array[i].attributes & 0x10 ))
+                {
+                    ch_arr_to_str(file_name, current_folder->file_array[i].file_name, 8);
+                    ch_arr_to_str(file_ext, current_folder->file_array[i].extension, 3);
+                    printf("%s.%s \t\t ", file_name, file_ext);
+                }
             }
         }
     }

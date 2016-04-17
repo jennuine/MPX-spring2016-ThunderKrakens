@@ -1,5 +1,6 @@
 #include "disk_img_manager.h"
 
+
 struct img_boot_sector * boot_sec = NULL;
 
 static uint8_t * fat_arr = NULL;
@@ -8,14 +9,13 @@ struct dir_entry_info * root_dir_file_arr = NULL;
 
 struct data_sector * data_area = NULL;
 
-void load_image_file(const char * path_to_file)
+error_t load_image_file(const char * path_to_file)
 {
     FILE * img_file = fopen(path_to_file, "rb");
     
     if(!img_file)
     {
-        printf("Failed to read the image file!\n");
-        return;
+        return E_FILE_NF;
     }
     
     boot_sec = malloc(sizeof(struct img_boot_sector));
@@ -35,9 +35,8 @@ void load_image_file(const char * path_to_file)
     data_area = malloc(data_area_byte_size);
     fread(data_area, data_area_byte_size, 1, img_file);
     
-    if(img_file)
-        fclose(img_file);
-    
+    fclose(img_file);
+    return E_NOERROR;
 }
 
 void clean_buffers()
@@ -49,8 +48,10 @@ void clean_buffers()
         free(fat_arr);
         
     if(root_dir_file_arr)
+    {   
+        *root_dir_file_arr--;
         free(root_dir_file_arr);
-        
+    }
     if(data_area)
         free(data_area);
 }
@@ -59,6 +60,7 @@ void print_boot_sec_info(const struct img_boot_sector * boot_sec)
 {
     if(!boot_sec)
         return;
+        
     char vol_label[12];
     char file_sys_type[9];
     ch_arr_to_str(vol_label, boot_sec->vol_label, 11);
