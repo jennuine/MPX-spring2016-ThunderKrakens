@@ -12,6 +12,6 @@ void print_curr_dir_entry_list();
 
 void print_curr_path();
 
-void ls();
+//void ls();
 
 void rename_file(const char * old_name, const char * new_name);

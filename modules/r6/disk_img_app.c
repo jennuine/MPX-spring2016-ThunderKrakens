@@ -3,11 +3,95 @@
 #include "../errno.h"
 #include "ansi.h"
 
+#define MAX_ARGC 50
+#define USER_INPUT_BUFFER_SIZE 1000
+
+/** @name CommandParserStat
+ *
+ *	@brief The status of the command parser
+ */
+enum CommandPaserStat
+{
+    NotWriting,
+    NormalWriting,
+    DoubleQuoteWriting,
+    SingleQuoteWriting
+} __attribute__ ((packed));
+
+
+/**
+* @name   command_line_parser
+* @brief  Splits the complete command line into tokens by space, single quote, or double quote.
+*
+* @param  CmdStr     The complete input command.
+* @param  argc       The number of tokens found.
+* @param  argv       The array of tokens.
+* @param  MaxArgNum  The maximum number of tokens that array can hold.
+* @param  MaxStrLen  The maximum length of each token that string can hold.
+*
+* @return void
+*/
+void command_line_parser(const char * CmdStr, int * argc, char ** argv, const int MaxArgNum, const int MaxStrLen)
+{
+    enum CommandPaserStat WritingStat = NotWriting;
+    char * LinePtr = NULL;
+    while(*CmdStr && *argc <= MaxArgNum - 1)
+    {
+   	 if(isspace(*CmdStr) && WritingStat == NotWriting)
+   	 {
+   		 //Space before writing, just ignore it.
+   	 }
+   	 else if( (isspace(*CmdStr) && WritingStat == NormalWriting) ||
+   		  (*CmdStr == '\"' && WritingStat == DoubleQuoteWriting) ||
+   		  (*CmdStr == '\'' && WritingStat == SingleQuoteWriting) ||
+   		  (LinePtr && LinePtr - argv[*argc] >= MaxStrLen - 1) )
+   	 {//End of writing
+   		 *LinePtr++ = '\0';
+   		 (*argc)++;
+   		 WritingStat = NotWriting;
+   	 }
+   	 else if(*CmdStr == '\"' && WritingStat == NotWriting)
+   	 {//Begin Double Quote Writing
+   		 WritingStat = DoubleQuoteWriting;
+   		 LinePtr = argv[*argc];
+   		 CmdStr++;
+   	 }
+   	 else if(*CmdStr == '\'' && WritingStat == NotWriting)
+   	 {//Begin Single Quote Writing
+   		 WritingStat = SingleQuoteWriting;
+   		 LinePtr = argv[*argc];
+   		 CmdStr++;
+   	 }else if(WritingStat == NotWriting)
+   	 {//Begin Normal Writing
+   		 WritingStat = NormalWriting;
+   		 LinePtr = argv[*argc];
+   	 }
+
+   	 if(*CmdStr && WritingStat > NotWriting)
+   	 {
+   		 *LinePtr++ = *CmdStr;
+   	 }
+   	 CmdStr++;
+    }
+
+    if(WritingStat > NotWriting)
+    {
+   	 *LinePtr++ = '\0';
+   	 (*argc)++;
+   	 WritingStat = NotWriting;
+    }
+}
 
 int main(int argc, char **argv)
 {
-    
-    // load_image_file("imgs/winb98se.IMA");
+    static int inner_argc = 0;
+    static char ActArgArray[MAX_ARGC][USER_INPUT_BUFFER_SIZE];
+    char * inner_argv[MAX_ARGC];
+    int i = 0;
+    for(i = 0; i < 50; i++)
+    {
+        inner_argv[i] = ActArgArray[i];
+    }
     
     if (argv[1] == NULL) 
     {
@@ -31,10 +115,11 @@ int main(int argc, char **argv)
     folder_manager_init();
     
     
-    print_curr_dir_entry_list();
+    //print_curr_dir_entry_list();
     list_curr_file_and_dir();
+    //ls();
     
-    char * command_str;
+    char * command_str = NULL;
     size_t command_str_len = 0;
 
     int is_run = 1;
@@ -45,8 +130,10 @@ int main(int argc, char **argv)
         printf("> ");
 
         getline(&command_str, &command_str_len, stdin);
+        command_line_parser(command_str, &inner_argc, inner_argv, MAX_ARGC, USER_INPUT_BUFFER_SIZE);
         int i;
         
+        /*
         // Needs fixed
         char arg1[20];
         char arg2[20];
@@ -86,12 +173,14 @@ int main(int argc, char **argv)
             }
             continue;
         }
+        */
         
-        if (!strcmp(arg1, "exit"))
+        if (inner_argc && !strcmp(inner_argv[0], "exit"))
         {
             is_run = 0;
         }
         
+        inner_argc = 0;
     }
     
     // free(command_str);

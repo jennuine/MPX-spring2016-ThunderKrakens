@@ -1,6 +1,7 @@
 #include "disk_img_manager.h"
 #include "disk_folder_manager.h"
 #include "ansi.h"
+#include "file_dir_iterator.h"
 
 struct folder
 {
@@ -25,7 +26,6 @@ void folder_manager_init()
     ch_arr_to_str(vol_label, boot_sec->vol_label, 11);
     strcpy(current_folder->folder_name, vol_label);
 
-    *root_dir_file_arr++; //Moved pointer so .img's name won't be labeled as file
     current_folder->file_array = root_dir_file_arr;
 }
 
@@ -68,7 +68,7 @@ void print_dir_entry_info(const struct dir_entry_info * folder_ptr)
     printf("File Name:           %s\n", file_name);
     printf("Extension:           %s\n", file_ext);
     printf("Attributes:          %s\n", attr_str);
-    //we need more here...
+    
     printf("First Log Cluster:   %d\n", folder_ptr->first_log_clu);
     printf("File Size:           %d\n", folder_ptr->file_size);
     printf("\n");
@@ -82,9 +82,13 @@ void print_curr_dir_entry_list()
     {//if it is in the root folder.
         for(i = 0; i < boot_sec->root_dir_max_num; i++)
         {
-            if(current_folder->file_array[i].file_name[0] != 0xE5 && current_folder->file_array[i].file_name[0] != 0)
-                if (!(current_folder->file_array[i].attributes & 0x02))
-                    print_dir_entry_info(&(current_folder->file_array[i]));
+            if(
+            current_folder->file_array[i].file_name[0] != 0xE5 
+            && current_folder->file_array[i].file_name[0] != 0
+            && !(current_folder->file_array[i].attributes & ATTRIBUTE_HIDD)
+            && !(current_folder->file_array[i].attributes & ATTRIBUTE_VOLL)
+            )
+                print_dir_entry_info(&(current_folder->file_array[i]));
         }
     }
     else
@@ -97,49 +101,39 @@ void list_curr_file_and_dir()
 {
     char file_name[9] = { 0 };
     char file_ext[4] = { 0 };
+    struct dir_itr * dir_entry_itr = init_dir_itr((folder_stack_top == 0 ? ROOT_DIR_SEC_INDEX : data_addr_to_sec_i(current_folder->file_array)));
     int i = 0;
     printf("\n");
-    printf("Directories: \n");
-    if(folder_stack_top == 0)
-    {//if it is in the root folder.
-        for(i = 0; i < boot_sec->root_dir_max_num; i++)
+    
+    for(ditr_begin(dir_entry_itr), i = 0; !ditr_end(dir_entry_itr); ditr_next(dir_entry_itr))
+    {
+        struct dir_entry_info * current_entry = ditr_get(dir_entry_itr);
+        if((current_entry->attributes & ATTRIBUTE_SUBD))
         {
-            if(current_folder->file_array[i].file_name[0] != 0xE5 && current_folder->file_array[i].file_name[0] != 0 && (current_folder->file_array[i].attributes & ATTRIBUTE_SUBD))
-            {
-                if (!(current_folder->file_array[i].attributes & 0x02))
-                {
-                    ch_arr_to_str(file_name, current_folder->file_array[i].file_name, 8);
-                    printf("%s \t\t ", file_name);
-                }
-            }
+            i++;
+            ch_arr_to_str(file_name, current_entry->file_name, 8);
+            printf("%s%s%s/\t", T_DIR, file_name, T_DIR_OFF);
+            if(i % 6)
+                printf("\n");
         }
     }
-    else
-    {//else it is in any subdirectory
-        
-    }
+    
     printf("\n\n");
-    printf("Files: \n");
-    if(folder_stack_top == 0)
-    {//if it is in the root folder.
-        for(i = 0; i < boot_sec->root_dir_max_num; i++)
-        {
-            if(current_folder->file_array[i].file_name[0] != 0xE5 && current_folder->file_array[i].file_name[0] != 0 && !(current_folder->file_array[i].attributes & ATTRIBUTE_SUBD))
-            {
-                if (!(current_folder->file_array[i].attributes & 0x02) && !(current_folder->file_array[i].attributes & 0x10 ))
-                {
-                    ch_arr_to_str(file_name, current_folder->file_array[i].file_name, 8);
-                    ch_arr_to_str(file_ext, current_folder->file_array[i].extension, 3);
-                    printf("%s.%s \t\t ", file_name, file_ext);
-                }
-            }
-        }
+    uint8_t attr_filter = ATTRIBUTE_SUBD | ATTRIBUTE_HIDD | ATTRIBUTE_VOLL;
+    ditr_set_filter(dir_entry_itr, attr_filter);
+    for(ditr_begin(dir_entry_itr), i = 0; !ditr_end(dir_entry_itr); ditr_next(dir_entry_itr))
+    {
+        i++;
+        struct dir_entry_info * current_entry = ditr_get(dir_entry_itr);
+        ch_arr_to_str(file_name, current_entry->file_name, 8);
+        ch_arr_to_str(file_ext, current_entry->extension, 3);
+        printf("%s.%s \t ", file_name, file_ext);
+        if(!(i % 6))
+            printf("\n");
     }
-    else
-    {//else it is in any subdirectory
         
-    }
     printf("\n\n");
+    free(dir_entry_itr);
 }
 
 void print_curr_path()
@@ -153,7 +147,7 @@ void print_curr_path()
     printf("%s\\", current_folder->folder_name);
 }
 
-
+/* We already had the same function above.
 void ls()
 {
     char file_name[10] = { 0 };
@@ -165,14 +159,14 @@ void ls()
         {
             if(current_folder->file_array[i].file_name[0] != 0xE5 
                 && current_folder->file_array[i].file_name[0] != 0
-                && !(current_folder->file_array[i].attributes & 0x02))
+                && !(current_folder->file_array[i].attributes & ATTRIBUTE_HIDD))
             {    
-                if (current_folder->file_array[i].attributes & 0x10)
+                if (current_folder->file_array[i].attributes & ATTRIBUTE_SUBD)
                 { 
                     ch_arr_to_str(file_name, current_folder->file_array[i].file_name, 8);
                     printf("%s%s%s/\t", T_DIR, file_name, T_DIR_OFF);
                 }    
-                else if (!(current_folder->file_array[i].attributes & 0x02))
+                else if (!(current_folder->file_array[i].attributes & ATTRIBUTE_HIDD))
                 {   
                     ch_arr_to_str(file_name, current_folder->file_array[i].file_name, 8);
                     ch_arr_to_str(file_ext, current_folder->file_array[i].extension, 3);
@@ -183,6 +177,7 @@ void ls()
         printf("\n");
     }
 }
+*/
 
 void rename_file(const char * old_name, const char * new_name)
 {
@@ -192,15 +187,15 @@ void rename_file(const char * old_name, const char * new_name)
     {
         if(current_folder->file_array[i].file_name[0] != 0xE5 
             && current_folder->file_array[i].file_name[0] != 0
-            && !(current_folder->file_array[i].attributes & 0x02))
+            && !(current_folder->file_array[i].attributes & ATTRIBUTE_HIDD))
+        {
+            ch_arr_to_str(file_name, current_folder->file_array[i].file_name, 8);
+            if (!strcmp(file_name, old_name))
             {
-                ch_arr_to_str(file_name, current_folder->file_array[i].file_name, 8);
-                if (!strcmp(file_name, old_name))
-                {
-                    strcpy(current_folder->file_array[i].file_name, new_name);
-                    return;
-                }
+                strcpy(current_folder->file_array[i].file_name, new_name); //Problem here.
+                return;
             }
+        }
     }
     
     printf("\t%sCould not locate file named: %s%s\n\n", T_ITCS, old_name, T_ITCS_OFF);

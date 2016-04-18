@@ -48,12 +48,17 @@ struct dir_entry_info
 struct data_sector
 {
     uint8_t     data[512];
-};
+} __attribute__ ((packed));
 
 #define ATTRIBUTE_READ 0x01
 #define ATTRIBUTE_HIDD 0x02
 #define ATTRIBUTE_SYST 0x04
+#define ATTRIBUTE_VOLL 0x08
+
 #define ATTRIBUTE_SUBD 0x10
+#define ATTRIBUTE_ARCH 0x20
+#define ATTRIBUTE_UUS1 0x40
+#define ATTRIBUTE_UUS2 0x80
 
 extern struct img_boot_sector * boot_sec;
 
@@ -72,12 +77,9 @@ void ch_arr_to_str(char * dest, const char * src, const unsigned int size);
 
 uint8_t * get_fat_val(const unsigned int copy_index, const unsigned int byte_index);
 
-#if 0
 
 /**
  * get the specific meanningful 12-bit value from the FAT array.
  * As said in page 4 of FAT12 File System Format Information. Convert 2*1 byte to 12 bit.
 **/
-uint16_t fat(const uint16_t cluster_index);
-
-#endif
+void fat(uint16_t * fat_val, const uint16_t cluster_index);

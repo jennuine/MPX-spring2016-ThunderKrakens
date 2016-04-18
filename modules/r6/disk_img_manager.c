@@ -48,7 +48,7 @@ void clean_buffers()
         
     if(root_dir_file_arr)
     {   
-        *root_dir_file_arr--;
+        //*root_dir_file_arr--;
         free(root_dir_file_arr);
     }
     if(data_area)
@@ -102,12 +102,30 @@ uint8_t * get_fat_val(const unsigned int copy_index, const unsigned int byte_ind
 
 
 
-#if 0
-
 /**
  * get the specific meanningful 12-bit value from the FAT array.
  * As said in page 4 of FAT12 File System Format Information. Convert 2*1 byte to 12 bit.
 **/
-uint16_t fat(const uint16_t cluster_index);
-
-#endif
+void fat(uint16_t * fat_val, const uint16_t cluster_index)
+{
+    const uint16_t n = cluster_index + 2;
+    uint16_t tempVal = 0x0000;
+    if(n % 2)
+    {//if it is odd
+        uint8_t higher_val = *get_fat_val(1, (3 * n) / 2);
+        uint8_t lower_val  = *get_fat_val(1, (1 + ((3 * n) / 2)));
+        
+        tempVal  = ((uint16_t)higher_val & 0x0010);
+        tempVal  = tempVal | ((uint16_t)lower_val << 4);
+        *fat_val = tempVal;
+    }
+    else
+    {//if it is even
+        uint8_t higher_val = *get_fat_val(1, (3 * n) / 2);
+        uint8_t lower_val  = *get_fat_val(1, (1 + ((3 * n) / 2)));
+        
+        tempVal  = (uint16_t)higher_val; //high 8 bits
+        tempVal  = tempVal | (((uint16_t)lower_val & 0x0001) << 8);//low 4 bits
+        *fat_val = tempVal;
+    }
+}
