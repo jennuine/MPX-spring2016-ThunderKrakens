@@ -114,7 +114,7 @@ int main(int argc, char **argv)
     // printf("%s%sTEST%s\n", T_BOLD, T_CYAN, T_RESET);
     folder_manager_init();
     
-    
+    print_boot_sec_info(boot_sec);
     //print_curr_dir_entry_list();
     list_curr_file_and_dir();
     //ls();
@@ -178,6 +178,28 @@ int main(int argc, char **argv)
         if (inner_argc && !strcmp(inner_argv[0], "exit"))
         {
             is_run = 0;
+        }
+        
+        if (inner_argc && !strcmp(inner_argv[0], "ls"))
+        {
+            if(!strcmp(inner_argv[1], "-l"))
+                print_curr_dir_entry_list();
+            else
+                list_curr_file_and_dir();
+        }
+        
+        if (inner_argc == 2 && !strcmp(inner_argv[0], "cd"))
+        {
+            if(!strcmp(inner_argv[1], "."))
+            {
+                
+            }
+            else if(!strcmp(inner_argv[1], ".."))
+            {
+                pop_folder();
+            }
+            else
+                push_folder(get_entry(inner_argv[1]));
         }
         
         inner_argc = 0;

@@ -131,8 +131,9 @@ void ditr_next(struct dir_itr * itr_ptr)
         itr_ptr->curr_entry_i++;
         if(itr_ptr->curr_entry_i >= 16)
         {
-            fat(&itr_ptr->curr_sec_i, itr_ptr->curr_sec_i);
-            itr_ptr->curr_entry_i = 0;
+            itr_ptr->curr_sec_i = 0xFFF;
+            //fat(&itr_ptr->curr_sec_i, itr_ptr->curr_sec_i);
+            //itr_ptr->curr_entry_i = 0;
         }
         
     }
@@ -160,7 +161,7 @@ struct data_sector * fitr_get(struct file_itr * itr_ptr)
     if(!itr_ptr || fitr_end(itr_ptr))
         return NULL;
         
-    return &data_area[itr_ptr->curr_sec_i];
+    return get_data_ptr(itr_ptr->curr_sec_i);
 }
 
 struct dir_entry_info * ditr_get(struct dir_itr * itr_ptr)
@@ -173,11 +174,12 @@ struct dir_entry_info * ditr_get(struct dir_itr * itr_ptr)
         return &root_dir_file_arr[itr_ptr->curr_entry_i];
     }
     
-    struct dir_entry_info * first_entry = (struct dir_entry_info *)&data_area[itr_ptr->curr_sec_i];
+    struct dir_entry_info * first_entry = get_data_ptr(itr_ptr->curr_sec_i);
     
     return &first_entry[itr_ptr->curr_entry_i];
 }
 
+/*
 uint16_t data_addr_to_sec_i(void * addr)
 {
     if(!addr || (void *)addr < (void *)data_area)
@@ -185,3 +187,4 @@ uint16_t data_addr_to_sec_i(void * addr)
     
     return ((void *)addr - (void *)data_area) / 512;
 }
+*/

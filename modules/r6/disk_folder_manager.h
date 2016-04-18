@@ -15,3 +15,6 @@ void print_curr_path();
 //void ls();
 
 void rename_file(const char * old_name, const char * new_name);
+
+struct dir_entry_info * get_entry(const char * nameStr);
+

@@ -28,11 +28,13 @@ error_t load_image_file(const char * path_to_file)
     int root_dir_byte_size = boot_sec->root_dir_max_num * sizeof(struct dir_entry_info);
     root_dir_file_arr = malloc(root_dir_byte_size);
     fread(root_dir_file_arr, root_dir_byte_size, 1, img_file);
-    
+    printf("\n*debug* data_sector struct size: %lu\n", sizeof(struct data_sector));
+    printf("\n*debug* beofore data_area @: %X\n", ftell(img_file));
     int data_area_byte_size = ((boot_sec->sec_num - 1 - (boot_sec->sec_per_fat_num * boot_sec->fat_copies_num)) * boot_sec->byte_per_sector) - (boot_sec->root_dir_max_num * sizeof(struct dir_entry_info));
     data_area = malloc(data_area_byte_size);
     fread(data_area, data_area_byte_size, 1, img_file);
-    
+    printf("\n*debug* after data_area @: %X\n", ftell(img_file));
+    printf("\n*debug* data_area @: %X\n", data_area);
     fclose(img_file);
     return E_NOERROR;
 }
@@ -128,4 +130,12 @@ void fat(uint16_t * fat_val, const uint16_t cluster_index)
         tempVal  = tempVal | (((uint16_t)lower_val & 0x0001) << 8);//low 4 bits
         *fat_val = tempVal;
     }
+}
+
+void * get_data_ptr(const uint16_t data_area_sec_index)
+{
+    if(data_area_sec_index < 2)
+        return NULL;
+    
+    return (void *)&data_area[data_area_sec_index - 2];
 }

@@ -83,3 +83,5 @@ uint8_t * get_fat_val(const unsigned int copy_index, const unsigned int byte_ind
  * As said in page 4 of FAT12 File System Format Information. Convert 2*1 byte to 12 bit.
 **/
 void fat(uint16_t * fat_val, const uint16_t cluster_index);
+
+void * get_data_ptr(const uint16_t data_area_sec_index);

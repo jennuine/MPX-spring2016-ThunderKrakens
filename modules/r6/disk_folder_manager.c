@@ -7,7 +7,8 @@ struct folder
 {
     unsigned char folder_name[9];
     struct dir_entry_info * file_array;
-};
+    uint16_t log_sec_index;
+} __attribute__ ((packed));
 
 struct folder * folder_stack[FOLDER_STACK_SIZE];
 
@@ -27,18 +28,23 @@ void folder_manager_init()
     strcpy(current_folder->folder_name, vol_label);
 
     current_folder->file_array = root_dir_file_arr;
+    current_folder->log_sec_index = ROOT_DIR_SEC_INDEX;
 }
 
 void push_folder(struct dir_entry_info * child_folder_ptr)
 {
     if(folder_stack_top >= FOLDER_STACK_SIZE)
         return;
+    if(!child_folder_ptr || !(child_folder_ptr->attributes & ATTRIBUTE_SUBD))
+        return;
     
     folder_stack[folder_stack_top++] = current_folder;
     
     current_folder = malloc(sizeof(struct folder));
     ch_arr_to_str(current_folder->folder_name, child_folder_ptr->file_name, 8);
-    //current_folder->file_array = child_folder_ptr;  //need to be finished later...
+    current_folder->file_array = get_data_ptr(child_folder_ptr->first_log_clu);
+    current_folder->log_sec_index = child_folder_ptr->first_log_clu;
+    printf("\n*debug* file_array @: %X\n", current_folder->file_array);
 }
 
 void pop_folder()
@@ -93,7 +99,16 @@ void print_curr_dir_entry_list()
     }
     else
     {//else it is in any subdirectory
-        
+        for(i = 0; i < 16; i++)
+        {
+            if(
+            current_folder->file_array[i].file_name[0] != 0xE5 
+            && current_folder->file_array[i].file_name[0] != 0
+            && !(current_folder->file_array[i].attributes & ATTRIBUTE_HIDD)
+            && !(current_folder->file_array[i].attributes & ATTRIBUTE_VOLL)
+            )
+                print_dir_entry_info(&(current_folder->file_array[i]));
+        }
     }
 }
 
@@ -101,7 +116,7 @@ void list_curr_file_and_dir()
 {
     char file_name[9] = { 0 };
     char file_ext[4] = { 0 };
-    struct dir_itr * dir_entry_itr = init_dir_itr((folder_stack_top == 0 ? ROOT_DIR_SEC_INDEX : data_addr_to_sec_i(current_folder->file_array)));
+    struct dir_itr * dir_entry_itr = init_dir_itr(current_folder->log_sec_index);
     int i = 0;
     printf("\n");
     
@@ -113,7 +128,7 @@ void list_curr_file_and_dir()
             i++;
             ch_arr_to_str(file_name, current_entry->file_name, 8);
             printf("%s%s%s/\t", T_DIR, file_name, T_DIR_OFF);
-            if(i % 6)
+            if(!(i % 6))
                 printf("\n");
         }
     }
@@ -199,4 +214,28 @@ void rename_file(const char * old_name, const char * new_name)
     }
     
     printf("\t%sCould not locate file named: %s%s\n\n", T_ITCS, old_name, T_ITCS_OFF);
+}
+
+struct dir_entry_info * get_entry(const char * nameStr)
+{
+    char file_name[9] = { 0 };
+    char file_ext[4] = { 0 };
+    char full_name[12] = { 0 };
+    
+    struct dir_itr * dir_entry_itr = init_dir_itr(current_folder->log_sec_index);
+    
+    for(ditr_begin(dir_entry_itr); !ditr_end(dir_entry_itr); ditr_next(dir_entry_itr))
+    {
+        struct dir_entry_info * current_entry = ditr_get(dir_entry_itr);
+        ch_arr_to_str(file_name, current_entry->file_name, 8);
+        ch_arr_to_str(file_ext, current_entry->extension, 3);
+        if(strlen(file_ext) > 0)
+            sprintf(full_name, "%s.%s", file_name, file_ext);
+        else
+            sprintf(full_name, "%s", file_name);
+        if(!strcmp(full_name, nameStr))
+            return current_entry;
+    }
+    
+    return NULL;
 }
