@@ -83,6 +83,8 @@ void clean_buffers();
 
 void ch_arr_to_str(char * dest, const char * src, const unsigned int size);
 
+void str_to_ch_arr(char * dest, const char * src, const unsigned int size);
+
 uint8_t * get_fat_val(const unsigned int copy_index, const unsigned int byte_index);
 
 

@@ -83,7 +83,7 @@ void command_line_parser(const char * CmdStr, int * argc, char ** argv, const in
     }
 }
 
-int main(int argc, char **argv)
+int main(int argc, char ** argv)
 {
     static int inner_argc = 0;
     static char ActArgArray[MAX_ARGC][USER_INPUT_BUFFER_SIZE];
@@ -112,16 +112,12 @@ int main(int argc, char **argv)
         printf("\nTODO: THUNDERKRAKENS - Implement me!\n\n");
     }
     
-    // printf("%s%sTEST%s\n", T_BOLD, T_CYAN, T_RESET);
     folder_manager_init();
     
     print_boot_sec_info(boot_sec);
-    //print_curr_dir_entry_list();
-    list_curr_file_and_dir();
-    //ls();
+    //list_dir_entry_report();
+    //list_dir_entry_short();
     
-    //char * command_str = NULL;
-    //size_t command_str_len = 0;
 	char command_str[USER_INPUT_BUFFER_SIZE];
 
     int is_run = 1;
@@ -130,53 +126,9 @@ int main(int argc, char **argv)
     {
         print_curr_path();
         printf("> ");
-
-        //getline(&command_str, &command_str_len, stdin);
+        
 		fgets(command_str, USER_INPUT_BUFFER_SIZE, stdin);
         command_line_parser(command_str, &inner_argc, inner_argv, MAX_ARGC, USER_INPUT_BUFFER_SIZE);
-        int i;
-        
-        /*
-        // Needs fixed
-        char arg1[20];
-        char arg2[20];
-        char arg3[20];
-        
-        sscanf(command_str, "%s %s %s", arg1, arg2, arg3);
-
-        
-        if (!strcmp(arg1, "print"))
-        {
-            if (!strcmp(arg2, "boot"))
-            {
-                print_boot_sec_info(boot_sec);
-            } 
-            continue; //goes back to beginning of while loop
-        }
-        
-        if (!strcmp(arg1, "rename")) 
-        {
-            rename_file(arg2, arg3);
-            continue;
-        }
-        
-        //needs implemented
-        if (!strcmp(arg1, "cd"))
-        {
-            continue;
-        }
-        
-        if (!strcmp(arg1, "ls"))
-        {
-            if (!strcmp(arg2, "-l"))
-            {
-                print_curr_dir_entry_list();
-            } else {
-                ls();
-            }
-            continue;
-        }
-        */
         
         if (inner_argc && !strcmp(inner_argv[0], "exit"))
         {
@@ -185,10 +137,10 @@ int main(int argc, char **argv)
         
         if (inner_argc && !strcmp(inner_argv[0], "ls"))
         {
-            if(!strcmp(inner_argv[1], "-l"))
-                print_curr_dir_entry_list();
+            if(inner_argc == 2 && !strcmp(inner_argv[1], "-l"))
+                list_dir_entry_report();
             else
-                list_curr_file_and_dir();
+                list_dir_entry_short();
         }
         
         if (inner_argc == 2 && !strcmp(inner_argv[0], "cd"))
@@ -208,11 +160,46 @@ int main(int argc, char **argv)
         inner_argc = 0;
     }
     
-    // free(command_str);
-    // command_str = NULL;
     clean_buffers();
     return 0;
 }
+
+
+
+
+
+//====== main functions ================
+
+
+
+
+
+
+#if 0
+
+int print_boot_sec_main(int argc, char ** argv);
+
+int print_root_dir_main(int argc, char ** argv);
+
+int change_dir_main(int argc, char ** argv);
+
+int list_main(int argc, char ** argv);
+
+int type_main(int argc, char ** argv)
+
+int rename_main(int argc, char ** argv);
+
+int move_main(int argc, char ** argv);
+
+#endif
+
+
+//======================================
+
+
+
+
+
 
 
 

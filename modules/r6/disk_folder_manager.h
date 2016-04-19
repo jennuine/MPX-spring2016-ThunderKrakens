@@ -6,15 +6,15 @@ void push_folder(struct dir_entry_info * child_folder_ptr);
 
 void pop_folder();
 
-void print_dir_entry_info(const struct dir_entry_info * folder_ptr);
+void print_dir_entry_info(struct dir_entry_info * folder_ptr);
 
-void print_curr_dir_entry_list();
+void list_dir_entry_report();
+
+void list_dir_entry_short();
 
 void print_curr_path();
 
-//void ls();
-
-void rename_file(const char * old_name, const char * new_name);
+void rename_entry(struct dir_entry_info * folder_ptr, const char * new_name);
 
 struct dir_entry_info * get_entry(const char * nameStr);
 

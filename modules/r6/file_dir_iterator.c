@@ -103,11 +103,11 @@ uint8_t fitr_end(struct file_itr * itr_ptr)
 }
 
 uint8_t ditr_end(struct dir_itr * itr_ptr)
-{//printf("*debug: %lu\n", (uint64_t)itr_ptr);
+{
     if(!itr_ptr)
         return 1;
         
-    //printf("*debug: %X\n", itr_ptr->curr_sec_i);
+    
     return (0xFF8 <= itr_ptr->curr_sec_i && itr_ptr->curr_sec_i <= 0xFFF);
 }
 
@@ -129,14 +129,12 @@ void ditr_next(struct dir_itr * itr_ptr)
         itr_ptr->curr_entry_i++;
         if(itr_ptr->curr_entry_i >= boot_sec->root_dir_max_num)
             itr_ptr->curr_sec_i = 0xFFF;
-        //printf("*debug: %d\n", itr_ptr->curr_entry_i);
     }
     else
     {
         itr_ptr->curr_entry_i++;
         if(itr_ptr->curr_entry_i >= 16)
         {
-            //itr_ptr->curr_sec_i = 0xFFF;
             fat(&itr_ptr->curr_sec_i, itr_ptr->curr_sec_i);
             itr_ptr->curr_entry_i = 0;
         }

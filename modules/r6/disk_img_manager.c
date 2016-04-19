@@ -117,6 +117,19 @@ void ch_arr_to_str(char * dest, const char * src, const unsigned int size)
     *dest = '\0';
 }
 
+void str_to_ch_arr(char * dest, const char * src, const unsigned int size)
+{
+    unsigned int i = 0;
+    unsigned char after_end = 0;
+    for(i = 0; i < size; i++)
+    {
+        if(!after_end && src[i] == '\0')
+            after_end = 1;
+        
+        dest[i] = after_end ? ' ' : src[i];
+    }
+}
+
 uint8_t * get_fat_val(const unsigned int copy_index, const unsigned int byte_index)
 {
     return &fat_arr[(copy_index * boot_sec->byte_per_sector * boot_sec->sec_per_fat_num) + byte_index];
