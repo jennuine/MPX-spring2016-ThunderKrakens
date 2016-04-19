@@ -9,6 +9,22 @@ struct dir_entry_info * root_dir_file_arr = NULL;
 
 struct data_sector * data_area = NULL;
 
+/*
+static void print_fat()
+{
+	printf("\n");
+	int i = 0;
+	uint16_t fat_val = 0;
+	for (i = 0; i < 20; i++)
+	{
+		fat(&fat_val, i);
+		//fat_val = *get_fat_val(0, i);
+		printf("%#x  ", fat_val);
+	}
+	printf("\n");
+}
+*/
+
 error_t load_image_file(const char * path_to_file)
 {
     FILE * img_file = fopen(path_to_file, "rb");
@@ -20,22 +36,27 @@ error_t load_image_file(const char * path_to_file)
     
     boot_sec = malloc(sizeof(struct img_boot_sector));
     fread(boot_sec, 512, 1, img_file);
-    
+
+	//printf("\n*debug* beofore fat @: %#x\n", ftell(img_file));
     int fats_bytes_size = boot_sec->byte_per_sector * boot_sec->sec_per_fat_num * boot_sec->fat_copies_num;
     fat_arr = malloc(fats_bytes_size);
     fread(fat_arr, fats_bytes_size, 1, img_file);
+	//printf("\n*debug* after fat @: %#x\n", ftell(img_file));
     
     int root_dir_byte_size = boot_sec->root_dir_max_num * sizeof(struct dir_entry_info);
     root_dir_file_arr = malloc(root_dir_byte_size);
     fread(root_dir_file_arr, root_dir_byte_size, 1, img_file);
-    printf("\n*debug* data_sector struct size: %lu\n", sizeof(struct data_sector));
-    printf("\n*debug* beofore data_area @: %X\n", ftell(img_file));
+	//printf("\n*debug* beofore data_area @: %#x\n", ftell(img_file));
+
     int data_area_byte_size = ((boot_sec->sec_num - 1 - (boot_sec->sec_per_fat_num * boot_sec->fat_copies_num)) * boot_sec->byte_per_sector) - (boot_sec->root_dir_max_num * sizeof(struct dir_entry_info));
     data_area = malloc(data_area_byte_size);
     fread(data_area, data_area_byte_size, 1, img_file);
-    printf("\n*debug* after data_area @: %X\n", ftell(img_file));
-    printf("\n*debug* data_area @: %X\n", data_area);
+	//printf("\n*debug* after data_area @: %#x\n", ftell(img_file));
+	//printf("\n*debug* data_area @: %#x\n", data_area);
+
     fclose(img_file);
+
+	//print_fat();
     return E_NOERROR;
 }
 
@@ -50,7 +71,6 @@ void clean_buffers()
         
     if(root_dir_file_arr)
     {   
-        //*root_dir_file_arr--;
         free(root_dir_file_arr);
     }
     if(data_area)
@@ -110,25 +130,17 @@ uint8_t * get_fat_val(const unsigned int copy_index, const unsigned int byte_ind
 **/
 void fat(uint16_t * fat_val, const uint16_t cluster_index)
 {
-    const uint16_t n = cluster_index + 2;
-    uint16_t tempVal = 0x0000;
+    const uint16_t n = cluster_index;
+	uint8_t first_val = *(get_fat_val(0, (3 * n) / 2));
+	uint8_t second_val = *(get_fat_val(0, (1 + ((3 * n) / 2))));
+	uint16_t tempVal = (second_val << 8) | first_val;
     if(n % 2)
     {//if it is odd
-        uint8_t higher_val = *get_fat_val(1, (3 * n) / 2);
-        uint8_t lower_val  = *get_fat_val(1, (1 + ((3 * n) / 2)));
-        
-        tempVal  = ((uint16_t)higher_val & 0x0010);
-        tempVal  = tempVal | ((uint16_t)lower_val << 4);
-        *fat_val = tempVal;
+        *fat_val = (tempVal >> 4) & 0x0FFF;
     }
     else
     {//if it is even
-        uint8_t higher_val = *get_fat_val(1, (3 * n) / 2);
-        uint8_t lower_val  = *get_fat_val(1, (1 + ((3 * n) / 2)));
-        
-        tempVal  = (uint16_t)higher_val; //high 8 bits
-        tempVal  = tempVal | (((uint16_t)lower_val & 0x0001) << 8);//low 4 bits
-        *fat_val = tempVal;
+        *fat_val = tempVal & 0x0FFF;
     }
 }
 

@@ -1,6 +1,7 @@
 #include "disk_img_manager.h"
 #include "disk_folder_manager.h"
 #include "../errno.h"
+#include <stdio.h>
 #include "ansi.h"
 
 #define MAX_ARGC 50
@@ -12,11 +13,11 @@
  */
 enum CommandPaserStat
 {
-    NotWriting,
-    NormalWriting,
-    DoubleQuoteWriting,
-    SingleQuoteWriting
-} __attribute__ ((packed));
+	NotWriting,
+	NormalWriting,
+	DoubleQuoteWriting,
+	SingleQuoteWriting
+};
 
 
 /**
@@ -119,8 +120,9 @@ int main(int argc, char **argv)
     list_curr_file_and_dir();
     //ls();
     
-    char * command_str = NULL;
-    size_t command_str_len = 0;
+    //char * command_str = NULL;
+    //size_t command_str_len = 0;
+	char command_str[USER_INPUT_BUFFER_SIZE];
 
     int is_run = 1;
     
@@ -129,7 +131,8 @@ int main(int argc, char **argv)
         print_curr_path();
         printf("> ");
 
-        getline(&command_str, &command_str_len, stdin);
+        //getline(&command_str, &command_str_len, stdin);
+		fgets(command_str, USER_INPUT_BUFFER_SIZE, stdin);
         command_line_parser(command_str, &inner_argc, inner_argv, MAX_ARGC, USER_INPUT_BUFFER_SIZE);
         int i;
         

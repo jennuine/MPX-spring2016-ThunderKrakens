@@ -4,6 +4,9 @@
 #include <string.h>
 #include "../errno.h"
 
+#include "../packing.h"
+
+PACKED(
 struct img_boot_sector
 {
     uint8_t     ignore1[11];
@@ -25,9 +28,11 @@ struct img_boot_sector
     uint8_t     vol_label[11];
     uint8_t     file_sys_type[8];
     uint8_t     ignore5[450];
-} __attribute__ ((packed));
+}
+);
 
 
+PACKED(
 struct dir_entry_info
 {
     uint8_t     file_name[8];
@@ -42,13 +47,16 @@ struct dir_entry_info
     uint16_t    last_wri_date;
     uint16_t    first_log_clu;
     uint32_t    file_size;
-} __attribute__ ((packed));
+}
+);
 
 
+PACKED(
 struct data_sector
 {
     uint8_t     data[512];
-} __attribute__ ((packed));
+}
+);
 
 #define ATTRIBUTE_READ 0x01
 #define ATTRIBUTE_HIDD 0x02

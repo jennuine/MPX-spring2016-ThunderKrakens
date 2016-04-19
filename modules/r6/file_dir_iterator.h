@@ -29,5 +29,3 @@ uint8_t ditr_end(struct dir_itr * itr_ptr);
 void ditr_next(struct dir_itr * itr_ptr);
 
 struct dir_entry_info * ditr_get(struct dir_itr * itr_ptr);
-
-//uint16_t data_addr_to_sec_i(void * addr);

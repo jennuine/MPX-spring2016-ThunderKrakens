@@ -3,12 +3,16 @@
 #include "ansi.h"
 #include "file_dir_iterator.h"
 
+#include "../packing.h"
+
+PACKED(
 struct folder
 {
     unsigned char folder_name[9];
     struct dir_entry_info * file_array;
     uint16_t log_sec_index;
-} __attribute__ ((packed));
+}
+);
 
 struct folder * folder_stack[FOLDER_STACK_SIZE];
 
@@ -128,7 +132,7 @@ void list_curr_file_and_dir()
             i++;
             ch_arr_to_str(file_name, current_entry->file_name, 8);
             printf("%s%s%s/\t", T_DIR, file_name, T_DIR_OFF);
-            if(!(i % 6))
+            if(!(i % 5))
                 printf("\n");
         }
     }
@@ -143,7 +147,7 @@ void list_curr_file_and_dir()
         ch_arr_to_str(file_name, current_entry->file_name, 8);
         ch_arr_to_str(file_ext, current_entry->extension, 3);
         printf("%s.%s \t ", file_name, file_ext);
-        if(!(i % 6))
+        if(!(i % 5))
             printf("\n");
     }
         

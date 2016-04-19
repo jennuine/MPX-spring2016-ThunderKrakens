@@ -1,14 +1,18 @@
 #include "file_dir_iterator.h"
 #include "disk_img_manager.h"
 #include <stdlib.h>
+#include "../packing.h"
 
+PACKED(
 struct file_itr
 {
     uint16_t ori_sec_i;
     uint16_t curr_sec_i;
     
-} __attribute__ ((packed));
+}
+);
 
+PACKED(
 struct dir_itr
 {
     uint16_t ori_sec_i;
@@ -18,7 +22,8 @@ struct dir_itr
     
     //Attributes Filter. "1" means do not contain in the iteration
     uint8_t attr_filter;
-} __attribute__ ((packed));
+}
+);
 
 static void ditr_apply_filter(struct dir_itr * itr_ptr)
 {
@@ -115,7 +120,7 @@ void fitr_next(struct file_itr * itr_ptr)
 }
 
 void ditr_next(struct dir_itr * itr_ptr)
-{//printf("*debug: %lu\n", (uint64_t)itr_ptr);
+{
     if(!itr_ptr || ditr_end(itr_ptr))
         return;
         
@@ -131,9 +136,9 @@ void ditr_next(struct dir_itr * itr_ptr)
         itr_ptr->curr_entry_i++;
         if(itr_ptr->curr_entry_i >= 16)
         {
-            itr_ptr->curr_sec_i = 0xFFF;
-            //fat(&itr_ptr->curr_sec_i, itr_ptr->curr_sec_i);
-            //itr_ptr->curr_entry_i = 0;
+            //itr_ptr->curr_sec_i = 0xFFF;
+            fat(&itr_ptr->curr_sec_i, itr_ptr->curr_sec_i);
+            itr_ptr->curr_entry_i = 0;
         }
         
     }
@@ -150,8 +155,6 @@ void ditr_next(struct dir_itr * itr_ptr)
         )
     )
     {
-        //if(curr_entry->file_name[0] != 0xE5 && curr_entry->file_name[0] != 0)
-            //printf("*debug: \'%X\'", curr_entry->attributes & itr_ptr->attr_filter);
         ditr_next(itr_ptr);
     }
 }
@@ -178,13 +181,3 @@ struct dir_entry_info * ditr_get(struct dir_itr * itr_ptr)
     
     return &first_entry[itr_ptr->curr_entry_i];
 }
-
-/*
-uint16_t data_addr_to_sec_i(void * addr)
-{
-    if(!addr || (void *)addr < (void *)data_area)
-        return 0;
-    
-    return ((void *)addr - (void *)data_area) / 512;
-}
-*/
