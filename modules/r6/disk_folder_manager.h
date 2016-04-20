@@ -16,5 +16,8 @@ void print_curr_path();
 
 void rename_entry(struct dir_entry_info * folder_ptr, const char * new_name);
 
-struct dir_entry_info * get_entry(const char * nameStr);
+struct dir_entry_info * get_entry_simple(const char * nameStr);
 
+struct dir_entry_info * get_entry(char * full_path);
+
+void change_dir(char * full_path);

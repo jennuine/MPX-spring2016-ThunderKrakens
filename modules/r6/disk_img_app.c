@@ -1,5 +1,6 @@
 #include "disk_img_manager.h"
 #include "disk_folder_manager.h"
+#include "disk_file_manager.h"
 #include "../errno.h"
 #include <stdio.h>
 #include "ansi.h"
@@ -134,27 +135,34 @@ int main(int argc, char ** argv)
         {
             is_run = 0;
         }
-        
-        if (inner_argc && !strcmp(inner_argv[0], "ls"))
+        else if (inner_argc && !strcmp(inner_argv[0], "ls"))//list
         {
             if(inner_argc == 2 && !strcmp(inner_argv[1], "-l"))
                 list_dir_entry_report();
-            else
+            else if (inner_argc == 1)
                 list_dir_entry_short();
-        }
-        
-        if (inner_argc == 2 && !strcmp(inner_argv[0], "cd"))
-        {
-            if(!strcmp(inner_argv[1], "."))
-            {
-                
-            }
-            else if(!strcmp(inner_argv[1], ".."))
-            {
-                pop_folder();
-            }
             else
-                push_folder(get_entry(inner_argv[1]));
+                printf("\n%s%sERROR:%s Incorrect input. Please refer to \"ls --help\"\n\n", T_BOLD, T_RED, T_RESET);
+        }
+        else if (inner_argc == 2 && !strcmp(inner_argv[0], "cd"))//change directory
+        {
+            change_dir(inner_argv[1]);
+        }
+        else if (inner_argc && !strcmp(inner_argv[0], "ps"))//Print Boot info
+        {
+            print_boot_sec_main(inner_argc, inner_argv);
+        }
+        else if (inner_argc == 3 && !strcmp(inner_argv[0], "rn"))//rename
+        {
+            rename_entry(get_entry(inner_argv[1]), inner_argv[2]);
+        }
+        else if (inner_argc == 4 && !strcmp(inner_argv[0], "mv"))//move
+        {
+            if(!strcmp(inner_argv[1], "-o"))
+            {
+                struct dir_entry_info * file_entry = get_entry(inner_argv[2]);
+                extract_file(file_entry, inner_argv[3]);
+            }
         }
         
         inner_argc = 0;
@@ -167,8 +175,29 @@ int main(int argc, char ** argv)
 
 
 
-
+//NOTE: When your code is ready to test, you have to move it out from the "#if 0 ... #endif" block.
 //====== main functions ================
+
+
+
+int print_boot_sec_main(int argc, char ** argv) {
+
+    if (argc = 2 && !strcmp(argv[1], "--help"))
+    {
+        //print_help();
+    }
+    else if(argc == 1)
+    {
+        print_boot_sec_info(boot_sec);
+    }
+    else
+    {
+        printf("\n%s%sERROR:%s Incorrect input. Please refer to \"Print boot sec --help\"\n\n", T_BOLD, T_RED, T_RESET);
+        return 0;
+    }
+    
+    return 0;
+}
 
 
 
@@ -177,11 +206,22 @@ int main(int argc, char ** argv)
 
 #if 0
 
-int print_boot_sec_main(int argc, char ** argv);
+
 
 int print_root_dir_main(int argc, char ** argv);
 
-int change_dir_main(int argc, char ** argv);
+int change_dir_main(int argc, char ** argv){
+    if (argc == 2 && !strcmp(argv[1], "--help")){
+        //printf()
+    }
+    else if(argc == 2){
+        change_dir(argv[1]);
+    }
+    else{
+        printf("ERROR: Incorrect input. Please refer to \"Print boot sec --help\"\n");
+    }
+     return 0;
+}
 
 int list_main(int argc, char ** argv);
 

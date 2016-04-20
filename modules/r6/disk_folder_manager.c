@@ -34,6 +34,7 @@ void folder_manager_init()
 
 void push_folder(struct dir_entry_info * child_folder_ptr)
 {
+    //printf("\n*debug* child_folder_ptr @: %#X\n", child_folder_ptr);
     if(folder_stack_top >= FOLDER_STACK_SIZE)
         return;
     if(!child_folder_ptr || !(child_folder_ptr->attributes & ATTRIBUTE_SUBD))
@@ -45,7 +46,7 @@ void push_folder(struct dir_entry_info * child_folder_ptr)
     ch_arr_to_str(current_folder->folder_name, child_folder_ptr->file_name, 8);
     //current_folder->file_array = get_data_ptr(child_folder_ptr->first_log_clu);
     current_folder->log_sec_index = child_folder_ptr->first_log_clu;
-    //printf("\n*debug* file_array @: %X\n", current_folder->file_array);
+    
 }
 
 void pop_folder()
@@ -82,22 +83,37 @@ void print_dir_entry_info(struct dir_entry_info * entry_ptr)
     ch_arr_to_str(file_name, entry_ptr->file_name, 8);
     ch_arr_to_str(file_ext, entry_ptr->extension, 3);
     
-    
-    printf
-    (
-        "| %-8s | %-3s | %s | %-7u | %-7u |\n",
-        file_name,
-        file_ext,
-        get_attr_str(entry_ptr->attributes),
-        entry_ptr->first_log_clu,
-        entry_ptr->file_size
-    );
+    if (entry_ptr->attributes & ATTRIBUTE_SUBD)
+    {
+        printf
+        (
+            "| %s%-8s%s | %-3s | %s | %-7u | %-7u |\n",
+            T_DIR,
+            file_name,
+            T_DIR_OFF,
+            file_ext,
+            get_attr_str(entry_ptr->attributes),
+            entry_ptr->first_log_clu,
+            entry_ptr->file_size
+        );
+    } else {
+        printf
+        (
+            "| %-8s | %-3s | %s | %-7u | %-7u |\n",
+            file_name,
+            file_ext,
+            get_attr_str(entry_ptr->attributes),
+            entry_ptr->first_log_clu,
+            entry_ptr->file_size
+        );
+    }
     
     
 }
 
 void list_dir_entry_report()
 {
+    printf("------------------------------------------------------------------\n");
     printf
     (
         "| %-8s | %-3s | %-25s | %-7s | %-7s |\n",
@@ -107,8 +123,12 @@ void list_dir_entry_report()
         "sec num\0",
         "size\0"
     );
+    
+    printf("|----------|-----|---------------------------|---------|---------|\n");
+    
     struct dir_itr * dir_entry_itr1 = init_dir_itr(current_folder->log_sec_index);
     ditr_set_filter(dir_entry_itr1, 0);
+    
     for(ditr_begin(dir_entry_itr1); !ditr_end(dir_entry_itr1); ditr_next(dir_entry_itr1))
     {
         struct dir_entry_info * current_entry = ditr_get(dir_entry_itr1);
@@ -116,7 +136,8 @@ void list_dir_entry_report()
     }
     
     free(dir_entry_itr1);
-    printf("\n");
+    
+    printf("------------------------------------------------------------------\n");
 }
 
 void list_dir_entry_short()
@@ -184,7 +205,7 @@ void rename_entry(struct dir_entry_info * folder_ptr, const char * new_name)
     }
 }
 
-struct dir_entry_info * get_entry(const char * nameStr)
+struct dir_entry_info * get_entry_simple(const char * nameStr)
 {
     char file_name[9] = { 0 };
     char file_ext[4] = { 0 };
@@ -207,4 +228,60 @@ struct dir_entry_info * get_entry(const char * nameStr)
     
     free(dir_entry_itr);
     return NULL;
+}
+
+struct dir_entry_info * get_entry(char * full_path)
+{
+    char file_name[9] = { 0 };
+    char file_ext[4] = { 0 };
+    char full_name[12] = { 0 };
+    char * simple_path = strtok(full_path, "\\/");
+    struct dir_entry_info * result = NULL;
+    uint16_t curr_sec_i = current_folder->log_sec_index;
+    while(simple_path)
+    {
+        struct dir_itr * dir_entry_itr = init_dir_itr(curr_sec_i);
+        unsigned char isFound = 0;
+        for(ditr_begin(dir_entry_itr); !ditr_end(dir_entry_itr) && !isFound; ditr_next(dir_entry_itr))
+        {
+            struct dir_entry_info * current_entry = ditr_get(dir_entry_itr);
+            ch_arr_to_str(file_name, current_entry->file_name, 8);
+            ch_arr_to_str(file_ext, current_entry->extension, 3);
+            if(strlen(file_ext) > 0)
+                sprintf(full_name, "%s.%s", file_name, file_ext);
+            else
+                sprintf(full_name, "%s", file_name);
+            if(!strcmp(full_name, simple_path))
+            {
+                result = current_entry;
+                curr_sec_i = current_entry->first_log_clu;
+                isFound = 1;
+            }
+        }
+        free(dir_entry_itr);
+        simple_path = strtok(NULL, "\\/");
+        result = isFound ? result : NULL;
+    }
+    
+    return result;
+}
+
+void change_dir(char * full_path)
+{
+    char * simple_path = strtok(full_path, "\\/");
+    while(simple_path)
+    {   //printf("\n*debug* simple_path: %s\n", simple_path);
+        if(!strcmp(simple_path, "."))
+        {
+            
+        }
+        else if(!strcmp(simple_path, ".."))
+        {
+            pop_folder();
+        }
+        else
+            push_folder(get_entry_simple(simple_path));
+            
+        simple_path = strtok(NULL, "\\/");
+    }
 }
