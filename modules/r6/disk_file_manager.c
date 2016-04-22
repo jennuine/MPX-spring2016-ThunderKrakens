@@ -40,10 +40,16 @@ void extract_file(struct dir_entry_info * file_entry_ptr, const char * out_file_
 
 void import_file(const char * in_file_path, struct dir_entry_info * dest_dir)
 {
+    struct dir_itr * dir_entry_itr = init_dir_itr(dest_dir->first_log_clu);
+    ditr_set_find_unused(dir_entry_itr);
+    ditr_begin(dir_entry_itr);
     
 }
 
 void move_file(struct dir_entry_info * file_entry, struct dir_entry_info * dest_dir)
 {
+    struct dir_itr * dir_entry_itr = init_dir_itr(dest_dir->first_log_clu);
+    ditr_set_find_unused(dir_entry_itr);
+    ditr_begin(dir_entry_itr);
     
 }

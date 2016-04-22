@@ -164,3 +164,46 @@ void * get_data_ptr(const uint16_t data_area_sec_index)
     
     return (void *)&data_area[data_area_sec_index - 2];
 }
+
+
+void write_fat(const uint16_t fat_val, const uint16_t cluster_index)
+{
+    if(fat_val & 0xF000)
+        return;
+        
+    const uint16_t n = cluster_index;
+	uint8_t * upper_val_0 = (get_fat_val(0, (3 * n) / 2));
+	uint8_t * lower_val_0 = (get_fat_val(0, (1 + ((3 * n) / 2))));
+	uint8_t * upper_val_1 = (get_fat_val(1, (3 * n) / 2));
+	uint8_t * lower_val_1 = (get_fat_val(1, (1 + ((3 * n) / 2))));
+    
+    uint8_t temp_upper = 0;
+    uint8_t temp_lower = 0;
+    
+    if(n % 2)
+    {//if it is odd
+        temp_upper = (uint8_t)((fat_val << 4) & 0x00F0) | (*upper_val_0 & 0x000F);
+        temp_lower = (uint8_t)((fat_val >> 4) & 0x00FF);
+    }
+    else
+    {//if it is even
+        temp_upper = (uint8_t)(fat_val & 0x00FF);
+        temp_lower = (uint8_t)((fat_val >> 8) & 0x000F) | (*lower_val_0 & 0x00F0);
+    }
+    
+    *upper_val_0 = *upper_val_1 = temp_upper;
+    *lower_val_0 = *lower_val_1 = temp_lower;
+}
+
+uint16_t find_unused_fat()
+{
+    unsigned int i = 0;
+    unsigned int fat_num = (unsigned int)(boot_sec->sec_per_fat_num * boot_sec->byte_per_sector * ((float)2/3));
+    uint16_t fat_val = 0x0FFF;
+    for(i = 2; fat_val != 0x0000 && i < fat_num; i++)
+    {
+        fat(&fat_val, i);
+    }
+    
+    return i;
+}

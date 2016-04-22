@@ -6,6 +6,8 @@ struct file_itr;
 
 struct dir_itr;
 
+struct img_writer;
+
 struct file_itr * init_file_itr(const uint16_t sec_index);
 
 void fitr_begin(struct file_itr * itr_ptr);
@@ -24,8 +26,19 @@ void ditr_set_filter(struct dir_itr * itr_ptr, uint8_t attr_filter);
 
 void ditr_begin(struct dir_itr * itr_ptr);
 
+void ditr_set_find_unused(struct dir_itr * itr_ptr);
+
 uint8_t ditr_end(struct dir_itr * itr_ptr);
 
 void ditr_next(struct dir_itr * itr_ptr);
 
 struct dir_entry_info * ditr_get(struct dir_itr * itr_ptr);
+
+
+
+
+
+struct img_writer * init_img_writer(struct dir_entry_info * entry_ptr);
+
+void iw_write(struct img_writer * writer_ptr, const struct data_sector * data);
+
