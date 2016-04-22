@@ -207,3 +207,19 @@ uint16_t find_unused_fat()
     
     return i;
 }
+
+uint64_t calc_free_space()
+{
+    unsigned int i = 0;
+    unsigned int fat_num = (unsigned int)(boot_sec->sec_per_fat_num * boot_sec->byte_per_sector * ((float)2/3));
+    uint16_t free_sec_num = 0;
+    uint16_t fat_val = 0x0FFF;
+    for(i = 2; i < fat_num; i++)
+    {
+        fat(&fat_val, i);
+        if(fat_val == 0x0000)
+            free_sec_num++;
+    }
+    
+    return ((uint64_t)free_sec_num * boot_sec->byte_per_sector);
+}

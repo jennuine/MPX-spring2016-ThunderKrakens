@@ -18,8 +18,6 @@ void fitr_next(struct file_itr * itr_ptr);
 
 struct data_sector * fitr_get(struct file_itr * itr_ptr);
 
-
-
 struct dir_itr * init_dir_itr(const uint16_t sec_index);
 
 void ditr_set_filter(struct dir_itr * itr_ptr, uint8_t attr_filter);

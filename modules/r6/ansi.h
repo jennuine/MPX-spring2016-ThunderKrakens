@@ -22,8 +22,8 @@
 
 
 
-#define T_DIR       "\x1B[1m\x1B[36m" //color for directory
-#define T_DIR_OFF   "\x1B[39m\x1B[22m"
+#define T_DIR       T_BOLD T_CYAN //color for directory
+#define T_DIR_OFF   T_NRM T_BOLD_OFF
 
 #else
 	

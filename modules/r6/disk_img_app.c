@@ -118,6 +118,7 @@ int main(int argc, char ** argv)
     print_boot_sec_info(boot_sec);
     //list_dir_entry_report();
     //list_dir_entry_short();
+    printf("%s%sFree space: %d Bytes.%s%s\n\n", T_BOLD, T_RED, calc_free_space(), T_NRM, T_BOLD_OFF);
     
 	char command_str[USER_INPUT_BUFFER_SIZE];
 
@@ -163,6 +164,12 @@ int main(int argc, char ** argv)
                 struct dir_entry_info * file_entry = get_entry(inner_argv[2]);
                 extract_file(file_entry, inner_argv[3]);
             }
+            else if(!strcmp(inner_argv[1], "-m"))
+            {
+                struct dir_entry_info * file_entry = get_entry(inner_argv[2]);
+                struct dir_entry_info * dest_entry = get_entry(inner_argv[3]);
+                move_file(file_entry, dest_entry);
+            }
         }
         
         inner_argc = 0;
@@ -171,8 +178,6 @@ int main(int argc, char ** argv)
     clean_buffers();
     return 0;
 }
-
-
 
 
 //NOTE: When your code is ready to test, you have to move it out from the "#if 0 ... #endif" block.
@@ -200,16 +205,6 @@ int print_boot_sec_main(int argc, char ** argv) {
 }
 
 
-
-
-
-
-#if 0
-
-
-
-int print_root_dir_main(int argc, char ** argv);
-
 int change_dir_main(int argc, char ** argv){
     if (argc == 2 && !strcmp(argv[1], "--help")){
         //printf()
@@ -218,10 +213,51 @@ int change_dir_main(int argc, char ** argv){
         change_dir(argv[1]);
     }
     else{
-        printf("ERROR: Incorrect input. Please refer to \"Print boot sec --help\"\n");
+        printf("\n%s%sERROR:%s Incorrect input. Please refer to \"changedir --help\"\n\n", T_BOLD, T_RED, T_RESET);
     }
      return 0;
 }
+
+
+#if 0
+
+
+int print_root_dir_main(int argc, char ** argv) {
+     if (argc = 2 && !strcmp(argv[1], "--help"))
+    {
+        //print_help(); 
+    }
+    else if(argc == 1)
+    {
+        /* print_root_dir:
+        current_folder = malloc(sizeof(struct folder));      
+      
+        struct dir_itr * dir_entry_itr1 = init_dir_itr(current_folder->ROOT_DIR_SEC_INDEX);
+        ditr_set_filter(dir_entry_itr1, 0);
+    
+        for(ditr_begin(dir_entry_itr1); !ditr_end(dir_entry_itr1); ditr_next(dir_entry_itr1))
+        {
+        struct dir_entry_info * current_entry = ditr_get(dir_entry_itr1);
+        print_dir_entry_info(current_entry);
+        }
+        
+        
+        */
+    }
+    else
+    {
+        printf("\n%s%sERROR:%s Incorrect input. Please refer to \"Print root sec --help\"\n\n", T_BOLD, T_RED, T_RESET);
+        return 0;
+    }
+    
+    return 0;
+    
+}
+
+
+
+
+
 
 int list_main(int argc, char ** argv);
 
