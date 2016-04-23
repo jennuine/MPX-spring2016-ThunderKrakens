@@ -240,8 +240,16 @@ void iw_write(struct img_writer * writer_ptr, const struct data_sector * data)
 {
     uint16_t unuse_sec_i = find_unused_fat();
     
+    //uint16_t test1 = 0;
+    //fat(&test1, unuse_sec_i);
+    //printf("*DEBUG* %#x has %#x\n", unuse_sec_i, test1);
+    
     write_fat(0xFFF, unuse_sec_i);
-    memcpy(get_data_ptr(unuse_sec_i), writer_ptr, 512);
+    memcpy(get_data_ptr(unuse_sec_i), data, 512);
+    
+    //fat(&test1, unuse_sec_i);
+    //printf("*DEBUG* Wrote @ %#x\n", unuse_sec_i);
+    //printf("*DEBUG* %#x has %#x\n", unuse_sec_i, test1);
     
     if(writer_ptr->curr_sec_i < 2)
     {//First sector
@@ -250,6 +258,9 @@ void iw_write(struct img_writer * writer_ptr, const struct data_sector * data)
     else
     {
         write_fat(unuse_sec_i, writer_ptr->curr_sec_i);
+        //fat(&test1, writer_ptr->curr_sec_i);
+        //printf("*DEBUG* Last fat point to @ %#x\n", test1);
     }
     writer_ptr->curr_sec_i = unuse_sec_i;
+    //printf("*DEBUG*\n");
 }

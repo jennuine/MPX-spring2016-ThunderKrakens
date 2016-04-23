@@ -145,9 +145,9 @@ int main(int argc, char ** argv)
             else
                 printf("\n%s%sERROR:%s Incorrect input. Please refer to \"ls --help\"\n\n", T_BOLD, T_RED, T_RESET);
         }
-        else if (inner_argc == 2 && !strcmp(inner_argv[0], "cd"))//change directory
+        else if (!strcmp(inner_argv[0], "cd"))//change directory
         {
-            change_dir(inner_argv[1]);
+            change_dir_main(inner_argc, inner_argv);
         }
         else if (inner_argc && !strcmp(inner_argv[0], "ps"))//Print Boot info
         {
@@ -169,6 +169,11 @@ int main(int argc, char ** argv)
                 struct dir_entry_info * file_entry = get_entry(inner_argv[2]);
                 struct dir_entry_info * dest_entry = get_entry(inner_argv[3]);
                 move_file(file_entry, dest_entry);
+            }
+            else if(!strcmp(inner_argv[1], "-i"))
+            {
+                struct dir_entry_info * dest_entry = get_entry(inner_argv[2]);
+                import_file(inner_argv[3], dest_entry);
             }
         }
         
@@ -213,7 +218,7 @@ int change_dir_main(int argc, char ** argv){
         change_dir(argv[1]);
     }
     else{
-        printf("\n%s%sERROR:%s Incorrect input. Please refer to \"changedir --help\"\n\n", T_BOLD, T_RED, T_RESET);
+        printf("\n%s%sERROR:%s Incorrect input. Please refer to \"cd --help\"\n\n", T_BOLD, T_RED, T_RESET);
     }
      return 0;
 }

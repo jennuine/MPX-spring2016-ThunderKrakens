@@ -197,14 +197,20 @@ void write_fat(const uint16_t fat_val, const uint16_t cluster_index)
 
 uint16_t find_unused_fat()
 {
-    unsigned int i = 0;
+    
     unsigned int fat_num = (unsigned int)(boot_sec->sec_per_fat_num * boot_sec->byte_per_sector * ((float)2/3));
     uint16_t fat_val = 0x0FFF;
-    for(i = 2; fat_val != 0x0000 && i < fat_num; i++)
+    
+    unsigned int i = 1;
+    do
     {
+        i++;
         fat(&fat_val, i);
     }
+    while(fat_val != 0x0000 && i < fat_num);
     
+    //fat(&fat_val, i);
+    //printf("*DEBUG* %#x out of %#x, val = %#x, Result %d\n", i, fat_num, fat_val, (fat_val != 0x0000 && i < fat_num));
     return i;
 }
 
