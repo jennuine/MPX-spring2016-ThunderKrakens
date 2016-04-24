@@ -25,7 +25,6 @@ void type_file(struct dir_entry_info * file_entry_ptr)
     // printf("**DEBUG: file size is %d \n", file_entry_ptr->file_size);
     
     // struct file_itr * iter = fitr_init_offset(file_entry_ptr->first_log_clu, 4);
-
     
     for (fitr_begin(iter); !fitr_end(iter) && line_no > 0; fitr_next(iter))
     {

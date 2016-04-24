@@ -15,7 +15,17 @@ disk_img_app: disk_img_app.c $(OBJFILES)
 clean:
 	rm disk_img_app $(OBJFILES)
 	
-run:
+1:
 	reset
 	make disk_img_app
 	./disk_img_app imgs/450_3.img
+
+2:
+	reset
+	make disk_img_app
+	./disk_img_app imgs/cs450_2.img
+
+3:
+	reset
+	make disk_img_app
+	./disk_img_app imgs/winb98se.IMA
