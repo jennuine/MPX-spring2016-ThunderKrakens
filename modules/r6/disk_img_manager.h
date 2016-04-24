@@ -74,6 +74,7 @@ extern struct dir_entry_info * root_dir_file_arr;
 
 extern struct data_sector * data_area;
 
+extern struct dir_entry_info * root_dir_entry;
 
 error_t load_image_file(const char * path_to_file);
 
@@ -99,3 +100,7 @@ void * get_data_ptr(const uint16_t data_area_sec_index);
 void write_fat(const uint16_t fat_val, const uint16_t cluster_index);
 
 uint16_t find_unused_fat();
+
+void str_to_upper_case(char * str, const unsigned int len);
+
+error_t seperate_file_name(const char * full_name, char * file_name, char * file_ext);

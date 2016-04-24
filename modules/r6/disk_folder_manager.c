@@ -193,13 +193,17 @@ void print_curr_path()
     printf("%s\\", current_folder->folder_name);
 }
 
-void rename_entry(struct dir_entry_info * folder_ptr, const char * new_name)
+void rename_entry(struct dir_entry_info * file_entry, char * new_name)
 {
-    if(0 < strlen(new_name) && strlen(new_name) <= 8)
+    if (file_entry == NULL)
     {
-        str_to_ch_arr(folder_ptr->file_name, new_name, 8);
+        printf("\n%s%sERROR:%s Could not find file named \"%s\"\n\n", T_BOLD, T_RED, T_RESET, new_name);
+        return;
     }
-    else
+    
+    str_to_upper_case(new_name, strlen(new_name));
+
+    if (seperate_file_name(new_name, file_entry->file_name, file_entry->extension) == E_INVSTRF)
     {
        printf("\t%s The length of the filename must within the range of [1, 8]. %s\n\n", T_ITCS, T_ITCS_OFF); 
     }
@@ -235,34 +239,55 @@ struct dir_entry_info * get_entry(char * full_path)
     char file_name[9] = { 0 };
     char file_ext[4] = { 0 };
     char full_name[12] = { 0 };
+    
+    str_to_upper_case(full_path, strlen(full_path));
+
     char * simple_path = strtok(full_path, "\\/");
-    struct dir_entry_info * result = NULL;
     uint16_t curr_sec_i = current_folder->log_sec_index;
+    struct dir_entry_info * result = NULL;
+    
+    if(curr_sec_i == ROOT_DIR_SEC_INDEX)
+    {
+        result = root_dir_entry;
+    }
+    else
+    {
+        result = get_data_ptr(curr_sec_i);
+    }
+    //printf("*DEBUG* get_entry, root_dir_file_arr:%#x \n", root_dir_file_arr);
+    
     while(simple_path)
     {
-        struct dir_itr * dir_entry_itr = init_dir_itr(curr_sec_i);
         unsigned char isFound = 0;
-        for(ditr_begin(dir_entry_itr); !ditr_end(dir_entry_itr) && !isFound; ditr_next(dir_entry_itr))
+        if(!strcmp(simple_path, "."))
         {
-            struct dir_entry_info * current_entry = ditr_get(dir_entry_itr);
-            ch_arr_to_str(file_name, current_entry->file_name, 8);
-            ch_arr_to_str(file_ext, current_entry->extension, 3);
-            if(strlen(file_ext) > 0)
-                sprintf(full_name, "%s.%s", file_name, file_ext);
-            else
-                sprintf(full_name, "%s", file_name);
-            if(!strcmp(full_name, simple_path))
-            {
-                result = current_entry;
-                curr_sec_i = current_entry->first_log_clu;
-                isFound = 1;
-            }
+            isFound = 1;
         }
-        free(dir_entry_itr);
+        else
+        {
+            struct dir_itr * dir_entry_itr = init_dir_itr(curr_sec_i);
+            for(ditr_begin(dir_entry_itr); !ditr_end(dir_entry_itr) && !isFound; ditr_next(dir_entry_itr))
+            {
+                struct dir_entry_info * current_entry = ditr_get(dir_entry_itr);
+                ch_arr_to_str(file_name, current_entry->file_name, 8);
+                ch_arr_to_str(file_ext, current_entry->extension, 3);
+                if(strlen(file_ext) > 0)
+                    sprintf(full_name, "%s.%s", file_name, file_ext);
+                else
+                    sprintf(full_name, "%s", file_name);
+                if(!strcmp(full_name, simple_path))
+                {
+                    result = current_entry;
+                    curr_sec_i = current_entry->first_log_clu;
+                    isFound = 1;
+                }
+            }
+            free(dir_entry_itr);
+        }
         simple_path = strtok(NULL, "\\/");
         result = isFound ? result : NULL;
     }
-    
+    //printf("*DEBUG* get_entry, return:%#x \n", result);
     return result;
 }
 

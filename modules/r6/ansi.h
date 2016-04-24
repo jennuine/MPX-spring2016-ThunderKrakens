@@ -21,9 +21,11 @@
 #define B_CYAN      "\x1b[46m" //cyan
 
 
-
 #define T_DIR       T_BOLD T_CYAN //color for directory
 #define T_DIR_OFF   T_NRM T_BOLD_OFF
+
+// keys
+#define K_LEFT 		"\x1B[D"
 
 #else
 	

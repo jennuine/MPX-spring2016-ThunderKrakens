@@ -138,12 +138,7 @@ int main(int argc, char ** argv)
         }
         else if (inner_argc && !strcmp(inner_argv[0], "ls"))//list
         {
-            if(inner_argc == 2 && !strcmp(inner_argv[1], "-l"))
-                list_dir_entry_report();
-            else if (inner_argc == 1)
-                list_dir_entry_short();
-            else
-                printf("\n%s%sERROR:%s Incorrect input. Please refer to \"ls --help\"\n\n", T_BOLD, T_RED, T_RESET);
+            list_main(inner_argc, inner_argv);
         }
         else if (!strcmp(inner_argv[0], "cd"))//change directory
         {
@@ -155,7 +150,7 @@ int main(int argc, char ** argv)
         }
         else if (inner_argc == 3 && !strcmp(inner_argv[0], "rn"))//rename
         {
-            rename_entry(get_entry(inner_argv[1]), inner_argv[2]);
+            rename_main(inner_argc, inner_argv);
         }
         else if (inner_argc == 4 && !strcmp(inner_argv[0], "mv"))//move
         {
@@ -175,6 +170,8 @@ int main(int argc, char ** argv)
                 struct dir_entry_info * dest_entry = get_entry(inner_argv[2]);
                 import_file(inner_argv[3], dest_entry);
             }
+        } else {
+            printf("\n%s%sERROR:%s No such function.\n\n", T_BOLD, T_RED, T_RESET);
         }
         
         inner_argc = 0;
@@ -223,6 +220,33 @@ int change_dir_main(int argc, char ** argv){
      return 0;
 }
 
+int rename_main(int argc, char ** argv) {
+    
+    if (argc == 3 && !strcmp(argv[1], "--help")) 
+    {
+        printf("rename : rn [old filename] [new filename]\n\
+        \n\tRenames the file.\n\n\
+        \n\nArguments:\n\tprocessName  String process name\n\
+        Exit Status:\n\tChanges filename if the length is between [1, 8].\n\n");
+    } else if (argc == 3) {
+        rename_entry(get_entry(argv[1]), argv[2]);
+    } else {
+        printf("\n%s%sERROR:%s Incorrect input. Please refer to \"rn --help\"\n\n", T_BOLD, T_RED, T_RESET);
+    }
+    return 0;
+}
+
+int list_main(int argc, char ** argv) {
+    
+    if(argc == 2 && !strcmp(argv[1], "-l"))
+        list_dir_entry_report();
+    else if (argc == 1)
+        list_dir_entry_short();
+    else
+        printf("\n%s%sERROR:%s Incorrect input. Please refer to \"ls --help\"\n\n", T_BOLD, T_RED, T_RESET);
+    
+    return 0;
+}
 
 #if 0
 
@@ -263,12 +287,8 @@ int print_root_dir_main(int argc, char ** argv) {
 
 
 
-
-int list_main(int argc, char ** argv);
-
 int type_main(int argc, char ** argv)
 
-int rename_main(int argc, char ** argv);
 
 int move_main(int argc, char ** argv);
 

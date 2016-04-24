@@ -73,23 +73,10 @@ void import_file(const char * in_file_path, struct dir_entry_info * dest_dir)
         char file_full_name[13] = { 0 };
         memcpy(file_full_name, &in_file_path[temp], len - temp);
         
-        len = strlen(file_full_name);
-        temp = len - 1;
-        for(; temp >= 0 && file_full_name[temp] != '.'; temp--);
-        temp++;
+        str_to_upper_case(file_full_name, 13);
         
-        if((temp > 0 && (len - temp > 3 || temp - 1 > 8)) || (temp == 0 && (len > 8)))
-            return; //ERROR Type 3
         
-        if(temp > 0)
-        {
-            memcpy(unused_entry->file_name, file_full_name, temp - 1);
-            memcpy(unused_entry->extension, &file_full_name[temp], len - temp);
-        }
-        else
-        {
-            memcpy(unused_entry->file_name, file_full_name, len);
-        }
+        seperate_file_name(file_full_name, unused_entry->file_name, unused_entry->extension);
         
         unused_entry->attributes = ATTRIBUTE_ARCH;
         unused_entry->file_size = file_size;

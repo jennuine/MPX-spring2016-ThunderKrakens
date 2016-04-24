@@ -9,6 +9,8 @@ struct dir_entry_info * root_dir_file_arr = NULL;
 
 struct data_sector * data_area = NULL;
 
+struct dir_entry_info * root_dir_entry = NULL;
+
 /*
 static void print_fat()
 {
@@ -55,6 +57,12 @@ error_t load_image_file(const char * path_to_file)
 	//printf("\n*debug* data_area @: %#x\n", data_area);
 
     fclose(img_file);
+    
+    root_dir_entry = malloc(sizeof(struct dir_entry_info));
+    memcpy(root_dir_entry->file_name, boot_sec->vol_label, 8);
+    root_dir_entry->attributes = ATTRIBUTE_SUBD;
+    root_dir_entry->first_log_clu = 0;
+    root_dir_entry->file_size = 0;
 
 	//print_fat();
     return E_NOERROR;
@@ -228,4 +236,41 @@ uint64_t calc_free_space()
     }
     
     return ((uint64_t)free_sec_num * boot_sec->byte_per_sector);
+}
+
+void str_to_upper_case(char * str, const unsigned int len)
+{
+    int i = 0;
+    for(i = 0; i < len; i++)
+    {
+        if('a' <= str[i] && str[i] <= 'z')
+            str[i] -= ('a' - 'A');
+    }
+}
+
+error_t seperate_file_name(const char * full_name, char * file_name, char * file_ext)
+{
+    int len = strlen(full_name);
+    int temp = len - 1;
+    for(; temp >= 0 && full_name[temp] != '.'; temp--);
+    temp++;
+    
+    if((temp > 0 && (len - temp > 3 || temp - 1 > 8)) || (temp == 0 && (len > 8)))
+        return E_INVSTRF; //ERROR Type 3
+    
+    //Reset the filename to empty first.
+    memset(file_name, ' ', 8);
+    memset(file_ext, ' ', 3);
+    if(temp > 0)
+    {
+        memcpy(file_name, full_name, temp - 1);
+        memcpy(file_ext, &full_name[temp], len - temp);
+    }
+    else
+    {
+        memcpy(file_name, full_name, len);
+    }
+    
+    return E_NOERROR;
+    
 }
