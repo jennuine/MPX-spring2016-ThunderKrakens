@@ -1,37 +1,50 @@
 #include <stdio.h>
+#include <termios.h> //TCSANOW, ECHO, ICANON
+#include <unistd.h> //STDIN_FILENO
 #include "disk_img_manager.h"
 #include "disk_file_manager.h"
 #include "file_dir_iterator.h"
+
 
 void type_file(struct dir_entry_info * file_entry_ptr)
 {
     if (!file_entry_ptr || (file_entry_ptr->attributes & ATTR_ARCH_ONLY))
         return;
+    static struct termios old_settings, new_settings;
     
-    int bytes_left = file_entry_ptr->file_size;
+    tcgetattr(STDIN_FILENO, &old_settings);
+    new_settings = old_settings; //saving old settings
+    
+    // turning off ICANON that looks for returns like \n & EOF (enter key) & ECHO so it doesn't echo on screen
+    new_settings.c_lflag &= ~(ICANON | ECHO); 
+    
+    tcsetattr(STDIN_FILENO, TCSANOW, &new_settings); //setting to new setting
+    
+    int line_no = 1;
     struct file_itr * iter = init_file_itr(file_entry_ptr->first_log_clu);
     
-    
-    for (fitr_begin(iter); !fitr_end(iter) && bytes_left > 0; fitr_next(iter))
+    for (fitr_begin(iter); !fitr_end(iter); fitr_next(iter))
     {
         struct data_sector * curr_sec = fitr_get(iter);
         char data[512];
-        //ch_arr_to_str(data, curr_sec->data, 512); this data is only depends on how it appear in the file.
+
         int i;
         for (i = 0; i < 512; i++)
         {
-            
             data[i] = curr_sec->data[i];
+            printf("%c", curr_sec->data[i]);
             
-            if (data[i] == '\n' && (i % 25 == 0))
+            if (data[i] == '\n')
             {
-                while(!getchar());
+                if (line_no % 25 == 0) 
+                    while(!getchar());
+                    
+                line_no += 1;
             }
-            //printf("%c", curr_sec->data[i]);
         }
-        printf("%s", data);
+
     }
-    
+    tcsetattr(STDIN_FILENO, TCSANOW, &old_settings); //setting back to old settings
 }
 
 error_t extract_file(struct dir_entry_info * file_entry_ptr, const char * out_file_path)
