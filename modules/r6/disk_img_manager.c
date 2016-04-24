@@ -176,6 +176,7 @@ void * get_data_ptr(const uint16_t data_area_sec_index)
 }
 
 
+
 void write_fat(const uint16_t fat_val, const uint16_t cluster_index)
 {
     if(fat_val & 0xF000)

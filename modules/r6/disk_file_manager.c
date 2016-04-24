@@ -22,28 +22,39 @@ void type_file(struct dir_entry_info * file_entry_ptr)
     
     int line_no = 1;
     struct file_itr * iter = init_file_itr(file_entry_ptr->first_log_clu);
+    // printf("**DEBUG: file size is %d \n", file_entry_ptr->file_size);
     
-    for (fitr_begin(iter); !fitr_end(iter); fitr_next(iter))
-    {
-        struct data_sector * curr_sec = fitr_get(iter);
-        char data[512];
+    // struct file_itr * iter = fitr_init_offset(file_entry_ptr->first_log_clu, 4);
 
+    
+    for (fitr_begin(iter); !fitr_end(iter) && line_no > 0; fitr_next(iter))
+    {
+        
+        struct data_sector * curr_sec = fitr_get(iter);
+        char ch;
+        
         int i;
         for (i = 0; i < 512; i++)
         {
-            data[i] = curr_sec->data[i];
             printf("%c", curr_sec->data[i]);
             
-            if (data[i] == '\n')
+            if (curr_sec->data[i] == '\n')
             {
                 if (line_no % 25 == 0) 
-                    while(!getchar());
-                    
+                    while(!(ch = getchar()));
+                
+                if (ch == 'q') //quit pagination
+                {
+                    line_no = 0;
+                    break;
+                }   
+                
                 line_no += 1;
             }
         }
 
     }
+    printf("\n");
     tcsetattr(STDIN_FILENO, TCSANOW, &old_settings); //setting back to old settings
 }
 

@@ -14,3 +14,8 @@ disk_img_app: disk_img_app.c $(OBJFILES)
 	
 clean:
 	rm disk_img_app $(OBJFILES)
+	
+run:
+	reset
+	make disk_img_app
+	./disk_img_app imgs/450_3.img

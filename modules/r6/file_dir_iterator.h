@@ -40,3 +40,4 @@ struct img_writer * init_img_writer(struct dir_entry_info * entry_ptr);
 
 void iw_write(struct img_writer * writer_ptr, const struct data_sector * data);
 
+struct file_itr * fitr_init_offset(const uint16_t sec_index, unsigned int offset);

@@ -144,18 +144,17 @@ int main(int argc, char ** argv)
         {
             change_dir_main(inner_argc, inner_argv);
         }
-        else if (inner_argc && !strcmp(inner_argv[0], "ps"))//Print Boot info
+        else if (!strcmp(inner_argv[0], "ps"))//Print Boot info
         {
             print_boot_sec_main(inner_argc, inner_argv);
         }
-        else if (inner_argc == 3 && (!strcmp(inner_argv[0], "rn") || !strcmp(inner_argv[0], "rename")))//rename
+        else if ((!strcmp(inner_argv[0], "rn") || !strcmp(inner_argv[0], "rename")))//rename
         {
             rename_main(inner_argc, inner_argv);
         }
-        else if (inner_argc == 2 && (!strcmp(inner_argv[0], "less") || !strcmp(inner_argv[0], "type"))) //type 
+        else if (!strcmp(inner_argv[0], "less")) //type 
         {
-            struct dir_entry_info * file_entry = get_entry(inner_argv[1]);
-            type_file(file_entry);
+            type_main(inner_argc, inner_argv);
         }
         else if (!strcmp(inner_argv[0], "mv"))//move
         {
@@ -179,7 +178,7 @@ int main(int argc, char ** argv)
 
 int print_boot_sec_main(int argc, char ** argv) {
 
-    if (argc = 2 && !strcmp(argv[1], "--help"))
+    if (argc == 2 && !strcmp(argv[1], "--help"))
     {
         //print_help();
     }
@@ -261,6 +260,25 @@ int list_main(int argc, char ** argv) {
         list_dir_entry_short();
     else
         printf("\n%s%sERROR:%s Incorrect input. Please refer to \"ls --help\"\n\n", T_BOLD, T_RED, T_RESET);
+    
+    return 0;
+}
+
+int type_main(int argc, char ** argv) {
+    
+    
+    if (argc == 2 && argv[1])
+    {
+        struct dir_entry_info * file_entry = get_entry(argv[1]);
+        if (file_entry == NULL)
+        {
+            printf("\n%s%sERROR:%s Could not find file \"%s\"\n\n", T_BOLD, T_RED, T_RESET, argv[1]);
+            return 0;
+        } 
+        type_file(file_entry);
+        return 0;
+    } else
+        printf("\n%s%sERROR:%s Incorrect input. Please refer to \"less --help\"\n\n", T_BOLD, T_RED, T_RESET);
     
     return 0;
 }
@@ -381,14 +399,6 @@ int print_root_dir_main(int argc, char ** argv) {
     return 0;
     
 }
-
-
-
-
-
-int type_main(int argc, char ** argv)
-
-
 
 #endif
 
