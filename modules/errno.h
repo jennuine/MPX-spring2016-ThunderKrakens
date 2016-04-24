@@ -32,6 +32,9 @@
 /** @brief The file was not found */
 #define E_FILE_NF 8
 
+/** @brief The specific file name is already exsit. */
+#define E_NAMEDUP 9
+
 /* @brief When this error happen, there is a special case that was not under program's consideration */
 #define E_PROGERR 99
 

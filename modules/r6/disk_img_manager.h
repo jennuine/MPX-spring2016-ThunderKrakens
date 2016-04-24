@@ -35,18 +35,18 @@ struct img_boot_sector
 PACKED(
 struct dir_entry_info
 {
-    uint8_t     file_name[8];
-    uint8_t     extension[3];
-    uint8_t     attributes;
-    uint16_t    reserved;
-    uint16_t    create_time;
-    uint16_t    create_date;
-    uint16_t    last_acc_date;
-    uint16_t    ignore1;
-    uint16_t    last_wri_time;
-    uint16_t    last_wri_date;
-    uint16_t    first_log_clu;
-    uint32_t    file_size;
+    uint8_t     file_name[8]; /**< File name in ASCII Characters. Number of bytes 8 and starting at byte location 0.*/
+    uint8_t     extension[3];  /**< File extension in ASCII Characters. Number of bytes 3 and starting at byte location 8.*/
+    uint8_t     attributes;  /**< File attributes. Number of bytes 1 and starting at byte location 11.*/
+    uint16_t    reserved;  /**< Reserved. Number of bytes 2 and starting at byte location 12.*/
+    uint16_t    create_time; /**< Time created file. Number of bytes 2 and starting at byte location 14.*/
+    uint16_t    create_date; /**< Date created file. Number of bytes 2 and starting at byte location 16.*/
+    uint16_t    last_acc_date; /**< Date last accessed file. Number of bytes 2 and starting at byte location 18.*/
+    uint16_t    ignore1; /**< Ignore file data. Number of bytes 2 and starting at byte location 20.*/
+    uint16_t    last_wri_time; /**< Last modified file time. Number of bytes 2 and starting at byte location 22.*/
+    uint16_t    last_wri_date; /**< Last modified file date. Number of bytes 2 and starting at byte location 24.*/
+    uint16_t    first_log_clu; /**< First logical cluster specifies where the file or subdirectory begins. Number of bytes 2 and starting at byte location 26.*/
+    uint32_t    file_size;/**< File size in bytes. Number of bytes 4 and starting at byte location 28.*/
 }
 );
 
@@ -58,16 +58,17 @@ struct data_sector
 }
 );
 
-#define ATTRIBUTE_READ 0x01
-#define ATTRIBUTE_HIDD 0x02
-#define ATTRIBUTE_SYST 0x04
-#define ATTRIBUTE_VOLL 0x08
+#define ATTRIBUTE_READ 0x01 // read-only
+#define ATTRIBUTE_HIDD 0x02 // hidden
+#define ATTRIBUTE_SYST 0x04 // system
+#define ATTRIBUTE_VOLL 0x08 // volume label
 
-#define ATTRIBUTE_SUBD 0x10
-#define ATTRIBUTE_ARCH 0x20
-#define ATTRIBUTE_UUS1 0x40
-#define ATTRIBUTE_UUS2 0x80
+#define ATTRIBUTE_SUBD 0x10 // subdirectory
+#define ATTRIBUTE_ARCH 0x20 // archive
+#define ATTRIBUTE_UUS1 0x40 // device 
+#define ATTRIBUTE_UUS2 0x80 // unused
 
+#define ATTR_ARCH_ONLY (!ATTRIBUTE_SYST & !ATTRIBUTE_VOLL & !ATTRIBUTE_SUBD & !ATTRIBUTE_UUS1 & !ATTRIBUTE_UUS2)
 extern struct img_boot_sector * boot_sec;
 
 extern struct dir_entry_info * root_dir_file_arr;

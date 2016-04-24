@@ -87,7 +87,7 @@ void print_dir_entry_info(struct dir_entry_info * entry_ptr)
     {
         printf
         (
-            "| %s%-8s%s | %-3s | %s | %-7u | %-7u |\n",
+            "| %s%-8s%s | %-3s | %s | %-7u | %-7d |\n",
             T_DIR,
             file_name,
             T_DIR_OFF,
@@ -99,7 +99,7 @@ void print_dir_entry_info(struct dir_entry_info * entry_ptr)
     } else {
         printf
         (
-            "| %-8s | %-3s | %s | %-7u | %-7u |\n",
+            "| %-8s | %-3s | %s | %-7u | %-7d |\n",
             file_name,
             file_ext,
             get_attr_str(entry_ptr->attributes),
@@ -193,39 +193,48 @@ void print_curr_path()
     printf("%s\\", current_folder->folder_name);
 }
 
-void rename_entry(struct dir_entry_info * file_entry, char * new_name)
+error_t rename_entry(struct dir_entry_info * parent_dir_entry, struct dir_entry_info * file_entry, char * new_name)
 {
-    if (file_entry == NULL)
+    if (parent_dir_entry == NULL || file_entry == NULL)
     {
-        printf("\n%s%sERROR:%s Could not find file named \"%s\"\n\n", T_BOLD, T_RED, T_RESET, new_name);
-        return;
+        //printf("\n%s%sERROR:%s Could not find file named \"%s\"\n\n", T_BOLD, T_RED, T_RESET, new_name);
+        return E_NULL_PTR;
     }
+    str_to_upper_case(new_name, strlen(new_name));
+    if(get_entry_simple(parent_dir_entry, new_name))
+        return E_INVPARA;
     
     str_to_upper_case(new_name, strlen(new_name));
-
-    if (seperate_file_name(new_name, file_entry->file_name, file_entry->extension) == E_INVSTRF)
-    {
-       printf("\t%s The length of the filename must within the range of [1, 8]. %s\n\n", T_ITCS, T_ITCS_OFF); 
-    }
+    return seperate_file_name(new_name, file_entry->file_name, file_entry->extension);
+    //if ( == E_INVSTRF)
+    //{
+       //printf("\t%s The length of the filename must within the range of [1, 8]. %s\n\n", T_ITCS, T_ITCS_OFF); 
+    //}
 }
 
-struct dir_entry_info * get_entry_simple(const char * nameStr)
+struct dir_entry_info * get_entry_simple(const struct dir_entry_info * parent_dir_entry, char * nameStr)
 {
-    char file_name[9] = { 0 };
-    char file_ext[4] = { 0 };
+    if(parent_dir_entry && !(parent_dir_entry->attributes & ATTRIBUTE_SUBD))
+        return NULL;
     char full_name[12] = { 0 };
     
-    struct dir_itr * dir_entry_itr = init_dir_itr(current_folder->log_sec_index);
+    str_to_upper_case(nameStr, strlen(nameStr));
+    
+    uint16_t sec_index = current_folder->log_sec_index;
+    
+    if(parent_dir_entry)
+    {
+        sec_index = parent_dir_entry->first_log_clu;
+    }
+    
+    struct dir_itr * dir_entry_itr = init_dir_itr(sec_index);
     
     for(ditr_begin(dir_entry_itr); !ditr_end(dir_entry_itr); ditr_next(dir_entry_itr))
     {
         struct dir_entry_info * current_entry = ditr_get(dir_entry_itr);
-        ch_arr_to_str(file_name, current_entry->file_name, 8);
-        ch_arr_to_str(file_ext, current_entry->extension, 3);
-        if(strlen(file_ext) > 0)
-            sprintf(full_name, "%s.%s", file_name, file_ext);
-        else
-            sprintf(full_name, "%s", file_name);
+        
+        get_full_name(full_name, current_entry);
+        
         if(!strcmp(full_name, nameStr))
             return current_entry;
     }
@@ -305,7 +314,7 @@ void change_dir(char * full_path)
             pop_folder();
         }
         else
-            push_folder(get_entry_simple(simple_path));
+            push_folder(get_entry_simple(NULL, simple_path));
             
         simple_path = strtok(NULL, "\\/");
     }

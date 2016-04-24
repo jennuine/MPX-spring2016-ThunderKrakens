@@ -148,28 +148,18 @@ int main(int argc, char ** argv)
         {
             print_boot_sec_main(inner_argc, inner_argv);
         }
-        else if (inner_argc == 3 && !strcmp(inner_argv[0], "rn"))//rename
+        else if (inner_argc == 3 && (!strcmp(inner_argv[0], "rn") || !strcmp(inner_argv[0], "rename")))//rename
         {
             rename_main(inner_argc, inner_argv);
         }
-        else if (inner_argc == 4 && !strcmp(inner_argv[0], "mv"))//move
+        else if (inner_argc == 2 && (!strcmp(inner_argv[0], "less") || !strcmp(inner_argv[0], "type"))) //type 
         {
-            if(!strcmp(inner_argv[1], "-o"))
-            {
-                struct dir_entry_info * file_entry = get_entry(inner_argv[2]);
-                extract_file(file_entry, inner_argv[3]);
-            }
-            else if(!strcmp(inner_argv[1], "-m"))
-            {
-                struct dir_entry_info * file_entry = get_entry(inner_argv[2]);
-                struct dir_entry_info * dest_entry = get_entry(inner_argv[3]);
-                move_file(file_entry, dest_entry);
-            }
-            else if(!strcmp(inner_argv[1], "-i"))
-            {
-                struct dir_entry_info * dest_entry = get_entry(inner_argv[2]);
-                import_file(inner_argv[3], dest_entry);
-            }
+            struct dir_entry_info * file_entry = get_entry(inner_argv[1]);
+            type_file(file_entry);
+        }
+        else if (!strcmp(inner_argv[0], "mv"))//move
+        {
+            move_main(inner_argc, inner_argv);
         } else {
             printf("\n%s%sERROR:%s No such function.\n\n", T_BOLD, T_RED, T_RESET);
         }
@@ -229,7 +219,34 @@ int rename_main(int argc, char ** argv) {
         \n\nArguments:\n\tprocessName  String process name\n\
         Exit Status:\n\tChanges filename if the length is between [1, 8].\n\n");
     } else if (argc == 3) {
-        rename_entry(get_entry(argv[1]), argv[2]);
+        char * file_path = malloc(strlen(argv[1]));
+        memcpy(file_path, argv[1], strlen(argv[1]));
+        int len = strlen(file_path);
+        int temp = len - 1;
+        for(; temp >= 0 && file_path[temp] != '/' && file_path[temp] != '\\'; temp--);
+        temp++;
+        if(temp == 0 || temp == 1)
+            memcpy(file_path, ".\0", 2);
+        else
+            file_path[temp - 1] = '\0';
+        //printf("*DEBUG parent path: %s\n", file_path);
+        error_t errno = rename_entry(get_entry(file_path), get_entry(argv[1]), argv[2]);
+        free(file_path);
+        switch(errno)
+        {
+            case E_NOERROR:
+                printf("Renamed successfully!\n");
+                break;
+            case E_NULL_PTR:
+                printf("\n%s%sERROR:%s Could not find file \"%s\"\n\n", T_BOLD, T_RED, T_RESET, argv[1]);
+                break;
+            case E_INVPARA:
+                printf("\n%s%sERROR:%s There is already a file named \"%s\" in the destination!\n\n", T_BOLD, T_RED, T_RESET, argv[2]);
+                break;
+            case E_INVSTRF:
+                printf("\t%s The length of the filename must within the range of [1, 8]. %s\n\n", T_ITCS, T_ITCS_OFF);
+                break;
+        }
     } else {
         printf("\n%s%sERROR:%s Incorrect input. Please refer to \"rn --help\"\n\n", T_BOLD, T_RED, T_RESET);
     }
@@ -245,6 +262,88 @@ int list_main(int argc, char ** argv) {
     else
         printf("\n%s%sERROR:%s Incorrect input. Please refer to \"ls --help\"\n\n", T_BOLD, T_RED, T_RESET);
     
+    return 0;
+}
+
+int move_main(int argc, char ** argv)
+{
+    if(argc == 4 && !strcmp(argv[1], "-o"))
+    {
+        struct dir_entry_info * file_entry = get_entry(argv[2]);
+        error_t errno = extract_file(file_entry, argv[3]);
+        switch(errno)
+        {
+            case E_NOERROR:
+                printf("The file had been successfully extracted!\n");
+                break;
+            default:
+                printf("ERROR: Could not extract the file!\n");
+                switch(errno)
+                {
+                    case E_NULL_PTR:
+                        printf("\t Could not found the source within the image!\n");
+                        break;
+                    case E_INVPARA:
+                        printf("\t The source you had indicated is not a file, or the destination cannot be written!\n");
+                        break;
+                }
+                break;
+        }
+    }
+    else if(argc == 4 && !strcmp(argv[1], "-m"))
+    {
+        struct dir_entry_info * file_entry = get_entry(argv[2]);
+        struct dir_entry_info * dest_entry = get_entry(argv[3]);
+        error_t errno = move_file(file_entry, dest_entry);
+        switch(errno)
+        {
+            case E_NOERROR:
+                printf("The file had been successfully moved!\n");
+                break;
+            default:
+                printf("ERROR: Could not move the file!\n");
+                switch(errno)
+                {
+                    case E_NULL_PTR:
+                        printf("\t Could not found the source or destination within the image!\n");
+                        break;
+                    case E_INVPARA:
+                        printf("\t The source is not a file, or the destination is not a folder, or there is a file with the same name in the destination!\n");
+                        break;
+                }
+                break;
+        }
+    }
+    else if(argc == 4 && !strcmp(argv[1], "-i"))
+    {
+        struct dir_entry_info * dest_entry = get_entry(argv[2]);
+        error_t errno = import_file(argv[3], dest_entry);
+        switch(errno)
+        {
+            case E_NOERROR:
+                printf("The file had been successfully imported!\n");
+                break;
+            default:
+                printf("ERROR: Could not import the file!\n");
+                switch(errno)
+                {
+                    case E_NULL_PTR:
+                        printf("\t Could not found the destination within the image!\n");
+                        break;
+                    case E_INVPARA:
+                        printf("\t The source cannot be opened, or the destination is not a folder, or there is a file with the same name in the destination!\n");
+                        break;
+                    case E_INVSTRF:
+                        printf("\t The file name or extension of the source is too long!\n");
+                        break;
+                }
+                break;
+        }
+    }
+    else
+    {
+        printf("mv: Cannot understand the argument you had given.\n");
+    }
     return 0;
 }
 
@@ -290,7 +389,6 @@ int print_root_dir_main(int argc, char ** argv) {
 int type_main(int argc, char ** argv)
 
 
-int move_main(int argc, char ** argv);
 
 #endif
 

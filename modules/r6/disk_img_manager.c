@@ -83,6 +83,8 @@ void clean_buffers()
     }
     if(data_area)
         free(data_area);
+    if(root_dir_entry)
+        free(root_dir_entry);
 }
 
 void print_boot_sec_info(const struct img_boot_sector * boot_sec)
@@ -256,7 +258,7 @@ error_t seperate_file_name(const char * full_name, char * file_name, char * file
     temp++;
     
     if((temp > 0 && (len - temp > 3 || temp - 1 > 8)) || (temp == 0 && (len > 8)))
-        return E_INVSTRF; //ERROR Type 3
+        return E_INVSTRF; //ERROR Type 1
     
     //Reset the filename to empty first.
     memset(file_name, ' ', 8);
@@ -273,4 +275,20 @@ error_t seperate_file_name(const char * full_name, char * file_name, char * file
     
     return E_NOERROR;
     
+}
+
+void get_full_name(char * dest, const struct dir_entry_info * entry)
+{
+    if(!dest || !entry)
+        return;
+    
+    memset(dest, 0, 12);
+    char file_name[9] = { 0 };
+    char file_ext[4] = { 0 };
+    ch_arr_to_str(file_name, entry->file_name, 8);
+    ch_arr_to_str(file_ext, entry->extension, 3);
+    if(strlen(file_ext) > 0)
+        sprintf(dest, "%s.%s", file_name, file_ext);
+    else
+        sprintf(dest, "%s", file_name);
 }
