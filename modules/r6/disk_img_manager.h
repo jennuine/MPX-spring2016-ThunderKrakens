@@ -58,29 +58,6 @@ struct data_sector
 }
 );
 
-PACKED(
-    struct doc_sector 
-    {
-        uint8_t file_id;
-        uint16_t uid;
-        uint8_t rev_num;
-        uint8_t ver_num;
-        uint8_t byte_order_id;
-        uint8_t sector_size;
-        uint8_t short_sector_size;
-        uint16_t ignore1;
-        uint8_t total_sectors;
-        uint8_t sector_id_of_dir_stream;
-        uint8_t ignore2;
-        uint8_t min_size_stream;
-        uint8_t sec_id_short_sector;
-        uint8_t sec_id_master_sector;
-        uint8_t total_num_sectors_used;
-        uint32_t sectFat[109];
-        
-    }
-);
-
 #define ATTRIBUTE_READ 0x01 // read-only
 #define ATTRIBUTE_HIDD 0x02 // hidden
 #define ATTRIBUTE_SYST 0x04 // system

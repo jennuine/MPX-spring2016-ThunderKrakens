@@ -121,18 +121,6 @@ void ditr_set_filter(struct dir_itr * itr_ptr, uint8_t attr_filter)
     itr_ptr->attr_filter = attr_filter;
 }
 
-struct file_itr * fitr_init_offset(const uint16_t sec_index, unsigned int offset)
-{
-    struct file_itr * result = malloc(sizeof(struct file_itr));
-        
-    result->ori_sec_i = sec_index + offset;
-    result->curr_sec_i = sec_index + offset;
-    
-    printf("**DEBUG: itr_ptr %d\n", sec_index + offset);
-    return result;
-
-}
-
 void fitr_next_offset(struct file_itr * itr_ptr)
 {
     if(!itr_ptr || fitr_end(itr_ptr))
