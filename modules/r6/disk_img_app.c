@@ -254,10 +254,27 @@ int rename_main(int argc, char ** argv) {
 
 int list_main(int argc, char ** argv) {
     
-    if(argc == 2 && !strcmp(argv[1], "-l"))
+    if (argc == 2 && !strcmp(argv[1], "--help"))
+    {
+        printf("Implement me!");
+    } else if(argc == 2 && !strcmp(argv[1], "-l"))
         list_dir_entry_report();
     else if (argc == 1)
         list_dir_entry_short();
+    else if (argc == 2)
+    {
+        char * token = strtok(argv[1], ".");
+        if (!strcmp(token, "*"))
+        {
+            token = strtok(NULL, ".");
+            char ext[3];
+            strcpy(ext, token);
+            // printf("DEBUG: Extension is %s\n",ext);
+            list_files_entry_ext(ext);
+        } else {
+            printf("finish implementing me!")
+        }
+    }
     else
         printf("\n%s%sERROR:%s Incorrect input. Please refer to \"ls --help\"\n\n", T_BOLD, T_RED, T_RESET);
     
