@@ -26,4 +26,4 @@ void list_files_entry_ext(const char * ext);
 
 void list_files_entry_name(const char * name);
 
-void list_file_report(const char *name, const char *ext);
+void list_file_report(const char *name, const char *ext, int wildcard);

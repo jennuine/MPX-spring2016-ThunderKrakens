@@ -252,52 +252,70 @@ int rename_main(int argc, char ** argv) {
     return 0;
 }
 
+void list_wildcard(char *argv, int report)
+{
+    char * token = strtok(argv, ".");
+    
+    if (!strcmp(token, "*"))
+    {
+        token = strtok(NULL, ".");
+        char ext[3];
+        strcpy(ext, token);
+        
+        if (!report)
+            list_files_entry_ext(ext);
+        else
+            list_file_report("*", ext, 1);
+    } else {
+        
+        char file_name[9];
+        strcpy(file_name, token);
+        token = strtok(NULL, ".");
+        
+        if (token != NULL && !strcmp(token, "*"))
+        {
+            if (!report)
+                list_files_entry_name(file_name);
+            else
+                list_file_report(file_name, "*", 1);
+                
+        } else if ( token != NULL ) {
+            
+            char ext[3];
+            strcpy(ext, token);
+            list_file_report(file_name, ext, 0);
+            
+        } else // it is most likely a directory
+            list_file_report(file_name, "", 0);
+    }
+}
+
+
 int list_main(int argc, char ** argv) 
 {
-    
+    printf("\n");
     if (argc == 2 && !strcmp(argv[1], "--help"))
     {
         printf("Implement me!");
     } 
     else if(argc == 2 && !strcmp(argv[1], "-l"))
         list_dir_entry_report();
+        
+    else if (argc == 3 && !strcmp(argv[1], "-l"))
+        list_wildcard(argv[2], 1);
+        
     else if (argc == 1)
         list_dir_entry_short();
+    
     else if (argc == 2)
-    {
-        char * token = strtok(argv[1], ".");
-        if (!strcmp(token, "*"))
-        {
-            token = strtok(NULL, ".");
-            char ext[3];
-            strcpy(ext, token);
-            // printf("DEBUG: Extension is %s\n",ext);
-            list_files_entry_ext(ext);
-        }
-        else 
-        {
-            char file_name[9];
-            strcpy(file_name, token);
-            token = strtok(NULL, ".");
-            
-            // printf("debug: %s\n", token);
-            
-            if (token != NULL && !strcmp(token, "*"))
-            {
-                list_files_entry_name(file_name);
-            } else if ( token != NULL ) {
-                char ext[3];
-                strcpy(ext, token);
-                list_file_report(file_name, ext);
-            } else
-                list_file_report(file_name, " ");
-        }
-    }
+       list_wildcard(argv[1], 0);
+    
     else
         printf("\n%s%sERROR:%s Incorrect input. Please refer to \"ls --help\"\n\n", T_BOLD, T_RED, T_RESET);
     
     return 0;
 }
+
 
 int type_main(int argc, char ** argv) {
     
@@ -399,6 +417,7 @@ int move_main(int argc, char ** argv)
     }
     return 0;
 }
+
 
 #if 0
 

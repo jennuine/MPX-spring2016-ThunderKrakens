@@ -147,8 +147,7 @@ void list_dir_entry_short()
     char full_name[12] = { 0 };
     struct dir_itr * dir_entry_itr = init_dir_itr(current_folder->log_sec_index);
     int i = 0;
-    printf("\n");
-    
+
     for(ditr_begin(dir_entry_itr), i = 0; !ditr_end(dir_entry_itr); ditr_next(dir_entry_itr))
     {
         struct dir_entry_info * current_entry = ditr_get(dir_entry_itr);
@@ -233,6 +232,7 @@ void list_files_entry_name(const char * name)
         i++;
         struct dir_entry_info * current_entry = ditr_get(dir_entry_itr);
         ch_arr_to_str(file_name, current_entry->file_name, 8);
+        
         if (!strcmp(name, file_name))
         {
             ch_arr_to_str(file_ext, current_entry->extension, 3);
@@ -253,7 +253,23 @@ void list_files_entry_name(const char * name)
 
 }
 
-void list_file_report(const char *name, const char *ext)
+void print_report_heading()
+{
+    printf("------------------------------------------------------------------\n");
+    printf
+    (
+        "| %-8s | %-3s | %-25s | %-7s | %-7s |\n",
+        "name\0",
+        "ext\0",
+        "attributes\0",
+        "sec num\0",
+        "size\0"
+    );
+
+    printf("|----------|-----|---------------------------|---------|---------|\n");
+}
+
+void list_file_report(const char *name, const char *ext, int wildcard)
 {
     char file_name[9] = { 0 };
     char file_ext[4] = { 0 };
@@ -268,26 +284,30 @@ void list_file_report(const char *name, const char *ext)
         ch_arr_to_str(file_name, current_entry->file_name, 8);
         ch_arr_to_str(file_ext, current_entry->extension, 3);
         
-        if (!strcmp(file_name, name) && (!strcmp(file_ext, ext) || !strcmp(file_ext, "")))
+        if (!wildcard && !strcmp(file_name, name) && (!strcmp(file_ext, ext) || !strcmp(file_ext, "")))
         {
             if (flag == 0) 
-            {
-                printf("\n------------------------------------------------------------------\n");
-                printf
-                (
-                    "| %-8s | %-3s | %-25s | %-7s | %-7s |\n",
-                    "name\0",
-                    "ext\0",
-                    "attributes\0",
-                    "sec num\0",
-                    "size\0"
-                );
-        
-                printf("|----------|-----|---------------------------|---------|---------|\n");
-            }
+                print_report_heading();
             
             print_dir_entry_info(current_entry);
             flag = 1;
+        } else if ( wildcard ) {
+            if ( !strcmp(file_ext, ext) && !strcmp(name, "*") ) 
+            {
+                if (flag == 0)
+                    print_report_heading();
+                    
+                print_dir_entry_info(current_entry);
+                flag = 1;
+            }
+            else if (!strcmp(file_name, name) && !strcmp(ext, "*"))
+            {
+                if (flag == 0)
+                    print_report_heading();
+                    
+                print_dir_entry_info(current_entry);
+                flag = 1;
+            }
         }
         
 
@@ -300,6 +320,7 @@ void list_file_report(const char *name, const char *ext)
     else
         printf("\n%s%sERROR:%s could not find file named \'%s.%s\'\n\n", T_BOLD, T_RED, T_RESET, name, ext);
 }
+
 
 
 void print_curr_path()
