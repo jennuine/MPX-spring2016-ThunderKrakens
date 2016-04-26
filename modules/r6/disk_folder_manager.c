@@ -268,7 +268,7 @@ void list_file_report(const char *name, const char *ext)
         ch_arr_to_str(file_name, current_entry->file_name, 8);
         ch_arr_to_str(file_ext, current_entry->extension, 3);
         
-        if (!strcmp(file_name, name) && !strcmp(file_ext, ext))
+        if (!strcmp(file_name, name) && (!strcmp(file_ext, ext) || !strcmp(file_ext, "")))
         {
             if (flag == 0) 
             {

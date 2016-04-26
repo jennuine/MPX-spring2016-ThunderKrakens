@@ -280,14 +280,17 @@ int list_main(int argc, char ** argv)
             strcpy(file_name, token);
             token = strtok(NULL, ".");
             
-            if (!strcmp(token, "*"))
+            // printf("debug: %s\n", token);
+            
+            if (token != NULL && !strcmp(token, "*"))
             {
                 list_files_entry_name(file_name);
-            } else {
+            } else if ( token != NULL ) {
                 char ext[3];
                 strcpy(ext, token);
                 list_file_report(file_name, ext);
-            }
+            } else
+                list_file_report(file_name, " ");
         }
     }
     else
