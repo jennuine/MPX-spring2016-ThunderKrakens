@@ -213,10 +213,94 @@ void list_files_entry_ext(const char * ext)
     if (strlen(full_name) == 0)
     {
         printf("\n%s%sERROR:%s could not find files with the extension \'%s\'.\n\n", T_BOLD, T_RED, T_RESET, ext);
-        return;
     }
 
 }
+
+void list_files_entry_name(const char * name)
+{
+    char file_name[9] = { 0 };
+    char file_ext[4] = { 0 };
+    char full_name[12] = { 0 };
+    
+    struct dir_itr * dir_entry_itr = init_dir_itr(current_folder->log_sec_index);
+    int i;
+    uint8_t attr_filter = ATTRIBUTE_SUBD | ATTRIBUTE_HIDD | ATTRIBUTE_VOLL;
+    ditr_set_filter(dir_entry_itr, attr_filter);
+    
+    for(ditr_begin(dir_entry_itr), i = 0; !ditr_end(dir_entry_itr); ditr_next(dir_entry_itr))
+    {
+        i++;
+        struct dir_entry_info * current_entry = ditr_get(dir_entry_itr);
+        ch_arr_to_str(file_name, current_entry->file_name, 8);
+        if (!strcmp(name, file_name))
+        {
+            ch_arr_to_str(file_ext, current_entry->extension, 3);
+            sprintf(full_name, "%s.%s", file_name, file_ext);
+            printf("%-15s", full_name);
+            
+            if(!(i % 5))
+                printf("\n");
+        }    
+    }
+    printf("\n\n");
+    free(dir_entry_itr);
+    
+    if (strlen(full_name) == 0)
+    {
+        printf("\n%s%sERROR:%s could not find files with the name \'%s\'.\n\n", T_BOLD, T_RED, T_RESET, name);
+    }
+
+}
+
+void list_file_report(const char *name, const char *ext)
+{
+    char file_name[9] = { 0 };
+    char file_ext[4] = { 0 };
+    struct dir_itr * dir_entry_itr1 = init_dir_itr(current_folder->log_sec_index);
+    ditr_set_filter(dir_entry_itr1, 0);
+    int flag = 0;
+    
+    for(ditr_begin(dir_entry_itr1); !ditr_end(dir_entry_itr1); ditr_next(dir_entry_itr1))
+    {
+        struct dir_entry_info * current_entry = ditr_get(dir_entry_itr1);
+        
+        ch_arr_to_str(file_name, current_entry->file_name, 8);
+        ch_arr_to_str(file_ext, current_entry->extension, 3);
+        
+        if (!strcmp(file_name, name) && !strcmp(file_ext, ext))
+        {
+            if (flag == 0) 
+            {
+                printf("\n------------------------------------------------------------------\n");
+                printf
+                (
+                    "| %-8s | %-3s | %-25s | %-7s | %-7s |\n",
+                    "name\0",
+                    "ext\0",
+                    "attributes\0",
+                    "sec num\0",
+                    "size\0"
+                );
+        
+                printf("|----------|-----|---------------------------|---------|---------|\n");
+            }
+            
+            print_dir_entry_info(current_entry);
+            flag = 1;
+        }
+        
+
+    }
+    
+    free(dir_entry_itr1);
+    
+    if (flag)
+        printf("------------------------------------------------------------------\n\n");
+    else
+        printf("\n%s%sERROR:%s could not find file named \'%s.%s\'\n\n", T_BOLD, T_RED, T_RESET, name, ext);
+}
+
 
 void print_curr_path()
 {

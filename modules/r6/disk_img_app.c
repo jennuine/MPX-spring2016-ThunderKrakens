@@ -252,12 +252,14 @@ int rename_main(int argc, char ** argv) {
     return 0;
 }
 
-int list_main(int argc, char ** argv) {
+int list_main(int argc, char ** argv) 
+{
     
     if (argc == 2 && !strcmp(argv[1], "--help"))
     {
         printf("Implement me!");
-    } else if(argc == 2 && !strcmp(argv[1], "-l"))
+    } 
+    else if(argc == 2 && !strcmp(argv[1], "-l"))
         list_dir_entry_report();
     else if (argc == 1)
         list_dir_entry_short();
@@ -271,8 +273,21 @@ int list_main(int argc, char ** argv) {
             strcpy(ext, token);
             // printf("DEBUG: Extension is %s\n",ext);
             list_files_entry_ext(ext);
-        } else {
-            printf("finish implementing me!")
+        }
+        else 
+        {
+            char file_name[9];
+            strcpy(file_name, token);
+            token = strtok(NULL, ".");
+            
+            if (!strcmp(token, "*"))
+            {
+                list_files_entry_name(file_name);
+            } else {
+                char ext[3];
+                strcpy(ext, token);
+                list_file_report(file_name, ext);
+            }
         }
     }
     else

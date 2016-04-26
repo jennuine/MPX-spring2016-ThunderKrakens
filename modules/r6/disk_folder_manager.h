@@ -23,3 +23,7 @@ struct dir_entry_info * get_entry(char * full_path);
 void change_dir(char * full_path);
 
 void list_files_entry_ext(const char * ext);
+
+void list_files_entry_name(const char * name);
+
+void list_file_report(const char *name, const char *ext);
