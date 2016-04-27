@@ -2,7 +2,7 @@
  * @file disk_img_manager.h
  * @author Thunder Krakens
  * @date April 27th, 2016
- * @brief Disk File Manager
+ * @brief Disk Image Manager
  * @version R6
  *
  */

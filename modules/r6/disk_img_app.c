@@ -1,6 +1,7 @@
 #include "disk_img_manager.h"
 #include "disk_folder_manager.h"
 #include "disk_file_manager.h"
+#include "file_dir_iterator.h"
 #include "../errno.h"
 #include <stdio.h>
 #include "ansi.h"
@@ -192,41 +193,45 @@ int main(int argc, char ** argv)
         {
             list_main(inner_argc, inner_argv);
         }
-        else if (!strcmp(inner_argv[0], "cd"))//change directory
+        else if (inner_argc && !strcmp(inner_argv[0], "cd"))//change directory
         {
             change_dir_main(inner_argc, inner_argv);
         }
-        else if (!strcmp(inner_argv[0], "ps"))//Print Boot info
+        else if (inner_argc && !strcmp(inner_argv[0], "ps"))//Print Boot info
         {
             print_boot_sec_main(inner_argc, inner_argv);
         }
-        else if ((!strcmp(inner_argv[0], "rn") || !strcmp(inner_argv[0], "rename")))//rename
+        else if (inner_argc && (!strcmp(inner_argv[0], "rn") || !strcmp(inner_argv[0], "rename")))//rename
         {
             rename_main(inner_argc, inner_argv);
         }
-        else if (!strcmp(inner_argv[0], "less")) //type 
+        else if (inner_argc && !strcmp(inner_argv[0], "less")) //type 
         {
             type_main(inner_argc, inner_argv);
         }
-        else if (!strcmp(inner_argv[0], "mv"))//move
+        else if (inner_argc && !strcmp(inner_argv[0], "mv"))//move
         {
             move_main(inner_argc, inner_argv);
         }
-        else if (!strcmp(inner_argv[0], "help"))
+        else if (inner_argc && !strcmp(inner_argv[0], "help"))
         {
-            printf("\nAvailable commands are:\n\
+            printf("\nAvailable commands are:\n\n\
             cd [directory] - change directory\n\
             exit - exits the program\n\
             less [file] - aka \'type\', prints contents of file\n\
             ls [option] [file] - list contents\n\
-            mv [file] [location] - moves file to indicated location\n\
+            mv [option] [path1] [path2] - moves file to indicated location\n\
             ps - print boot information\n\
-            rn - rename file/directory\n\
+            rn [old filename] [new filename] - rename file/directory\n\
             write - saves all image file changes\n\n");
         }
-        else if (!strcmp(inner_argv[0], "write"))
+        else if (inner_argc && !strcmp(inner_argv[0], "write"))
         {
             write_image_file_main();
+        }
+        else if (inner_argc && !strcmp(inner_argv[0], "lsr"))
+        {
+            print_root_dir_main(inner_argc, inner_argv);
         }
         else 
         {
@@ -243,7 +248,7 @@ int main(int argc, char ** argv)
 
 int write_image_file_main()
 {
-    printf("Are you sure to save any changes that you may had made? (Enter Y/N) \n");
+    printf("\n%sDo you want to save your content changes to the image?%s (Enter Y/N) \n", T_BOLD, T_BOLD_OFF);
     char user_reply[10];
     fgets(user_reply, 10, stdin);
     fflush(stdin);
@@ -254,17 +259,19 @@ int write_image_file_main()
     temp++;
     user_reply[temp] = '\0';
     
+    printf("\n");
+    
     if(!strcmp(user_reply, "Y") || !strcmp(user_reply, "y"))
     {
         error_t errno = write_image_file();
         switch(errno)
         {
             case E_NOERROR:
-                printf("Changes had been saved successfully!\n");
+                printf("Your changes have been saved successfully!\n");
                 break;
             case E_FILE_NF:
-                printf("Cannot open the image file!\n");
-                printf("Changes had NOT been saved.\n");
+                printf("Could not open the image file!\n");
+                printf("Changes have NOT been saved.\n");
                 break;
             default:
                 printf("Some error happened when saving.\n");
@@ -273,13 +280,14 @@ int write_image_file_main()
     }
     else if(!strcmp(user_reply, "N") || !strcmp(user_reply, "n"))
     {
-        printf("Changes had NOT been saved.\n");
+        printf("Changes have NOT been saved.\n");
     }
     else
     {
-        printf("The answer, \"%s\", you had enter is invalid.\n", user_reply);
+        printf("%s%sERROR:%s The answer, \"%s\", you entered is invalid.\n", T_BOLD, T_RED, T_RESET, user_reply);
         return 1;
     }
+    printf("\n");
     return 0;
 }
 
@@ -553,34 +561,24 @@ int move_main(int argc, char ** argv)
 }
 
 
-#if 0
-
-
 int print_root_dir_main(int argc, char ** argv) {
-     if (argc = 2 && !strcmp(argv[1], "--help"))
+    if (argc == 2 && !strcmp(argv[1], "--help"))
     {
         //print_help(); 
     }
     else if(argc == 1)
     {
-        /* print_root_dir:
-        current_folder = malloc(sizeof(struct folder));      
-      
-        struct dir_itr * dir_entry_itr1 = init_dir_itr(current_folder->ROOT_DIR_SEC_INDEX);
-        ditr_set_filter(dir_entry_itr1, 0);
+        struct dir_itr * dir_entry_itr1 = init_dir_itr(ROOT_DIR_SEC_INDEX);
     
         for(ditr_begin(dir_entry_itr1); !ditr_end(dir_entry_itr1); ditr_next(dir_entry_itr1))
         {
-        struct dir_entry_info * current_entry = ditr_get(dir_entry_itr1);
-        print_dir_entry_info(current_entry);
+            struct dir_entry_info * current_entry = ditr_get(dir_entry_itr1);
+            print_dir_entry_info(current_entry);
         }
-        
-        
-        */
     }
     else
     {
-        printf("\n%s%sERROR:%s Incorrect input. Please refer to \"Print root sec --help\"\n\n", T_BOLD, T_RED, T_RESET);
+        printf("\n%s%sERROR:%s Incorrect input. Please refer to \"lsr --help\"\n\n", T_BOLD, T_RED, T_RESET);
         return 0;
     }
     
@@ -588,76 +586,3 @@ int print_root_dir_main(int argc, char ** argv) {
     
 }
 
-#endif
-
-
-//======================================
-
-
-
-
-
-
-
-
-#if 0
-------------------------------
-cs450_2.img 
-~ ls
-1984.TXT SUBDIR   WVU.JPG
-
-~ ls -a
-.          .Trashes   .fseventsd SUBDIR
-..         ._.Trashes 1984.TXT   WVU.JPG
-
-~ cd SUBDIR
-~ ls
-ANDREW.TXT WOW.JPG
-
-~ ls -a
-.          ..         ANDREW.TXT WOW.JPG
-
--------------------------------
-450_3.img
-~ ls
-CS111     EX14.C    EX17.C    EX7.C     FELEEX6.C WREATHS
-
-~ ls -a
-.          .Trashes   .fseventsd EX14.C     EX7.C      WREATHS
-..         ._.Trashes CS111      EX17.C     FELEEX6.C
-
-~ cd CS111
-~ ls 
-BON1.DOC     CRUISES.TXT  HMK3.DOC     MAZE2.TXT    READMAZE.TXT TESTFILE.DAT
-BTREES.HTM   EMPLOYEE.DAT HOURLY.DAT   POLY.RTF     REV1.DOC     TMAZE1.TXT
-CODE.RTF     EXAMPLE1.TXT INSTDES.TXT  PRO2SUM2.TXT SLINLST.JAV  TMAZE2.TXT
-CODING.DOC   GCD.TXT      INTNOD~1.JAV PROJ5.DAT    STKSPEC.DOC
-COMM.DAT     HMK1.DOC     MAZE1.TXT    QUESPEC.DOC  STUDENT.TXT
-
-~ ls -a
-.            CODING.DOC   GCD.TXT      INTNOD~1.JAV PROJ5.DAT    STKSPEC.DOC
-..           COMM.DAT     HMK1.DOC     MAZE1.TXT    QUESPEC.DOC  STUDENT.TXT
-BON1.DOC     CRUISES.TXT  HMK3.DOC     MAZE2.TXT    READMAZE.TXT TESTFILE.DAT
-BTREES.HTM   EMPLOYEE.DAT HOURLY.DAT   POLY.RTF     REV1.DOC     TMAZE1.TXT
-CODE.RTF     EXAMPLE1.TXT INSTDES.TXT  PRO2SUM2.TXT SLINLST.JAV  TMAZE2.TXT
-
-~ cd ../WREATHS
-~ ls
-EMPLOYEE.JAV POSTER1.PDF  POSTER2.PDF
-
-~ ls -a
-.            ..           EMPLOYEE.JAV POSTER1.PDF  POSTER2.PDF
-
-//things we still need:
-//      print boot sec info
-//      print root dir
-//      change directory
-//      list dir
-//      Type
-//      Rename
-//      handle arrow keys
-//Extra Credit:
-//      Move
-//      Adding file
-
-#endif 
