@@ -129,7 +129,7 @@ void fitr_next_offset(struct file_itr * itr_ptr)
     fat(&itr_ptr->curr_sec_i, itr_ptr->curr_sec_i);
 }
 
-void gin(struct file_itr * itr_ptr)
+void fitr_begin(struct file_itr * itr_ptr)
 {
     if(!itr_ptr)
         return;
