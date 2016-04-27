@@ -6,11 +6,18 @@
 #include "file_dir_iterator.h"
 
 
-void type_file(struct dir_entry_info * file_entry_ptr)
+error_t type_file(struct dir_entry_info * file_entry_ptr)
 {
     if (!file_entry_ptr || (file_entry_ptr->attributes & ATTR_ARCH_ONLY))
-        return;
+        return E_INVATTRS;
+   
+    char ext[3];
+    ch_arr_to_str(ext, file_entry_ptr->extension, 3);
     
+    if (strcmp(ext, "TXT") && strcmp(ext, "BAT") && strcmp(ext, "C") && strcmp(ext, "HTM"))
+    {
+        return E_INVPARA;
+    }
     struct termios old_settings, new_settings;
     
     tcgetattr(STDIN_FILENO, &old_settings);
@@ -53,6 +60,7 @@ void type_file(struct dir_entry_info * file_entry_ptr)
     printf("\n");
     free(iter);
     tcsetattr(STDIN_FILENO, TCSANOW, &old_settings); //setting back to old settings
+    return E_NOERROR;
 }
 
 error_t extract_file(struct dir_entry_info * file_entry_ptr, const char * out_file_path)
@@ -122,7 +130,7 @@ error_t import_file(const char * in_file_path, struct dir_entry_info * dest_dir)
     
     str_to_upper_case(file_full_name, 13);
     
-    if(get_entry_simple(dest_dir, file_full_name))
+    if(get_entry_by_name(dest_dir, file_full_name))
         return E_INVPARA; //ERROR Type 5
     
     error_t errno = validate_filename(file_full_name);
@@ -149,9 +157,6 @@ error_t import_file(const char * in_file_path, struct dir_entry_info * dest_dir)
     
     unused_entry->attributes = ATTRIBUTE_ARCH;
     set_fat_time(NULL, &unused_entry->last_wri_time);
-    set_fat_time(NULL, &unused_entry->create_time);
-    set_fat_date(NULL, &unused_entry->last_wri_date);
-    set_fat_date(NULL, &unused_entry->create_date);
     unused_entry->file_size = file_size;
     uint32_t byte_left = unused_entry->file_size;
     struct img_writer * fwriter = init_img_writer(unused_entry);
@@ -181,7 +186,7 @@ error_t move_file(struct dir_entry_info * file_entry, struct dir_entry_info * de
         
     char full_name[12];
     get_full_name(full_name, file_entry);
-    if(get_entry_simple(dest_dir, full_name))
+    if(get_entry_by_name(dest_dir, full_name))
         return E_INVPARA; //ERROR Type 2
     
     struct dir_itr * dir_entry_itr = init_dir_itr(dest_dir->first_log_clu);

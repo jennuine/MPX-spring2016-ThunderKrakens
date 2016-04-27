@@ -34,26 +34,7 @@ struct img_writer
     uint16_t curr_sec_i;
 }    
 );
-/*
-static void ditr_apply_filter(struct dir_itr * itr_ptr)
-{
-    struct dir_entry_info * curr_entry = ditr_get(itr_ptr);
-    
-    while
-    (
-        curr_entry && 
-        (
-            curr_entry->file_name[0] == 0xE5 
-            || curr_entry->file_name[0] == 0
-            || (curr_entry->attributes & itr_ptr->attr_filter)
-        )
-    )
-    {
-        ditr_next(itr_ptr);
-        curr_entry = ditr_get(itr_ptr);
-    }
-}
-*/
+
 //True means this entry needs to be filted out.
 static uint8_t ditr_filter(struct dir_itr * itr_ptr)
 {
@@ -64,6 +45,11 @@ static uint8_t ditr_filter(struct dir_itr * itr_ptr)
         curr_entry 
         && 
         (
+            (//Indicators for long file name. Skip them.
+                curr_entry->file_size == (uint32_t)-1
+                ||(curr_entry->attributes) == 0X0F
+            )
+            ||
             (//Normal iteration, find the used entry.
                 !itr_ptr->want_unused
                 && 

@@ -2,7 +2,7 @@
  * @file disk_img_manager.h
  * @author Thunder Krakens
  * @date April 27th, 2016
- * @brief Disk Image Manager
+ * @brief Disk File Manager
  * @version R6
  *
  */
@@ -44,6 +44,12 @@ struct img_boot_sector
 
 
 PACKED(
+/** 
+ * @struct dir_entry_info
+ * @name dir_entry_info
+ * #DirEntryStruct
+ * Struct Directory entry in sector
+ */
 struct dir_entry_info
 {
     uint8_t     file_name[8]; /**< File name in ASCII Characters. Number of bytes 8 and starting at byte location 0.*/
@@ -221,64 +227,18 @@ uint16_t find_unused_fat();
 
 /**
  * @name calc_free_space
- * @brief Calculate available free space
+ * @brief Calc
  * 
  */
 
 uint64_t calc_free_space();
 
-/**
- * @name str_to_upper_case
- * @brief Convert string to upper case
- *
- * @param   str     Input string
- * @param   len     Length of string
- * 
- */
-
 void str_to_upper_case(char * str, const unsigned int len);
-
-/**
- * @name seperate_file_name
- * @brief Seperate file name from extension
- *
- * @param   full_name       Full name of file
- * @param   file_name       Output of file name
- * @param   file_ext        File extension
- * 
- */
 
 error_t seperate_file_name(const char * full_name, char * file_name, char * file_ext);
 
-/**
- * @name get_fat_date
- * @brief Get the date of FAT 
- *
- * @param   out_date            Output date
- * @param   fat_date_value      Retrieve FAT Date value
- * 
- */
-
 void get_fat_date(struct fat_date * out_date, const uint16_t fat_date_value);
 
-/**
- * @name get_fat_date_str
- * @brief Convert FAT date to str
- *
- * @param   out_date            Output date
- * @param   fat_date_value      Retrieve FAT Date value
- * 
- */
-
 void get_fat_date_str(char * out_str, const uint16_t fat_date_value);
-
-/**
- * @name set_fat_time
- * @brief Sets the time of FAT
- *
- * @param   in_time                 Input time
- * @param   out_fat_time_value      Output time
- * 
- */
 
 void set_fat_time(const struct fat_time * in_time, uint16_t * out_fat_time_value);

@@ -325,9 +325,9 @@ void print_curr_path()
     int i = 0;
     for(i = 0; i < folder_stack_top; i++)
     {
-        printf("%s\\", folder_stack[i]->folder_name);
+        printf("%s/", folder_stack[i]->folder_name);
     }
-    printf("%s\\", current_folder->folder_name);
+    printf("%s/", current_folder->folder_name);
 }
 
 error_t rename_entry(struct dir_entry_info * parent_dir_entry, struct dir_entry_info * file_entry, char * new_name)
@@ -337,7 +337,7 @@ error_t rename_entry(struct dir_entry_info * parent_dir_entry, struct dir_entry_
         return E_NULL_PTR;
     }
     str_to_upper_case(new_name, strlen(new_name));
-    if(get_entry_simple(parent_dir_entry, new_name))
+    if(get_entry_by_name(parent_dir_entry, new_name))
         return E_INVPARA;
         
     error_t errno = E_NOERROR;
@@ -351,7 +351,7 @@ error_t rename_entry(struct dir_entry_info * parent_dir_entry, struct dir_entry_
     return seperate_file_name(new_name, file_entry->file_name, file_entry->extension);
 }
 
-struct dir_entry_info * get_entry_simple(const struct dir_entry_info * parent_dir_entry, char * nameStr)
+struct dir_entry_info * get_entry_by_name(const struct dir_entry_info * parent_dir_entry, char * nameStr)
 {
     if(parent_dir_entry && !(parent_dir_entry->attributes & ATTRIBUTE_SUBD))
         return NULL;
@@ -453,7 +453,7 @@ void change_dir(char * full_path)
             pop_folder();
         }
         else
-            push_folder(get_entry_simple(NULL, simple_path));
+            push_folder(get_entry_by_name(NULL, simple_path));
             
         simple_path = strtok(NULL, "\\/");
     }

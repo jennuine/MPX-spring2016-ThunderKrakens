@@ -1,55 +1,61 @@
 /**
  * @file disk_file_manager.h
  * @author Thunder Krakens
- * @date April 27th, 2016
+ * @date April 28th, 2016
  * @brief Disk File Manager
+ * 
+ * This contains functions that deal with files
+ * 
  * @version R6
  *
  */
 
-//#include "disk_img_manager.h"
 
+/**
+ * @brief Directory entry struct in sector
+ * @ref dir_entry_info
+ * @see DirEntryStruct
+ */
 struct dir_entry_info;
 
 /**
  * @name type_file
- * @brief The type of the file
- *
- * @param  file_entry_ptr   The entry pointer in a file
+ * @brief Prints the contents of a file 
  * 
+ * This function will print any contents of a file with the extensions "TXT", "BAT", "C", or "HTM" in pagination form. 
+ *
+ * @param  file_entry_ptr   The pointer to the file entry
+ * @return The appropiate error number. See @ref errno.h for details.
  */
-
-void type_file(struct dir_entry_info * file_entry_ptr);
+error_t type_file(struct dir_entry_info * file_entry_ptr);
 
 /**
  * @name extract_file
- * @brief Extracts a file
+ * @brief Extracts a file's data contents into new file
  *
- * @param   file_entry_ptr  The entry pointer in a file
- * @param   out_file_path   The destination of the extracted file
+ * @param   file_entry_ptr  The pointer to the file entry
+ * @param   out_file_path   The destination to save the new 'copied' file 
  * 
+ * @return The appropiate error number. See @ref errno.h for details.
  */
-
 error_t extract_file(struct dir_entry_info * file_entry_ptr, const char * out_file_path);
 
 /**
  * @name import_file
- * @brief Imports a file
+ * @brief Imports a file into a directory
  *
- * @param   in_file_path    Where the file to be imported
- * @param   dest_dir        The destination of imported file
- * 
+ * @param   in_file_path    Where the file to be imported is located
+ * @param   dest_dir        The directory destination for the imported file
+ * @return The appropiate error number. See @ref errno.h for details.
  */
-
 error_t import_file(const char * in_file_path, struct dir_entry_info * dest_dir);
 
 /**
  * @name move_file
  * @brief Moves files from destination to another
- *
- * @param   file_entry      The entry that needs to be moved
- * @param   dest_dir        The destination of the moved file
  * 
+ * @param   file_entry      The file entry pointer to be moved
+ * @param   dest_dir        The destination of the moved file
+ * @return The appropiate error number. See @ref errno.h for details.
  */
-
 error_t move_file(struct dir_entry_info * file_entry, struct dir_entry_info * dest_dir);

@@ -21,6 +21,14 @@ enum CommandPaserStat
 	SingleQuoteWriting
 };
 
+//Main functions' prototypes:
+int print_root_dir_main(int argc, char ** argv);
+int move_main(int argc, char ** argv);
+int type_main(int argc, char ** argv);
+int list_main(int argc, char ** argv);
+int rename_main(int argc, char ** argv);
+int change_dir_main(int argc, char ** argv);
+int print_boot_sec_main(int argc, char ** argv);
 
 /**
 * @name   command_line_parser
@@ -136,7 +144,6 @@ int dump(char *argv)
 
 int main(int argc, char ** argv)
 {
-    //fireworks();
     static int inner_argc = 0;
     static char ActArgArray[MAX_ARGC][USER_INPUT_BUFFER_SIZE];
     char * inner_argv[MAX_ARGC];
@@ -167,6 +174,14 @@ int main(int argc, char ** argv)
         return 0;
     }
     
+    FILE * file = fopen("heading.txt", "r");
+    char line[100];
+
+    while (fgets(line, 100, file))
+        printf("%s", line);
+    
+    fclose(file);
+    printf("\n");
     
     print_boot_sec_info(boot_sec);
     //list_dir_entry_report();
@@ -197,7 +212,7 @@ int main(int argc, char ** argv)
         {
             change_dir_main(inner_argc, inner_argv);
         }
-        else if (inner_argc && !strcmp(inner_argv[0], "ps"))//Print Boot info
+        else if (inner_argc == 1 && !strcmp(inner_argv[0], "pb"))//Print Boot info
         {
             print_boot_sec_main(inner_argc, inner_argv);
         }
@@ -221,11 +236,11 @@ int main(int argc, char ** argv)
             less [file] - aka \'type\', prints contents of file\n\
             ls [option] [file] - list contents\n\
             mv [option] [path1] [path2] - moves file to indicated location\n\
-            ps - print boot information\n\
+            pb - print boot information\n\
             rn [old filename] [new filename] - rename file/directory\n\
             write - saves all image file changes\n\n");
         }
-        else if (inner_argc && !strcmp(inner_argv[0], "write"))
+        else if (inner_argc == 1 && !strcmp(inner_argv[0], "write"))
         {
             write_image_file_main();
         }
@@ -297,18 +312,14 @@ int write_image_file_main()
 
 
 int print_boot_sec_main(int argc, char ** argv) {
-
-    if (argc == 2 && !strcmp(argv[1], "--help"))
-    {
-        //print_help();
-    }
-    else if(argc == 1)
+    
+    if(argc == 1)
     {
         print_boot_sec_info(boot_sec);
     }
     else
     {
-        printf("\n%s%sERROR:%s Incorrect input. Please refer to \"Print boot sec --help\"\n\n", T_BOLD, T_RED, T_RESET);
+        printf("\n%s%sERROR:%s Incorrect input. \n\n", T_BOLD, T_RED, T_RESET);
         return 0;
     }
     
@@ -316,9 +327,11 @@ int print_boot_sec_main(int argc, char ** argv) {
 }
 
 
-int change_dir_main(int argc, char ** argv){
-    if (argc == 2 && !strcmp(argv[1], "--help")){
-        //printf()
+int change_dir_main(int argc, char ** argv)
+{
+    if (argc == 2 && !strcmp(argv[1], "--help"))
+    {
+        printf("cd [directory] \t - to change directory. [directory] can be a path to a directory\n\n");
     }
     else if(argc == 2){
         change_dir(argv[1]);
@@ -465,9 +478,18 @@ int type_main(int argc, char ** argv) {
             printf("\n%s%sERROR:%s Could not find file \"%s\"\n\n", T_BOLD, T_RED, T_RESET, argv[1]);
             return 0;
         } 
-        type_file(file_entry);
+        error_t errno = type_file(file_entry);
+        
+        if(errno == E_INVPARA)
+        {
+            printf("\n%s%sERROR:%s  Unable to print contents of file that is not \"TXT\", \"BAT\", \"C\", and \"HTM\".\n\n", T_BOLD, T_RED, T_RESET);
+            return 0;
+        }
+        else if (errno == E_INVATTRS)  
+            printf("\n%s%sERROR:%s  Unable to print contents of this file type/attribute.\n\n", T_BOLD, T_RED, T_RESET);
+        
         return 0;
-    
+
         
     } else
         printf("\n%s%sERROR:%s Incorrect input. Please refer to \"less --help\"\n\n", T_BOLD, T_RED, T_RESET);
@@ -568,6 +590,7 @@ int print_root_dir_main(int argc, char ** argv) {
     }
     else if(argc == 1)
     {
+        print_report_heading();
         struct dir_itr * dir_entry_itr1 = init_dir_itr(ROOT_DIR_SEC_INDEX);
     
         for(ditr_begin(dir_entry_itr1); !ditr_end(dir_entry_itr1); ditr_next(dir_entry_itr1))
@@ -575,6 +598,7 @@ int print_root_dir_main(int argc, char ** argv) {
             struct dir_entry_info * current_entry = ditr_get(dir_entry_itr1);
             print_dir_entry_info(current_entry);
         }
+        printf("--------------------------------------------------------------------------\n");
     }
     else
     {

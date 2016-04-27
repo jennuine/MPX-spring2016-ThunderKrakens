@@ -4,7 +4,9 @@
  * @date February 7nd, 2016
  * @version R2
  *
- * @brief This file contains the type of errors. The error can be from invalid paramter passed to a function, or invalid input format.
+ * @brief This file contains the type of errors. 
+ * 
+ * The error can be from invalid paramter passed to a function, or invalid input format.
  */
 
 /* @brief No errors */
@@ -41,9 +43,11 @@
 /** @brief Not enough space to store the file. */
 #define E_NOSPACE 11
 
+/** @brief The file's attributes are invalid */
+#define E_INVATTRS 12
+
 /* @brief When this error happen, there is a special case that was not under program's consideration */
 #define E_PROGERR 99
-
 
 /**
  * @name error_t.
