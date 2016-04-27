@@ -214,7 +214,15 @@ int main(int argc, char ** argv)
         }
         else if (!strcmp(inner_argv[0], "help"))
         {
-            
+            printf("\nAvailable commands are:\n\
+            cd [directory] - change directory\n\
+            exit - exits the program\n\
+            less [file] - aka \'type\', prints contents of file\n\
+            ls [option] [file] - list contents\n\
+            mv [file] [location] - moves file to indicated location\n\
+            ps - print boot information\n\
+            rn - rename file/directory\n\
+            write - saves all image file changes\n\n");
         }
         else if (!strcmp(inner_argv[0], "write"))
         {
@@ -228,7 +236,7 @@ int main(int argc, char ** argv)
         inner_argc = 0;
     }
     
-    write_image_file_main();
+    while(write_image_file_main());
     clean_buffers();
     return 0;
 }
@@ -270,6 +278,7 @@ int write_image_file_main()
     else
     {
         printf("The answer, \"%s\", you had enter is invalid.\n", user_reply);
+        return 1;
     }
     return 0;
 }

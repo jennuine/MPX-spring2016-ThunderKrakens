@@ -1,5 +1,6 @@
 #include "disk_img_manager.h"
 #include "ansi.h"
+#include <time.h>
 
 char * current_image_file_path = NULL;
 
@@ -397,4 +398,62 @@ void get_fat_time_str(char * out_str, const uint16_t fat_time_value)
     get_fat_time(&time_result, fat_time_value);
     //sprintf(out_str, "%#X", fat_time_value);
     sprintf(out_str, "%2u:%2u:%2u", time_result.hr, time_result.mi, time_result.se);
+}
+
+void set_fat_time(const struct fat_time * in_time, uint16_t * out_fat_time_value)
+{
+    struct fat_time temp_time;
+    
+    if(!in_time)
+    {
+        time_t rawtime;
+        struct tm * timeinfo;
+        time ( &rawtime );
+        timeinfo = localtime ( &rawtime );
+        temp_time.se = timeinfo->tm_sec;
+        temp_time.mi = timeinfo->tm_min;
+        temp_time.hr = timeinfo->tm_hour;
+        //printf("Current time: %s\n\n", asctime(timeinfo));
+    }
+    else
+    {
+        temp_time.se = in_time->se;
+        temp_time.mi = in_time->mi;
+        temp_time.hr = in_time->hr;
+    }
+    
+    *out_fat_time_value = 0x0000;
+    *out_fat_time_value = *out_fat_time_value | ((uint16_t)(temp_time.se / 2) & 0x001F);
+    *out_fat_time_value = *out_fat_time_value | ((uint16_t)(temp_time.mi & 0x003F) << 5);
+    *out_fat_time_value = *out_fat_time_value | ((uint16_t)(temp_time.hr & 0x001F) << 11);
+}
+
+
+void set_fat_date(const struct fat_date * in_date, uint16_t * out_fat_date_value)
+{
+    struct fat_date temp_date;
+    
+    if(!in_date)
+    {
+        time_t rawtime;
+        struct tm * timeinfo;
+        time ( &rawtime );
+        timeinfo = localtime ( &rawtime );
+        temp_date.day = timeinfo->tm_mday;
+        temp_date.mon = timeinfo->tm_mon + 1;
+        temp_date.year = timeinfo->tm_year + 1900;
+        //printf("Current mon: %d\n\n", timeinfo->tm_mon);
+        //printf("Current time: %s\n\n", asctime(timeinfo));
+    }
+    else
+    {
+        temp_date.day = in_date->day;
+        temp_date.mon = in_date->mon;
+        temp_date.year = in_date->year;
+    }
+    
+    *out_fat_date_value = 0x0000;
+    *out_fat_date_value = *out_fat_date_value | ((uint16_t)temp_date.day & 0x001F);
+    *out_fat_date_value = *out_fat_date_value | ((uint16_t)(temp_date.mon & 0x000F) << 5);
+    *out_fat_date_value = *out_fat_date_value | ((uint16_t)((temp_date.year - 1980) & 0x007F) << 9);
 }

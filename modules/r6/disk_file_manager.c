@@ -148,6 +148,10 @@ error_t import_file(const char * in_file_path, struct dir_entry_info * dest_dir)
         return errno; //ERROR Type 4
     
     unused_entry->attributes = ATTRIBUTE_ARCH;
+    set_fat_time(NULL, &unused_entry->last_wri_time);
+    set_fat_time(NULL, &unused_entry->create_time);
+    set_fat_date(NULL, &unused_entry->last_wri_date);
+    set_fat_date(NULL, &unused_entry->create_date);
     unused_entry->file_size = file_size;
     uint32_t byte_left = unused_entry->file_size;
     struct img_writer * fwriter = init_img_writer(unused_entry);
