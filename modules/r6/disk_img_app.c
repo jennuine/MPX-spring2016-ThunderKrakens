@@ -296,7 +296,15 @@ int list_main(int argc, char ** argv)
     printf("\n");
     if (argc == 2 && !strcmp(argv[1], "--help"))
     {
-        printf("Implement me!");
+        printf("list : ls [option] [file]\n\n\
+        Lists the contents contained in the current directory.\n\
+        If a file is given then it will list the file's full details (file report)\n\
+        If no file is given then lists all the contents in the directory.\n\n\
+        Available [option]:  -l    list the file(s) report of the contents.\n\n\
+        Optional [file]:   The file(s)/extension(s) to be listed.\n\
+        \t\tThe filename may be a wildcard OR the extention may be a wildcard.\n\n\
+        Example: %sls -l *.TXT%s will list all the file reports with the .TXT extension.\n\n\
+        Exit Status:\tLists the contents of the directory unless a specified file is not found.\n\n", T_ITCS, T_ITCS_OFF);
     } 
     else if(argc == 2 && !strcmp(argv[1], "-l"))
         list_dir_entry_report();
@@ -319,9 +327,15 @@ int list_main(int argc, char ** argv)
 
 int type_main(int argc, char ** argv) {
     
-    
-    if (argc == 2 && argv[1])
+    if (argc == 2 && !strcmp(argv[1], "--help"))
     {
+        printf("type : less [file]\n\n\
+        Prints the contents of the file to the screen, approximately a screen full at a time.\n\
+        In pagination, %sq%s to quit printing contents and any other key to continue.\n\n\
+        Exit Status:\tPrints file's contents unless it is not found.\n\n", T_ITCS, T_ITCS_OFF);
+    
+    } else if (argc == 2 && argv[1]) {
+    
         struct dir_entry_info * file_entry = get_entry(argv[1]);
         if (file_entry == NULL)
         {
@@ -330,6 +344,8 @@ int type_main(int argc, char ** argv) {
         } 
         type_file(file_entry);
         return 0;
+    
+        
     } else
         printf("\n%s%sERROR:%s Incorrect input. Please refer to \"less --help\"\n\n", T_BOLD, T_RED, T_RESET);
     

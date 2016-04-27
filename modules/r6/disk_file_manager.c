@@ -10,10 +10,11 @@ void type_file(struct dir_entry_info * file_entry_ptr)
 {
     if (!file_entry_ptr || (file_entry_ptr->attributes & ATTR_ARCH_ONLY))
         return;
-    static struct termios old_settings, new_settings;
+    
+    struct termios old_settings, new_settings;
     
     tcgetattr(STDIN_FILENO, &old_settings);
-    new_settings = old_settings; //saving old settings
+    new_settings = old_settings; //saving old terminal stdin settings
     
     // turning off ICANON that looks for returns like \n & EOF (enter key) & ECHO so it doesn't echo on screen
     new_settings.c_lflag &= ~(ICANON | ECHO); 
@@ -36,8 +37,8 @@ void type_file(struct dir_entry_info * file_entry_ptr)
             
             if (curr_sec->data[i] == '\n')
             {
-                if (line_no % 25 == 0) 
-                    while(!(ch = getchar()));
+                if (line_no % 25 == 0)
+                     while(!(ch = getchar()));
                 
                 if (ch == 'q') //quit pagination
                 {
@@ -48,9 +49,9 @@ void type_file(struct dir_entry_info * file_entry_ptr)
                 line_no += 1;
             }
         }
-
     }
     printf("\n");
+    free(iter);
     tcsetattr(STDIN_FILENO, TCSANOW, &old_settings); //setting back to old settings
 }
 
