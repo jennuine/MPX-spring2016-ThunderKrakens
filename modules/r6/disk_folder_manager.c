@@ -121,12 +121,12 @@ void list_dir_entry_report()
     printf("|--------|---|-------------------------|--------|--------|-------|-------|\n");
     
     struct dir_itr * dir_entry_itr1 = init_dir_itr(current_folder->log_sec_index);
-    ditr_set_filter(dir_entry_itr1, 0);
-    
+
     for(ditr_begin(dir_entry_itr1); !ditr_end(dir_entry_itr1); ditr_next(dir_entry_itr1))
     {
         struct dir_entry_info * current_entry = ditr_get(dir_entry_itr1);
-        print_dir_entry_info(current_entry);
+        if (current_entry->file_name[0] != '.')
+            print_dir_entry_info(current_entry);
     }
     
     free(dir_entry_itr1);
@@ -145,7 +145,7 @@ void list_dir_entry_short()
     for(ditr_begin(dir_entry_itr), i = 0; !ditr_end(dir_entry_itr); ditr_next(dir_entry_itr))
     {
         struct dir_entry_info * current_entry = ditr_get(dir_entry_itr);
-        if((current_entry->attributes & ATTRIBUTE_SUBD))
+        if((current_entry->attributes & ATTRIBUTE_SUBD) && current_entry->file_name[0] != '.')
         {
             i++;
             ch_arr_to_str(file_name, current_entry->file_name, 8);

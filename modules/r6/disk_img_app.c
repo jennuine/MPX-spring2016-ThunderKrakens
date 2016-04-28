@@ -239,6 +239,7 @@ int main(int argc, char ** argv)
             mv [option] [path1] [path2] - moves file to indicated location\n\
             pb - print boot information\n\
             rn [old filename] [new filename] - rename file/directory\n\
+            del [path] - delete the file.\n\
             write - saves all image file changes\n\n");
         }
         else if (inner_argc == 1 && !strcmp(inner_argv[0], "write"))
@@ -432,6 +433,7 @@ void list_wildcard(char *argv, int report)
 int list_main(int argc, char ** argv) 
 {
     printf("\n");
+    
     if (argc == 2 && !strcmp(argv[1], "--help"))
     {
         printf("list : ls [option] [file]\n\n\
@@ -453,14 +455,18 @@ int list_main(int argc, char ** argv)
         list_dir_entry_report();
         
     else if (argc == 3 && !strcmp(argv[1], "-l"))
+    {
+        str_to_upper_case(argv[2], strlen(argv[2]));
         list_wildcard(argv[2], 1);
-        
+    }   
     else if (argc == 1)
         list_dir_entry_short();
     
     else if (argc == 2)
-       list_wildcard(argv[1], 0);
-    
+    {
+        str_to_upper_case(argv[1], strlen(argv[1]));
+        list_wildcard(argv[1], 0);
+    }
     else
         printf("\n%s%sERROR:%s Incorrect input. Please refer to \"ls --help\"\n\n", T_BOLD, T_RED, T_RESET);
     
@@ -478,7 +484,7 @@ int type_main(int argc, char ** argv) {
         Exit Status:\tPrints file's contents unless it is not found.\n\n", T_ITCS, T_ITCS_OFF);
     
     } else if (argc == 2 && argv[1]) {
-    
+        
         struct dir_entry_info * file_entry = get_entry(argv[1]);
         if (file_entry == NULL)
         {
@@ -506,6 +512,7 @@ int type_main(int argc, char ** argv) {
 
 int move_main(int argc, char ** argv)
 {
+    printf("\n");
     if(argc == 2 && !strcmp(argv[1], "--help"))
     {
         printf("Move : mv [operation] [path1] [path2] \n\
@@ -606,6 +613,7 @@ int move_main(int argc, char ** argv)
     {
         printf("mv: Cannot understand the argument you had given.\n");
     }
+    printf("\n");
     return 0;
 }
 
@@ -627,6 +635,7 @@ int print_root_dir() {
 
 int delete_main(int argc, char ** argv)
 {
+    printf("\n");
     if(argc == 2 && !strcmp(argv[1], "--help"))
     {
         printf("Delete : del [path] \n\
@@ -662,5 +671,6 @@ int delete_main(int argc, char ** argv)
     {
         printf("del: Cannot understand the argument you had given.\n");
     }
+    printf("\n");
     return 0;
 }
