@@ -6,14 +6,14 @@
  * @version R3
  *
  */
+#ifndef DOXYGEN
 #include "pcb.h"
 #include <string.h>
 #include "../mpx_supt.h"
 #include "../r3/context.h"
-
+#endif
 
 /**
- * @name ready_queue
  * PCBs stored in priority order with highest priority at head 
  */
 static struct pcb_queue ready_queue;
@@ -22,6 +22,8 @@ static struct pcb_queue ready_queue;
  * PCBs stored in FIFO order
  */
 static struct pcb_queue blocked_queue;
+
+#ifndef DOXYGEN
 
 static char *enum_process_state[] = {"running", "ready", "blocked"};
 static char *enum_process_suspended[] = {"suspended", "unsuspended"};
@@ -47,8 +49,12 @@ enum process_suspended
   false /**< PCB process is not suspended. */
 } __attribute__ ((packed));
 
+#endif
+
 /**
 * Struct that will describe PCB Processes.
+* These members are private to prevent potential manipulation so that 
+* the MPX system can remain functioning correctly.
 */
 struct pcb_struct
 {
@@ -65,6 +71,8 @@ struct pcb_struct
 
 /**
 * Queue structure that will store PCBs.
+* These members are private to prevent potential manipulation so that 
+* the MPX system can remain functioning correctly.
 */
 struct pcb_queue
 {
@@ -72,6 +80,9 @@ struct pcb_queue
   struct pcb_struct * head; /**< Pointer to the start/head of the queue. */
   struct pcb_struct * tail; /**< Pointer to the end/tail of the queue. */
 };
+
+#ifndef DOXYGEN
+
 
 /**
  * @name  pcb_init
@@ -733,3 +744,4 @@ void shutdown_pcb()
     free_pcb(temp);
   }
 }
+#endif

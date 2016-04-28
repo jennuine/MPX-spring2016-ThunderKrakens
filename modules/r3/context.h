@@ -43,11 +43,10 @@ struct context {
  * @name sys_call
  * @brief system call interrupt
  *
- * @param   context* registers  current registers
+ * @param   registers  current registers
  *
  * @return   result      if there is no current process running, it will load new context. If the process is still running, it will load its old context.
  */ 
- 
 u32int * sys_call(struct context* registers);
 
 /**
@@ -61,7 +60,6 @@ u32int * sys_call(struct context* registers);
  *
  * @return  new_pcb     Returns the values of the new PCB
  */
-
 struct pcb_struct * load_process(const char * pName, const enum process_class pClass, const unsigned char pPriority, void (*function)());
 
 /**
@@ -71,9 +69,8 @@ struct pcb_struct * load_process(const char * pName, const enum process_class pC
  * @param argc  The number of tokens found.
  * @param argv  The array of tokens.
  *
- * @return  0
+ * @return  0 when finished with execution.
  */
-
 int load_r3_main(int argc, char ** argv);
 
 #if WITH_R3_TEMP_CMD

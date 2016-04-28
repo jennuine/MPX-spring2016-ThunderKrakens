@@ -7,6 +7,7 @@
  *
  */
 
+#ifndef DOXYGEN 
 #include "mcb.h"
 #include <system.h>
 #include <string.h>
@@ -21,6 +22,7 @@ u32int end_of_memory;
 
 struct mcb * free_mem_list;
 struct mcb * allocated_mem_list;
+#endif
 
 /**
 * PCB process class types.
@@ -32,7 +34,9 @@ enum mcb_type
 } __attribute__ ((packed));
 
 /**
- * Complete Memory Control Block Struct
+ * Complete Memory Control Block Struct.
+ * These members are private to prevent potential manipulation so that 
+ * the MPX system can remain functioning correctly.
  */
 struct cmcb {
     enum mcb_type type; /**< Type indicating free or allocated */
@@ -41,7 +45,9 @@ struct cmcb {
 };
 
 /**
- * Limited Memory Control Block Struct
+ * Limited Memory Control Block Struct.
+ * These members are private to prevent potential manipulation so that 
+ * the MPX system can remain functioning correctly.
  */
 struct lmcb {
     enum mcb_type type; /**< Type indicating free or allocated */
@@ -49,13 +55,18 @@ struct lmcb {
 };
 
 /**
- * Memory Control Block Struct
+ * Memory Control Block Struct.
+ * These members are private to prevent potential manipulation so that 
+ * the MPX system can remain functioning correctly.
  */
 struct mcb {
     struct cmcb * complete_mcb; /**< Complete Memory Control Block */
     struct lmcb * limited_mcb; /**< Limited Memory Control Block */
-    struct mcb *prev, *next;
+    struct mcb *prev, /**< The previous adjacent Memory Control Block */
+            *next; /**< The next adjacent Memory Control Block */
 };
+
+#ifndef DOXYGEN
 
 /**
  * @name get_mcb_total_size
@@ -738,4 +749,6 @@ int is_mcb_empty_main(int argc, char **argv) {
     
     return 0;
 }
+#endif
+
 #endif
