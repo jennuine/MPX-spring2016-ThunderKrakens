@@ -9,7 +9,7 @@
  
 #define WITH_R2_TEMP_CMD  0
 #define WITH_R3_TEMP_CMD  0
-#define WITH_R5_TEMP_CMD  1
+#define WITH_R5_TEMP_CMD  0
 
 /**------------------------------------------------------------------**/
 #define FUNCTIONS_BEGIN     0

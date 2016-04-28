@@ -31,7 +31,7 @@ error_t type_file(struct dir_entry_info * file_entry_ptr);
 
 /**
  * @name extract_file
- * @brief Extracts a file's data contents into new file
+ * @brief Extracts a file's data contents into new file outside of the disk image.
  *
  * @param   file_entry_ptr  The pointer to the file entry
  * @param   out_file_path   The destination to save the new 'copied' file 
@@ -59,3 +59,5 @@ error_t import_file(const char * in_file_path, struct dir_entry_info * dest_dir)
  * @return The appropiate error number. See @ref errno.h for details.
  */
 error_t move_file(struct dir_entry_info * file_entry, struct dir_entry_info * dest_dir);
+
+error_t delete_file(struct dir_entry_info * file_entry);

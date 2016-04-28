@@ -29,6 +29,7 @@ int list_main(int argc, char ** argv);
 int rename_main(int argc, char ** argv);
 int change_dir_main(int argc, char ** argv);
 int print_boot_sec_main(int argc, char ** argv);
+int delete_main(int argc, char ** argv);
 
 /**
 * @name   command_line_parser
@@ -178,7 +179,7 @@ int main(int argc, char ** argv)
     char line[100];
 
     while (fgets(line, 100, file))
-        printf("%s", line);
+        printf("%s%s%s%s%s", T_BOLD, T_CYAN, line, T_BOLD_OFF, T_NRM);
     
     fclose(file);
     printf("\n");
@@ -235,6 +236,7 @@ int main(int argc, char ** argv)
             exit - exits the program\n\
             less [file] - aka \'type\', prints contents of file\n\
             ls [option] [file] - list contents\n\
+            lsr - list root directory\n\
             mv [option] [path1] [path2] - moves file to indicated location\n\
             pb - print boot information\n\
             rn [old filename] [new filename] - rename file/directory\n\
@@ -247,6 +249,10 @@ int main(int argc, char ** argv)
         else if (inner_argc && !strcmp(inner_argv[0], "lsr"))
         {
             print_root_dir_main(inner_argc, inner_argv);
+        }
+        else if (inner_argc && !strcmp(inner_argv[0], "del"))
+        {
+            delete_main(inner_argc, inner_argv);
         }
         else 
         {
@@ -499,7 +505,24 @@ int type_main(int argc, char ** argv) {
 
 int move_main(int argc, char ** argv)
 {
-    if(argc == 4 && !strcmp(argv[1], "-o"))
+    if(argc == 2 && !strcmp(argv[1], "--help"))
+    {
+        printf("Move : mv [operation] [path1] [path2] \n\
+        mv -m [path1] [path2] \n\
+        move the file within the disk image.\n\
+        \t [path1] : the file you want to move.\n\
+        \t [path2] : the destination directory.\n\
+        mv -i [path1] [path2] \n\
+        \t import a file from outside of disk image to the disk image.\n\
+        \t [path1] : the file you want to import.\n\
+        \t [path2] : the destination directory.\n\
+        mv -o [path1] [path2] \n\
+        \t extract a file from disk image to outside of disk image.\n\
+        \t [path1] : the file you want to extract.\n\
+        \t [path2] : the destination file path (should be a valid path to outside of disk image).\n\
+        \n");
+    }
+    else if(argc == 4 && !strcmp(argv[1], "-o"))
     {
         struct dir_entry_info * file_entry = get_entry(argv[2]);
         error_t errno = extract_file(file_entry, argv[3]);
@@ -548,8 +571,8 @@ int move_main(int argc, char ** argv)
     }
     else if(argc == 4 && !strcmp(argv[1], "-i"))
     {
-        struct dir_entry_info * dest_entry = get_entry(argv[2]);
-        error_t errno = import_file(argv[3], dest_entry);
+        struct dir_entry_info * dest_entry = get_entry(argv[3]);
+        error_t errno = import_file(argv[2], dest_entry);
         switch(errno)
         {
             case E_NOERROR:
@@ -571,6 +594,9 @@ int move_main(int argc, char ** argv)
                     case E_NOSPACE:
                         printf("\t This disk does not have enough space to store this file!\n");
                         break;
+                    case E_FOLDFUL:
+                        printf("\t The specific directory is full.\n");
+                        break;
                 }
                 break;
         }
@@ -586,7 +612,7 @@ int move_main(int argc, char ** argv)
 int print_root_dir_main(int argc, char ** argv) {
     if (argc == 2 && !strcmp(argv[1], "--help"))
     {
-        //print_help(); 
+        printf("Print root directory : lsr\n");
     }
     else if(argc == 1)
     {
@@ -610,3 +636,42 @@ int print_root_dir_main(int argc, char ** argv) {
     
 }
 
+int delete_main(int argc, char ** argv)
+{
+    if(argc == 2 && !strcmp(argv[1], "--help"))
+    {
+        printf("Delete : del [path] \n\
+        delete the file from the disk image.\n\
+        \t [path] : the file you want to delete.\n\
+        \n");
+    }
+    else if(argc == 2)
+    {
+        str_to_upper_case(argv[1], strlen(argv[1]));
+        struct dir_entry_info * dest_entry = get_entry(argv[1]);
+        error_t errno = delete_file(dest_entry);
+        switch(errno)
+        {
+            case E_NOERROR:
+                printf("The file had been successfully deleted!\n");
+                break;
+            default:
+                printf("ERROR: Could not delete the file!\n");
+                switch(errno)
+                {
+                    case E_NULL_PTR:
+                        printf("\t Could not found that file within the image!\n");
+                        break;
+                    case E_INVPARA:
+                        printf("\t The path is not point to a file!\n");
+                        break;
+                }
+                break;
+        }
+    }
+    else
+    {
+        printf("del: Cannot understand the argument you had given.\n");
+    }
+    return 0;
+}

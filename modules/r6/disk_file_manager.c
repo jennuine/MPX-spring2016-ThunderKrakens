@@ -151,12 +151,19 @@ error_t import_file(const char * in_file_path, struct dir_entry_info * dest_dir)
     struct dir_entry_info * unused_entry = ditr_get(dir_entry_itr);
     free(dir_entry_itr);
     
+    if(!unused_entry)
+        return E_FOLDFUL;
+    
+    memset(unused_entry, 0, sizeof(struct dir_entry_info));
     //error_t errno;
     if((errno = seperate_file_name(file_full_name, unused_entry->file_name, unused_entry->extension)) != E_NOERROR)
         return errno; //ERROR Type 4
     
     unused_entry->attributes = ATTRIBUTE_ARCH;
     set_fat_time(NULL, &unused_entry->last_wri_time);
+    set_fat_time(NULL, &unused_entry->create_time);
+    set_fat_date(NULL, &unused_entry->last_wri_date);
+    set_fat_date(NULL, &unused_entry->create_date);
     unused_entry->file_size = file_size;
     uint32_t byte_left = unused_entry->file_size;
     struct img_writer * fwriter = init_img_writer(unused_entry);
@@ -198,6 +205,30 @@ error_t move_file(struct dir_entry_info * file_entry, struct dir_entry_info * de
     file_entry->file_name[0] = 0xE5;
     
     free(dir_entry_itr);
+    
+    return E_NOERROR;
+}
+
+error_t delete_file(struct dir_entry_info * file_entry)
+{
+    if(!file_entry)
+        return E_NULL_PTR; //ERROR Type 1
+        
+    if(file_entry->attributes & ATTRIBUTE_SUBD)
+        return E_INVPARA;
+        
+    file_entry->file_name[0] = 0xE5;
+    uint16_t curr_fat_v = file_entry->first_log_clu;
+    uint16_t temp = curr_fat_v;
+    
+    while(
+        !(0xFF0 <= curr_fat_v && curr_fat_v <= 0xFFF)
+        && !(curr_fat_v == 0x000))
+    {
+        temp = curr_fat_v;
+        fat(&curr_fat_v, curr_fat_v);
+        write_fat(0x000, temp);
+    }
     
     return E_NOERROR;
 }

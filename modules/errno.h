@@ -46,6 +46,9 @@
 /** @brief The file's attributes are invalid */
 #define E_INVATTRS 12
 
+/** @brief The specific directory is full. */
+#define E_FOLDFUL 13
+
 /* @brief When this error happen, there is a special case that was not under program's consideration */
 #define E_PROGERR 99
 
