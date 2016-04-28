@@ -22,7 +22,7 @@ enum CommandPaserStat
 };
 
 //Main functions' prototypes:
-int print_root_dir_main(int argc, char ** argv);
+int print_root_dir();
 int move_main(int argc, char ** argv);
 int type_main(int argc, char ** argv);
 int list_main(int argc, char ** argv);
@@ -199,58 +199,53 @@ int main(int argc, char ** argv)
         printf("> ");
         
 		fgets(command_str, USER_INPUT_BUFFER_SIZE, stdin);
+		str_to_upper_case(command_str, strlen(command_str));
         command_line_parser(command_str, &inner_argc, inner_argv, MAX_ARGC, USER_INPUT_BUFFER_SIZE);
-        
-        if (inner_argc && !strcmp(inner_argv[0], "exit"))
+        if (inner_argc && !strcmp(inner_argv[0], "EXIT"))
         {
             is_run = 0;
         }
-        else if (inner_argc && !strcmp(inner_argv[0], "ls"))//list
+        else if (inner_argc && !strcmp(inner_argv[0], "LS"))//list
         {
             list_main(inner_argc, inner_argv);
         }
-        else if (inner_argc && !strcmp(inner_argv[0], "cd"))//change directory
+        else if (inner_argc && !strcmp(inner_argv[0], "CD"))//change directory
         {
             change_dir_main(inner_argc, inner_argv);
         }
-        else if (inner_argc == 1 && !strcmp(inner_argv[0], "pb"))//Print Boot info
+        else if (inner_argc == 1 && !strcmp(inner_argv[0], "PB"))//Print Boot info
         {
             print_boot_sec_main(inner_argc, inner_argv);
         }
-        else if (inner_argc && (!strcmp(inner_argv[0], "rn") || !strcmp(inner_argv[0], "rename")))//rename
+        else if (inner_argc && !strcmp(inner_argv[0], "RN"))//rename
         {
             rename_main(inner_argc, inner_argv);
         }
-        else if (inner_argc && !strcmp(inner_argv[0], "less")) //type 
+        else if (inner_argc && !strcmp(inner_argv[0], "LESS")) //type 
         {
             type_main(inner_argc, inner_argv);
         }
-        else if (inner_argc && !strcmp(inner_argv[0], "mv"))//move
+        else if (inner_argc && !strcmp(inner_argv[0], "MV"))//move
         {
             move_main(inner_argc, inner_argv);
         }
-        else if (inner_argc && !strcmp(inner_argv[0], "help"))
+        else if (inner_argc && !strcmp(inner_argv[0], "HELP"))
         {
             printf("\nAvailable commands are:\n\n\
             cd [directory] - change directory\n\
             exit - exits the program\n\
             less [file] - aka \'type\', prints contents of file\n\
             ls [option] [file] - list contents\n\
-            lsr - list root directory\n\
             mv [option] [path1] [path2] - moves file to indicated location\n\
             pb - print boot information\n\
             rn [old filename] [new filename] - rename file/directory\n\
             write - saves all image file changes\n\n");
         }
-        else if (inner_argc == 1 && !strcmp(inner_argv[0], "write"))
+        else if (inner_argc == 1 && !strcmp(inner_argv[0], "WRITE"))
         {
             write_image_file_main();
         }
-        else if (inner_argc && !strcmp(inner_argv[0], "lsr"))
-        {
-            print_root_dir_main(inner_argc, inner_argv);
-        }
-        else if (inner_argc && !strcmp(inner_argv[0], "del"))
+        else if (inner_argc && !strcmp(inner_argv[0], "DEL"))
         {
             delete_main(inner_argc, inner_argv);
         }
@@ -335,7 +330,7 @@ int print_boot_sec_main(int argc, char ** argv) {
 
 int change_dir_main(int argc, char ** argv)
 {
-    if (argc == 2 && !strcmp(argv[1], "--help"))
+    if (argc == 2 && !strcmp(argv[1], "--HELP"))
     {
         printf("cd [directory] \t - to change directory. [directory] can be a path to a directory\n\n");
     }
@@ -350,7 +345,7 @@ int change_dir_main(int argc, char ** argv)
 
 int rename_main(int argc, char ** argv) {
     
-    if (argc == 3 && !strcmp(argv[1], "--help")) 
+    if (argc == 3 && !strcmp(argv[1], "--HELP")) 
     {
         printf("rename : rn [old filename] [new filename]\n\
         \n\tRenames the file.\n\n\
@@ -436,22 +431,27 @@ void list_wildcard(char *argv, int report)
 int list_main(int argc, char ** argv) 
 {
     printf("\n");
-    if (argc == 2 && !strcmp(argv[1], "--help"))
+    if (argc == 2 && !strcmp(argv[1], "--HELP"))
     {
         printf("list : ls [option] [file]\n\n\
         Lists the contents contained in the current directory.\n\
         If a file is given then it will list the file's full details (file report)\n\
         If no file is given then lists all the contents in the directory.\n\n\
-        Available [option]:  -l    list the file(s) report of the contents.\n\n\
+        Available [option]:  \n\
+        -l    list the file(s) report of the contents.\n\
+        -r    lists the contents of the root directory\n\n\
         Optional [file]:   The file(s)/extension(s) to be listed.\n\
         \t\tThe filename may be a wildcard OR the extention may be a wildcard.\n\n\
         Example: %sls -l *.TXT%s will list all the file reports with the .TXT extension.\n\n\
         Exit Status:\tLists the contents of the directory unless a specified file is not found.\n\n", T_ITCS, T_ITCS_OFF);
     } 
-    else if(argc == 2 && !strcmp(argv[1], "-l"))
+    else if (argc == 2 && !strcmp(argv[1], "-R"))
+        print_root_dir();
+    
+    else if(argc == 2 && !strcmp(argv[1], "-L"))
         list_dir_entry_report();
         
-    else if (argc == 3 && !strcmp(argv[1], "-l"))
+    else if (argc == 3 && !strcmp(argv[1], "-L"))
         list_wildcard(argv[2], 1);
         
     else if (argc == 1)
@@ -469,7 +469,7 @@ int list_main(int argc, char ** argv)
 
 int type_main(int argc, char ** argv) {
     
-    if (argc == 2 && !strcmp(argv[1], "--help"))
+    if (argc == 2 && !strcmp(argv[1], "--HELP"))
     {
         printf("type : less [file]\n\n\
         Prints the contents of the file to the screen, approximately a screen full at a time.\n\
@@ -505,7 +505,7 @@ int type_main(int argc, char ** argv) {
 
 int move_main(int argc, char ** argv)
 {
-    if(argc == 2 && !strcmp(argv[1], "--help"))
+    if(argc == 2 && !strcmp(argv[1], "--HELP"))
     {
         printf("Move : mv [operation] [path1] [path2] \n\
         mv -m [path1] [path2] \n\
@@ -522,7 +522,7 @@ int move_main(int argc, char ** argv)
         \t [path2] : the destination file path (should be a valid path to outside of disk image).\n\
         \n");
     }
-    else if(argc == 4 && !strcmp(argv[1], "-o"))
+    else if(argc == 4 && !strcmp(argv[1], "-O"))
     {
         struct dir_entry_info * file_entry = get_entry(argv[2]);
         error_t errno = extract_file(file_entry, argv[3]);
@@ -545,7 +545,7 @@ int move_main(int argc, char ** argv)
                 break;
         }
     }
-    else if(argc == 4 && !strcmp(argv[1], "-m"))
+    else if(argc == 4 && !strcmp(argv[1], "-M"))
     {
         struct dir_entry_info * file_entry = get_entry(argv[2]);
         struct dir_entry_info * dest_entry = get_entry(argv[3]);
@@ -569,7 +569,7 @@ int move_main(int argc, char ** argv)
                 break;
         }
     }
-    else if(argc == 4 && !strcmp(argv[1], "-i"))
+    else if(argc == 4 && !strcmp(argv[1], "-I"))
     {
         struct dir_entry_info * dest_entry = get_entry(argv[3]);
         error_t errno = import_file(argv[2], dest_entry);
@@ -609,36 +609,24 @@ int move_main(int argc, char ** argv)
 }
 
 
-int print_root_dir_main(int argc, char ** argv) {
-    if (argc == 2 && !strcmp(argv[1], "--help"))
+int print_root_dir() {
+
+    print_report_heading();
+    struct dir_itr * dir_entry_itr1 = init_dir_itr(ROOT_DIR_SEC_INDEX);
+
+    for(ditr_begin(dir_entry_itr1); !ditr_end(dir_entry_itr1); ditr_next(dir_entry_itr1))
     {
-        printf("Print root directory : lsr\n");
+        struct dir_entry_info * current_entry = ditr_get(dir_entry_itr1);
+        print_dir_entry_info(current_entry);
     }
-    else if(argc == 1)
-    {
-        print_report_heading();
-        struct dir_itr * dir_entry_itr1 = init_dir_itr(ROOT_DIR_SEC_INDEX);
-    
-        for(ditr_begin(dir_entry_itr1); !ditr_end(dir_entry_itr1); ditr_next(dir_entry_itr1))
-        {
-            struct dir_entry_info * current_entry = ditr_get(dir_entry_itr1);
-            print_dir_entry_info(current_entry);
-        }
-        printf("--------------------------------------------------------------------------\n");
-    }
-    else
-    {
-        printf("\n%s%sERROR:%s Incorrect input. Please refer to \"lsr --help\"\n\n", T_BOLD, T_RED, T_RESET);
-        return 0;
-    }
-    
+    printf("--------------------------------------------------------------------------\n");
+
     return 0;
-    
 }
 
 int delete_main(int argc, char ** argv)
 {
-    if(argc == 2 && !strcmp(argv[1], "--help"))
+    if(argc == 2 && !strcmp(argv[1], "--HELP"))
     {
         printf("Delete : del [path] \n\
         delete the file from the disk image.\n\

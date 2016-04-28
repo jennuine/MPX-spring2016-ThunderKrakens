@@ -124,7 +124,7 @@ extern struct dir_entry_info * root_dir_entry;
  *
  * @param   path_to_file     String path to the image file
  *
- * @return The appropiate error number. See @ref errno.h for details.
+ * @return The appropiate error code. See @ref errno.h for details.
  */
 error_t load_image_file(const char * path_to_file);
 
@@ -134,7 +134,7 @@ error_t load_image_file(const char * path_to_file);
  * 
  * Will write all changes made to the image
  * 
- * @return The appropiate error number. See @ref errno.h for details.
+ * @return The appropiate error code. See @ref errno.h for details.
  */
 error_t write_image_file();
 
@@ -251,7 +251,7 @@ void str_to_upper_case(char * str, const unsigned int len);
  * @param   file_name   The variable to store the filename
  * @param   file_ext    The variable to store the file's extension
  * 
- * @return The appropiate error number. See @ref errno.h for details.
+ * @return The appropiate error code. See @ref errno.h for details.
  */
 error_t seperate_file_name(const char * full_name, char * file_name, char * file_ext);
 
