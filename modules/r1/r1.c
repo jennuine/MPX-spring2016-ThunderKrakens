@@ -253,7 +253,6 @@ static void print_icon()
  *
  *	@brief Accepts and handles commands from the user.
  *
- * 	@return 0
  */
 void commhand()
 {

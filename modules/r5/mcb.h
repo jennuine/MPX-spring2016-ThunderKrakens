@@ -17,6 +17,7 @@
 /** Global variable labeling start of memory */
 extern u32int start_of_memory;
 
+/** @struct mcb */
 struct mcb;
 
 /**

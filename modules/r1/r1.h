@@ -10,22 +10,24 @@
 #ifndef _R1_H
 #define _R1_H
 
+/**
+ * @brief Command types
+ */
 enum comm_type 
 {
-    mpx,
-    pcb,
-    mcb,
-    help
+    mpx, /**< MPX System command */
+    pcb, /**< Process Control Block command */
+    mcb, /**< Memory Control Block command */
+    help /**< Help command */
 } __attribute__ ((packed));
 
 #include "../cmd_orders.h"
 
 
-/** @name commhand
+/** 
+ * @name commhand
  *
  *	@brief Accepts and handles commands from the user.
- *
- * 	@return VOID
  */
 void commhand();
 
@@ -39,20 +41,25 @@ void commhand();
 * @param  MaxArgNum  The maximum number of tokens that array can hold.
 * @param  MaxStrLen  The maximum length of each token that string can hold.
 *
-* @return void
 */
 void command_line_parser(const char * CmdStr, int * argc, char ** argv, const int MaxArgNum, const int MaxStrLen);
 
 /**
  *@name   print_help
- *@brief  prints the help message of a certain function that specified by the index number
+ *@brief  Prints the help message of a certain function that specified by the index number
  *
  *@param  function_index  The index number of that function.
  *
- *@return void
  */
 void print_help(const int function_index);
 
+/**
+ * @name help_usages
+ * @brief Displays all the usage case of the specified command type.
+ * 
+ * @param   comm_type   The command type.
+ * @return  When finished execution returns 0.
+ */
 int help_usages(enum comm_type type);
 
 #endif

@@ -25,7 +25,7 @@ struct dir_entry_info;
  * This function will print any contents of a file with the extensions "TXT", "BAT", "C", or "HTM" in pagination form. 
  *
  * @param  file_entry_ptr   The pointer to the file entry
- * @return The appropiate error number. See @ref errno.h for details.
+ * @return The appropiate error code. See @ref errno.h for details.
  */
 error_t type_file(struct dir_entry_info * file_entry_ptr);
 
@@ -36,7 +36,7 @@ error_t type_file(struct dir_entry_info * file_entry_ptr);
  * @param   file_entry_ptr  The pointer to the file entry
  * @param   out_file_path   The destination to save the new 'copied' file 
  * 
- * @return The appropiate error number. See @ref errno.h for details.
+ * @return The appropiate error code. See @ref errno.h for details.
  */
 error_t extract_file(struct dir_entry_info * file_entry_ptr, const char * out_file_path);
 
@@ -46,7 +46,7 @@ error_t extract_file(struct dir_entry_info * file_entry_ptr, const char * out_fi
  *
  * @param   in_file_path    Where the file to be imported is located
  * @param   dest_dir        The directory destination for the imported file
- * @return The appropiate error number. See @ref errno.h for details.
+ * @return The appropiate error code. See @ref errno.h for details.
  */
 error_t import_file(const char * in_file_path, struct dir_entry_info * dest_dir);
 
@@ -56,7 +56,7 @@ error_t import_file(const char * in_file_path, struct dir_entry_info * dest_dir)
  * 
  * @param   file_entry      The file entry pointer to be moved
  * @param   dest_dir        The destination of the moved file
- * @return The appropiate error number. See @ref errno.h for details.
+ * @return The appropiate error code. See @ref errno.h for details.
  */
 error_t move_file(struct dir_entry_info * file_entry, struct dir_entry_info * dest_dir);
 

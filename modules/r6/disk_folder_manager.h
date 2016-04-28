@@ -85,7 +85,7 @@ void print_curr_path();
  * @param   file_entry          A pointer to the file entry to rename
  * @param   new_name            The file entry's new name
  * 
- * @return The appropiate error number. See @ref errno.h for details.
+ * @return The appropiate error code. See @ref errno.h for details.
  */
 error_t rename_entry(struct dir_entry_info * parent_dir_entry, struct dir_entry_info * file_entry, char * new_name);
 

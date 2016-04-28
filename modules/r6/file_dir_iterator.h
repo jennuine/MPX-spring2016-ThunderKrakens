@@ -95,47 +95,44 @@ void ditr_begin(struct dir_itr * itr_ptr);
  * @param   itr_ptr     Pointer of the iterator
  * 
  */
-
 void ditr_set_find_unused(struct dir_itr * itr_ptr);
 
 /**
  * @name ditr_end
- * @brief Ends the directory iterator
+ * @brief Check's if the iterator has reach to the last cluster in the file
  *
  * @param   itr_ptr     Pointer of the iterator
  * 
  */
-
 uint8_t ditr_end(struct dir_itr * itr_ptr);
 
 /**
  * @name ditr_next
- * @brief Finds the next section in directory
+ * @brief Finds the next entry in directory
  *
  * @param   itr_ptr     Pointer of the iterator
  * 
  */
-
 void ditr_next(struct dir_itr * itr_ptr);
 
 /**
  * @name ditr_get
- * @brief Retrieve information for the directory iterator
+ * @brief Gets the pointer that point to the current entry. 
+ * If the iterator had approched to the end, this will return NULL instead;
  *
  * @param   itr_ptr     Pointer of the iterator
  * 
+ * @return The pointer that point to the current entry. NULL if reached to the end.
  */
-
 struct dir_entry_info * ditr_get(struct dir_itr * itr_ptr);
 
 /**
  * @name init_img_writer
  * @brief Initialize the image writer
  *
- * @param   entry_ptr     Entry pointer
+ * @param   entry_ptr     The pointer of entry that this writer will write with. 
  * 
  */
-
 struct img_writer * init_img_writer(struct dir_entry_info * entry_ptr);
 
 /**
@@ -143,8 +140,7 @@ struct img_writer * init_img_writer(struct dir_entry_info * entry_ptr);
  * @brief Function to write the image
  *
  * @param   writer_ptr    Pointer of the writer
- * @param   data          Construct the data sector
+ * @param   data          The new data sector that needs to write.
  * 
  */
-
 void iw_write(struct img_writer * writer_ptr, const struct data_sector * data);
