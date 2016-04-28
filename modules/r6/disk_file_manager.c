@@ -6,6 +6,7 @@
 #include "file_dir_iterator.h"
 
 
+
 error_t type_file(struct dir_entry_info * file_entry_ptr)
 {
     if (!file_entry_ptr || (file_entry_ptr->attributes & ATTR_ARCH_ONLY))
