@@ -9,14 +9,11 @@
 #include "pcb.h"
 #include <string.h>
 #include "../mpx_supt.h"
-
-/**
- * R3 data
- */
 #include "../r3/context.h"
 
 
 /**
+ * @name ready_queue
  * PCBs stored in priority order with highest priority at head 
  */
 static struct pcb_queue ready_queue;
