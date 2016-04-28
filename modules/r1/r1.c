@@ -19,8 +19,8 @@
 #include "../r5/mcb.h"
 
 #define MAX_ARGC 50
-#define MOD_VERSION "R5"
-#define COMPLETION "04/08/2016"
+#define MOD_VERSION "R6"
+#define COMPLETION "05/28/2016"
 
 #define MAX_HISTORY 10
 
